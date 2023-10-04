@@ -1,0 +1,54 @@
+CREATE TABLE JEJU_MEMBER(
+    MEMBER_ID VARCHAR2 (100) PRIMARY KEY,
+    MEMBER_PW VARCHAR2 (100) NOT NULL,
+    MEMBER_NAME VARCHAR2 (100) NOT NULL,
+    MEMBER_TEL VARCHAR2(30),
+    MEMBER_ADDR VARCHAR2(100),
+    ADDR_DETAIL VARCHAR2(100),
+    IS_ADMIN VARCHAR(2) DEFAULT 'N'
+);
+
+
+
+
+--어드민 등록
+INSERT INTO JEJU_MEMBER(
+    MEMBER_ID
+    , MEMBER_PW
+    , MEMBER_NAME
+    , MEMBER_TEL
+    , MEMBER_ADDR
+    , ADDR_DETAIL
+)VALUES(
+    'admin'
+    , '1q2w3e4r'
+    , '관리자'
+    , '010-1111-1111'
+    , '울산시'
+    , '제주그린사옥'
+);
+
+--테스터 회원 등록
+INSERT INTO JEJU_MEMBER(
+    MEMBER_ID
+    , MEMBER_PW
+    , MEMBER_NAME
+    , MEMBER_TEL
+    , MEMBER_ADDR
+    , ADDR_DETAIL
+)VALUES(
+    'guest'
+    , '1q2w3e4r'
+    , '엄준식'
+    , '010-1111-1112'
+    , '울산시'
+    , '제주그린사옥'
+);
+
+SELECT * FROM JEJU_MEMBER;
+
+UPDATE JEJU_MEMBER
+SET IS_ADMIN = 'Y'
+WHERE MEMBER_ID = 'admin';
+
+COMMIT;
