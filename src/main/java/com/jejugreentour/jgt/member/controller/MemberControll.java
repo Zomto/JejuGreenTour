@@ -26,13 +26,13 @@ public class MemberControll {
 
     @GetMapping("/joinForm")
     public String joinForm(){
-        return "member/join";
+        return "content/member/join";
     }
 
 
     @GetMapping("/loginForm")
     public String loginForm(MemberVO memberVO){
-        return "member/login";
+        return "content/member/login";
     }
 
     @PostMapping("/login")
@@ -42,7 +42,7 @@ public class MemberControll {
         if(loginInfo !=null){
             session.setAttribute("loginInfo",loginInfo);
         }
-        return "member/login_result";
+        return "content/member/login_result";
     }
 
 //    @ResponseBody
