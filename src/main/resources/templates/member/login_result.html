@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<th:block th:if="${session.loginInfo == null}">
+    <input type="hidden" id="inputId" th:value="${memberVO.memberId}">
+    <script>
+        const memberId = document.querySelector("#inputId").value;
+        alert('ID 및 PW 확인!');
+        location.href = `/member/loginForm?memberId=${memberId}`;
+    </script>
+</th:block>
+<th:block th:if="${session.loginInfo != null}">
+    <input type="hidden" id="roll" th:value="${session.loginInfo.memberRoll}">
+    <script>
+        alert('반가워요');
+        const memberRoll = document.querySelector('#roll').value;
+        location.href = memberRoll == 'USER' ? '/item/main' : '/admin/itemManage?menuCode=1';
+    </script>
+</th:block>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
