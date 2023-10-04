@@ -6,35 +6,55 @@
         <result column="MEMBER_ID"      property="memberId" />
         <result column="MEMBER_PW"      property="memberPw" />
         <result column="MEMBER_NAME"    property="memberName" />
-        <result column="MEMBER_TELL"    property="memberTell" />
+        <result column="MEMBER_TEL"    property="memberTel" />
         <result column="MEMBER_ADDR"    property="memberAddr" />
         <result column="ADDR_DETAIL"    property="addrDetail" />
-        <result column="IS_ADMIN"       property="isAdmin" />
+        <result column="MEMBER_EMAIL"   property="memberEmail"/>
+        <result column="GENDER"         property="gender"/>
+        <result column="MEMBER_ROLL"    property="memberRoll"/>
     </resultMap>
 
-
     <insert id="joinMember">
-        INSERT INTO JEJU_MEMBER(
-            MEMBER_ID
-        ,   MEMBER_PW
-        ,   MEMBER_TELL
-        ,   MEMBER_ADDR
-        ,   ADDR_DETAIL
-        )VALUES(
-            #{memberId}
-        ,   #{memberName}
-        ,   #{memberTell}
-        ,   #{memberAddr}
-        ,   #{addrDetail}
+        INSERT INTO JEJU_MEMBER (
+        MEMBER_ID
+        , MEMBER_PW
+        , MEMBER_NAME
+        , MEMBER_TEL
+        , MEMBER_ADDR
+        , ADDR_DETAIL
+        , MEMBER_EMAIL
+        , GENDER
+        ) VALUES (
+        #{memberId}
+        , #{memberPw}
+        , #{memberName}
+        ,
+        <foreach collection="memberTels" item="tel" separator="||'-'||">
+            #{tel}
+        </foreach>
+        , #{memberAddr}
+        , #{addrDetail}
+        ,
+        <foreach collection="memberEmails" item="email" separator="||">
+            #{email}
+        </foreach>
+        , #{gender}
         )
     </insert>
 
     <select id="login" resultMap="member">
         SELECT MEMBER_ID
         , MEMBER_NAME
-        , IS_ADMIN
+        , MEMBER_ROLL
         FROM JEJU_MEMBER
         WHERE MEMBER_ID = #{memberId}
         AND MEMBER_PW = #{memberPw}
     </select>
+
+    <!--    아이디 중복 확인
+    <select id="checkId" resultMap="String">
+        SELECT MEMBER_ID
+        FROM JEJU_MEMBER
+        WHERE MEMBER_ID = #{memberId}
+    </select>   -->
 </mapper>
