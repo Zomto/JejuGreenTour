@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    > <!-- layout:decorate="~{fragment/main_layout}" -->
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<!-- <th:block layout:fragment="content"> -->
+<style>
+    .fc-daygrid-day{
+        cursor: pointer;
+    }
+    .fc-day-sun{
+        color: red;
+    }
+    .fc-day-sat{
+        color: red;
+    }
+</style>
+<div id ="calendar"></div>
+
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+<script src='/dist/index.global.js'></script>
+<script src='/packages/interaction/index.global.js'></script>
+<script src="/js/calendar.js"></script>
+<!-- </th:block> class="fc-day fc-day-tue fc-day-past fc-daygrid-day"-->
+</body>
+</html>
