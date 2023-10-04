@@ -20,7 +20,7 @@ public class MemberControll {
 
     @PostMapping("/joinMember")
     public String joinMember(MemberVO memberVO){
-        memberService.joinMember(memberVO);
+        memberService.join(memberVO);
         return "redirect:/";
     }
 

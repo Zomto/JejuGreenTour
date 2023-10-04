@@ -14,7 +14,7 @@
         <result column="MEMBER_ROLL"    property="memberRoll"/>
     </resultMap>
 
-    <insert id="joinMember">
+    <insert id="join">
         INSERT INTO JEJU_MEMBER (
         MEMBER_ID
         , MEMBER_PW

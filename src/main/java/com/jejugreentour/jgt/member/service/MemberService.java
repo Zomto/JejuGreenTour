@@ -5,7 +5,7 @@ import com.jejugreentour.jgt.member.vo.MemberVO;
 public interface MemberService {
 
     //회원가입
-    public int joinMember(MemberVO memberVO);
+    public int join(MemberVO memberVO);
 
     //로그인
     public  MemberVO login(MemberVO memberVO);
