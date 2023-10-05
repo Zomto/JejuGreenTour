@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="accomMapper">
+    <resultMap id="mainAccom" type="com.jejugreentour.jgt.accom.vo.MainAccomVO">
+        <result column="ACCOM_CODE"      property="accomCode" />
+        <result column="ACCOM_NAME"      property="accomName" />
+        <result column="ACCOM_ADDR"    property="accomAddr" />
+        <result column="ACCOM_INTRO"    property="accomIntro" />
+        <result column="ACCOM_CATE"    property="accomCate" />
+        <result column="ACCOM_CEO"    property="accomCeo" />
+        <result column="LATITUDE"    property="latitude" />
+        <result column="LONGITUDE"    property="longitude" />
+    </resultMap>
+
+    <resultMap id="mainAccomImg" type="com.jejugreentour.jgt.accom.vo.MainAccomImgVO">
+        <result column="MAIN_IMG_CODE"      property="mainImgCode" />
+        <result column="ORIGIN_FILE_NAME"      property="originFileName" />
+        <result column="ATTACHED_FILE_NAME"    property="attachedFileName" />
+        <result column="ACCOM_CODE"    property="accomCode" />
+        <result column="IS_MAIN"    property="isMain" />
+    </resultMap>
+
+    <resultMap id="subAccom" type="com.jejugreentour.jgt.accom.vo.SubAccomVO">
+        <result column="SUB_ACCOM_CODE"      property="subAccomCode" />
+        <result column="ACCOM_CODE"      property="accomCode" />
+        <result column="SUB_ACCOM_NAME"    property="subAccomName" />
+        <result column="SUB_ACCOM_INTRO"    property="subAccomIntro" />
+        <result column="SUB_ACCOM_CATE"    property="subAccomCate" />
+        <result column="ACCOM_PRICE"    property="accomPrice" />
+        <result column="BASIC_MAN"    property="basicMan" />
+        <result column="MAX_MAN"    property="maxMan" />
+        <result column="ACCOM_START_TIME"    property="accomStartTime" />
+        <result column="ACCOM_END_TIME"    property="accomEndTime" />
+        <result column="RENT_TIME"    property="rentTime" />
+        <result column="SOLD_OUT"    property="soldOut" />
+    </resultMap>
+
+    <resultMap id="subAccomImg" type="com.jejugreentour.jgt.accom.vo.SubAccomImgVO">
+        <result column="SUB_IMG_CODE"      property="subImgCode" />
+        <result column="ORIGIN_FILE_NAME"      property="originFileName" />
+        <result column="ATTACHED_FILE_NAME"    property="attachedFileName" />
+        <result column="SUB_ACCOM_CODE"    property="subAccomCode" />
+        <result column="IS_MAIN"    property="isMain" />
+    </resultMap>
+
+    <resultMap id="accomReview" type="com.jejugreentour.jgt.accom.vo.AccomReviewVO">
+        <result column="ACCOM_CODE"      property="accomCode" />
+        <result column="REVIEW_POINT"      property="reviewPoint" />
+        <result column="REVIEW_DETAIL"    property="reviewDetail" />
+        <result column="ORIGIN_FILE_NAME"    property="originFileName" />
+        <result column="ATTACHED_FILE_NAME"    property="attachedFileName" />
+        <result column="REVIEW_DATE"    property="reviewDate" />
+    </resultMap>
+
+    <resultMap id="accomCategory" type="com.jejugreentour.jgt.accom.vo.AccomCategoryVO">
+        <result column="ACCOM_CATE"      property="accomCate" />
+        <result column="CATE_NAME"      property="cateName" />
+    </resultMap>
+
+    <resultMap id="accomLoc" type="com.jejugreentour.jgt.accom.vo.AccomLocVO">
+        <result column="ACCOM_LOC_CODE"      property="accomLocCode" />
+        <result column="LOC_NAME"      property="LOC_NAME" />
+    </resultMap>
+</mapper>
