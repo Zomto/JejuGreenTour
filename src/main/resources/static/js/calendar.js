@@ -3,9 +3,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let setstartday = document.querySelector('#setStartDay');
     let setendday = document.querySelector('#setEndDay');
+    let stayday = document.querySelector('#stayDay');
     //sql로 가져올 정보는 날짜랑 결제한 ID만필요(admin용)
     let sta = document.querySelectorAll('.start');
     let en = document.querySelectorAll('.end');
+
     let todaydate = new Date();
     let Year = todaydate.getFullYear();
     let Month = todaydate.getMonth();
@@ -64,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         calendar.getEventById('longDate').remove();
                         calendar.getEventById('startDate').remove();
                         calendar.getEventById('endDate').remove();
+                        stayday.value = 0;
                     }
                     startinfo = info;
                     startDate = info.startStr;
@@ -131,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             display: 'background',
                             backgroundColor: 'green', // 배경색 설정
                         };
+                        stayday.value = (new Date(endDate).getTime() / (1000 * 60 * 60 * 24)) - (new Date(startDate).getTime() / (1000 * 60 * 60 * 24))
                         calendar.addEvent(long);
                         // 선택 영역 초기화
                         calendar.unselect();
@@ -139,7 +143,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 } else {
                     calendar.getEventById('startDate').remove();
-                    startDate = null;
                     startinfo = info;
                     startDate = info.startStr;
                     setstartday.value = startDate;
