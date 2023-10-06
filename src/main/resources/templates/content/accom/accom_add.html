@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>회원가입 페이지</h3>
+<form action="/accom/accomAdd" method="post">
+    <div class="modal-body">
+        <form class="row g-3" id="joinForm" method="post" action="/member/join">
+            <div class="col-8">
+              <label for="accomName" class="form-label">업소명</label>
+              <input type="text" class="form-control"  id="accomName" name="accomName">
+            </div>
+            <div class="col-8">
+                <label for="memberAddr" class="form-label">ADDRESS</label>
+                <input type="text" class="form-control"  id="memberAddr" name="memberAddr" onclick="openPost();" readonly>
+              </div>
+              <div class="col-4 d-grid">
+                  <label for="" class="form-label">&nbsp;</label>
+                  <input type="button" class="btn btn-primary" value="주소검색" onclick="openPost();">
+              </div>
+              <div class="col-12">
+                <input type="text" class="form-control" id="addrDetail" name="addrDetail">
+            </div>
+            <div class="col-8">
+                <label for="accomCate" class="form-label">카테고리</label>
+            </div>
+            <div class="col-4">
+                <label for="" class="form-label">&nbsp;</label>
+                <select name="accomCate" class="form-select">
+                    <option value="CATE_001">호텔</option>
+                    <option value="CATE_002">모텔</option>
+                    <option value="CATE_003">펜션</option>
+                    <option value="CATE_004">글램핑</option>
+                </select>
+            </div>
+            <div class="offset-6 col-3 d-grid">
+              <button id="join-btn" type="button" class="btn btn-primary" onclick="joinValidate();" disabled>Sign in</button>
+            </div>
+        </form>
+    </div>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/js/accom/addAccom.js"> </script>
+</form>
+</body>
+</html>
