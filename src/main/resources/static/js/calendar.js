@@ -1,8 +1,8 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    let setstartday = document.querySelector('#setstartday');
-    let setendday = document.querySelector('#setendday');
+    let setstartday = document.querySelector('#setStartDay');
+    let setendday = document.querySelector('#setEndDay');
     //sql로 가져올 정보는 날짜랑 결제한 ID만필요(admin용)
     let sta = document.querySelectorAll('.start');
     let en = document.querySelectorAll('.end');
