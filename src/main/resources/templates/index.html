@@ -8,5 +8,54 @@
 <h2>제주그린투어 index</h2>
 <a href="/member/loginForm">로그인</a>
 <a href="/member/joinForm">회원가입</a>
+
+<div id="staticMap" style="width:600px;height:350px;">
+
+</div>
+
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1faecd944d1bb1ff9e6939d4b20a8146"></script>
+<script>
+    var marker = {
+        position: new kakao.maps.LatLng(33.48692552938739, 126.39119047729987),
+        text: '텍스트를 표시할 수 있어요!' // text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다
+    };
+    
+
+
+    var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div
+        staticMapOption = {
+            center: new kakao.maps.LatLng(33.48692552938739, 126.39119047729987), // 이미지 지도의 중심좌표
+            level: 3, // 이미지 지도의 확대 레벨
+            marker: marker, // 이미지 지도에 표시할 마커
+            mapTypeId : kakao.maps.MapTypeId.ROADMAP
+        };
+
+    // 이미지 지도를 생성합니다
+    var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+    
+    // 지도에 선을 표시한다
+    var polyline = new kakao.maps.Polyline({
+			map: map, // 선을 표시할 지도 객체
+			path: [ // 선을 구성하는 좌표 배열
+				new kakao.maps.LatLng(33.4866696, 126.3919109),
+				new kakao.maps.LatLng(33.4862613, 126.3914903),
+				new kakao.maps.LatLng(33.4861254, 126.3913602),
+				new kakao.maps.LatLng(33.4855037, 126.3914627)
+			],
+			strokeWeight: 3, // 선의 두께
+			strokeColor: '#FF0000', // 선 색
+			strokeOpacity: 1, // 선 투명도
+			strokeStyle: 'solid' // 선 스타일
+		});
+
+
+</script>
 </body>
 </html>
+
+<a style="position : absolute; left:250px;height: 10px; z-index:1000; display:block;" href="https://map.naver.com/p/search/%EC%97%85%EC%8A%A4%ED%80%98%EC%96%B4/place/20010764?c=15.00,0,0,0,dh&placePath=%3Fentry%253Dpll">
+    ㅎㅇㅇ
+</a>
+
+   
