@@ -16,16 +16,8 @@ public class BuyController {
 
     @GetMapping("/calendar")
     public String calendar(Model model){
-        List<CheckVO> checkVOList=new ArrayList<>();
-        CheckVO checkVO=new CheckVO();
-        checkVO.setStart("2023-10-23");
-        checkVO.setEnd("2023-10-25");
-        checkVOList.add(checkVO);
-        checkVO =new CheckVO();
-        checkVO.setStart("2023-10-27");
-        checkVO.setEnd("2023-10-30");
-        checkVOList.add(checkVO);
-        model.addAttribute("checklist",checkVOList);
+
+//        model.addAttribute("checklist",checkVOList);
         return "/buy/calendar";
     }
     @GetMapping("/adminCalendar")
