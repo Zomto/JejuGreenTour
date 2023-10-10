@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="buyMapper">
+    <resultMap id="reservation" type="com.jejugreentour.jgt.buy.vo.ReservationVO">
+        <id column="RESERVATION_CODE" property="reservationCode" />
+        <result column="SUB_ACCOM_CODE" property="subAccomCode"/>
+        <result column="MEMBER_ID" property="memberId"/>
+        <result column="STAY_START_DATE" property="stayStartDate"/>
+        <result column="STAY_END_DATE" property="stayEndDate"/>
+        <result column="RESERVATION_DATE" property="reservationDate"/>
+        <result column="RESERVATION_PRICE" property="reservationPrice"/>
+    </resultMap>
+</mapper>

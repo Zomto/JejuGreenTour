@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         calendar.unselect();
                     }
 
-                } else if (startDate <= info.startStr) {
+                } else if (startDate < info.startStr) {
                     endDate = info.startStr;
                     setendday.value = endDate;
                     let safe = true;
