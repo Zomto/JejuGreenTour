@@ -62,4 +62,30 @@
         <result column="ACCOM_LOC_CODE"      property="accomLocCode" />
         <result column="LOC_NAME"      property="LOC_NAME" />
     </resultMap>
+
+    <insert id="addAccom">
+        INSERT INTO MAIN_ACCOM (
+        ACCOM_CODE
+        , ACCOM_NAME
+        , ACCOM_ADDR
+        , ADDR_DETAIL
+        , ACCOM_INTRO
+        , ACCOM_CEO
+        , ACCOM_CATE
+        , ACCOM_LOC_CODE
+        )
+        VALUES (
+        (SELECT 'ACCOM_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ACCOM_CODE, 6))),0) + 1, 3, '0')
+        FROM MAIN_ACCOM)
+        , #{memberPw}
+        , #{memberName}
+        , #{memberAddr}
+        , #{addrDetail}
+        ,
+        <foreach collection="memberEmails" item="email" separator="||">
+            #{email}
+        </foreach>
+        , #{gender}
+        )
+    </insert>
 </mapper>

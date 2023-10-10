@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-  <meta charset="UTF-8">
-  <title></title>
+<meta charset="UTF-8">
+<title></title>
 </head>
-
 <body>
+<<<<<<< HEAD
   <th:block th:fragment="mainHeaderFragment">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -296,14 +296,109 @@
       </div>
       <!-- </div>
     </div> -->
+=======
+    <th:block th:fragment="mainHeaderFragment">
+        <style>
+            a{
+                text-decoration: none;
+            }
+        </style>
+    <link rel="stylesheet" href="/css/main_header.css">
+>>>>>>> 607fcea8908738dbbd849a6eb22734928c87e8fb
 
 
-    <!-- join 버튼 클릭시 실행할 Modal창 -->
-    <!-- Button trigger modal -->
-    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <!-- join 버튼 클릭시 실행할 Modal창 -->
+        <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     Launch static backdrop modal
   </button> -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="join-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div> -->
+        <div class="modal-body">
+            <form class="row g-3" id="joinForm" method="post" action="/member/join">
+                <div class="col-8">
+                  <label for="memberId" class="form-label">ID</label>
+                  <input type="text" class="form-control"  id="memberId" name="memberId" onkeyup="setDisabled();">
+                </div>
+                <div class="col-4 d-grid">
+                    <label for="" class="form-label">&nbsp;</label>
+                    <input type="button" class="btn btn-primary" value="중복확인" onclick="checkId();">
+                </div>
+                <div class="error-div" id="id-error-div"></div>
+                <div class="col-12">
+                    <label for="memberPw" class="form-label">PASSWORD</label>
+                    <input type="password" class="form-control" id="memberPw" name="memberPw">
+                  </div>
+                <div class="col-12">
+                    <label for="memberName" class="form-label">NAME</label>
+                    <input type="text" class="form-control" id="memberName" name="memberName">
+                </div>
+                <div class="col-4">
+                    <label for="" class="form-label">TEL</label>
+                    <select name="memberTels" class="form-select">
+                        <option value="010">010</option>
+                        <option value="011">011</option>
+                        <option value="012">012</option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <label for="" class="form-label">&nbsp;</label>
+                    <input type="text" class="form-control" id="" name="memberTels">
+                </div>
+                <div class="col-4">
+                    <label for="" class="form-label">&nbsp;</label>
+                    <input type="text" class="form-control" id="" name="memberTels">
+                </div>
+                <div class="error-div" id="tel-error-div"></div>
+                <div class="col-8">
+                    <label for="memberAddr" class="form-label">ADDRESS</label>
+                    <input type="text" class="form-control"  id="memberAddr" name="memberAddr" onclick="openPost();" readonly>
+                  </div>
+                  <div class="col-4 d-grid">
+                      <label for="" class="form-label">&nbsp;</label>
+                      <input type="button" class="btn btn-primary" value="주소검색" onclick="openPost();">
+                  </div>
+                  <div class="col-12">
+                    <input type="text" class="form-control" id="addrDetail" name="addrDetail">
+                </div>
+                <div class="col-8">
+                    <label for="memberEmail" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="memberEmail" name="memberEmails">
+                </div>
+                <div class="col-4">
+                    <label for="" class="form-label">&nbsp;</label>
+                    <select name="memberEmails" class="form-select">
+                        <option value="@naver.com">@naver.com</option>
+                        <option value="@gmail.com">@gmail.com</option>
+                    </select>
+                </div>
+                <div class="col12">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="" name="gender" value="남" checked>
+                        <label class="form-check-label" for="">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="" name="gender" value="여">
+                        <label class="form-check-label" for="">Female</label>
+                    </div>
+                </div>
+                <div class="offset-6 col-3 d-grid">
+                  <button id="join-btn" type="button" class="btn btn-primary" onclick="joinValidate();" disabled>Sign in</button>
+                </div>
+                <div class="col-3 d-grid">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
 
+<<<<<<< HEAD
     <!-- Modal -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -312,7 +407,298 @@
     <script src="js/main.js"></script>
     
   </th:block>
+=======
+      </div>
+    </div>
+  </div>
 
+>>>>>>> 607fcea8908738dbbd849a6eb22734928c87e8fb
+
+        <div id="wrap">
+            <!-- <div id="topBn">
+                <div class="topBn_in">
+                    <div class="topBn_list">
+                        <ul>
+                            <li><a href=""><img src="/img/topbn_01.jpg" alt=" 마일리지, 여행상품권 유효기간 연장"></a></li>
+                            <li><a href=""><img src="/img/topbn_02.jpg" alt="  2022 설 연휴 국내여행 얼리버드 특가"></a></li>
+                        </ul>
+                    </div>
+                    <p class="topBn_close"><a href="">상단 팝업 닫기</a></p>
+                </div>
+            </div> -->
+            <div id="header">
+                <div id="head1">
+                    <h1 class="logo"><a href="">하나투어</a></h1>
+                    <div class="h_search">
+                        <form action="">
+                            <fieldset>
+                                <legend class="hide">통합 검색어 입력폼</legend>
+                                <div>
+                                    <input type="text" placeholder="검색어를 입력해 주세요">
+                                    <button>검색하기</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="h_keyword">
+                        <div class="hk_current">
+                            <div class="key_box">
+                                <span class="tag">HOT</span>
+                                <span class="place">싱가포르</span>
+                            </div>
+                            <div class="key_box">
+                                <span class="tag">HOT</span>
+                                <span class="place">몽골</span>
+                            </div>
+                            <div class="key_box">
+                                <span class="tag">HOT</span>
+                                <span class="place">대만</span>
+                            </div>
+                            <div class="key_box">
+                                <span class="tag">HOT</span>
+                                <span class="place">코타키나발루</span>
+                            </div>
+                            <div class="key_box">
+                                <span class="tag">HOT</span>
+                                <span class="place">세부</span>
+                            </div>
+                            <div class="key_box">
+                                <span class="tag">HOT</span>
+                                <span class="place">장가계</span>
+                            </div>
+                            <div class="key_box">
+                                <span class="tag">HOT</span>
+                                <span class="place">오사카</span>
+                            </div>
+                            <div class="key_box">
+                                <span class="tag">HOT</span>
+                                <span class="place">일본</span>
+                            </div>
+                            <div class="key_box">
+                                <span class="tag">HOT</span>
+                                <span class="place">다낭</span>
+                            </div>
+                            <div class="key_box">
+                                <span class="tag">HOT</span>
+                                <span class="place">나트랑</span>
+                            </div>
+                        </div>
+                        <div class="hk_popup">
+                            <div class="hk_popup_top">
+                                <span class="tag">HOT</span>
+                                <span class="place">인기검색어</span>
+                            </div>
+                            <div class="hk_popup_list">
+                                <ul>
+                                    <li><a href="">일본</a></li>
+                                    <li><a href="">다낭</a></li>
+                                    <li><a href="">나트랑</a></li>
+                                    <li><a href="">싱가포르</a></li>
+                                    <li><a href="">몽골</a></li>
+                                    <li><a href="">대만</a></li>
+                                    <li><a href="">코타키나발루</a></li>
+                                    <li><a href="">세부</a></li>
+                                    <li><a href="">장가계</a></li>
+                                    <li><a href="">오사카</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h_utill">
+                        <ul class="hu01">
+                            <li><a href="">로그인</a></li>
+                            <li><a href="">회원가입</a></li>
+                            <li><a href="">고객센터</a></li>
+                        </ul>
+                        <ul class="hu02">
+                            <li class="hu0201">
+                                <a href="">마이메뉴</a>
+                                <div class="mymenu">
+                                    <div class="mymenu_in">
+                                        <p class="top">
+                                            마이메뉴는<br>
+                                            <span>회원 전용</span> 메뉴 입니다.
+                                        </p>
+                                        <div class="btn">
+                                            <p class="login"><a href="">로그인</a></p>
+                                            <p class="join"><a href="">회원가입</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="hu0202"><a href="">예약내역</a></li>
+                            <li class="hu0203"><a href="">찜</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="head2">
+                    <div class="btn_open_allmenu"><a href="">전체메뉴</a></div>
+                    <div class="allmenu">
+                        <div class="allmenu_in">
+                            <div class="allmenu_list">
+                                <div class="column">
+                                    <dl>
+                                        <dt>해외여행</dt>
+                                        <dd>
+                                            <ul>
+                                                <li><a href="">해외여행 홈</a></li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="column">
+                                    <dl>
+                                        <dt>항공</dt>
+                                        <dd>
+                                            <ul>
+                                                <li><a href="">항공예약</a></li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>테마여행</dt>
+                                        <dd>
+                                            <ul>
+                                                <li><a href="">허니문</a></li>
+                                                <li><a href="">해외골프</a></li>
+                                                <li><a href="">제우스</a></li>
+                                                <li><a href="">MICE</a></li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="column">
+                                    <dl>
+                                        <dt>호텔</dt>
+                                        <dd>
+                                            <ul>
+                                                <li><a href="">해외호텔</a></li>
+                                                <li><a href="">국내숙박</a></li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>투어/입장권</dt>
+                                        <dd>
+                                            <ul>
+                                                <li><a href="">투어/입장권 홈</a></li>
+                                                <li><a href="">전체 도시</a></li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="column">
+                                    <dl>
+                                        <dt>제주/국내여행</dt>
+                                        <dd>
+                                            <ul>
+                                                <li><a href="">제주/국내여행</a></li>
+                                                <li><a href="">제주렌터카</a></li>
+                                                <li><a href="">국내골프</a></li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>혜택/이벤트</dt>
+                                        <dd>
+                                            <ul>
+                                                <li><a href="">이벤트</a></li>
+                                                <li><a href="">할인/혜택</a></li>
+                                                <li><a href="">여행기획전</a></li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="column">
+                                    <dl>
+                                        <dt>연계서비스</dt>
+                                        <dd>
+                                            <ul>
+                                                <li><a href="">하나투어상품권</a></li>
+                                                <li><a href="">포켓와이파이</a></li>
+                                                <li><a href="">For Foreign Travellers</a></li>
+                                            </ul>
+                                            <ul>
+                                                <li><a href="">기업출장/단체</a></li>
+                                                <li><a href="">하나투어 기프트카드</a></li>
+                                                <li><a href="">여행자보험</a></li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>하나투어 셀렉션</dt>
+                                        <dd>
+                                            <ul>
+                                                <li><a href="">하나LIVE</a></li>
+                                                <li><a href="">마일리지 클럽</a></li>
+                                                <li><a href="">하나Original</a></li>
+                                            </ul>
+                                            <ul>
+                                                <li><a href="">하나팩2.0 (개런티 프로그램)</a></li>
+                                                <li><a href="">SAFETY&JOY</a></li>
+                                                <li><a href="">우리끼리</a></li>
+                                            </ul>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="allmenu_close"><a href="">전체메뉴 닫기</a></div>
+                        </div>
+                    </div>
+                    <div class="gnb">
+                        <ul>
+                            <li class="d1">
+                                <a href="">해외여행</a>
+                                <div class="depth2">
+                                    <ul>
+                                        <li><a href="">해외여행 홈</a></li>
+                                        <li class="d2"><a href="">동남아/대만/서남아</a></li>
+                                        <li class="d2"><a href="">괌/사이판/팔라우/호주/뉴질랜드</a></li>
+                                        <li class="d2"><a href="">유럽/아프리카</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a href="">항공</a></li>
+                            <li class="d1">
+                                <a href="">호텔</a>
+                                <div class="depth2">
+                                    <ul>
+                                        <li><a href="">해외호텔</a></li>
+                                        <li><a href="">국내숙박</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="d1"><a href="">투어/입장권</a></li>
+                            <li class="d1"><a href="">제주/국내여행</a></li>
+                            <li><a href="">허니문</a></li>
+                            <li><a href="">골프</a></li>
+                            <li><a href="">제우스</a></li>
+                            <li><a href="">MICE</a></li>
+                            <li><a href="">하나LIVE</a></li>
+                            <li><a href="">베스트</a></li>
+                        </ul>
+                    </div>
+                    <div class="special_menu">
+                        <ul>
+                            <li><a href="">여행기획전</a></li>
+                            <li><a href="">기업여행</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="gnb_bg"></div>
+                <div id="quick">
+                    <div class="chat"><a href="">채팅상담</a></div>
+                    <div class="lately">
+                        <a href="">
+                            최근 본 상품(<span>0</span>)
+                        </a>
+                    </div>
+                    <div class="goTop"><a href="">TOP</a></div>
+                </div>
+            </div>
+        </div> 
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+        <script src="/js/main_header.js"></script>
+    </th:block>
 </body>
-
 </html>

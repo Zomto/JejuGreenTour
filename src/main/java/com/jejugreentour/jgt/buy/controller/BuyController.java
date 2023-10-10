@@ -28,4 +28,9 @@ public class BuyController {
         model.addAttribute("checklist",checkVOList);
         return "/buy/calendar";
     }
+    @GetMapping("/adminCalendar")
+    public String adminCalendar() {
+
+        return"/buy/admin_calendar";
+    }
 }

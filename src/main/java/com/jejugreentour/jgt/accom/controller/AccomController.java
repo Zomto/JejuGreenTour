@@ -4,6 +4,7 @@ import com.jejugreentour.jgt.accom.service.AccomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -17,4 +18,11 @@ public class AccomController {
     public String addAccomForm(){
         return "content/accom/accom_add";
     }
+
+    // 숙박 등록 페이지로 이동
+    @PostMapping("/addAccom")
+    public String addAccom(){
+        return "";
+    }
+
 }
