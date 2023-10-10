@@ -30,34 +30,7 @@ a{
 #wrap{
     min-width: 1240px
 } 
-/* 상단팝업 */
-#topBn{
-    background-color: #fef2f4;
-}
-.topBn_in{
-    position: relative;
-    width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.topBn_list{
-    position: relative;
-}
-.topBn_list ul{
-    display: flex;
-    justify-content: space-between;
-}
-.topBn_list::after{
-    content: "";   
-    display: block;
-    width: 1px;
-    height: 60px;
-    position: absolute;
-    top: 15px;
-    left: 599px;
-    background-color: #000;
-    opacity: 0.1;
-}
+
 /* 
     * 가상태그 만들기 
     - 스타일 표현을 위해 css에서 추가할 수 있는 태그 영역.
@@ -71,18 +44,7 @@ a{
     - 공백에 대한 데이터를 표시하기 위해 값의 자리에 따옴표 한쌍만 작성. 
     - 가상태그는 인라인요소의 성질을 가짐.
 */
-.topBn_close{
-    position: absolute;
-    right: 0;
-    top: 33px;
-}
-.topBn_close a{
-    display: block;
-    width: 23px;
-    height: 24px;
-    background-image: url(../img/topbn_close.png);
-    text-indent: -99999px;
-}
+
 /* 헤더 */
 #header{
     position: relative;
@@ -325,6 +287,7 @@ a{
     color: #5e2bb8;
 }
 .mymenu .btn{
+    width: 100%;
     padding: 14px 20px;
 }
 .mymenu .btn .login{
