@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="buyMapper">
     <resultMap id="reservation" type="com.jejugreentour.jgt.buy.vo.ReservationVO">
         <id column="RESERVATION_CODE" property="reservationCode" />
@@ -10,4 +11,64 @@
         <result column="RESERVATION_DATE" property="reservationDate"/>
         <result column="RESERVATION_PRICE" property="reservationPrice"/>
     </resultMap>
+
+    <resultMap id="basketAccom" type="com.jejugreentour.jgt.buy.vo.ReservationVO">
+        <id column="BASKET_CODE" property="basketCode" />
+        <result column="SUB_ACCOM_CODE" property="subAccomCode"/>
+        <result column="MEMBER_ID" property="memberId"/>
+        <result column="STAY_START_DATE" property="stayStartDate"/>
+        <result column="STAY_END_DATE" property="stayEndDate"/>
+        <result column="STAY_TERM" property="stayTerm"/>
+    </resultMap>
+
+    <select id="selectReservation" resultMap="reservation">
+        SELECT RESERVATION_CODE
+        , TO_CHAR(STAY_START_DATE, 'YYYY-MM-DD HH24:MI:SS') AS STAY_START_DATE
+        , TO_CHAR(STAY_END_DATE, 'YYYY-MM-DD HH24:MI:SS') AS STAY_END_DATE
+        FROM RESERVATION_STAY_ACCOM
+        WHERE SUB_ACCOM_CODE = #{subAccomCode}
+    </select>
+    
+    <insert id="insertBasketAccom">
+        INSERT INTO BASKET_STAY_ACCOM(BASKET_CODE
+        , SUB_ACCOM_CODE
+        , MEMBER_ID
+        , STAY_START_DATE
+        , STAY_END_DATE
+        , STAY_TERM)
+        VALUES((SELECT 'BAS_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(BASKET_CODE,5))),0)+1,3,'0')FROM BASKET_STAY_ACCOM)
+        , #{subAccomCode}
+        , #{memberId}
+        , #{stayStartDate}
+        , #{stayEndDate}
+        , #{stayTerm})
+    </insert>
+
+    <select id="selectBasketAccomList" resultMap="basketAccom">
+        SELECT *
+        FROM BASKET_STAY_ACCOM
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+
+    <insert id="insertReservation">
+        INSERT INTO RESERVATION_STAY_ACCOM(
+        RESERVATION_CODE, SUB_ACCOM_CODE, MEMBER_ID, STAY_START_DATE, STAY_END_DATE, RESERVATION_PRICE)
+        SELECT (SELECT 'RESERV_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(RESERVATION_CODE,8))),0)+1,3,'0')
+          FROM RESERVATION_STAY_ACCOM) AS RESERVATION_CODE
+        , BAS.SUB_ACCOM_CODE
+        , MEMBER_ID
+        , TO_DATE((TO_CHAR(STAY_START_DATE, 'YYYY-MM-DD')||ACCOM_START_TIME),'YYYY-MM-DDHH:MI:SS') AS STAY_START_DATE
+        , TO_DATE((TO_CHAR(STAY_END_DATE, 'YYYY-MM-DD')||ACCOM_END_TIME),'YYYY-MM-DDHH:MI:SS') AS STAY_END_DATE
+        , (STAY_TERM*ACCOM_PRICE) AS RESERVATION_PRICE
+        FROM BASKET_STAY_ACCOM BAS, SUB_ACCOM SUB
+        WHERE BASKET_CODE = #{BASKET_CODE}
+        AND BAS.SUB_ACCOM_CODE=SUB.SUB_ACCOM_CODE
+    </insert>
+    <delete id="deleteBasketAccom">
+        DELETE FROM BASKET_STAY_ACCOM
+        WHERE BASKET_CODE=#{basketCode}
+    </delete>
+    
+    
+    
 </mapper>
