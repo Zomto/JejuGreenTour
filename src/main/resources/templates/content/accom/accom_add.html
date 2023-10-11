@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
-<h3>숙박 등록</h3>
-<form action="/accom/accomAdd" method="post">
-    <div class="modal-body">
-        <form class="row g-3" id="joinForm" method="post" action="/accom/addAccom">
+    <h3>숙박 등록</h3>
+    <form action="/accom/addAccom" id="joinForm" method="post" enctype="multipart/form-data">
+        <div class="modal-body">
             <div class="col-8">
                 <label for="accomName" class="form-label">업소명</label>
-                <input type="text" class="form-control"  id="accomName" name="accomName" >
+                <input type="text" class="form-control" id="accomName" name="accomName">
             </div>
             <div class="error-div" id="id-error-div1"></div>
             <div class="col-8">
                 <label for="accomAddr" class="form-label">ADDRESS</label>
-                <input type="text" class="form-control"  id="accomAddr" name="accomAddr" onclick="openPost();" readonly>
+                <input type="text" class="form-control" id="accomAddr" name="accomAddr" onclick="openPost();" readonly>
             </div>
             <div class="error-div" id="id-error-div2"></div>
             <div class="col-4 d-grid">
                 <label for="" class="form-label">&nbsp;</label>
                 <input type="button" class="btn btn-primary" value="주소검색" onclick="openPost();">
             </div>
+            <div class="error-div" id="id-error-div3"></div>
             <div class="col-12">
                 <label for="accomAddr" class="form-label">상세주소</label>
                 <input type="text" class="form-control" id="addrDetail" name="addrDetail">
@@ -43,8 +45,8 @@
             </div>
             <div class="error-div" id="id-error-div"></div>
             <div class="col-12">
-                <label for="itemIntro" class="form-label">간략 소개</label>
-                <textarea class="form-control" id="itemIntro" name="itemIntro" rows="3"></textarea>
+                <label for="accomIntro" class="form-label">간략 소개</label>
+                <textarea class="form-control" id="accomIntro" name="accomIntro" rows="3"></textarea>
             </div>
             <div class="col-12">
                 <label class="form-label">메인이미지</label>
@@ -57,11 +59,11 @@
             <div class="offset-6 col-3 d-grid">
                 <button id="join-btn" type="button" class="btn btn-primary" onclick="joinValidate();">Sign in</button>
             </div>
-            <input id="bname1" class="bname1" type="hidden" value="bname1">
-        </form>
-    </div>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="/js/accom/addAccom.js"></script>
-</form>
+            <input id="accomLoc" name="accomLoc" class="accomLoc" type="hidden" value="accomLoc">
+        </div>
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+        <script src="/js/accom/addAccom.js"></script>
+    </form>
 </body>
+
 </html>

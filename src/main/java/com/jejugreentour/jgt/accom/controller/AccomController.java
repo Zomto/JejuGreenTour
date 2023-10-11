@@ -50,7 +50,6 @@ public class AccomController {
         // 첨부파일 기능
         MainAccomImgVO vo = UploadUtil.uploadFile(mainImg);
 
-
         // 첨부파일 기능 다중업로드
         List<MainAccomImgVO> mainAccomImgList = UploadUtil.multiFileUpload(subImg);
         mainAccomImgList.add(vo);
@@ -63,11 +62,13 @@ public class AccomController {
 
         // 상품 등록 + 이미지 등록 쿼리
         mainAccomVO.setAccomCode(accomCode);
+        System.out.println(212121);
+        System.out.println(mainAccomVO);
         accomService.addAccom(mainAccomVO);
 
         // 상품 이미지 정보 등록 쿼리
 
-        return "redirect:/admin/regItemForm";
+        return "redirect:/";
     }
 
 }

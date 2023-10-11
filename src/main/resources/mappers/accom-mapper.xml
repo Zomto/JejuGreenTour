@@ -9,8 +9,8 @@
         <result column="ACCOM_INTRO"    property="accomIntro" />
         <result column="ACCOM_CATE"    property="accomCate" />
         <result column="ACCOM_CEO"    property="accomCeo" />
-        <result column="LATITUDE"    property="latitude" />
-        <result column="LONGITUDE"    property="longitude" />
+        <result column="ADDR_DETAIL"    property="addrDetail" />
+        <result column="ACCOM_LOC"    property="accomCeo" />
     </resultMap>
 
     <resultMap id="mainAccomImg" type="com.jejugreentour.jgt.accom.vo.MainAccomImgVO">
@@ -75,7 +75,7 @@
         , ACCOM_LOC
         )
         VALUES (
-        (SELECT 'ACCOM_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ACCOM_CODE, 6))),0) + 1, 3, '0')
+        (SELECT 'ACCOM_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ACCOM_CODE, 7))),0) + 1, 3, '0')
         FROM MAIN_ACCOM)
         , #{accomName}
         , #{accomAddr}
@@ -89,25 +89,25 @@
 
     <!-- 아이템 코드 호출 -->
     <select id="selectNextAccomCode" resultType="String">
-        SELECT 'ACCOM_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ACCOM_CODE, 6))),0) + 1, 3, '0')
+        SELECT 'ACCOM_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ACCOM_CODE, 7))),0) + 1, 3, '0')
         FROM MAIN_ACCOM
     </select>
 
     <insert id="insertImgs">
         INSERT INTO MAIN_ACCOM_IMG (
-        IMG_CODE
+        MAIN_IMG_CODE
         , ORIGIN_FILE_NAME
         , ATTACHED_FILE_NAME
-        , accom_CODE
+        , ACCOM_CODE
         , IS_MAIN
         )
-        <foreach collection="imgList" item="img" separator="UNION ALL" index="idx">
-            SELECT (SELECT 'IMG_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(IMG_CODE, 5))),0) + 1 + #{idx}, 3, '0')
+        <foreach collection="mainAccomImgList" item="mainAccomImg" separator="UNION ALL" index="idx">
+            SELECT (SELECT 'MAIN_IMG_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MAIN_IMG_CODE, 10))),0) + 1 + #{idx}, 3, '0')
             FROM MAIN_ACCOM_IMG)
-            , #{img.originFileName}
-            , #{img.attachedFileName}
-            , #{img.accomCode}
-            , #{img.isMain}
+            , #{mainAccomImg.originFileName}
+            , #{mainAccomImg.attachedFileName}
+            , #{mainAccomImg.accomCode}
+            , #{mainAccomImg.isMain}
             FROM DUAL
         </foreach>
     </insert>
