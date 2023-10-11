@@ -26,7 +26,7 @@ a{
 }
 
 #wrap{
-    min-width: 1240px;
+    min-width: 920px;
     background-color: aliceblue;
 }
 
@@ -34,7 +34,7 @@ a{
     width: 920px;
     margin: 0 auto;
     padding: 15px 30px;
-    background-color: antiquewhite;
+    background-color: white;
 }
 
 .h_in{
@@ -68,3 +68,4 @@ a{
     background-position: center;
     text-indent: -99999%;
 }
+
