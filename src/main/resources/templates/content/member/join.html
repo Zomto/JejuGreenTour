@@ -3,19 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/css/member/member.css">
 </head>
 <body>
-<h3>회원가입 페이지</h3>
 <form action="/member/joinMember" method="post">
-    아이디 : <input type="text" name="memberId" required><br>
-    비밀번호 : <input type="password" name="memberPw" required><br>
-    이름 : <input type="text" name="memberName" required><br>
-    전화번호 : <input type="text" name="memberTels"><br>
-    주소 : <input type="text" name="memberAddr"><br>
-    상세주소 : <input type="text" name="addrDetail"><br>
-    이메일 : <input type="text" name="memberEmails"><br>
-    성별 : <input type="text" name="gender"><br>
-    <input type="submit" value="가입하기">
+    <div id="wrap">
+        <div id="inner">
+            <div id="header">
+                <div class="h_in">
+                    <div class="h_left"><a href="">BACK</a>
+                        <span>본인인증</span>
+                    </div>
+                    <div class="h_right"><a href="">HOME</a></div>
+                </div>
+            </div>
+            <div id="container">
+                <div class="c_in">
+                    <h3>회원가입을 위해<br>정보를 입력해 주세요.</h3>
+                    이름 : <input type="text" name="memberName" required><br>
+                    아이디 : <input type="text" name="memberId" required><br>
+                    비밀번호 : <input type="password" name="memberPw" required><br>
+                    생년월일 : <input type="text" name="memberBirth"><br>
+                    전화번호 : <input type="text" name="memberTels"><br>
+                    주소 : <input type="text" name="memberAddr"><br>
+                    상세주소 : <input type="text" name="addrDetail"><br>
+                    이메일 : <input type="text" name="memberEmails"><br>
+                    성별 : <input type="text" name="gender"><br>
+                    <input type="submit" value="가입하기">
+                </div>
+            </div>
+        </div>
+    </div>
+
 </form>
 </body>
 </html>
