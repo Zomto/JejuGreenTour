@@ -13,4 +13,5 @@ public class MainAccomVO {
     private String accomLocCode;
     private String latitude;
     private String longitude;
+    private String addrDetail;
 }
