@@ -20,21 +20,39 @@
             <div id="container">
                 <div class="c_in">
                     <h3>회원가입을 위해<br>정보를 입력해 주세요.</h3>
-                    이름 : <input type="text" name="memberName" required><br>
-                    아이디 : <input type="text" name="memberId" required><br>
-                    비밀번호 : <input type="password" name="memberPw" required><br>
-                    생년월일 : <input type="text" name="memberBirth"><br>
-                    전화번호 : <input type="text" name="memberTels"><br>
-                    주소 : <input type="text" name="memberAddr"><br>
-                    상세주소 : <input type="text" name="addrDetail"><br>
-                    이메일 : <input type="text" name="memberEmails"><br>
-                    성별 : <input type="text" name="gender"><br>
+                    <div class="join_input_1">
+                        <p>
+                            <input type="text" name="memberName" placeholder="이름" required>
+                        </p>
+                        <p>
+                            성별 : 
+                            <input type="radio" name="gender" value="남" checked>남
+                            <input type="radio" name="gender" value="여">여
+                        </p>
+                    </div>
+                    <div class="join_input_2">
+                        <p><input type="text" name="memberId" placeholder="아이디" required></p>
+                    </div>
+                    <div class="join_input_3">
+                        <p><input type="password" name="memberPw" placeholder="비밀번호" required></p>
+                        <p>
+                            <select name="tel" id="">
+                                <option name="tel" value="010">010</option>
+                                <option name="tel" value="011">011</option>
+                                <option name="tel" value="012">012</option>
+                            </select>
+                            <input type="text" name="memberTels" placeholder="전화번호" required></p>
+                    </div>
+                    <div class="join_input_4">
+                        <p>
+                            생년월일 : <input type="date" name="memberBirth" required>
+                        </p>
+                    </div>
                     <input type="submit" value="가입하기">
                 </div>
             </div>
         </div>
     </div>
-
 </form>
 </body>
 </html>

@@ -13,8 +13,6 @@ public class MainAccomVO {
     private String accomCate;
     private String accomCeo;
     private String accomLoc;
-    private String latitude;
-    private String longitude;
     private String addrDetail;
     private List<MainAccomImgVO> mainAccomImgList;
 }
