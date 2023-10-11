@@ -72,20 +72,43 @@
         , ACCOM_INTRO
         , ACCOM_CEO
         , ACCOM_CATE
-        , ACCOM_LOC_CODE
+        , ACCOM_LOC
         )
         VALUES (
         (SELECT 'ACCOM_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ACCOM_CODE, 6))),0) + 1, 3, '0')
         FROM MAIN_ACCOM)
-        , #{memberPw}
-        , #{memberName}
-        , #{memberAddr}
+        , #{accomName}
+        , #{accomAddr}
         , #{addrDetail}
-        ,
-        <foreach collection="memberEmails" item="email" separator="||">
-            #{email}
-        </foreach>
-        , #{gender}
+        , #{accomIntro}
+        , #{accomCeo}
+        , #{accomCate}
+        , #{accomLoc}
         )
+    </insert>
+
+    <!-- 아이템 코드 호출 -->
+    <select id="selectNextAccomCode" resultType="String">
+        SELECT 'ACCOM_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ACCOM_CODE, 6))),0) + 1, 3, '0')
+        FROM MAIN_ACCOM
+    </select>
+
+    <insert id="insertImgs">
+        INSERT INTO MAIN_ACCOM_IMG (
+        IMG_CODE
+        , ORIGIN_FILE_NAME
+        , ATTACHED_FILE_NAME
+        , accom_CODE
+        , IS_MAIN
+        )
+        <foreach collection="imgList" item="img" separator="UNION ALL" index="idx">
+            SELECT (SELECT 'IMG_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(IMG_CODE, 5))),0) + 1 + #{idx}, 3, '0')
+            FROM MAIN_ACCOM_IMG)
+            , #{img.originFileName}
+            , #{img.attachedFileName}
+            , #{img.accomCode}
+            , #{img.isMain}
+            FROM DUAL
+        </foreach>
     </insert>
 </mapper>
