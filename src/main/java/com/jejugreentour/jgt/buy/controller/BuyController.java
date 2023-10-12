@@ -1,6 +1,8 @@
 package com.jejugreentour.jgt.buy.controller;
 
-import com.jejugreentour.jgt.buy.vo.CheckVO;
+import com.jejugreentour.jgt.buy.service.BuyService;
+import com.jejugreentour.jgt.buy.vo.ReservationVO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,20 +14,17 @@ import java.util.List;
 
 @Controller
 @RequestMapping({"/buy"})
+@RequiredArgsConstructor
 public class BuyController {
+
+    private final BuyService buyService;
 
     @GetMapping("/calendar")
     public String calendar(Model model){
-        List<CheckVO> checkVOList=new ArrayList<>();
-        CheckVO checkVO=new CheckVO();
-        checkVO.setStart("2023-10-23");
-        checkVO.setEnd("2023-10-25");
-        checkVOList.add(checkVO);
-        checkVO =new CheckVO();
-        checkVO.setStart("2023-10-27");
-        checkVO.setEnd("2023-10-30");
-        checkVOList.add(checkVO);
-        model.addAttribute("checklist",checkVOList);
+
+        List<ReservationVO> reservationVOList =buyService.selectReservation("SU_001");
+        System.out.println(reservationVOList);
+        model.addAttribute("Reservationlist",reservationVOList);
         return "/buy/calendar";
     }
     @GetMapping("/adminCalendar")

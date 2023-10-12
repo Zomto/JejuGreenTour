@@ -42,7 +42,7 @@ public class MemberControll {
         if(loginInfo !=null){
             session.setAttribute("loginInfo",loginInfo);
         }
-        return "content/member/login_result";
+        return "redirect:/";
     }
 
 //    @ResponseBody

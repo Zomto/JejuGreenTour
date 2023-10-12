@@ -19,19 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
         date = '0' + date
     }
     let today = `${Year}-${Month}-${date}`;
-    var eventsss = [{
-        id: 'check',
-        title: 'my event',
-        start: '2023-10-11',
-        end: '2023-10-15'
-    },
-    {
-        id: 'check',
-        title: 'my event',
-        start: '2023-10-18',
-        end: '2023-10-21'
-    },]
-
+    var eventsss = []
     for (let i = 0; i < sta.length; i++) {
         eventsss.push({
             id: 'check',
@@ -39,6 +27,8 @@ document.addEventListener('DOMContentLoaded', function () {
             start: `${sta[i].value}`,
             end: `${en[i].value}`
         })
+        console.log(sta[i].value)
+        console.log(en[i].value)
     }
 
     var startDate = null;
@@ -97,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         calendar.unselect();
                     }
 
-                } else if (startDate <= info.startStr) {
+                } else if (startDate < info.startStr) {
                     endDate = info.startStr;
                     setendday.value = endDate;
                     let safe = true;
@@ -194,7 +184,6 @@ document.addEventListener('DOMContentLoaded', function () {
 //     });
 // }
 // });
-
 
 // document.getElementById('calendar').addEventListener('click',function(){
 //     let array = document.querySelectorAll(".fc-daygrid-day");

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<!-- layout:decorate="~{fragment/main_layout}" -->
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/main_layout}">
 
 <head>
     <meta charset="UTF-8">
@@ -8,33 +8,33 @@
 </head>
 
 <body>
-    <!-- <th:block layout:fragment="content"> -->
-    <style>
-        .fc-daygrid-day {
-            cursor: pointer;
-        }
+    <th:block layout:fragment="content">
+        <style>
+            .fc-daygrid-day {
+                cursor: pointer;
+            }
 
-        .fc-day-sun {
-            color: red;
-        }
+            .fc-day-sun {
+                color: red;
+            }
 
-        .fc-day-sat {
-            color: blue;
-        }
-    </style>
-    <div id="calendar"></div>
-    <form action="">
-        <th:block th:each="check : ${checklist}">
-            <input type="hidden" class="start" th:value="${check.start}">
-            <input type="hidden" class="end" th:value="${check.end}">
-        </th:block>
-        <input type="text" id="setStartDay" name="start">
-        <input type="text" id="setEndDay" name="end">
-        <input type="number" id="stayDay">
-    </form>
-    <script src='/dist/index.global.js'></script>
-    <script src="/js/calendar.js"></script>
-    <!-- </th:block> -->
+            .fc-day-sat {
+                color: blue;
+            }
+        </style>
+        <div id="calendar"></div>
+        <form action="">
+            <th:block th:each="Reservation : ${Reservationlist}">
+                <input type="hidden" class="start" th:value="${Reservation.stayStartDate}">
+                <input type="hidden" class="end" th:value="${Reservation.stayEndDate}">
+            </th:block>
+            <input type="text" id="setStartDay" name="start">
+            <input type="text" id="setEndDay" name="end">
+            <input type="number" id="stayDay">
+        </form>
+        <script src='/dist/index.global.js'></script>
+        <script src="/js/calendar.js"></script>
+    </th:block>
 </body>
 
 </html>

@@ -1,0 +1,71 @@
+@charset "utf-8";
+/* 기본셋팅, 공통값 */
+body, input{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+img, input, button{
+    vertical-align: top;
+}
+input, button{
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+.hide{
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+#wrap{
+    min-width: 920px;
+    background-color: aliceblue;
+}
+
+#inner{
+    width: 920px;
+    margin: 0 auto;
+    padding: 15px 30px;
+    background-color: white;
+}
+
+.h_in{
+    display: flex;
+    justify-content: space-between;
+}
+
+.h_left span{
+    font-size: 20px;
+}
+
+.h_left a{
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(/img/ico_back_24.png);
+    background-size: 100% auto;
+    background-position: center;
+    text-indent: -99999%;
+    margin-right: 10px;
+}
+
+.h_right a{
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(/img/ico_home_24.png);
+    background-size: 100% auto;
+    background-position: center;
+    text-indent: -99999%;
+}
+
