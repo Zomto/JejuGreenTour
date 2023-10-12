@@ -24,13 +24,51 @@
         </style>
         <div id="calendar"></div>
         <form action="">
-            <th:block th:each="Reservation : ${Reservationlist}">
+            
+            <th:block th:if="${Reservationlist != null}" th:each="Reservation, state : ${Reservationlist}">
                 <input type="hidden" class="start" th:value="${Reservation.stayStartDate}">
                 <input type="hidden" class="end" th:value="${Reservation.stayEndDate}">
+                <input type="hidden" class="dayuse" value="Y"><!--예약 대실 유무-->
+                <th:block th:if="${state.index == 0}">
+                <input type="hidden" class="renttime" value="3"><!-- 대실 추가 시간 -->
+                </th:block>
             </th:block>
-            <input type="text" id="setStartDay" name="start">
-            <input type="text" id="setEndDay" name="end">
-            <input type="number" id="stayDay">
+
+            <div>
+                <input type="hidden" class="renttime" value="3">
+                <input type="hidden" class="start" value="2023-10-15T00:00:00" >
+                <input type="hidden" class="end"  value="2023-10-18T00:00:00" >
+                <input type="hidden" class="dayuse" value="N"><!--예약 대실 유무-->
+            </div>
+            <div>
+                <input type="hidden" class="renttime" value="3">
+                <input type="hidden" class="start" value="2023-10-22T10:00:00" >
+                <input type="hidden" class="end"  value="2023-10-22T20:00:00" >
+                <input type="hidden" class="dayuse" value="Y"><!--예약 대실 유무-->
+            </div>
+            
+            <div>
+                <input type="hidden" class="renttime" value="3">
+                <input type="hidden" class="start" value="2023-10-13T10:00:00" >
+                <input type="hidden" class="end"  value="2023-10-14T00:00:00" >
+                <input type="hidden" class="dayuse" value="Y"><!--예약 대실 유무-->
+            </div>
+            <input type="hidden" class="checkin" value="18:00:00" >
+            <input type="hidden" class="checkout"  value="09:00:00" >
+
+
+
+
+0.             <div>
+                <input type="text" id="setStartDay" name="start">
+                <input type="text" id="setEndDay" name="end">
+                <input type="number" id="stayDay" name>
+            </div>
+            <div>
+                <input type="button" value="장바구니에 추가">
+                <input type="button" value="대실" onclick="turndayuse(this)">
+                <input type="button" value="숙박" onclick="turnreserv(this)">
+            </div>
         </form>
         <script src='/dist/index.global.js'></script>
         <script src="/js/calendar.js"></script>
