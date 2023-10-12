@@ -24,9 +24,9 @@
         </style>
         <div id="calendar"></div>
         <form action="">
-            <th:block th:each="check : ${checklist}">
-                <input type="hidden" class="start" th:value="${check.start}">
-                <input type="hidden" class="end" th:value="${check.end}">
+            <th:block th:each="Reservation : ${Reservationlist}">
+                <input type="hidden" class="start" th:value="${Reservation.stayStartDate}">
+                <input type="hidden" class="end" th:value="${Reservation.stayEndDate}">
             </th:block>
             <input type="text" id="setStartDay" name="start">
             <input type="text" id="setEndDay" name="end">
