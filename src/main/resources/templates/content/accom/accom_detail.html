@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>업소 정보 페이지</title>
+</head>
+
+<body>
+    <!--<th:block layout:fragment="content">-->
+    <th:block>
+        <h3>업소 정보 상세보기[관리자모드]</h3>
+        <input type="hidden" name="accomCode" th:value="${mAccom.accomCode}">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="row mb-3">
+                    <div class="col-5">
+                        <div th:each="img : ${mAccom.mainAccomImgList}">
+                            <th:block th:if="${img.isMain == 'Y'}">
+                                <img width="100%" height="280px" th:src="${'/img/'+ img.attachedFileName}" alt="">
+                            </th:block>
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <div class="row mb-3">
+                            <div class="col-3 align-middle">업소명</div>
+                            <div class="accomName" id="accomName">[[${mAccom.accomName}]] </div>
+                            <input type="text" class="form-control" id="inputAccomName" name="inputAccomName"
+                                style="display : none">
+                            <button id="updateButton" type="button" class="btn btn-primary"
+                                onclick="updateAccomForm()">변경</button>
+                            <button id="updateButton" type="button" class="btn btn-primary"
+                                th:onclick="updateMainAccomName([[${mAccom.accomCode}]],[[${mAccom.accomName}]],[[${mAccom.accomIntro}]])" style="display : none">변경완료</button>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-3 align-middle">위치</div>
+                            <div class="accomAddr" id="accomAddr">[[${mAccom.accomAddr}]]</div>
+                            <div class="addrDetail" id="addrDetail">[[${mAccom.addrDetail}]]</div>
+                            <!-- <input type="text" class="form-control" id="inputAccomName" name="inputAccomName"
+                            style="display : none">
+                        <button id="updateButton" type="button" class="btn btn-primary"
+                            onclick="updateAccomForm()">변경</button>
+                        <button id="updateButton" type="button" class="btn btn-primary"
+                            th:onclick="updateMainAccomName([[${mAccom.accomCode}]])" style="display : none">변경완료</button> -->
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-3 align-middle">소개</div>
+                            <div class="col">[[${mAccom.accomIntro}]]</div>
+                            <input type="text" class="form-control" id="inputAccomIntro" name="inputAccomIntro"
+                            style="display : none">
+                        <button id="updateButton2" type="button" class="btn btn-primary"
+                            onclick="updateAccomForm2()">변경</button>
+                        <button id="updateButton2" type="button" class="btn btn-primary"
+                            th:onclick="updateMainAccomName([[${mAccom.accomCode}]],[[${mAccom.accomName}]],[[${mAccom.accomIntro}]])" style="display : none">변경완료</button>
+                        </div>
+                        <div class="row">
+                            <div class="col-12" th:each="img : ${mAccom.mainAccomImgList}">
+                                <img th:if="${img.isMain == 'N'}" width="100%" th:src="${'/img/'+ img.attachedFileName}"
+                                    alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/js/accom/updateAccom.js"></script>
+    </th:block>
+</body>
+
+</html>

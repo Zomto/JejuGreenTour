@@ -2,13 +2,19 @@
 function openPost(){
     new daum.Postcode({
         oncomplete: function(data) {
-            document.querySelector('#accomAddr').value = data.roadAddress;
             // document.querySelector('#postCode').value = data.tesPostcode;
             let bname1 = data.bname1;
             let sigungu = data.sigungu;
             let sido = data.sido;
 
-            
+            if(sido != "제주특별자치도"){
+                inputInvalidate('#id-error-div2', '제주 내 업소만 등록가능!');
+                return;
+            }
+            else{
+            inputInvalidate('#id-error-div2', '');}
+
+            document.querySelector('#accomAddr').value = data.roadAddress;
 
             if(bname1 == ''){
                 if(sigungu == "제주시"){
@@ -63,4 +69,10 @@ function joinValidate(){
     // 2. submit 실행
     // form 태그 선택 --> submit() 함수 실행
     document.querySelector('#joinForm').submit();
+}
+
+// Validate 실패시 메세지 설정
+function inputInvalidate(tagId, message){
+    document.querySelector(tagId).style.display = 'block';
+    document.querySelector(tagId).textContent = message;
 }

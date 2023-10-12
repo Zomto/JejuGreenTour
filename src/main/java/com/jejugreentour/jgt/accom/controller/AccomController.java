@@ -9,9 +9,11 @@ import com.jejugreentour.jgt.util.UploadUtil;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
@@ -69,6 +71,22 @@ public class AccomController {
         // 상품 이미지 정보 등록 쿼리
 
         return "redirect:/";
+    }
+
+    // 숙박 등록 페이지로 이동
+    @GetMapping("/mainAccomDetail")
+    public String mainAccomDetail(String accomCode, Model model){
+        MainAccomVO vo = accomService.selectMainAccomDetail(accomCode);
+        System.out.println(1);
+        model.addAttribute("mAccom", vo);
+
+        return "content/accom/accom_detail";
+    }
+    // 업소 이름 변경
+    @ResponseBody
+    @PostMapping("/updateMainAccomName")
+    public void updateMainAccomName(MainAccomVO mainAccomVO){
+        accomService.updateMainAccomName(mainAccomVO);
     }
 
 }

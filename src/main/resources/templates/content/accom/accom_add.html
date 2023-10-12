@@ -24,7 +24,6 @@
                 <label for="" class="form-label">&nbsp;</label>
                 <input type="button" class="btn btn-primary" value="주소검색" onclick="openPost();">
             </div>
-            <div class="error-div" id="id-error-div3"></div>
             <div class="col-12">
                 <label for="accomAddr" class="form-label">상세주소</label>
                 <input type="text" class="form-control" id="addrDetail" name="addrDetail">
@@ -61,6 +60,14 @@
             </div>
             <input id="accomLoc" name="accomLoc" class="accomLoc" type="hidden" value="accomLoc">
         </div>
+        <th:block>
+            <h3>업소 정보 상세보기</h3>
+            <div class="row row-cols-5 g-4">
+                <a th:href="@{/accom/mainAccomDetail(accomCode=ACCOM_005)}">
+                    상세보기
+                </a>
+            </div>
+        </th:block>
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         <script src="/js/accom/addAccom.js"></script>
     </form>

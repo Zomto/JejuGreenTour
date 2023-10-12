@@ -11,6 +11,8 @@
         <result column="ACCOM_CEO"    property="accomCeo" />
         <result column="ADDR_DETAIL"    property="addrDetail" />
         <result column="ACCOM_LOC"    property="accomCeo" />
+        <collection property="mainAccomImgList" resultMap="mainAccomImg" />
+        <collection property="accomCategory" resultMap="accomCategory" />
     </resultMap>
 
     <resultMap id="mainAccomImg" type="com.jejugreentour.jgt.accom.vo.MainAccomImgVO">
@@ -111,4 +113,36 @@
             FROM DUAL
         </foreach>
     </insert>
+
+    <!--  상품 상세 조회  -->
+    <select id="selectMainAccomDetail" resultMap="mainAccom">
+        SELECT MACCOM.ACCOM_CODE
+        , ACCOM_NAME
+        , ACCOM_ADDR
+        , ACCOM_INTRO
+        , CATE.CATE_NAME
+        , ATTACHED_FILE_NAME
+        , IS_MAIN
+        , ACCOM_LOC
+        , ADDR_DETAIL
+        FROM MAIN_ACCOM MACCOM, MAIN_ACCOM_IMG MIMG, ACCOM_CATEGORY CATE
+        WHERE MACCOM.ACCOM_CODE = MIMG.ACCOM_CODE
+        AND MACCOM.ACCOM_CODE = #{accomCode}
+        AND MACCOM.ACCOM_CATE = CATE.ACCOM_CATE
+    </select>
+
+    <update id="updateMainAccomName">
+        UPDATE MAIN_ACCOM
+        SET
+        <if test='inputMainAccomName != null and !inputMainAccomName.equals(accomName) and !inputMainAccomName.equals("")' >
+            ACCOM_NAME = #{inputMainAccomName}
+            <if test='inputMainAccomIntro != null and !inputMainAccomIntro.equals(accomName) and !inputMainAccomIntro.equals("")' >
+                ,
+            </if>
+        </if>
+        <if test='inputMainAccomIntro != null and !inputMainAccomIntro.equals(accomIntro) and !inputMainAccomIntro.equals("")'>
+            ACCOM_INTRO = #{inputMainAccomIntro}
+        </if>
+        WHERE ACCOM_CODE = #{accomCode}
+    </update>
 </mapper>

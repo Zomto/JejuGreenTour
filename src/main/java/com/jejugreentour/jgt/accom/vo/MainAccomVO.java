@@ -15,4 +15,7 @@ public class MainAccomVO {
     private String accomLoc;
     private String addrDetail;
     private List<MainAccomImgVO> mainAccomImgList;
+    private AccomCategoryVO accomCategory;
+    private String inputMainAccomName;
+    private String inputMainAccomIntro;
 }

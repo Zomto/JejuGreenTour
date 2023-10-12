@@ -4,7 +4,7 @@ package com.jejugreentour.jgt.util;
 public class ConstantVariable {
 
     // 파일 업로드 경로
-    public static final String UPLOAD_PATH = "D:\\dev\\workspaceSpring\\Shop\\src\\main\\resources\\static\\images\\";
+    public static final String UPLOAD_PATH = "D:\\dev\\workspaceSpring\\JejuGreenTour\\src\\main\\resources\\static\\img\\";
 
 
 }

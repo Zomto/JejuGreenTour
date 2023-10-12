@@ -24,4 +24,15 @@ public class AccomServiceImpl implements AccomService {
         sqlSession.insert("accomMapper.addAccom", mainAccomVO);
         sqlSession.insert("accomMapper.insertImgs", mainAccomVO);
     }
+    
+    // 업소 상세 정보
+    @Override
+    public MainAccomVO selectMainAccomDetail(String accomCode) {
+        return sqlSession.selectOne("accomMapper.selectMainAccomDetail", accomCode);
+    }
+
+    @Override
+    public void updateMainAccomName(MainAccomVO mainAccomVO) {
+        sqlSession.update("accomMapper.updateMainAccomName", mainAccomVO);
+    }
 }
