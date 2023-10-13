@@ -14,6 +14,7 @@ public class MemberVO {
     private String memberEmail;
     private String[] memberEmails;
     private String gender;
+    private String birthDate;
     private String memberRoll;
 }
 

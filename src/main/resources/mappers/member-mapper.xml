@@ -7,10 +7,9 @@
         <result column="MEMBER_PW"      property="memberPw" />
         <result column="MEMBER_NAME"    property="memberName" />
         <result column="MEMBER_TEL"    property="memberTel" />
-        <result column="MEMBER_ADDR"    property="memberAddr" />
-        <result column="ADDR_DETAIL"    property="addrDetail" />
         <result column="MEMBER_EMAIL"   property="memberEmail"/>
         <result column="GENDER"         property="gender"/>
+        <result column="BIRTH_DATE"          property="birthDate"/>
         <result column="MEMBER_ROLL"    property="memberRoll"/>
     </resultMap>
 
@@ -20,10 +19,9 @@
         , MEMBER_PW
         , MEMBER_NAME
         , MEMBER_TEL
-        , MEMBER_ADDR
-        , ADDR_DETAIL
         , MEMBER_EMAIL
         , GENDER
+        , BIRTH_DATE
         ) VALUES (
         #{memberId}
         , #{memberPw}
@@ -32,13 +30,12 @@
         <foreach collection="memberTels" item="tel" separator="||'-'||">
             #{tel}
         </foreach>
-        , #{memberAddr}
-        , #{addrDetail}
         ,
         <foreach collection="memberEmails" item="email" separator="||">
             #{email}
         </foreach>
         , #{gender}
+        , #{birthDate}
         )
     </insert>
 
