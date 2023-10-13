@@ -163,9 +163,12 @@ a{
 }
 
 .input_memberBirth{
-    padding-left: 10px;
+    padding-left: 20px;
 }
 
+.input_memberBirth span{
+    margin-right: 15px;
+}
 
 .join_btn{
     width: 80px;
