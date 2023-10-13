@@ -88,4 +88,18 @@ public class AccomController {
         accomService.updateMainAccomName(mainAccomVO);
     }
 
+    // 업소 주소 변경
+    @ResponseBody
+    @PostMapping("/updateMainAccomAddr")
+    public void updateMainAccomAddr(MainAccomVO mainAccomVO){
+        accomService.updateMainAccomAddr(mainAccomVO);
+    }
+
+    @GetMapping("/subAccomAddForm")
+    public String subAccomAddForm(String accomCode, Model model){
+
+        return "content/accom/subAccom_add";
+    }
+
+
 }
