@@ -22,9 +22,11 @@ public class BuyController {
     @GetMapping("/calendar")
     public String calendar(Model model){
 
-        List<ReservationVO> reservationVOList =buyService.selectReservation("SU_001");
-        System.out.println(reservationVOList);
-        model.addAttribute("Reservationlist",reservationVOList);
+//        List<ReservationVO> reservationVOList =buyService.selectReservation("SU_001");
+//        System.out.println(reservationVOList);
+        //List<ReservationVO> reservationVOList= new ArrayList<>();
+
+        //model.addAttribute("Reservationlist",reservationVOList);
         return "/buy/calendar";
     }
     @GetMapping("/adminCalendar")
