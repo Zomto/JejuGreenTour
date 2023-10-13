@@ -62,13 +62,19 @@
                                 style="display : none">변경완료</button>
                         </div>
                         <div class="row">
-                            <div class="col-12" th:each="img : ${mAccom.mainAccomImgList}">
+                            <div class="imgListSlide" th:each="img : ${mAccom.mainAccomImgList}">
                                 <img th:if="${img.isMain == 'N'}" width="100%" th:src="${'/img/'+ img.attachedFileName}"
                                     alt="">
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <h3>서브 숙소 추가</h3>
+            <div class="row row-cols-5 g-4">
+                <a th:href="@{/accom/subAccomAddForm(accomCode=ACCOM_005)}">
+                    서브 추가
+                </a>
             </div>
         </div><script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         <script src="/js/accom/updateAccom.js"></script>

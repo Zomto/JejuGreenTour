@@ -38,11 +38,11 @@ function openPost2() {
             
             console.log(sido);
             if (sido != "제주특별자치도") {
-                inputInvalidate('#id-error-div2', '제주 내 업소만 등록가능!');
+                inputInvalidate3('#id-error-div2', '제주 내 업소만 등록가능!');
                 return;
             }
             else {
-                inputInvalidate('#id-error-div2', '');
+                inputInvalidate3('#id-error-div2', '');
             }
 
             document.querySelector('#inputAccomAddr').value = data.roadAddress;
@@ -186,7 +186,7 @@ function updateMainAccomAddr(accomCode) {
 
 }
 
-function inputInvalidate(tagId, message){
+function inputInvalidate3(tagId, message){
     document.querySelector(tagId).style.display = 'block';
     document.querySelector(tagId).textContent = message;
 }
