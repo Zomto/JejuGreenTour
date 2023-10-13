@@ -1,0 +1,38 @@
+@charset "utf-8";
+/* 기본셋팅, 공통값 */
+body, input{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+img, input, button{
+    vertical-align: top;
+}
+input, button{
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+.hide{
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+#inner{
+    width: 1440px;
+    margin: 0 auto;
+    padding: 15px 30px;
+    background-color: white;
+}
+
+.table_inner{
+    border: 1px solid #999;
+    padding: 30px;
+}
