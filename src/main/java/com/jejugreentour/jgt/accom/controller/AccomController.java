@@ -73,11 +73,10 @@ public class AccomController {
         return "redirect:/";
     }
 
-    // 숙박 등록 페이지로 이동
+    // 숙박 정보 수정페이지로 이동
     @GetMapping("/mainAccomDetail")
     public String mainAccomDetail(String accomCode, Model model){
         MainAccomVO vo = accomService.selectMainAccomDetail(accomCode);
-        System.out.println(1);
         model.addAttribute("mAccom", vo);
 
         return "content/accom/accom_detail";

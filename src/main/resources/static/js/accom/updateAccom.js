@@ -1,17 +1,26 @@
 function updateAccomForm(){
 
-        inputInvalidate('#updateButton', '변경 완료');
+        inputInvalidate('#updateButton');
 
 }
 function updateAccomForm2(){
 
-    inputInvalidate('#updateButton2', '변경 완료');
+    inputInvalidate('#updateButton2');
 
+}
+
+function returnUpdateForm(){
+    inputInvalidate2('#updateButton');
+}
+
+function returnUpdateForm2(){
+    inputInvalidate2('#updateButton2');
 }
 
 
 
-function inputInvalidate(tagId, message){
+
+function inputInvalidate(tagId){
     var element = document.querySelector(tagId);
     var parent = element.parentElement;
     element.style.display = 'none';
@@ -19,8 +28,20 @@ function inputInvalidate(tagId, message){
     parent.children[1].style.display = 'none';
     parent.children[2].style.display = 'block';
     parent.children[2].value = parent.children[1].textContent;
-    element.textContent = message;
 }
+
+function inputInvalidate2(tagId){
+    var element = document.querySelector(tagId);
+    var parent = element.parentElement;
+    element.style.display = 'none';
+    element.previousElementSibling.style.display = 'block';
+    parent.children[1].style.display = 'block';
+    parent.children[1].textContent =  parent.children[2].value;
+    parent.children[2].style.display = 'none';
+    parent.children[3].style.display = 'block';
+    parent.children[4].style.display = 'none';
+}
+
 
 function updateMainAccomName(accomCode, accomName, accomIntro){
     fetch('/accom/updateMainAccomName', { //요청경로
@@ -49,7 +70,8 @@ function updateMainAccomName(accomCode, accomName, accomIntro){
     })
     //fetch 통신 후 실행 영역
     .then((data) => {//data -> controller에서 리턴되는 데이터!
-        alert('상품의 상태가 변경되었습니다.')
+        alert('업소의 상태가 변경되었습니다.')
+        
     })
     //fetch 통신 실패 시 실행 영역
     .catch(err=>{

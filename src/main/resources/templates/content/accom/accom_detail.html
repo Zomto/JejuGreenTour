@@ -30,7 +30,7 @@
                             <button id="updateButton" type="button" class="btn btn-primary"
                                 onclick="updateAccomForm()">변경</button>
                             <button id="updateButton" type="button" class="btn btn-primary"
-                                th:onclick="updateMainAccomName([[${mAccom.accomCode}]],[[${mAccom.accomName}]],[[${mAccom.accomIntro}]])" style="display : none">변경완료</button>
+                                th:onclick="updateMainAccomName([[${mAccom.accomCode}]],[[${mAccom.accomName}]],[[${mAccom.accomIntro}]]),returnUpdateForm()" style="display : none">변경완료</button>
                         </div>
                         <div class="row mb-3">
                             <div class="col-3 align-middle">위치</div>
@@ -51,7 +51,7 @@
                         <button id="updateButton2" type="button" class="btn btn-primary"
                             onclick="updateAccomForm2()">변경</button>
                         <button id="updateButton2" type="button" class="btn btn-primary"
-                            th:onclick="updateMainAccomName([[${mAccom.accomCode}]],[[${mAccom.accomName}]],[[${mAccom.accomIntro}]])" style="display : none">변경완료</button>
+                            th:onclick="updateMainAccomName([[${mAccom.accomCode}]],[[${mAccom.accomName}]],[[${mAccom.accomIntro}]]), returnUpdateForm2()" style="display : none">변경완료</button>
                         </div>
                         <div class="row">
                             <div class="col-12" th:each="img : ${mAccom.mainAccomImgList}">
