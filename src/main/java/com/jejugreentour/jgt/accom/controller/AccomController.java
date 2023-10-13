@@ -88,4 +88,12 @@ public class AccomController {
         accomService.updateMainAccomName(mainAccomVO);
     }
 
+    // 업소 이름 변경
+    @ResponseBody
+    @PostMapping("/updateMainAccomAddr")
+    public void updateMainAccomAddr(MainAccomVO mainAccomVO){
+        accomService.updateMainAccomAddr(mainAccomVO);
+    }
+
+
 }

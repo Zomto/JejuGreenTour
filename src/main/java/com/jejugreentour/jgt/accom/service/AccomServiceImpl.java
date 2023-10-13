@@ -35,4 +35,9 @@ public class AccomServiceImpl implements AccomService {
     public void updateMainAccomName(MainAccomVO mainAccomVO) {
         sqlSession.update("accomMapper.updateMainAccomName", mainAccomVO);
     }
+
+    @Override
+    public void updateMainAccomAddr(MainAccomVO mainAccomVO) {
+        sqlSession.update("accomMapper.updateMainAccomAddr", mainAccomVO);
+    }
 }

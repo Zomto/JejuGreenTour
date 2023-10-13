@@ -18,4 +18,6 @@ public class MainAccomVO {
     private AccomCategoryVO accomCategory;
     private String inputMainAccomName;
     private String inputMainAccomIntro;
+    private String inputAccomAddr;
+    private String inputAddrDetail;
 }

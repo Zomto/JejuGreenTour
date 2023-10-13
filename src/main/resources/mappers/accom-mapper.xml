@@ -145,4 +145,12 @@
         </if>
         WHERE ACCOM_CODE = #{accomCode}
     </update>
+
+    <update id="updateMainAccomAddr">
+        UPDATE MAIN_ACCOM
+        SET
+            ACCOM_ADDR = #{inputAccomAddr}
+        ,   ADDR_DETAIL = #{inputAddrDetail}
+        WHERE ACCOM_CODE = #{accomCode}
+    </update>
 </mapper>

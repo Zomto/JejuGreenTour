@@ -13,4 +13,8 @@ public interface AccomService {
 
     // 업소 이름 변경
     public void updateMainAccomName(MainAccomVO mainAccomVO);
+
+    // 업소 주소 변경
+    public void updateMainAccomAddr(MainAccomVO mainAccomVO);
+
 }
