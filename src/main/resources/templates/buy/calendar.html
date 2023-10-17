@@ -36,8 +36,8 @@
 
             <div>
                 <input type="hidden" name="renttime" value="3">
-                <input type="hidden" class="start" value="2023-10-15T00:00:00">
-                <input type="hidden" class="end" value="2023-10-18T00:00:00">
+                <input type="hidden" class="start" value="2023-10-24T10:00:00">
+                <input type="hidden" class="end" value="2023-10-26T20:00:00">
                 <input type="hidden" class="dayuse" value="N"><!--예약 대실 유무-->
             </div>
             <div>
@@ -49,16 +49,16 @@
 
             <div>
                 <input type="hidden" name="renttime" value="3">
-                <input type="hidden" class="start" value="2023-10-13T10:00:00">
-                <input type="hidden" class="end" value="2023-10-14T00:00:00">
+                <input type="hidden" class="start" value="2023-10-29T10:00:00">
+                <input type="hidden" class="end" value="2023-10-30T00:00:00">
                 <input type="hidden" class="dayuse" value="Y"><!--예약 대실 유무-->
             </div>
 
 
             <!-- 필수 -->
-            <input type="hidden" class="checkin" value="18:00:00"> <!-- 방의 체크인 시간 -->
-            <input type="hidden" class="checkout" value="09:00:00"> <!-- 방의 체크아웃 시간 -->
-            <input type="text" class="renttime" value="3">
+            <input type="text" class="checkin" value="18:00:00"> <!-- 방의 체크인 시간 -->
+            <input type="text" class="checkout" value="09:00:00"> <!-- 방의 체크아웃 시간 -->
+            <input type="text" class="renttime" value="2">
             <input type="text" class="candayuse" value="Y">
 
 
@@ -72,7 +72,7 @@
             </div>
             <div>
                 <input type="button" value="장바구니에 추가">
-                <input type="button" value="대실" onclick="turndayuse(this)">
+                <input type="button" value="대실" onclick="turndayuse(this)"><!-- <th:block th:if>로 유무 확인-->
                 <input type="button" value="숙박" onclick="turnreserv(this)">
             </div>
         </form>

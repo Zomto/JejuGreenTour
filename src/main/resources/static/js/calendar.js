@@ -348,6 +348,9 @@ function turndayuse(tag) {
                             end: startDate + 'T' + dayusecheckout + ':00:00', // 끝나는 날짜
                             backgroundColor: 'red', // 배경색 설정
                         };
+                        setStartDay.value =startDate.split('T')[0]+'T'+(Number(checkout.value.split(':')[0])+1)+':00:00';
+                        setEndDay.value =startDate.split('T')[0]+'T'+(Number(checkout.value.split(':')[0])+1+Number(renttime))+':00:00'
+                        // setEndDay.value =endDate.split('T')[0] +(checkin.value.split(':')[0]-1)+'00:00';
                         calendar.addEvent(event);
                         // 선택 영역 초기화
                         calendar.unselect();
@@ -361,11 +364,11 @@ function turndayuse(tag) {
             // 이벤트를 클릭할 때 추가 작업 수행 (예: 이벤트 삭제)
             if (info.event.id == 'startDate') {
                 console.log(checkin.value);
-                console.log(Number(checkin.value.split[0]))
-                console.log(Number(checkout.value.split[0])+Number(stayday.value) + Number(renttime))
-                if(Number(checkin.value.split[0])>Number(checkout.value.split[0])+Number(stayday.value) + Number(renttime)){
+                console.log(Number(checkout.value.split(':')[0])+Number(stayday.value) + Number(renttime))
+                if(Number(checkin.value.split(':')[0])>Number(checkout.value.split(':')[0])+Number(stayday.value) + Number(renttime)){
                     info.event.setProp('title', '대실-' + (Number(renttime) + Number(stayday.value)))
                     stayday.value = Number(stayday.value) + Number(renttime);
+                    setEndDay.value =startDate.split('T')[0]+'T'+(Number(checkout.value.split(':')[0])+1+ Number(stayday.value))+':00:00'
                 }
             }
         },
@@ -524,6 +527,7 @@ function turnreserv(tag) {
                             display: 'background',
                             backgroundColor: 'green', // 배경색 설정
                         };
+
                         stayday.value = Math.ceil((new Date(endDate).getTime() / (1000 * 60 * 60 * 24)) - (new Date(startDate).getTime() / (1000 * 60 * 60 * 24)))
                         calendar.addEvent(long);
                         // 선택 영역 초기화

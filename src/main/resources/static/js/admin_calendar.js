@@ -1,14 +1,45 @@
 
-document.addEventListener('DOMContentLoaded', function () {
-    var calendarEl = document.getElementById('calendar');
 
+function randomColor()  {
+    let color_r = Math.floor(Math.random() * 127 + 128).toString(16);
+    let color_g = Math.floor(Math.random() * 127 + 128).toString(16);
+    let color_b = Math.floor(Math.random() * 127 + 128).toString(16);
+    return `#${color_r+color_g+color_b}`;
+  }
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+
+    let subCode = document.querySelectorAll('.subCode');
+    let sta = document.querySelectorAll('.start');
+    let en = document.querySelectorAll('.end');
+    let dayuse = document.querySelectorAll('.dayuse');
+    let memberName = document.querySelectorAll('.memberName');
+
+ var eventsss = []
+    for (let i = 0; i < sta.length; i++) {
+        eventsss.push({
+            id: memberName[i].value,
+            title: subCode[i].value,
+            start: sta[i].value,
+            end: en[i].value,
+            backgroundColor: randomColor(),
+            textColor: 'black'
+        })
+    }
+    var calendarEl = document.getElementById('calendar');
+    let dd=10;
     var calendar = new FullCalendar.Calendar(calendarEl, {
+        events: eventsss,
         initialView: 'timeGrid2WeekDay',
-        views: {
+       views: {
             timeGrid2WeekDay: {
-                type: 'dayGrid',
-                duration: { days: 14 }
-            }
+            type: 'dayGrid',
+            duration: { days: 14 },
+            buttonText: '2 week'
+          }
         },
         // views: { option을 각각 따로 줄 수있다
         //     dayGrid: {
@@ -28,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
         headerToolbar: {
             left: 'prevYear,prev,next,nextYear today',
             center: 'title',
-            right: 'dayGridWeek,dayGrid2WeekDay' // user can switch between the two
+            right: 'dayGridWeek,timeGrid2WeekDay' // user can switch between the two
         },
         dayMaxEvents: true,
         // 기타 옵션 설정 및 이벤트 데이터 로드
@@ -37,11 +68,10 @@ document.addEventListener('DOMContentLoaded', function () {
             // 선택한 날짜 범위 가져오기
             var startDate = info.startStr;
             var endDate = info.endStr;
-
             // 이벤트 객체 생성
             var event = {
                 title: '예약', // 이벤트 제목
-                start: startDate, // 시작 날짜
+                start: startDate+'T'+'00:'+(++dd)+':00', // 시작 날짜
                 end: endDate, // 끝나는 날짜
                 backgroundColor: 'black', // 배경색 설정
             };
@@ -52,7 +82,8 @@ document.addEventListener('DOMContentLoaded', function () {
             calendar.unselect();
         },
         eventClick: function (info) {
-            if (confirm(info.event.id + '\n' + '예약을 취소시키겠습니까?')) {
+            if (confirm(info.event.id+'님의'
+                 + '\n' + '예약을 취소시키겠습니까?')) {
                 info.event.remove()
             }
         }
