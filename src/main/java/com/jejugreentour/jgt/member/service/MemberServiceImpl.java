@@ -20,9 +20,10 @@ public class MemberServiceImpl implements MemberService{
         return sqlSession.selectOne("memberMapper.login", memberVO);
     }
 
-//    @Override
-//    public boolean checkId(String memberId) {
-//        String selectMemberID = sqlSession.selectOne("memberMapper.checkId",memberId);
-//        return selectMemberID == null ? true : false;
-//    }
+    @Override
+    public boolean checkId(String memberId) {
+        String selectMemberID = sqlSession.selectOne("memberMapper.checkId",memberId);
+        System.out.println(selectMemberID);
+        return selectMemberID == null ? true : false;
+    }
 }

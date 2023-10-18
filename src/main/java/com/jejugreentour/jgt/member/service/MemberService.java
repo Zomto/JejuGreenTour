@@ -10,7 +10,7 @@ public interface MemberService {
     //로그인
     public  MemberVO login(MemberVO memberVO);
 
-//    //중복체크
-//    public boolean checkId(String memberId);
+    //중복체크
+    public boolean checkId(String memberId);
 
 }

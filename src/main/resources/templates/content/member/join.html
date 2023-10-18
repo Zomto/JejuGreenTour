@@ -1,86 +1,118 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/css/member/join.css">
 </head>
+
 <body>
-<form action="/member/joinMember" method="post">
-    <div id="wrap">
-        <div id="inner">
-            <div id="header">
-                <div class="h_in">
-                    <div class="h_left"><a href="">BACK</a>
-                        <span>본인인증</span>
+    <form action="/member/joinMember" method="post">
+        <div id="wrap">
+            <div id="inner">
+                <div id="header">
+                    <div class="h_in">
+                        <div class="h_left"><a href="">BACK</a>
+                            <span>본인인증</span>
+                        </div>
+                        <div class="h_right"><a href="">HOME</a></div>
                     </div>
-                    <div class="h_right"><a href="">HOME</a></div>
                 </div>
-            </div>
-            <div id="container">
-                <div class="c_in">
-                    <h3>회원가입을 위해<br>정보를 입력해 주세요.</h3>
-                    <div class="join_input_1">
-                        <p class="input_memberId">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
-                              </svg>
-                            <input type="text" name="memberId" placeholder="아이디" required>
-                        </p>
-                        <p class="double_check"><button>중복확인</button></p>
-                    </div>
-                    <div class="join_input_2">
-                        <p  class="input_memberPw">
-                            <span><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
-                                <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
-                              </svg></span>
-                            <input type="password" name="memberPw" placeholder="비밀번호" required>
-                        </p>
-                        <p class="pw_display">
-                            <button>ICON</button>
-                        </p>
-                    </div>
-                    <div class="join_input_3">
-                        <div class="join_input_3_left">
-                            <p class="input_memberName">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
-                                  </svg>
-                                <input type="text" name="memberName" placeholder="이름" required>
+                <div id="container">
+                    <div class="c_in">
+                        <h3>회원가입을 위해<br>정보를 입력해 주세요.</h3>
+                        <div class="join_input_1">
+                            <p class="input_memberId">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                    class="bi bi-person" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+                                </svg>
+                                <input type="text" id="memberId" name="memberId" placeholder="아이디" required>
+                            </p>
+                            <p class="double_check" onclick="checkId()">
+                                <input type="button" value="중복확인">
                             </p>
                         </div>
-                        <div class="join_input_3_right">
-                            <p  class="input_gender">
-                                <span>성별 </span>
-                                <input type="radio" name="gender" value="남" checked>남
-                                <input type="radio" name="gender" value="여">여
+
+                        <div class="join_input_2">
+                            <p class="input_memberPw">
+                                <span><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                        class="bi bi-lock" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
+                                    </svg></span>
+                                <input type="password" name="memberPw" placeholder="비밀번호" required>
+                            </p>
+                            <p class="pw_display">
+                                <button>ICON</button>
                             </p>
                         </div>
+                        <div class="join_input_3">
+                            <div class="join_input_3_left">
+                                <p class="input_memberName">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                        class="bi bi-person" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+                                    </svg>
+                                    <input type="text" name="memberName" placeholder="이름" required>
+                                </p>
+                            </div>
+                            <div class="join_input_3_right">
+                                <p class="input_gender">
+                                    <span>성별 </span>
+                                    <input type="radio" name="gender" value="남" checked>남
+                                    <input type="radio" name="gender" value="여">여
+                                </p>
+                            </div>
+                        </div>
+                        <div class="join_input_4">
+                            <div class="join_input_4_left">
+                                <p class="input_tel">
+                                    <select class="tel1" name="tel" id="">
+                                        <option name="tel" value="010">010</option>
+                                        <option name="tel" value="011">011</option>
+                                        <option name="tel" value="012">012</option>
+                                    </select> -
+                                    <input class="tel2" type="tel" name="memberTels" placeholder="전화번호" required> -
+                                    <input class="tel3" type="tel" name="memberTels" placeholder="전화번호" required>
+                                </p>
+                            </div>
+                            <div class="join_input_4_right">
+                                <p class="input_memberBirth">
+                                    <span>생년월일 </span>
+                                    <input type="date" name="memberBirth" required>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="email_verify">
+                            <div class="mb-3">
+                                <p>
+                                    <label class="form-label" for="email">Email</label>
+                                    <input class="form-control" type="email" id="email" name="email" required />
+                                </p>
+                                <input type="button" class="verify" value="인증번호 발급" id="verifyButton" />
+                            </div>
+                            <div id="additionalInput" class="verify_box">
+                                <!-- 추가 입력 필드가 여기에 동적으로 생성됨 -->
+                                <p>
+                                    <label class="form-label" for="verify_code">인증번호</label>
+                                    <input class="form-control" type="verify_code" id="verify_code" name="verify_code" required />
+                                    <div id="timer">5:00</div>
+                                </p>
+                                <input type="button" class="verify" value="인증번호 확인" onclick="checkCode()"/>
+                            </div>
+                        </div>
+
+                        <input class="join_btn" type="submit" value="가입하기" disabled>
                     </div>
-                    <div class="join_input_4">
-                        <div class="join_input_4_left">
-                            <p  class="input_tel">
-                                <select class="tel1" name="tel" id="">
-                                    <option name="tel" value="010">010</option>
-                                    <option name="tel" value="011">011</option>
-                                    <option name="tel" value="012">012</option>
-                                </select> -
-                                <input class="tel2" type="tel" name="memberTels" placeholder="전화번호" required> -
-                                <input class="tel3" type="tel" name="memberTels" placeholder="전화번호" required>
-                            </p>
-                        </div>
-                        <div class="join_input_4_right">
-                            <p  class="input_memberBirth">
-                                <span>생년월일 </span>
-                                <input type="date" name="memberBirth" required>
-                            </p>
-                        </div>
-                    </div>
-                    <input class="join_btn" type="submit" value="가입하기">
                 </div>
             </div>
         </div>
-    </div>
-</form>
+        <script src="/js/main_header.js"></script>
+    </form>
 </body>
+
 </html>
