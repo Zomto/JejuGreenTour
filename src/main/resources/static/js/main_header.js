@@ -166,7 +166,7 @@ function verifyCode(){
     })
     //fetch 통신 후 실행 영역
     .then((data) => {//data -> controller에서 리턴되는 데이터!
-        alert(data)
+        alert("인증메일이 발송 되었습니다! 메일함을 확인해주세요!")
         confirmCode = data;
         setTimeout(()=>{confirmCode=null
         },300000)
@@ -180,7 +180,7 @@ function checkCode(){
     }else{
      let inputCode = document.querySelector('#verify_code').value
         if(inputCode == confirmCode){
-            alert("인증되었습니다!")
+            alert("인증되었습니다! 가입절차를 진행해주세요!")
             document.querySelector('.join_btn').disabled = false
         }else{
             alert("인증번호를 정확하게 입력해주세요")
