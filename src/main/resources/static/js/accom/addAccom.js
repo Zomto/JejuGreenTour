@@ -76,3 +76,6 @@ function inputInvalidate(tagId, message){
     document.querySelector(tagId).style.display = 'block';
     document.querySelector(tagId).textContent = message;
 }
+
+
+

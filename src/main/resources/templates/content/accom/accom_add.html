@@ -17,52 +17,61 @@
                     <div class="table_inner">
                         <div class="table_text">
                             <div class="input_accomName">
-                                <label for="accomName">업소명</label>
-                                <input type="text" id="accomName" name="accomName">
+                                <p class="label_area"><label for="accomName">업소명</label></p>
+                                <p class="input_area"><input type="text" id="accomName" name="accomName"></p>
                             </div>
-                            <div class="error-div" id="id-error-div1"></div>
                             <div class="input_accomAddr">
-                                <label for="accomAddr">ADDRESS</label>
-                                <input type="text" id="accomAddr" name="accomAddr" onclick="openPost();" readonly>
+                                <p class="label_area"><label for="accomAddr">ADDRESS</label></p>
+                                <p class="input_area"><input type="text" id="accomAddr" name="accomAddr" onclick="openPost();" readonly></p>
                             </div>
-                            <div class="error-div" id="id-error-div2"></div>
-                            <div class="input_box1">
-                                <div class="input_addrDetail">
-                                    <label for="accomAddr">상세주소</label>
-                                    <input type="text" id="addrDetail" name="addrDetail">
-                                </div>
+                            <div class="input_addrDetail">
+                                <p class="label_area"><label for="accomAddr">상세주소</label></p>
+                                <p class="input_area"><input type="text" id="addrDetail" name="addrDetail"></p>
                             </div>
                             <div class="input_accomCate">
-                                <label for="accomCate">카테고리</label>
-                                <label for="" >&nbsp;</label>
-                                <select name="accomCate" id="accomCate">
-                                    <option value="CATE_000">선택</option>
-                                    <option value="CATE_001">호텔</option>
-                                    <option value="CATE_002">모텔</option>
-                                    <option value="CATE_003">펜션</option>
-                                    <option value="CATE_004">글램핑</option>
-                                </select>
-                                <div class="error-div" id="id-error-div3"></div>
+                                <p class="label_area"><label for="accomCate">카테고리</label></p>
+                                <p class="input_area">
+                                    <select name="accomCate" id="accomCate">
+                                        <option value="CATE_000">선택</option>
+                                        <option value="CATE_001">호텔</option>
+                                        <option value="CATE_002">모텔</option>
+                                        <option value="CATE_003">펜션</option>
+                                        <option value="CATE_004">글램핑</option>
+                                    </select>
+                                </p>
                             </div>
-                            <div class="error-div" id="id-error-div"></div>
                             <div class="input_accomIntro">
-                                <label for="accomIntro">간략 소개</label>
-                                <textarea id="accomIntro" name="accomIntro" rows="3"></textarea>
+                                <p class="label_area"><label for="accomIntro">간략 소개</label></p>
+                                <p class="input_area"><textarea id="accomIntro" name="accomIntro" rows="3"></textarea></p>
                             </div>
                         </div>
                         <div class="table_img">
                             <div class="input_mainImg">
-                                <label>메인이미지</label>
-                                <input type="file" name="mainImg">
+                                <p class="label_area"><label>메인이미지</label></p>
+                                <p class="input_area"><input type="file" name="mainImg"></p>
                             </div>
-                            <div class="input_sub_Image">
-                                <label>서브이미지</label>
-                                <input type="file" name="subImg" multiple>
+                            <div class="preview_mainImg">
+                                <p class="label_area"><label>메인 이미지 미리보기</label></p>
+                                <p class="input_area">미리보기</p>
                             </div>
+                            <div class="input_subImg">
+                                <p class="label_area"><label>서브이미지</label></p>
+                                <p class="input_area"><input type="file" name="subImg" multiple></p>
+                            </div>
+                            <div class="preview_subImg">
+                                <p class="label_area"><label>서브 이미지 미리보기</label></p>
+                                <p class="input_area"></p>
+                            </div>
+                        </div>
+                        <div class="validate">
+                            <div class="error-div" id="id-error-div1"></div>
+                            <div class="error-div" id="id-error-div2"></div>
+                            <div class="error-div" id="id-error-div3"></div>
+                            <div class="error-div" id="id-error-div"></div>
                         </div>
                     </div>
                     <div class="input_joinBtn">
-                        <button id="join-btn" type="button" onclick="joinValidate();">Sign in</button>
+                        <button id="join-btn" type="button" onclick="joinValidate();">등록하기</button>
                     </div>
                     <input id="accomLoc" name="accomLoc" class="accomLoc" type="hidden" value="accomLoc">
                 </div>

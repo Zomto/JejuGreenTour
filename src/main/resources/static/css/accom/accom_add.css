@@ -26,8 +26,8 @@ a{
 }
 
 #inner{
-    width: 1440px;
-    height: 800px;
+    width: 1200px;
+    box-sizing: border-box;
     margin: 0 auto;
     padding: 15px 30px;
     background-color: aliceblue;
@@ -36,49 +36,55 @@ a{
 .table_inner{
     border: 1px solid #999;
     padding: 30px 50px;
+}
+
+
+.table_text div{
     display: flex;
+    padding: 0 15px;
 }
 
-.table_text{
+.label_area{
+    width: 7%;
+    border: 1px solid #222;
+    border-right: 0;
+    padding: 20px;
+    align-items: center;
+    border-bottom: 0;
+}
+
+.input_area{
+    width: 93%;
+    border: 1px solid #222;
+    padding: 20px;
+    border-bottom: 0;
+}
+
+.input_area input{
     width: 50%;
-    border: 1px solid #000;
-    margin-right: 50px;
-}
-
-.table_img{
-    width: 50%;
-    border: 1px solid #000;
+    padding: 5px
 }
 
 
 
-.input_accomName{
-    border: 1px solid #999;
-    padding: 15px;
-}
-
-.input_accomAddr{
-    border: 1px solid #999;
-    padding: 15px;
-}
-
-.input_box1{
-    border: 1px solid #999;
-    padding: 15px;
+.table_img div{
     display: flex;
-    justify-content: space-between;
+    padding: 0 15px;
 }
 
-.input_accomIntro{
-    border: 1px solid #999;
-    padding: 15px;
+.input_subImg p{
+    border-bottom: 1px solid #222;
 }
 
+.preview_mainImg p{
+    border-bottom: 0;
+}
 
+.preview_subImg p{
+    border-top: 0;
+    border-bottom: 1px solid #222;
+}
 
-
-.input_accomName{}
-
-.input_accomName{}
-
-.input_accomName{}
+.table_img .preview_mainImg, .table_img .preview_subImg{
+    
+}
