@@ -30,31 +30,39 @@
                             <button id="updateButton" type="button" class="btn btn-primary"
                                 onclick="updateAccomForm()">변경</button>
                             <button id="updateButton" type="button" class="btn btn-primary"
-                                th:onclick="updateMainAccomName([[${mAccom.accomCode}]],[[${mAccom.accomName}]],[[${mAccom.accomIntro}]]),returnUpdateForm()" style="display : none">변경완료</button>
+                                th:onclick="updateMainAccomName([[${mAccom.accomCode}]],[[${mAccom.accomName}]],[[${mAccom.accomIntro}]]),returnUpdateForm()"
+                                style="display : none">변경완료</button>
                         </div>
                         <div class="row mb-3">
                             <div class="col-3 align-middle">위치</div>
                             <div class="accomAddr" id="accomAddr">[[${mAccom.accomAddr}]]</div>
+                            <input type="text" class="form-control" id="inputAccomAddr" name="inputAccomAddr"
+                                style="display : none" onclick="openPost2();" readonly>
+                            <input type="button" class="btn btn-primary" value="주소검색" onclick="openPost2();"
+                                style="display : none">
                             <div class="addrDetail" id="addrDetail">[[${mAccom.addrDetail}]]</div>
-                            <!-- <input type="text" class="form-control" id="inputAccomName" name="inputAccomName"
-                            style="display : none">
-                        <button id="updateButton" type="button" class="btn btn-primary"
-                            onclick="updateAccomForm()">변경</button>
-                        <button id="updateButton" type="button" class="btn btn-primary"
-                            th:onclick="updateMainAccomName([[${mAccom.accomCode}]])" style="display : none">변경완료</button> -->
+                            <input type="text" class="form-control" id="inputAddrDetail" name="inputAddrDetail"
+                                style="display : none">
+                            <button id="updateButton1" type="button" class="btn btn-primary"
+                                onclick="updateAccomForm1()">변경</button>
+                            <button id="updateButton1" type="button" class="btn btn-primary"
+                                th:onclick="updateMainAccomAddr([[${mAccom.accomCode}]] ,returnUpdateForm1())"
+                                style="display : none">변경완료</button>
+                            <div class="error-div" id="id-error-div2"></div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-3 align-middle">소개</div>
                             <div class="col">[[${mAccom.accomIntro}]]</div>
                             <input type="text" class="form-control" id="inputAccomIntro" name="inputAccomIntro"
-                            style="display : none">
-                        <button id="updateButton2" type="button" class="btn btn-primary"
-                            onclick="updateAccomForm2()">변경</button>
-                        <button id="updateButton2" type="button" class="btn btn-primary"
-                            th:onclick="updateMainAccomName([[${mAccom.accomCode}]],[[${mAccom.accomName}]],[[${mAccom.accomIntro}]]), returnUpdateForm2()" style="display : none">변경완료</button>
+                                style="display : none">
+                            <button id="updateButton2" type="button" class="btn btn-primary"
+                                onclick="updateAccomForm2()">변경</button>
+                            <button id="updateButton2" type="button" class="btn btn-primary"
+                                th:onclick="updateMainAccomName([[${mAccom.accomCode}]],[[${mAccom.accomName}]],[[${mAccom.accomIntro}]]), returnUpdateForm2()"
+                                style="display : none">변경완료</button>
                         </div>
                         <div class="row">
-                            <div class="col-12" th:each="img : ${mAccom.mainAccomImgList}">
+                            <div class="imgListSlide" th:each="img : ${mAccom.mainAccomImgList}">
                                 <img th:if="${img.isMain == 'N'}" width="100%" th:src="${'/img/'+ img.attachedFileName}"
                                     alt="">
                             </div>
@@ -62,7 +70,13 @@
                     </div>
                 </div>
             </div>
-        </div>
+            <h3>서브 숙소 추가</h3>
+            <div class="row row-cols-5 g-4">
+                <a th:href="@{/accom/subAccomAddForm(accomCode=ACCOM_005)}">
+                    서브 추가
+                </a>
+            </div>
+        </div><script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         <script src="/js/accom/updateAccom.js"></script>
     </th:block>
 </body>

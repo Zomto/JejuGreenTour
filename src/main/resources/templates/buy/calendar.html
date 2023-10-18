@@ -24,49 +24,55 @@
         </style>
         <div id="calendar"></div>
         <form action="">
-            
+
             <th:block th:if="${Reservationlist != null}" th:each="Reservation, state : ${Reservationlist}">
                 <input type="hidden" class="start" th:value="${Reservation.stayStartDate}">
                 <input type="hidden" class="end" th:value="${Reservation.stayEndDate}">
                 <input type="hidden" class="dayuse" value="Y"><!--예약 대실 유무-->
                 <th:block th:if="${state.index == 0}">
-                <input type="hidden" class="renttime" value="3"><!-- 대실 추가 시간 -->
+                    <input type="hidden" class="renttime" value="5"><!-- 대실  시간 -->
                 </th:block>
             </th:block>
 
             <div>
-                <input type="hidden" class="renttime" value="3">
-                <input type="hidden" class="start" value="2023-10-15T00:00:00" >
-                <input type="hidden" class="end"  value="2023-10-18T00:00:00" >
+                <input type="hidden" name="renttime" value="3">
+                <input type="hidden" class="start" value="2023-10-24T10:00:00">
+                <input type="hidden" class="end" value="2023-10-26T20:00:00">
                 <input type="hidden" class="dayuse" value="N"><!--예약 대실 유무-->
             </div>
             <div>
-                <input type="hidden" class="renttime" value="3">
-                <input type="hidden" class="start" value="2023-10-22T10:00:00" >
-                <input type="hidden" class="end"  value="2023-10-22T20:00:00" >
+                <input type="hidden" name="renttime" value="3">
+                <input type="hidden" class="start" value="2023-10-22T10:00:00">
+                <input type="hidden" class="end" value="2023-10-22T20:00:00">
                 <input type="hidden" class="dayuse" value="Y"><!--예약 대실 유무-->
             </div>
-            
+
             <div>
-                <input type="hidden" class="renttime" value="3">
-                <input type="hidden" class="start" value="2023-10-13T10:00:00" >
-                <input type="hidden" class="end"  value="2023-10-14T00:00:00" >
+                <input type="hidden" name="renttime" value="3">
+                <input type="hidden" class="start" value="2023-10-29T10:00:00">
+                <input type="hidden" class="end" value="2023-10-30T00:00:00">
                 <input type="hidden" class="dayuse" value="Y"><!--예약 대실 유무-->
             </div>
-            <input type="hidden" class="checkin" value="18:00:00" >
-            <input type="hidden" class="checkout"  value="09:00:00" >
+
+
+            <!-- 필수 -->
+            <input type="text" class="checkin" value="18:00:00"> <!-- 방의 체크인 시간 -->
+            <input type="text" class="checkout" value="09:00:00"> <!-- 방의 체크아웃 시간 -->
+            <input type="text" class="renttime" value="2">
+            <input type="text" class="candayuse" value="Y">
 
 
 
 
-0.             <div>
-                <input type="text" id="setStartDay" name="start">
-                <input type="text" id="setEndDay" name="end">
-                <input type="number" id="stayDay" name>
+            <div>
+                <input type="text" id="setStartDay" name="stayStartDate">
+                <input type="text" id="setEndDay" name="stayEndDate">
+                <input type="number" id="stayDay" name="stayTerm">
+                <input type="text" id="setdayuse" name="dayuse">
             </div>
             <div>
                 <input type="button" value="장바구니에 추가">
-                <input type="button" value="대실" onclick="turndayuse(this)">
+                <input type="button" value="대실" onclick="turndayuse(this)"><!-- <th:block th:if>로 유무 확인-->
                 <input type="button" value="숙박" onclick="turnreserv(this)">
             </div>
         </form>
