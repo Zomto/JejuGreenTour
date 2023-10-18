@@ -1,5 +1,17 @@
 
 
+let setstr=0;
+
+function resetStar(){
+    setStar=0;
+    alert(setStar);
+    }
+function setStar(){
+++setStar;
+alert(setStar)
+}
+
+
 function randomColor()  {
     let color_r = Math.floor(Math.random() * 127 + 128).toString(16);
     let color_g = Math.floor(Math.random() * 127 + 128).toString(16);
@@ -7,26 +19,48 @@ function randomColor()  {
     return `#${color_r+color_g+color_b}`;
   }
 
+  function subCodesSetColor(){
+      let subCodes=[];
+  document.querySelectorAll('.subCodes').forEach(element => {
+    subCodes[element.value]=randomColor();
+  });
+    return subCodes;
+  }
 
 
 document.addEventListener('DOMContentLoaded', function () {
+    let subCodes=[];
+    subCodes = subCodesSetColor();
 
-
+    let reservationCode=document.querySelectorAll('.reservationCode'); 
     let subCode = document.querySelectorAll('.subCode');
     let sta = document.querySelectorAll('.start');
     let en = document.querySelectorAll('.end');
     let dayuse = document.querySelectorAll('.dayuse');
     let memberName = document.querySelectorAll('.memberName');
+    let reservationDate = document.querySelectorAll('.reservationDate');
+    let price = document.querySelectorAll('.price');
+
+        console.log(subCode['001']);
+        console.log(subCode['002']);
+        console.log(subCode['003']);
+        console.log(subCode['004']);
+        console.log(subCode['005']);
+    
+
 
  var eventsss = []
     for (let i = 0; i < sta.length; i++) {
+
         eventsss.push({
-            id: memberName[i].value,
+            id: "결제일시"+reservationDate[i].value
+            + '\n'+"결제금액"+price[i].value +'\n'+ memberName[i].value+"",
             title: subCode[i].value,
             start: sta[i].value,
             end: en[i].value,
-            backgroundColor: randomColor(),
-            textColor: 'black'
+            backgroundColor: subCodes[subCode[i].value],
+            textColor: 'black',
+            myclass1 : reservationCode[i].value
         })
     }
     var calendarEl = document.getElementById('calendar');
@@ -82,6 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
             calendar.unselect();
         },
         eventClick: function (info) {
+            console.log(info.event.myclass1)
             if (confirm(info.event.id+'님의'
                  + '\n' + '예약을 취소시키겠습니까?')) {
                 info.event.remove()
