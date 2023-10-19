@@ -11,5 +11,4 @@ public class ReservationVO {
     private String stayEndDate;
     private String reservationDate;
     private String reservationPrice;
-
 }

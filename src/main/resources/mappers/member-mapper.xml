@@ -7,10 +7,11 @@
         <result column="MEMBER_PW"      property="memberPw" />
         <result column="MEMBER_NAME"    property="memberName" />
         <result column="MEMBER_TEL"    property="memberTel" />
-        <result column="MEMBER_EMAIL"   property="memberEmail"/>
         <result column="GENDER"         property="gender"/>
         <result column="BIRTH_DATE"          property="birthDate"/>
         <result column="MEMBER_ROLL"    property="memberRoll"/>
+        <result column="MEMBER_MAIL"    property="memberMail"/>
+
     </resultMap>
 
     <insert id="join">
@@ -19,9 +20,9 @@
         , MEMBER_PW
         , MEMBER_NAME
         , MEMBER_TEL
-        , MEMBER_EMAIL
         , GENDER
         , BIRTH_DATE
+        , MEMBER_MAIL
         ) VALUES (
         #{memberId}
         , #{memberPw}
@@ -30,12 +31,9 @@
         <foreach collection="memberTels" item="tel" separator="||'-'||">
             #{tel}
         </foreach>
-        ,
-        <foreach collection="memberEmails" item="email" separator="||">
-            #{email}
-        </foreach>
         , #{gender}
         , #{birthDate}
+        , #{member_mail}
         )
     </insert>
 
@@ -48,10 +46,10 @@
         AND MEMBER_PW = #{memberPw}
     </select>
 
-    <!--    아이디 중복 확인
-    <select id="checkId" resultMap="String">
+    <select id="checkId" resultType="String">
         SELECT MEMBER_ID
         FROM JEJU_MEMBER
         WHERE MEMBER_ID = #{memberId}
-    </select>   -->
+    </select>
+
 </mapper>

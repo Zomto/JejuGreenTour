@@ -82,7 +82,7 @@ function checkId(){
     .then((data) => {//data -> controller에서 리턴되는 데이터!
         if(data){
             alert('사용가능한 ID입니다.');
-            document.querySelector('#join-btn').disabled = false;
+            document.querySelector('.join_btn').disabled = false;
         } else{
             alert('사용 불가능한 ID입니다.');
         }
@@ -97,18 +97,95 @@ function checkId(){
 
 // 회원가입 버튼 비활성화 함수
 function setDisabled(){
-    document.querySelector('#join-btn').disabled = true;
+    document.querySelector('.join_btn').disabled = true;
 }
 
+//이메일 인증창 생성
+document.getElementById("verifyButton").addEventListener("click", function () {
+    // 추가 입력 필드를 부드럽게 표시
+    const additionalInputDiv = document.getElementById("additionalInput");
+    additionalInputDiv.style.display = "block";
+    verifyCode();
+    
+    // 5분(300000 밀리초) 타이머 시작
+    startTimer(300000); // 5분 = 300,000 밀리초
+});
 
+function startTimer(duration) {
+    const timerElement = document.getElementById("timer");
+    let timer = duration;
+    let minutes, seconds;
 
-// 가입 모달창이 닫힐 때 마다 실행되는 이벤트
-const joinModal = document.querySelector('#join-modal')
-joinModal.addEventListener('hidden.bs.modal', event => {
-    document.querySelector('#joinForm').reset();
-    document.querySelector('#join-btn').disabled = true;
-})
+    const updateTimer = () => {
+        minutes = Math.floor((timer % (1000 * 60 * 60)) / (1000 * 60));
+        seconds = Math.floor((timer % (1000 * 60)) / 1000);
 
+        timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        timer -= 1000;
 
-// 재고관리 수정버튼
+        if (timer <= 0) {
+            // 타이머가 종료되면 처리할 작업 추가
+            timerElement.textContent = "00:00"; // 타이머가 0:00으로 표시
+            // 여기에 추가 작업을 추가하실 수 있습니다.
+        }
+    };
 
+    updateTimer(); // 초기값 설정
+
+    // 1초마다 타이머 업데이트
+    const timerInterval = setInterval(updateTimer, 1000);
+
+    // 타이머가 종료되면 interval 정지
+    setTimeout(() => {
+        clearInterval(timerInterval);
+    }, duration);
+
+}
+// 화원가입 시 아이디 중복 체크
+
+function verifyCode(){
+    fetch('/member/verifyCode', { //요청경로
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        //컨트롤러로 전달할 데이터
+        body: new URLSearchParams({
+            email : document.querySelector('#email').value
+        })
+    })
+    .then((response) => {
+        if(!response.ok){
+            alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+            return ;
+        }
+    
+        return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
+        // return response.json(); //나머지 경우에 사용
+    })
+    //fetch 통신 후 실행 영역
+    .then((data) => {//data -> controller에서 리턴되는 데이터!
+        alert("인증메일이 발송 되었습니다! 메일함을 확인해주세요!")
+        confirmCode = data;
+        setTimeout(()=>{confirmCode=null
+        },300000)
+    })
+
+}
+
+function checkCode(){
+    if(confirmCode == null ){
+        alert("유효하지 않은 코드 입니다.")
+    }else{
+     let inputCode = document.querySelector('#verify_code').value
+        if(inputCode == confirmCode){
+            alert("인증되었습니다! 가입절차를 진행해주세요!")
+            document.querySelector('.join_btn').disabled = false
+        }else{
+            alert("인증번호를 정확하게 입력해주세요")
+        }
+    }
+
+}       
+let confirmCode = null

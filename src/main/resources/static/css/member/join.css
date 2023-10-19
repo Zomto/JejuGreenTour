@@ -1,5 +1,6 @@
 @charset "utf-8";
 /* 기본셋팅, 공통값 */
+
 body, input{
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
@@ -173,4 +174,34 @@ a{
 .join_btn{
     width: 80px;
     height: 30px;
+}
+.email_verify{
+    border: 1px solid #999;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    padding: 5px 20px 0 20px;
+}
+.email_verify >.mb-3,
+.email_verify >.verify_box{
+    display: flex;
+    justify-content: space-between;
+}
+.email_verify >.mb-3 > .verify,
+.email_verify >.verify_box > .verify{
+    margin-top: 11px;
+    margin-bottom: 18px;
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+    max-height: 0;
+    transition: all 0.3s ease;
+}
+  
+.visible {
+    display: block;
+    opacity: 1;
+    max-height: 100px; /* 원하는 높이로 조정 */
+    transition: all 0.3s ease;
 }

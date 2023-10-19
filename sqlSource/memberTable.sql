@@ -5,15 +5,11 @@ CREATE TABLE JEJU_MEMBER(
     , MEMBER_PW VARCHAR2(50) NOT NULL
     , MEMBER_NAME VARCHAR2(50) NOT NULL
     , MEMBER_TEL VARCHAR2(30) UNIQUE -- 010-1111-2222
-    , MEMBER_EMAIL VARCHAR2(100)
     , GENDER VARCHAR2(5) ---- '남','여'
-<<<<<<< HEAD
-    , MEMBER_ROLL VARCHAR2(5) DEFAULT 'USER' -- 'USER'(일반회원), 'ADMIN'(페이지 관리자) , '???'(업소등록 회원)
+    , BIRTH_DATE VARCHAR2(20)
+    , MEMBER_MAIL VARCHAR(30) NOT NULL
+    , MEMBER_ROLL VARCHAR2(7) DEFAULT 'USER' -- USER, ADMIN, MANAGER
 
-=======
-    , BIRTH_DATE VARCHAR2(10) -- yyyy-mm-dd
-    , MEMBER_ROLL VARCHAR2(10) DEFAULT 'USER' -- 'USER', 'ADMIN', 'MANAGER'
->>>>>>> 7f603912562e680b3f6150677d36ef8f41e7d491
 );
 
 --어드민 등록
@@ -22,17 +18,17 @@ INSERT INTO JEJU_MEMBER(
     , MEMBER_PW
     , MEMBER_NAME
     , MEMBER_TEL
-    , MEMBER_EMAIL
     , GENDER
     , BIRTH_DATE
+    , MEMBER_MAIL
 )VALUES(
     'admin'
     , '1q2w3e4r'
     , '관리자'
     , '010-1111-1111'
-    , 'admin@jejugreen.com'
     , '남'
     , '1996-01-01'
+    , 'admin@jejutour.com'
 );
 
 --테스터 회원 등록
@@ -41,17 +37,17 @@ INSERT INTO JEJU_MEMBER(
     , MEMBER_PW
     , MEMBER_NAME
     , MEMBER_TEL
-    , MEMBER_EMAIL
     , GENDER
     , BIRTH_DATE
+    , MEMBER_MAIL
 )VALUES(
     'guest'
     , '1q2w3e4r'
     , '엄준식'
     , '010-1111-1112'
-    , 'HowNameIsEom@jejugreen.com'
     , '남'
     , '2000-01-01'
+    , 'hownameiseom@jejutour.com'
 );
 
 SELECT * FROM JEJU_MEMBER;
