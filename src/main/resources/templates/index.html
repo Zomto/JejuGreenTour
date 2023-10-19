@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+    layout:decorate="~{fragment/main_layout}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -10,6 +11,7 @@
 </head>
 
 <body>
+<th:block layout:fragment="content">
 <h2>제주그린투어 index</h2>
 <a href="/member/loginForm">로그인</a>
 <a href="/member/joinForm">회원가입</a>
@@ -43,7 +45,7 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	1faecd944d1bb1ff9e6939d4b20a8146&libraries=services"></script>
 <script src="/js/kakaomap.js"></script>
 
-
+</th:block>
 </body>
 
 </html>

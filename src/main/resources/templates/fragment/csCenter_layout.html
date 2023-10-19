@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+<meta charset="UTF-8">
+<title></title>
 
 
     <!-- 스타일 -->
@@ -13,14 +13,13 @@
     <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/slick.css">
     <link rel="stylesheet" href="/css/style.css">    
+    <link rel="stylesheet" href="/css/csCenter/csCenter.css">    
 
     <!-- common.css 프로젝트 공통 css -->
     <link rel="stylesheet" href="/css/common.css">
 
 
-
 </head>
-
 <body>
     <div class="container">
         <div class="row mb-3">
@@ -29,21 +28,22 @@
                 <th:block th:replace="~{fragment/main_header :: mainHeaderFragment}"></th:block>
             </div>
         </div>
-        <div class="row">
-
-
+        <div class="row cs_inner">
+            <!-- 사이드 메뉴 영역 -->
+            <div class="col-2 cs_side">
+                <th:block th:replace="~{fragment/csCenter_side :: csCenterSideFragment}"></th:block>
+            </div>
             <!-- 컨텐츠 영역 -->
-            <div class="col">
-                <th:block layout:fragment="content"></th:block>
+            <div class="col-10 cs_content">
+                <th:block layout:fragment="content"></th:block>    
             </div>
         </div>
     </div>
-
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="/js/slick.min.js"></script>
-        <script src="/js/commen.js"></script>
-        <script src="/js/main.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/js/slick.min.js"></script>
+    <script src="/js/commen.js"></script>
+    <script src="/js/main.js"></script>
+    
 </body>
-
 </html>
