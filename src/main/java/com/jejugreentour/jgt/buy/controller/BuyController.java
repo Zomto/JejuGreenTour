@@ -34,4 +34,17 @@ public class BuyController {
 
         return"/buy/admin_calendar";
     }
+
+    @GetMapping("review")
+    public  String reviewWrite(ReservationVO reservationVO){
+
+        return"/buy/review";
+    }
+
+    @GetMapping("reviewList")
+    public  String reviewList(ReservationVO reservationVO){
+
+        return"/buy/review_list";
+    }
+
 }

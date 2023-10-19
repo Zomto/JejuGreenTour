@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/main_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            body {
+                padding: 50px;
+                font-family: Arial, sans-serif;
+            }
+
+            .card {
+                max-width: 300px;
+                margin: 20px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .card-img-top {
+                object-fit: cover;
+                max-height: 200px;
+                transition: transform 0.5s;
+            }
+
+            .card-img-top:hover {
+                transform: scale(1.2);
+            }
+
+            .card-body {
+                padding: 20px;
+            }
+
+            .card-title {
+                font-size: 1.25rem;
+                margin-bottom: 10px;
+            }
+
+            .card-subtitle {
+                color: #6c757d;
+                margin-bottom: 10px;
+            }
+
+            .card-text {
+                margin-bottom: 20px;
+            }
+        </style>
+
+        <div class="container">
+            <h2 class="mb-4">리뷰 게시판</h2>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <img class="card-img-top" src="https://via.placeholder.com/400x200" alt="제품 사진">
+                        <div class="card-body">
+                            <h5 class="card-title">작성자: John Doe</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">업소 이름: ABC Company</h6>
+                            <p class="card-text">평가 점수: ★★★★☆</p>
+                            <p class="card-text">내용: 이 제품은 가격 대비 성능이 우수합니다. 다만 디자인이 조금 아쉽네요.</p>
+                            <p class="card-text">등록 날짜: 2023년 10월 19일</p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyModal">
+                                리뷰에 답변 작성
+                            </button>
+                            <ul class="list-group mt-3" id="replyList">
+                                <!-- 답변 리스트가 여기에 추가됩니다 -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <img class="card-img-top" src="https://via.placeholder.com/400x200" alt="제품 사진">
+                        <div class="card-body">
+                            <h5 class="card-title">작성자: John Doe</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">업소 이름: ABC Company</h6>
+                            <p class="card-text">평가 점수: ★★★★☆</p>
+                            <p class="card-text">내용: 이 제품은 가격 대비 성능이 우수합니다. 다만 디자인이 조금 아쉽네요.</p>
+                            <p class="card-text">등록 날짜: 2023년 10월 19일</p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyModal">
+                                리뷰에 답변 작성
+                            </button>
+                            <ul class="list-group mt-3" id="replyList">
+                                <!-- 답변 리스트가 여기에 추가됩니다 -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <img class="card-img-top" src="https://via.placeholder.com/400x200" alt="제품 사진">
+                        <div class="card-body">
+                            <h5 class="card-title">작성자: John Doe</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">업소 이름: ABC Company</h6>
+                            <p class="card-text">평가 점수: ★★★★☆</p>
+                            <p class="card-text">내용: 이 제품은 가격 대비 성능이 우수합니다. 다만 디자인이 조금 아쉽네요.</p>
+                            <p class="card-text">등록 날짜: 2023년 10월 19일</p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyModal">
+                                리뷰에 답변 작성
+                            </button>
+                            <ul class="list-group mt-3" id="replyList">
+                                <!-- 답변 리스트가 여기에 추가됩니다 -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- 모달 -->
+        <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="replyModalLabel">리뷰에 답변 작성</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- 리뷰 답변 작성 폼 -->
+                        <form id="replyForm">
+                            <div class="form-group">
+                                <label for="replyContent">답변 내용</label>
+                                <textarea class="form-control" id="replyContent" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">답변 작성</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            document.getElementById('replyForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                var replyContent = document.getElementById('replyContent').value;
+                document.getElementById('replyContent').value = '';
+                var listGroup = document.getElementById('replyList');
+                var listItem = document.createElement('li');
+                listItem.classList.add('list-group-item');
+                listItem.textContent = replyContent;
+                listGroup.appendChild(listItem);
+                $('#replyModal').modal('hide');
+            });
+        </script>
+        <!-- 부트스트랩 스크립트 링크 추가 -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </th:block>
+</body>
+
+</html>

@@ -22,23 +22,6 @@
             color: blue;
         }
 
-        .starbox {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            background-image: url(/img/emptystar.png);
-            background-size: cover;
-            /* background-image: linear-gradient(to right, red 50%, blue 50%); */
-        }
-        .starbox.on{
-            background-image: url(/img/star.png);
-        }
-
-        .starbox:hover {
-            background-image: url(/img/star.png);
-            cursor: pointer;
-        }
-        
         .starbo2{
             display:  inline-block;
             background-image: url(/img/emptystarwhite.png);
@@ -46,19 +29,7 @@
             width: 100%; height:100%;
         }
     </style>
-    <div style="width: 100px; height: 20px;">
-        <span class="starbox" onmouseup="resetStar()" onclick="setStar()">
-            <span class="starbox" style="margin-left: 20px;" onclick="setStar()">
-                <span class="starbox" style="margin-left: 20px;" onclick="setStar()">
-                    <span class="starbox" style="margin-left: 20px;" onclick="setStar()">
-                        <span class="starbox" style="margin-left: 20px;" onclick="setStar()">
-                        </span>
-                    </span>
-                </span>
-            </span>
-        </span>
-    </div>
-    <div style="width: 100px; height: 20px; background-image: linear-gradient(to right, yellow 50%, transparent 50%)">
+    <div style="width: 100px; height: 20px; background-image: linear-gradient(to right, yellow 70%, transparent 30%)">
         <div class="starbo2">
             
         </div>
