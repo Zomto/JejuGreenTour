@@ -15,6 +15,11 @@ input, button{
 a{
     text-decoration: none;
 }
+
+textarea{
+    resize: none;
+}
+
 .hide{
     position: fixed;
     top: -99999px;
