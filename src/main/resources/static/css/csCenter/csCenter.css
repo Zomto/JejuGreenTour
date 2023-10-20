@@ -49,12 +49,13 @@ a{
 
 .cs_content{
     float: right;
-    width: 85%;
+    width: 83%;
 }
 
 
 .side_inner h3{
     font-size: 25px;
+    font-weight: 700;
     padding-bottom: 20px;
     border-bottom: 2px solid #222;
 }

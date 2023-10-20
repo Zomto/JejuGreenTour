@@ -95,18 +95,26 @@ a{
     margin-bottom: 30px;
     padding: 5px 20px 0 20px;
 }
+.join_input_2 > .pw_display a{
+    display: block;
+    width: 24px;
+    height: 24px;
+    text-indent: -99999px;
+    top: 45%;
+    right : 5%;
+}
 
-.pw_display button{
-    width: 25px;
-    height: 25px;
-    background-image: url(/img/pw_on.png);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    text-indent: -99999%;
-    cursor: pointer;
-    border: 0;
-
+.pw_display > a#pw_on{
+    width: 24px;
+    height: 24px;
+    background: url(/img/pw_on.png) no-repeat center;
+    background-size: 100%;
+}
+.pw_display > a#pw_off{
+    width: 24px;
+    height: 24px;
+    background: url(/img/pw_hidden.png) no-repeat center;
+    background-size: 100%;
 }
 
 .join_input_3{

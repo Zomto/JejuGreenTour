@@ -1,11 +1,7 @@
-// 회원가입에서 주소검색 버튼 클릭 시 실행
-function openPost() {
-    new daum.Postcode({
-        oncomplete: function (data) {
-            document.querySelector('#memberAddr').value = data.roadAddress;
-        }
-    }).open();
-}
+//전역변수
+let timerstop = null
+let settimerstop = null
+let reatimerstop = null
 
 // 회원가입 시 데이터 유효성 검사
 function joinValidate() {
@@ -17,18 +13,15 @@ function joinValidate() {
     // form 태그 안의 요소는 name 속성으로 접근 가능
     const joinForm = document.querySelector('#joinForm');
 
-
-
-    // form 태그 안의 name 속성이 memberId인 태그의 value
     if (joinForm.memberId.value == '') {
         inputInvalidate('#id-error-div', 'ID는 필수입력!');
         return;
-    }
-    else if (joinForm.memberId.value.length < 4) {
+    } else if (joinForm.memberId.value.length < 4) {
         inputInvalidate('#id-error-div', 'ID는 4글자 이상!');
         return;
     }
 
+  
 
     //휴대폰 정규식표현식
     var telRegex = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
@@ -37,11 +30,6 @@ function joinValidate() {
     if (!telRegex.test(tel)) {
         inputInvalidate('#tel-error-div', '연락처 이상!');
     }
-    //이메일 정규식표현식
-    var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-
-
-
 
     // 2. submit 실행
     // form 태그 선택 --> submit() 함수 실행
@@ -58,13 +46,12 @@ function inputInvalidate(tagId, message) {
 
 // 화원가입 시 아이디 중복 체크
 function checkId() {
-    fetch('/member/checkId', { //요청경로
+    fetch('/member/checkId', {
         method: 'POST',
         cache: 'no-cache',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         },
-        //컨트롤러로 전달할 데이터
         body: new URLSearchParams({
             memberId: document.querySelector('#memberId').value
         })
@@ -74,32 +61,52 @@ function checkId() {
                 alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
                 return;
             }
-
-            //return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
-            return response.json(); //나머지 경우에 사용
+            return response.json();
         })
-        //fetch 통신 후 실행 영역
-        .then((data) => {//data -> controller에서 리턴되는 데이터!
+        .then((data) => {
             if (data) {
                 alert('사용가능한 ID입니다.');
                 document.querySelector('.join_btn').disabled = false;
             } else {
                 alert('사용 불가능한 ID입니다.');
             }
-
         })
-        //fetch 통신 실패 시 실행 영역
-        .catch(err => {
+        .catch((err) => {
             alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
             console.log(err);
         });
 }
+//비밀번호 가리기, 보이기
+$(document).ready(function() {
+    // '비밀번호 보이기' 버튼 클릭 시 동작
+    $('#pw_off').click(function(e) {
+        e.preventDefault(); // 링크 클릭 시 기본 동작 방지
+        // 비밀번호 입력 필드의 type 속성을 'text'로 변경하여 비밀번호를 보여줌
+        $('#password-input').attr('type', 'text');
+        // '비밀번호 보이기' 버튼을 숨김
+        $(this).addClass('hide');
+        // '비밀번호 가리기' 버튼을 표시
+        $('#pw_on').removeClass('hide');
+    });
 
-// 회원가입 버튼 비활성화 함수
+    // '비밀번호 가리기' 버튼 클릭 시 동작
+    $('#pw_on').click(function(e) {
+        e.preventDefault(); // 링크 클릭 시 기본 동작 방지
+        // 비밀번호 입력 필드의 type 속성을 'password'로 변경하여 비밀번호를 가림
+        $('#password-input').attr('type', 'password');
+        // '비밀번호 가리기' 버튼을 숨김
+        $(this).addClass('hide');
+        // '비밀번호 보이기' 버튼을 표시
+        $('#pw_off').removeClass('hide');
+    });
+});
+
+
+// 이메일인증전 회원가입 버튼 비활성화 함수
 function setDisabled() {
     document.querySelector('.join_btn').disabled = true;
 }
-let timerstop = null
+
 
 function startTimer(duration) {
     const timerElement = document.getElementById("timer");
@@ -126,7 +133,7 @@ function startTimer(duration) {
     const timerInterval = setInterval(updateTimer, 1000);
     timerstop = timerInterval;
     // 타이머가 종료되면 interval 정지
-    setTimeout(() => {
+    settimerstop= setTimeout(() => {
         clearInterval(timerInterval);
     }, duration);
 
@@ -136,11 +143,18 @@ function verifyCode() {
     var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 
     if (emailRegex.test(document.querySelector('#email').value + document.querySelector('#email_host').value)) {
+        if(timerstop != null){
+            console.log('이전 타이머 있음');
+            clearTimeout(timerstop);
+            console.log(timerstop);
+        }
+        clearTimeout(settimerstop);
+        clearTimeout(reatimerstop);
         clearInterval(timerstop);
-        document.getElementById("timer").textContent = "05:00";
+        document.getElementById("timer").textContent = "03:00";
         const additionalInputDiv = document.getElementById("additionalInput");
         additionalInputDiv.style.display = "block";
-        startTimer(300000);
+        startTimer(180000);
         document.querySelector('#verify_code').value = null;
         fetch('/member/verifyCode', { //요청경로
             method: 'POST',
@@ -164,21 +178,26 @@ function verifyCode() {
             })
             //fetch 통신 후 실행 영역
             .then((data) => {//data -> controller에서 리턴되는 데이터!
-                alert("인증메일이 발송 되었습니다! 메일함을 확인해주세요!")
+                document.querySelector('.alertbox').innerHTML="인증메일이 발송 되었습니다! 메일함을 확인해주세요!"
+                document.querySelector('.alertbox').style.color='black';
+        
                 confirmCode = data;
-                setTimeout(() => {
+                reatimerstop= setTimeout(() => {
                     confirmCode = null
-                }, 300000)
+                }, 180000)
 
             })
     } else {
-        alert("이메일 형식이 올바르지 않습니다. 다시 입력 해주세요.")
+        alert("이메일을 다시 확인 해주세요!")
+        const additionalInputDiv = document.getElementById("additionalInput");
+            additionalInputDiv.style.display = "none";
     }
 }
 
 function checkCode() {
     if (confirmCode == null) {
-        alert("유효하지 않은 코드 입니다.")
+        document.querySelector('.alertbox').innerHTML="유효하지 않은 코드 입니다."
+        document.querySelector('.alertbox').style.color='red';
     } else {
         let inputCode = document.querySelector('#verify_code').value
         if (inputCode == confirmCode) {
@@ -187,7 +206,8 @@ function checkCode() {
             const additionalInputDiv = document.getElementById("additionalInput");
             additionalInputDiv.style.display = "none";
         } else {
-            alert("인증번호를 정확하게 입력해주세요")
+            document.querySelector('.alertbox').innerHTML="인증번호를 정확하게 입력해주세요"
+            document.querySelector('.alertbox').style.color='red';
         }
     }
 

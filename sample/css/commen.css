@@ -1,0 +1,990 @@
+@charset "utf-8";
+/* commen.css */
+/* 기본셋팅, 공통값 */
+body, input{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+img, input, button{
+    vertical-align: top;
+}
+input, button{
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+.hide{
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+#wrap{
+    position: relative;
+    width: 100%;
+}
+
+/* 기본화면 - 상단배너 */
+#topBn{
+    background-color: #67625e;
+}
+#topBn_in{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    background-color: #121212;
+}
+.topBn_content{
+    margin-left: 20px;
+}
+.topBn_content a{
+    color: #fff;
+}
+.topBn_close{
+    width: 28px;
+    height: 28px;
+    background-image: url(../img/btn_close_banner.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px auto;
+    text-indent: -99999px;
+    margin-right: 6px;
+    cursor: pointer;
+}
+/* 모바일 - 헤더 */
+#header{
+    position: relative;
+    z-index: 500;
+}
+#h_in{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 47px;
+    background-color: #121212;
+}
+.h_logo a{
+    display: block;
+    width: 100px;
+    height: 36px;
+    background-image: url(../img/Spotify_Logo_CMYK_Green.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    text-indent: -99999px;
+    margin-left: 20px;
+}
+.pc_gnb, .pc_utill, .h_more{
+    display: none;
+}
+.h_icon{
+    display: flex;
+    margin-right: 14px;
+}
+.h_icon > div{
+    margin-left: 8px;
+}
+.h_search .open{
+    display: block;
+    width: 28px;
+    height: 28px;
+    text-indent: -99999px;
+    background-size: 20px auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.h_search .open{
+    background-image: url(../img/ico_search.png);
+}
+.h_menu .open{
+    display: block;
+    box-sizing: border-box;
+    width: 28px;
+    height: 28px;
+    padding: 10px 0 0 6px;
+    text-indent: -99999px;
+}
+.h_menu .open span{
+    display: block;
+    width: 16px;
+    height: 1px;
+    background-color: #ffffff;
+    margin-bottom: 6px;
+}
+.h_menu .open span:first-child{
+    margin-top: -4px;
+}
+#header.fixed{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+}
+/* 모바일 - 헤더 검색창 */
+.h_search_wrap{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000000;
+    z-index: 700;
+    overflow-y: scroll;
+}
+#h_search_form{
+    position: relative;
+    padding: 20px 60px 20px 20px;
+}
+#h_search_keyword{
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    border: 0;
+    border-radius: 40px;
+    padding: 0 60px 0 20px;
+    background-color: #3b3a3a;
+    color: rgb(233, 233, 233);
+}
+#h_search_keyword::placeholder{
+    color: rgb(253, 253, 255);
+}
+#h_search_submit{
+    position: absolute;
+    top: 30px;
+    right: 80px;
+    width: 20px;
+    height: 20px;
+    border: 0;
+    background-color: transparent;
+    text-indent: -99999px;
+    background-image: url(../img/ico_search.png);
+    background-size: 100% auto;
+}
+.h_search .lanking{
+    padding: 20px;
+    background-color: #121212;
+}
+.h_search .lank_in{
+    border-radius: 8px;
+    background-color: #131313;
+    position: relative;
+}
+.h_search .lank_btn{
+    padding: 0 20px;
+}
+.h_search .lank_btn::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.h_search .lank_btn p{
+    float: left;
+    width: 50%;
+    border-bottom: 2px solid #000000;
+    line-height: 48px;
+    text-align: center;
+    color: #fffcfc;
+}
+.h_search .lank_btn .active{
+    border-color: #ffffff;
+    color: #ffffff;
+}
+.h_search .lank_box{
+    display: none;
+}
+.h_search .lank_box.active{
+    display: block;
+}
+.h_search .lanking_list{
+    padding: 10px 20px;
+}
+.h_search .lanking_list li{
+    line-height: 40px;
+}
+.h_search .lanking_list li::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.h_search .lank_number{
+    float: left;
+    width: 34px;
+    padding-left: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #f6f6f6;
+}
+.h_search .lank_name{
+    float: left;
+}
+.h_search .lank_name a{
+    font-size: 16px;
+    color: #666;
+}
+.h_search .lank_state{
+    float: right;
+    width: 30px;
+    text-align: center;
+}
+.h_search .lank_state.new{
+    font-size: 13px;
+    font-weight: 700;
+    color: #0adb03;
+}
+.h_search .lank_state.up span, .h_search .lank_state.down span{
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    text-indent: -99999px;
+    margin-top: 17px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.h_search .lank_state.up span{
+    border-bottom: 8px solid hsl(0, 100%, 50%);
+}
+.h_search .lank_state.down span{
+    border-top: 8px solid #001aff;
+}
+.h_search .lank_state.same span{
+    display: block;
+    width: 14px;
+    height: 2px;
+    background-color: #ddd;
+    text-indent: -99999px;
+    margin: 19px auto 0 auto;
+}
+.h_search .lanking_date{
+    border-top: 1px solid #ccc;
+    padding: 0 20px;
+    line-height: 44px;
+    text-align: right;
+    color: #777;
+}
+.h_search .new_list{
+    padding: 10px 20px;
+}
+.h_search .new_list li{
+    position: relative;
+    line-height: 40px;
+}
+.h_search .new_list li::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.h_search .new_list .no_data{
+    font-size: 15px;
+    color: #666;
+}
+.h_search .new_name{
+    float: left;
+}
+.h_search .new_name a{
+    font-size: 15px;
+    color: #666;
+}
+.h_search .new_date{
+    float: right;
+    margin-right: 25px;
+    font-size: 15px;
+    color: #888;
+}
+.h_search .new_x{
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+.h_search .new_x span{
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    text-indent: -99999px;
+    background-image: url(../img/icon_rankDel.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0.5s;
+}
+.h_search .new_x:hover span{
+    background-color: #555;
+}
+.h_search .new_log_del{
+    border-top: 1px solid #ccc;
+    padding: 0 20px;
+    line-height: 44px;
+    text-align: right;
+}
+.h_search .new_log_del a{
+    border-bottom: 2px solid #555;
+    padding-bottom: 2px;
+    padding-left: 18px;
+    font-size: 15px;
+    color: #333;
+    font-weight: 500;
+    background-image: url(../img/Icon_trash.svg);
+    background-repeat: no-repeat;
+    background-position: left 0 center;
+}
+.h_search .close{
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    text-indent: -99999px;
+    background-image: url(../img/btn_close_banner.png);
+    background-size: 100% auto;
+    cursor: pointer;
+}
+/* 모바일 - 사이드영역 */
+#side{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    background-color: #fff;
+    z-index: 800;
+    overflow-y: scroll;
+    background-color:#000 ;
+}
+.side_top{
+    padding: 0 20px;
+    line-height: 58px;
+    margin-bottom: 10px;
+    background-color: #000;
+}
+.side_top a{
+    display: block;
+    width: 78px;
+    height: 60px;
+    padding-right: 20px;
+    font-size: 19px;
+    font-weight: 500;
+    color: #333;
+    background-image: url(../img/Spotify_Logo_CMYK_White.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: right 0 top 12px;
+}
+.side_utill{
+    margin: 0 20px 15px 20px;
+}
+.side_utill .logout{
+    padding: 25px 20px;
+    border-radius: 8px;
+    background-color: #121212;
+    text-align: center;
+}
+.side_utill .logout p{
+    margin-bottom: 15px;
+    color: #777;
+}
+.side_utill .logout p strong{
+    color: hsl(141, 83%, 51%);
+    font-weight: 700;
+}
+.side_utill .logout a{
+    display: inline-block;
+    padding: 5px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    color: #777;
+}
+.side_gnb{
+    margin: 20px;
+    margin-top: 0;
+}
+.side_gnb > ul > li{
+    width: 260px;
+    height: 58px;
+    border: 1px solid #ddd;
+    border-radius: 35px;
+    margin-bottom: 10px;
+    text-align: center;
+    inline-size: 100%;
+}
+.side_gnb > ul > li > a{
+    position: relative;
+    display: block;
+    line-height: 58px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #222;
+    color: #f8f8f8;
+}
+.side_gnb > ul > li > .m1{
+    display: block;
+    width: 260px;
+    height: 58px;
+    background-image: url(../img/google_logo.svg);
+    background-repeat: no-repeat;
+    background-position: top 17px left 25px;
+    text-align: center;
+}
+.side_gnb > ul > li > .m2{
+    display: block;
+    width: 260px;
+    height: 58px;
+    background-image: url(../img/facebook_logo.svg);
+    background-repeat: no-repeat;
+    background-position: top 17px left 20px;
+    text-align: center;
+}
+.side_gnb > ul > li > .m3{
+    display: block;
+    width: 260px;
+    height: 58px;
+    background-image: url(../img/apple_logo.svg);
+    background-repeat: no-repeat;
+    background-position: top 17px left 25px;
+    text-align: center;
+}
+.side_gnb > ul > li > .m4{
+    display: block;
+    width: 260px;
+    height: 58px;
+    background-image: url(../img/naver_logo.png);
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position: top 17px left 25px;
+    text-align: center;
+}
+.login_line{
+    display: table;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 2px;
+    margin: 0px auto 1em;
+    color: rgb(127, 127, 127);
+    position: relative;
+    text-align: center;
+    width: 85%;
+}
+.login_line::before,
+.login_line::after{
+    content: "";
+    display: table-cell;
+    border-top: 1px solid #ddd;
+    width: 46%;
+    position: relative;
+    top: 13px;
+    box-sizing: border-box;
+    
+}
+.side_bn{
+    margin: 20px;
+    margin-top: 0;
+}
+.side_bn img{
+    width: 100%;
+    height: auto;
+}
+.side_bottom{
+    padding: 0 15px 40px 15px;
+}
+.side_bottom .cartegory{
+    padding-top: 16px;
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(2, minmax(0px, 1fr));
+    gap: 16px;
+    justify-items: stretch;
+    margin-bottom: 56px;
+}
+.cartegory a{
+    text-decoration: none;
+    color: #f8f8f8;
+    font-size: 15px;
+    font-weight: 700;
+}
+.cartegory span{
+    display: block;
+    padding: 12px;
+    position: relative;
+    padding-inline-end: 56px;
+}
+.credit_info {
+    height: 92px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    background-color: rgb(175, 40, 150);
+}
+.cartegory img{
+    height: 64px;
+    position: absolute;
+    top: 25px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px;
+    right: calc(100% - 64px + 19px);
+    left: calc(100% - 64px + 19px);
+    transform: rotate(25deg);
+}
+.price_info {
+    height: 92px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    background-color: rgb(140, 25, 50);
+}
+.app_info {
+    height: 92px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    background-color: rgb(176, 98, 57);
+}
+.device_info {
+    height: 92px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    background-color: rgb(0, 100, 80);
+}
+.privacy {
+    height: 92px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    background-color: rgb(117, 117, 117);
+}
+.id_info {
+    height: 92px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    background-color: rgb(83, 122, 161);
+}
+#side .side_top{
+    display: flex;
+    justify-content: space-between;
+}
+.side_top .close{
+    margin-top: 20px;
+    margin-right: 20px;
+}
+#side .close span{
+    display: block;
+    width: 18px;
+    height: 18px;
+    text-indent: -99999px;
+    background-image: url(../img/btn_close_banner.png);
+    background-size: 100% auto;
+    cursor: pointer;
+}
+.login_form{
+    --parents-essential-base: #ffffff; /** << var root */
+}
+.login_form > div >  .idpw{
+    width: 256px;
+    height: 48px;
+    border-radius: 4px;
+    border: 0px;
+    display: block;
+    font-weight: 400;
+    inline-size: 100%;
+    box-sizing: border-box;
+    padding-inline: 14px;
+    background-color: hsl(0, 0%, 0%);
+    box-shadow: #878787;
+    color:#ffffff;
+    font-size: 16px;
+    border: 1px solid gray;
+}
+.pw_section{
+    position: relative;
+}
+.login_form > .pw_section a{
+    position: absolute;
+    display: block;
+    width: 24px;
+    height: 24px;
+    text-indent: -99999px;
+    top: 45%;
+    right : 5%;
+}
+.pw_section a#pw_on{
+    width: 24px;
+    height: 24px;
+    background: url(../img/pw_on.png) no-repeat center;
+    background-size: 100%;
+}
+.pw_section a#pw_off{
+    width: 24px;
+    height: 24px;
+    background: url(../img/pw_hidden.png) no-repeat center;
+    background-size: 100%;
+}
+input:focus {
+    border: 2px solid #fff; /* 클릭 시 보더 스타일 변경 */
+    background-color: none; /* 클릭 시 배경색 변경 */
+}
+  
+.id_section{
+    padding-bottom: 16px;
+    color: #f6f6f6;
+}
+.id_section p{
+    padding-bottom: 8px;
+}
+.pw_section{
+    padding-bottom: 16px;
+    color: #f6f6f6;
+}
+.pw_section p{
+    padding-bottom: 8px;
+}
+.side_gnb .login_form{
+    padding: 15px;
+    margin-top: 0;
+}
+/* 로그인 체크박스 */
+.remember{
+    display: flex;
+}
+.remember p{
+    line-height: 15px;
+    padding-left: 12px;
+    padding-right: 24px;
+    color: #f6f6f6;
+    font-weight: 300;
+}
+.check {
+    position: relative;
+    display: inline-block;
+    border: 3px solid transparent; /* 스크립트 동작, 미동작시 3px 밀려나는만큼 3px 추가부여 로 보정*/
+
+}
+
+.check input {
+    display: none;
+}
+.check label {
+    display: block;
+    width: 30px;
+    height: 16px;
+    text-indent: -250%; /* 라벨 텍스트 왼쪽으로 이동*/
+    user-select: none; /* 라벨 텍스트 선택 차단 */
+}
+.check label::before,
+.check label::after {
+    content: "";
+    display: block;
+    position: absolute;
+    cursor: pointer;
+}
+.check label::before { 
+    /* 배경 */
+    width: 30px;
+    height: 15px;
+    background-color: rgb(134, 134, 134);
+    border-radius: 1em;
+    -webkit-transition: 0.25s ease;
+    transition: 0.25s ease;/* 배경색 애니메이션*/
+}
+.check label::after { /* 스위치 */
+    top: 0.5px;
+    left: 0;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: #000;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.45);
+    -webkit-transition: left 0.25s ease;
+    transition: left 0.25s ease; /* 스위치 이동 애니메이션 */
+}
+.check input:checked + label::before {
+    background-color: hsl(141, 83%, 51%);/* 켠 상태 배경색 */
+}
+.check input:checked + label::after { /* 켠 상태 스위치 위치 */
+    left: 15px;
+}
+/* 로그인 체크박스 끝 */
+.f_login{   
+text-align: center;
+width: 256px;
+height: 48px;
+line-height: 50px;
+border-radius: 25px;
+margin-top: 32px;
+background-color: hsl(141, 83%, 51%);
+inline-size: 100%;
+
+}
+.f_login a{
+    display: block;
+    color : #000;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+}
+.question{
+    margin-top: 32px;
+    color:#777;
+    font-size: 15px;
+    text-align: center;
+}
+.question a{
+    color: #f6f6f6;
+    text-decoration-line:underline;
+}
+.question .q1{
+    margin-bottom: 10px;
+}
+/* 태블릿 */
+@media screen and (min-width:628px){
+    /* side-login */
+    .login{
+        list-style: none;
+        margin: 0 auto;
+        width: 285px;    
+    }
+    .side_bottom .cartegory {
+        padding-top: 16px;
+        display: grid;
+        grid-auto-rows: 1fr;
+        grid-template-columns: repeat(3, minmax(0px, 1fr));
+        gap: 16px;
+        justify-items: stretch;
+        margin-bottom: 56px;
+    }
+    .side_top .close{
+        margin-top: 20px;
+        margin-right: 85px;
+    }
+    .login_form{
+        width: 324px;
+        margin: 0px auto;
+        padding-bottom: 0px;
+    }
+    #wrap .preview{
+        padding: 15px 40px;
+    }
+    #wrap .preview .button{
+        margin-top: none;
+    }
+}            
+/* PC 시작 */
+@media screen and (min-width:1280px){
+    /* pc - 탑배너 */
+    #topBn_in{
+        position: relative;
+        display: block;
+        margin: 0 auto;
+    }
+    .topBn_content{
+        margin-left: 0;
+        text-align: center;
+        line-height: 40px;
+    }
+    .topBn_close{
+        position: absolute;
+        right: 0;
+        top: 6px;
+    }
+    /* pc - 헤더 */
+    #h_in{
+        position: relative;
+        display: block;
+        height: 79px;
+        margin: 0 auto;
+    }
+    .h_logo{
+        margin-left: 0;
+        padding-top: 21px;
+    }
+    .h_logo a{
+        width: 109px;
+        height: 36px;
+    }
+    .pc_gnb{
+        display: block;
+        position: absolute;
+        left: 160px;
+        top: 25px;
+    }
+    .pc_gnb > ul{
+        display: flex;
+    }
+    .pc_gnb .d1{
+        padding: 0 50px;
+    }
+    .pc_gnb .d1 .m1{
+        font-size: 17px;
+        color: #67625e;
+        font-weight: 500;
+    }
+    .pc_gnb .d1:hover .m1{
+        color: #6C801A;
+    }
+    .h_icon{
+        position: absolute;
+        top: 25px;
+        right: 210px;
+    }
+    .h_icon > div{
+        margin-left: 15px;
+    }
+    .h_search .open{
+        background-image: url(../img/ico_search.png);
+    }
+    .h_search:hover .open{
+        background-image: url(../img/ico_search_on.png);
+    }
+    .h_menu{
+        display: none;
+    }
+    .h_more{
+        position: relative;
+        display: block;
+    }
+    .h_more .open{
+        display: block;
+        width: 28px;
+        height: 28px;
+        text-indent: -99999px;
+        background-image: url(../img/ico_gnbMore2_off.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .h_more:hover .open{
+        background-image: url(../img/ico_gnbMore2_on.png);
+    }
+    .h_list{
+        position: absolute;
+        top: 28px;
+        left: -68px;
+        width: 165px;
+        display: none;
+    }
+    .h_list_in{
+        padding-top: 20px;
+    }
+    .h_list_in ul{
+        padding: 10px 22px;
+        background-color: #f7f4ee;
+    }
+    .h_list_in li{
+        padding: 5px 0;
+        text-align: right;
+    }
+    .h_list_in li a{
+        color: #555;
+    }
+    .pc_utill{
+        display: flex;
+        position: absolute;
+        right: 0;
+        top: 10px;
+    }
+    .pc_utill > div{
+        position: relative;
+        margin-left: 25px;
+    }
+    .h_login_menu .open{
+        color: #000;
+        line-height: 25px;
+    }
+    .h_login_menu:hover .open{
+        color: #f8f8f8;
+    }
+    .h_login_menu{
+        width: 100px;
+        left : -85%
+    }
+    .h_login_menu button {
+        color: #000000;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 14px 24px;
+        border: 0px;
+        border-radius: 40px;
+        cursor: pointer;
+        background-color: #1ab752;
+        width: 190px;
+      }
+      .h_login_menu button a{
+        color: #000;
+        display: block;
+        width: 140px;
+    }
+    /* side-login */
+    .login{
+        list-style: none;
+        margin: 0 auto;
+        width: 485px;    
+    }
+    .side_gnb > ul > li{
+        width: 485px;
+    }
+    .side_gnb > ul > li .m1,
+    .side_gnb > ul > li .m2, 
+    .side_gnb > ul > li .m3, 
+    .side_gnb > ul > li .m4{
+        width: 455px;
+    }
+    .cartegory > div{
+        width: 335px;
+        height: 92px;
+        margin: 0 auto;
+    }
+    .cartegory > div span{
+        text-align: center;
+        margin-top: 22px;
+    }
+} /* PC 끝 */
+
+/* 푸터 하단 */
+.preview {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to right, #ae2896, #509bf5);
+    padding: 15px 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .preview h6 {
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 12px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .preview p {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .preview button {
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 14px 30px;
+    border: 0px;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
+.preview button a{
+    color: #000;
+    padding-top: 17px;
+    padding-bottom: 17px;
+}
+

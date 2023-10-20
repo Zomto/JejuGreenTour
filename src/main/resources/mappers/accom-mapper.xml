@@ -10,7 +10,7 @@
         <result column="ACCOM_CATE"    property="accomCate" />
         <result column="ACCOM_CEO"    property="accomCeo" />
         <result column="ADDR_DETAIL"    property="addrDetail" />
-        <result column="ACCOM_LOC"    property="accomCeo" />
+        <result column="ACCOM_LOC"    property="accomLoc" />
         <collection property="mainAccomImgList" resultMap="mainAccomImg" />
         <collection property="accomCategory" resultMap="accomCategory" />
     </resultMap>
@@ -95,6 +95,13 @@
         FROM MAIN_ACCOM
     </select>
 
+    <select id="selectSubImg" resultMap="mainAccomImg">
+        SELECT *
+        FROM MAIN_ACCOM_IMG
+        WHERE ACCOM_CODE = #{accomCode}
+
+    </select>
+
     <insert id="insertImgs">
         INSERT INTO MAIN_ACCOM_IMG (
         MAIN_IMG_CODE
@@ -115,19 +122,33 @@
     </insert>
 
     <!--  상품 상세 조회  -->
+<!--    <select id="selectMainAccomDetail" resultMap="mainAccom">-->
+<!--        SELECT MACCOM.ACCOM_CODE-->
+<!--        , MIMG.MAIN_IMG_CODE-->
+<!--        , ACCOM_NAME-->
+<!--        , ACCOM_ADDR-->
+<!--        , ACCOM_INTRO-->
+<!--        , CATE.CATE_NAME-->
+<!--        , ATTACHED_FILE_NAME-->
+<!--        , IS_MAIN-->
+<!--        , ACCOM_LOC-->
+<!--        , ADDR_DETAIL-->
+<!--        FROM MAIN_ACCOM MACCOM, MAIN_ACCOM_IMG MIMG, ACCOM_CATEGORY CATE-->
+<!--        WHERE MACCOM.ACCOM_CODE = MIMG.ACCOM_CODE-->
+<!--        AND MACCOM.ACCOM_CODE = #{accomCode}-->
+<!--        AND MACCOM.ACCOM_CATE = CATE.ACCOM_CATE-->
+<!--    </select>-->
+
     <select id="selectMainAccomDetail" resultMap="mainAccom">
         SELECT MACCOM.ACCOM_CODE
         , ACCOM_NAME
         , ACCOM_ADDR
         , ACCOM_INTRO
         , CATE.CATE_NAME
-        , ATTACHED_FILE_NAME
-        , IS_MAIN
         , ACCOM_LOC
         , ADDR_DETAIL
-        FROM MAIN_ACCOM MACCOM, MAIN_ACCOM_IMG MIMG, ACCOM_CATEGORY CATE
-        WHERE MACCOM.ACCOM_CODE = MIMG.ACCOM_CODE
-        AND MACCOM.ACCOM_CODE = #{accomCode}
+        FROM MAIN_ACCOM MACCOM, ACCOM_CATEGORY CATE
+        WHERE MACCOM.ACCOM_CODE = #{accomCode}
         AND MACCOM.ACCOM_CATE = CATE.ACCOM_CATE
     </select>
 
@@ -153,4 +174,9 @@
         ,   ADDR_DETAIL = #{inputAddrDetail}
         WHERE ACCOM_CODE = #{accomCode}
     </update>
+
+    <delete id="deleteSubImg">
+        DELETE FROM MAIN_ACCOM_IMG
+        WHERE MAIN_IMG_CODE = #{mainImgCode}
+    </delete>
 </mapper>

@@ -1,0 +1,202 @@
+@charset "utf-8";
+/* main.css */
+body, input{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+img, input, button{
+    vertical-align: top;
+}
+input, button{
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+.hide{
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+#container{
+    background-color: #121212;
+}
+.sidebar{
+    display: none;
+}
+.main-container {
+  margin-bottom: 89px;
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #121212;
+  padding: 14px 30px;
+}
+.top_menu{
+  display: flex;
+}
+.top_menu a{
+  color: #f8f8f8;
+}
+.top_menu > div{
+  width: 50px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: hsl(0, 0%, 57%);
+  text-align: center;
+  line-height: 26px;
+}
+.top_menu .r_t{
+  width: 140px;
+  height: 30px;
+  margin-left:15px;
+}
+.spotify-playlists h2{
+  color: #ffffff;
+  font-size: 22px;
+  margin-left: 15px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.spotify-playlists h4{
+  text-transform: uppercase;
+}
+.spotify-playlists .list .item {
+  min-width: 140px;
+  width: 160px;
+  padding: 15px;
+  background-color: #181818;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all ease 0.4s;
+}
+.spotify-playlists .list .item:hover {
+  background-color: #252525;
+}
+.spotify-playlists .list .item img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.spotify-playlists .list .item .play {
+  position: relative;
+}
+/* ↓ 재생목록 hover시 재생버튼 나오는 기능 ↓ */
+.spotify-playlists .list .item .play .fa {
+  position: absolute;
+  right: 10px;
+  top: -60px;
+  padding: 18px;
+  background-color: #1db954;
+  border-radius: 100%;
+  opacity: 0; /* 처음에는 투명도를 0으로 설정하여 숨김 */
+  transition: all ease 0.4s; /* 스타일 속성에 대한 변화를 0.4초 동안 부드럽게 전환 */
+}
+.spotify-playlists .list .item:hover .play .fa {
+  opacity: 1;
+  transform: translateY(-20px); /* 호버 상태일 때 세로 방향으로 위로 20px 이동 (애니메이션 효과) */
+}
+/* ↑ 재생목록 hover시 재생버튼 나오는 기능 ↑ */
+.spotify-playlists .list .item h4 {
+  color: #ffffff;
+  font-size: 14px;
+  margin-bottom: 10px;
+  white-space: nowrap; /* 텍스트가 넘치더라도 줄 바꿈하지 않음 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.spotify-playlists .list .item p {
+  color: #989898;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 600;
+}
+.spotify-playlists hr {
+  margin: 70px 0px 0px;
+  border-color: #636363;
+}
+@media screen and (min-width:1280px) {
+  #topBn{
+
+    margin: 0 auto;
+  }
+  .spotify-playlists{
+    margin-left: 250px;
+  }
+  .spotify-playlists .list{
+    display: flex;
+  }
+  .topbar{
+    margin-left: 250px;
+  }
+  .sidebar{
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 10%;
+    bottom: 0;
+    width: 196px;
+    background-color: #121212;
+    padding: 24px;
+  }
+  .sidebar .navigation ul {
+    list-style: none;
+    margin-top: 20px;
+  }
+  .sidebar .navigation ul li {
+    padding: 10px 0px;
+  }
+  .sidebar .navigation ul li a {
+    color: #b3b3b3;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+  }
+  .sidebar .navigation ul li a:hover,
+  .sidebar .navigation ul li a:active,
+  .sidebar .navigation ul li a:focus {
+    color: #ffffff;
+  }
+  .sidebar .navigation ul li a:hover .fa,
+  .sidebar .navigation ul li a:active .fa,
+  .sidebar .navigation ul li a:focus .fa {
+    color: #b3b3b3;
+  }
+  .sidebar .navigation ul li .fa {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  .sidebar .navigation ul li a:hover .fa:hover,
+  .sidebar .navigation ul li a:hover .fa:active,
+  .sidebar .navigation ul li a:hover .fa:focus {
+    color: #ffffff;
+  }
+  .sidebar .policies {
+    position: absolute;
+    bottom: 100px;
+  }
+  .sidebar .policies ul {
+    list-style: none;
+  }
+  .sidebar .policies ul li {
+    padding-bottom: 5px;
+  }
+  .sidebar .policies ul li a {
+    color: #b3b3b3;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 10px;
+  }
+  .sidebar .policies ul li a:hover,
+  .sidebar .policies ul li a:active,
+  .sidebar .policies ul li a:focus {
+    text-decoration: underline;
+  }
+}

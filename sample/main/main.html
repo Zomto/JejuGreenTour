@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>spotify-main.html</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/slick.css">
+    <link rel="stylesheet" href="../css/commen.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <div id="wrap">
+        <div id="topBn">
+            <div id="topBn_in">
+                <div class="topBn_content"><a href="../membership/membership.html">지금 가입하면 30일 무료 음악듣기 가능!</a></div>
+                <p class="topBn_close">배너 닫기</p>
+            </div>
+        </div>
+        <header id="header">
+            <div id="h_in">
+                <h1 class="h_logo"><a href="">Spotify</a></h1>
+                <div class="h_icon">
+                    <div class="h_search">
+                        <a href="" class="open">검색창 열기</a>
+                        <div class="h_search_wrap">
+                            <form action="" id="h_search_form">
+                                <input type="text" placeholder="검색어를 입력해주세요." id="h_search_keyword">
+                                <button type="submit" id="h_search_submit">검색하기</button>
+                            </form>
+                            <div class="lanking">
+                                <div class="lank_in">
+                                    <div class="lank_btn">
+                                        <p class="active">실시간 인기 검색어</p>
+                                        <p>최근 검색어</p>
+                                    </div>
+                                    <div class="lank_pan">
+                                        <div class="lank_box active">
+                                            <div class="lanking_list">
+                                                <ul>
+                                                    <li>
+                                                        <p class="lank_number">1</p>               
+                                                        <p class="lank_name"><a href="">브루노마스</a></p>
+                                                        <p class="lank_state new"><span>NEW</span></p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="lank_number">2</p>               
+                                                        <p class="lank_name"><a href="">브루노마스 내한공연 Playlist</a></p>
+                                                        <p class="lank_state new"><span>NEW</span></p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="lank_number">3</p>               
+                                                        <p class="lank_name"><a href="">임영웅</a></p>
+                                                        <p class="lank_state up"><span>상승</span></p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="lank_number">4</p>               
+                                                        <p class="lank_name"><a href="">FIFTY FIFTY</a></p>
+                                                        <p class="lank_state new"><span>NEW</span></p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="lank_number">5</p>               
+                                                        <p class="lank_name"><a href="">Charlie Puth</a></p>
+                                                        <p class="lank_state down"><span>하락</span></p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="lank_number">6</p>               
+                                                        <p class="lank_name"><a href="">NewJeans</a></p>
+                                                        <p class="lank_state down"><span>하락</span></p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="lank_number">7</p>               
+                                                        <p class="lank_name"><a href="">LE SSERAFIM (르세라핌)</a></p>
+                                                        <p class="lank_state down"><span>하락</span></p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="lank_number">8</p>               
+                                                        <p class="lank_name"><a href="">IVE (아이브)</a></p>
+                                                        <p class="lank_state down"><span>하락</span></p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="lank_number">9</p>               
+                                                        <p class="lank_name"><a href=""></a></p>
+                                                        <p class="lank_state down"><span>하락</span></p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="lank_number">10</p>               
+                                                        <p class="lank_name"><a href=""></a></p>
+                                                        <p class="lank_state same"><span>유지</span></p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="lanking_date">23.06.30 기준</div>
+                                        </div>
+                                        <div class="lank_box">
+                                            <div class="new_list">
+                                                <ul>
+                                                    <li class="no_data">최근 검색어가 없습니다.</li>
+                                                    <li>
+                                                        <p class="new_name"><a href="">브루노마스</a></p>
+                                                        <p class="new_date">06.30</p>
+                                                        <p class="new_x"><span>삭제하기</span></p>
+                                                    </li>
+                                                    <li>
+                                                        <p class="new_name"><a href="">브루노마스 내한공연 Playlist</a></p>
+                                                        <p class="new_date">06.29</p>
+                                                        <p class="new_x"><span>삭제하기</span></p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="new_log_del">
+                                                <a href="">검색 기록 삭제</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="close">검색창 닫기</div>
+                        </div>
+                    </div>
+                    <div class="h_menu">
+                        <a href="" class="open">
+                            <span>메뉴열기</span>
+                            <span></span>
+                            <span></span>
+                        </a>
+                    </div> 
+                </div>
+                <div class="pc_utill">
+                    <div class="h_login_menu">
+                        <button type="button">
+                        <a href="" class="open">회원가입 / 로그인</a></button>
+                    </div>
+                </div>
+            </div>
+            <div id="side">
+                <div class="side_top">
+                    <a href="" class=""></a>
+                    <div class="close"><span>사이드 메뉴 닫기</span></div>
+                </div>
+                <div class="side_utill">
+                    <div class="logout">
+                        <p>가입하고 <strong>30일간 무료 멤버쉽</strong>을 바로 사용해보세요.</p>
+                        <a href="">회원가입</a>
+                    </div>
+                </div>
+                <nav class="side_gnb">
+                    <ul class="login">
+                        <li class="d1"><a href="" class="m1">Google로 계속하기</a></li>
+                        <li><a href="" class="m2">Facebook으로 계속하기</a></li>
+                        <li class="d1"><a href="" class="m3">Apple로 계속하기</a></li>
+                        <li class="d1"><a href="" class="m4">Naver로 계속하기</a></li>
+                    </ul>
+                    <span class="login_line">또는</span>
+                    <div class="login_form">
+                        <div class="id_section">
+                            <p>이메일 또는 사용자이름</p>
+                            <input type="text" placeholder="이메일 또는 사용자이름" class="idpw">
+                        </div>
+                        <div class="pw_section">
+                            <p>비밀번호</p>
+                            <input type="password" id ="password-input" placeholder="비밀번호" class="idpw">
+                            <a href="#" id =  "pw_on"  class="hide">비밀번호 보이기</a>
+                            <a href="#" id = "pw_off" class="">비밀번호 가리기</a>
+                            <!--href에 #을 추가해 클릭시 preventDefault를 Js로 호출하여 링크이동 하는 기본동작을 막았음  -->
+                        </div>
+                        <div class="remember">
+                            <div class="check">
+                                <input type="checkbox" name="toggle1" id="toggle1" value="1">
+                                <label for="toggle1"></label>
+                            </div>
+                            <p>내 정보 기억하기</p>
+                        </div>
+                        <div class="f_login">
+                            <a href="" class="log_in">
+                                로그인하기
+                            </a>
+                        </div>
+                        <div class="question">
+                            <p class="q1"><a href="">비밀번호를 잊었나요?</a></p>
+                            <p>계정이 없나요?</p>
+                            <p><a href="">Spotify에 가입하기</a></p>
+                        </div>
+                    </div>
+                </nav>
+                <div class="side_bn"><a href=""><img src="" alt=""></a></div>
+                <div class="side_bottom">
+                    <div class="cartegory" >
+                        <div>
+                            <a href="">
+                            <div class="credit_info">
+                                <img src="../img/credit_info.webp" width="64" height="64" alt="" class="credit_img">
+                                <span>결제 도움말</span>
+                            </div></a>
+                        </div>
+                        <div>
+                            <a href="">
+                            <div class="price_info">
+                                <img src="../img/price_info.webp" width="64" height="64" alt="">
+                                <span>요금제 관련 도움말</span>
+                            </div></a>
+                        </div>
+                        <div>
+                            <a href="">
+                            <div class="app_info">
+                                <img src="../img/app_info.webp" width="64" height="64" alt="">
+                                <span>앱 관련 도움말</span>
+                            </div></a>
+                        </div>
+                        <div>
+                            <a href="">
+                            <div class="device_info">
+                                <img src="../img/device_info.webp" width="64" height="64" alt="">
+                                <span>기기 관련 도움말</span>
+                            </div></a>
+                        </div>
+                        <div>
+                            <a href="">
+                            <div class="privacy">
+                                <img src="../img/privacy.png" width="64" height="64" alt="">
+                                <span>안전 및 개인정보 보호</span>
+                            </div></a>
+                        </div>
+                        <div>
+                            <a href="">
+                            <div class="id_info">
+                                <img src="../img/id_info.webp" width="64" height="64" alt="">
+                                <span>계정 도움말</span>
+                            </div></a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </header>
+        <main id="container">
+            <div class="sidebar">
+                <div class="navigation">
+                  <ul>
+                    <li>
+                      <a href="#">
+                        <span class="fa fa-home"></span>
+                        <span>마이페이지</span>
+                      </a>
+                    </li>
+          
+                    <li>
+                      <a href="#">
+                        <span class="fa fas fa-book"></span>
+                        <span>내 재생목록</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+          
+                <div class="navigation">
+                  <ul>
+                    <li>
+                      <a href="#">
+                        <span class="fa fas fa-plus-square"></span>
+                        <span>재생목록 만들기</span>
+                      </a>
+                    </li>
+          
+                    <li>
+                      <a href="#">
+                        <span class="fa fas fa-heart"></span>
+                        <span>좋아요를 표시한 곡</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+          
+                <div class="policies">
+                  <ul>
+                    <li>
+                      <a href="#">쿠키정책</a>
+                    </li>
+                    <li>
+                      <a href="#">개인정보보호</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            <div class="main-container">
+                <div class="topbar">
+                    <div class="top_menu">
+                        <div class="l_t"><a href="">음악</a></div>                        
+                        <div class="r_t"><a href="">팟캐스트 및 프로그램</a></div>                        
+                    </div>
+                </div>
+                <div class="spotify-playlists">
+                    <h2>spotify 추천 플레이 리스트</h2>
+                    <div class="list">
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f00000002afec821c60fe0194f700e775">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>오늘 가장 인기있는 곡</h4>
+                        <p>올리비아 로드리고  Hottest 50 진입!</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f00000002cda2f10977a7f6acfda976b3">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>RapCaviar</h4>
+                        <p>릴 우지 의 신곡앨범 듣기!</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f00000002b0fe40a6e1692822f5a9d8f1">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>All out 2010s</h4>
+                        <p>2010년대 최고 인기곡 듣기</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f0000000258a81f292929769821821a79">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>k-ost</h4>
+                        <p>국내 드라마 / 영화 OST's</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f000000025f9620278c45065e4985e1fb">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>this is</h4>
+                        <p>Black Pink</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f00000002186387ecfcd99df288f576b5">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>cyworld bgm</h4>
+                        <p>그 시절 싸이월드 명곡 모음</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://thisis-images.scdn.co/37i9dQZF1DZ06evO45Xg7m-default.jpg">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>this is</h4>
+                        <p>Charlie Puth</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f00000002e2e8e9ae7a5f2ad16b1b5f88" />
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>j-pop</h4>
+                        <p>일본 오리콘 차트</p>
+                      </div>
+                    </div>
+                    <!-- 2 -->
+                    <h2>실시간 인기 Playlist</h2>
+                    <div class="list">
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706c0000da8491f290624faed93a048ed907">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>오늘 가장 인기있는 곡</h4>
+                        <p>현대카드 슈퍼콘서트</p>
+                        <p>브루노마스 내한공연 Play-List</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67616d00001e0204878afb19613a94d37b29ce">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>aespa</h4>
+                        <p>MY WORLD - The 3rd Mini Album </p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://seed-mix-image.spotifycdn.com/v6/img/artist/6HvZYsbFfjnjFrWF950C9d/ko/default">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>NewJeans</h4>
+                        <p>뉴진스 모든 앨범 mix</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67616d00001e02ec4d37775e78943aa8bfe275">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>beenzino</h4>
+                        <p>NOWITZKI</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f00000002b1670ed57eb296260b0dccd5">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>4:00 AM</h4>
+                        <p>새벽 감성, lssa Vibe.</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f00000002186387ecfcd99df288f576b5">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>cyworld bgm</h4>
+                        <p>그 시절 싸이월드 명곡 모음</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67616d00001e024156626a16155286856ea868">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>ive</h4>
+                        <p>I AM</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67616d00001e02d71fd77b89d08bc1bda219c7" />
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>le SSERAFIM</h4>
+                        <p>UNFORGIVEN</p>
+                      </div>
+                    </div>
+                    <!-- 3 -->
+                    <h2>산뜻한 최신 음악</h2>
+                    <div class="list">
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f0000000258e5d3265142bf2af4d5fd9f">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>poprising</h4>
+                        <p>Who's now and next in pop. cover:nessa...</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f000000023af2193f548650bc3a8099df">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>.org</h4>
+                        <p>Hottest indie sounds & the vest new tracks... </p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67616d00001e02e787cffec20aa2a396a61647">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>talor swift</h4>
+                        <p>lover</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67616d00001e0295f79828718c93ab2aea1e23">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>metro boomin present spiderman</h4>
+                        <p>SPIDERMAN SOUNDTRACK</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="	https://i.scdn.co/image/ab67616d00001e0237c0b3670236c067c8e8bbcb">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>fiftyfifty</h4>
+                        <p>The Beginning: Cupid</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67616d00001e028a701e76e8845928f6cd81c8">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>bts(방탄소년단)</h4>
+                        <p>Take Two</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67616d00001e02039b906e6c18169239b467fb">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>the chainsmokers</h4>
+                        <p>See You Again</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="	https://i.scdn.co/image/ab67616d00001e0258039b5147731b6e52202e46" />
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>flowers</h4>
+                        <p>miley cyrus</p>
+                      </div>
+                    </div>
+                    <!-- 4 -->
+                    <h2>국내 분위기 & 상황별</h2>
+                    <div class="list">
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f00000002b0c585e8fdd157427b4fe4ed">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>wor k out</h4>
+                        <p>Workout to k-pop?<br>
+                            count me in!
+                        </p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f0000000201b578b93ab862c54d175cf5">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>드라이빙 댄스 +</h4>
+                        <p>시원한 국내음악들과 드라이빙을 <br>즐겨보세요! </p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="	https://i.scdn.co/image/ab67706f00000002724554ed6bed6f051d9b0bfc">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>focus flow</h4>
+                        <p>집중이 필요 할때!</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="	https://i.scdn.co/image/ab67706f00000002e435ce0a86a8b9dc24527618">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>workday lounge</h4>
+                        <p>Lounge and chill out music for your workday.</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f00000002b1670ed57eb296260b0dccd5">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>4:00 AM</h4>
+                        <p>새벽 감성, lssa Vibe.</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f0000000296e08a91ef3c7a6e7bfaa9a6">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>think moment</h4>
+                        <p>Focus with deep techno and tech house</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="	https://i.scdn.co/image/ab67706f000000026e192f0af72c8a40c3b3e1f5">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>quiet moment</h4>
+                        <p>Gentle Classical music to help you relax and reflect</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="	https://i.scdn.co/image/ab67706f00000002d6d48b11fd3b11da654c3519" />
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>deep focus</h4>
+                        <p>집중이 필요한 순간 post-rock music과 함께</p>
+                      </div>
+                    </div>
+                    <!-- 5 -->
+                    <h2>오늘의 추천</h2>
+                    <div class="list">
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67616d0000b27335d2e0ed94a934f2cc46fa49">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>charlie</h4>
+                        <p>
+                          Charlie Puth
+                        </p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="	https://i.scdn.co/image/ab67616d0000b2731fae4c37308985ad665b8934">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>your side of the bed</h4>
+                        <p>Loote </p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67616d0000b2732918f236448bf544586e388a">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>윤하</h4>
+                        <p>윤하 6집앨범</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="	https://i.scdn.co/image/ab67616d00001e02c4bc5016131d08453c5c9e4f">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>my stupid heart</h4>
+                        <p>Walk off the Earth</p>
+                        <p>Lauv</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67616d00001e02495ce6da9aeb159e94eaa453">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>closer</h4>
+                        <p>The Chainsmokers, Halsey</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f0000000296e08a91ef3c7a6e7bfaa9a6">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>think moment</h4>
+                        <p>Focus with deep techno and tech house</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f00000002e08f8c21ef9d4ff04dbe1d8b">
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>국내 팝 히트 메가 믹스</h4>
+                        <p>국내에서 핫 했던 팝메가 히드곡들을 만나보세요!</p>
+                      </div>
+            
+                      <div class="item">
+                        <img src="https://i.scdn.co/image/ab67706f0000000294ae1afaf00f2c3997cefce2" />
+                        <div class="play">
+                          <span class="fa fa-play"></span>
+                        </div>
+                        <h4>are & be</h4>
+                        <p>The pulse of R&B music today. cover:Khamari</p>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </main>
+
+        <div class="preview">
+            <div class="text">
+              <h6>spotify 미리 듣기</h6>
+              <p>좋아하는 국내 음악과 세계 최고의 플레이리스트를 들어보세요.</p>
+            </div>
+            <div class="button">
+              <button type="button"><a href="../membership/membership.html">premium 가입하기</a></button>
+            </div>
+          </div>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/23cecef777.js" crossorigin="anonymous"></script>
+    <script src="../js/slick.min.js"></script>
+    <script src="../js/commen.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
