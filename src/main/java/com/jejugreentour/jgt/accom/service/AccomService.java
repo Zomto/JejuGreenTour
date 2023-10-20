@@ -1,6 +1,9 @@
 package com.jejugreentour.jgt.accom.service;
 
+import com.jejugreentour.jgt.accom.vo.MainAccomImgVO;
 import com.jejugreentour.jgt.accom.vo.MainAccomVO;
+
+import java.util.List;
 
 public interface AccomService {
     public void addAccom(MainAccomVO mainAccomVO);
@@ -16,5 +19,15 @@ public interface AccomService {
 
     // 업소 주소 변경
     public void updateMainAccomAddr(MainAccomVO mainAccomVO);
+
+    // 서브 사진 추가
+    public void updateMainAccomSubImg(MainAccomVO mainAccomVO);
+
+    // 서브 사진 삭제
+    public void deleteSubImg(String mainImgCode);
+
+    // 서브 사진 불러오기
+    public List<MainAccomImgVO> selectSubImg(String accomCode);
+
 
 }
