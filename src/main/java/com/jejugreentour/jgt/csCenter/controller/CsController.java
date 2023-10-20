@@ -22,6 +22,12 @@ public class CsController {
         return "content/csCenter/csCenter_main";
     }
 
+    @GetMapping("/annForm")
+    public String annForm(){
+
+        return "content/csCenter/announcement";
+    }
+
 
 
 

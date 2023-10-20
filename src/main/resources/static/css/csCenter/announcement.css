@@ -1,3 +1,67 @@
 @charset "utf-8";
 
 
+.title_group{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.title{
+    font-size: 22px;
+    font-weight: 700;
+}
+
+
+.search_group{
+    display: flex;
+}
+
+
+.search_input{
+    margin-left: 15px;
+}
+
+.search_btn{
+    margin-left: 15px;
+}
+
+.cate_menu{
+    margin-bottom: 30px;
+}
+
+.cate_menu ul{
+    display: flex;
+}
+
+.cate_menu li{
+    width: 20%;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #999;
+    border-right: 0;
+    cursor: pointer;
+}
+
+.cate_menu .cate_last{
+    border-right: 1px solid #999;
+}
+
+
+/* 테이블 영역 */
+
+table{
+    text-align: center;
+}
+
+td{
+    border: 1px solid #999;
+    padding: 15px 10px;
+}
+
+.column{
+    background-color:lightgreen;
+    color: #222;
+    font-size: 17px;
+    font-weight: 500;
+}
