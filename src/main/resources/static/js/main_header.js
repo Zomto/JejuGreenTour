@@ -192,7 +192,6 @@ function verifyCode() {
 }
 
 function checkCode() {
-    alert(confirmCode);
     if (confirmCode == null) {
         document.querySelector('.alertbox').innerHTML="유효하지 않은 코드 입니다."
         document.querySelector('.alertbox').style.color='red';
