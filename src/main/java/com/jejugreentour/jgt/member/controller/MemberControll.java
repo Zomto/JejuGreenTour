@@ -65,4 +65,8 @@ public class MemberControll {
         return Integer.parseInt(MailSender);
     }
 
+    @GetMapping("/myPageForm")
+    public String myPageForm(){
+        return "content/member/myPage_main";
+    }
 }
