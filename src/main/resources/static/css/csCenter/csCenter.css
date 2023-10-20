@@ -39,18 +39,41 @@ a{
 
 .cs_inner{
     width: 1200px;
-    margin: 0 auto;
+    margin: 50px auto;
 }
 
 .cs_side{
     float: left;
-    width: 20%;
-    background-color: red;
+    width: 13%;
 }
 
 .cs_content{
     float: right;
-    width: 80%;
-    background-color: blue;
+    width: 85%;
 }
+
+
+.side_inner h3{
+    font-size: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #222;
+}
+
+.side_inner p{
+    font-size: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid #999;
+}
+
+.side_inner a{
+    color: #999;
+}
+
+.side_inner .menu_last{
+    border-bottom: 1px solid #222;
+}
+
+
+
+
 

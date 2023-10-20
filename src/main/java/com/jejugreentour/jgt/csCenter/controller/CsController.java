@@ -19,7 +19,7 @@ public class CsController {
     public String csForm(){
 
 
-        return "content/csCenter/announcement";
+        return "content/csCenter/csCenter_main";
     }
 
 

@@ -1,0 +1,23 @@
+@charset "utf-8";
+
+.w_in{
+    display: flex;
+}
+
+.main{
+    width: 70%;
+    margin-right: 30px;
+}
+
+.m_title{
+    font-size: 20px;
+}
+
+.m_title span{
+    color: green;
+}
+
+.side{
+    width: 30%;
+    background-color: blue;
+}

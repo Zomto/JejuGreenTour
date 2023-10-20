@@ -1,17 +1,4 @@
 
-
-let setstr=0;
-
-function resetStar(){
-    setStar=0;
-    alert(setStar);
-    }
-function setStar(){
-++setStar;
-alert(setStar)
-}
-
-
 function randomColor()  {
     let color_r = Math.floor(Math.random() * 127 + 128).toString(16);
     let color_g = Math.floor(Math.random() * 127 + 128).toString(16);
