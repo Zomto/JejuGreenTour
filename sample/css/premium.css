@@ -1,0 +1,845 @@
+@charset "utf-8";
+/* 프리미엄멤버쉽 */
+body, input{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+img, input, button{
+    vertical-align: top;
+}
+
+#topBn{
+    background-color: #67625e;
+    position: relative;
+}
+#topBn_in{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    background: #1d75de;
+}
+.topBn_content{
+    margin-left: 20px;
+}
+.topBn_content a{
+    color: #fff;
+}
+.topBn_close{
+    width: 28px;
+    height: 28px;
+    background-image: url(../img/btn_close_banner.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px auto;
+    text-indent: -99999px;
+    margin-right: 6px;
+    cursor: pointer;
+}
+.logo_menu{
+    display: flex;
+    justify-content: space-between;
+    background-color: #121212;
+}
+.side_top{
+    padding: 0 20px;
+    line-height: 58px;
+    margin-bottom: 10px;
+}
+.side_top a{
+    display: block;
+    width: 80px;
+    height: 50px;
+    padding-right: 20px;
+    font-size: 19px;
+    font-weight: 500;
+    color: #333;
+    background-image: url(../img/Spotify_Logo_CMYK_White.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: right 0 top 12px;
+}
+
+.side_menu > ul{
+    display: none;
+}
+.side_menu > ul > li{
+    margin-right: 15px;
+}
+.side_menu > ul > li a{
+    color: #f6f6f6;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 500;
+}
+.side_menu{
+    margin-right:7px;
+}
+.login{
+    margin-top: 15px;
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    border-radius: 15px;
+    background-color: #67625e;
+    line-height: 28px;
+}
+
+.login a{
+    color: #f8f8f8;
+    text-decoration: none;
+}
+/* 메인1 */
+.main1{
+    padding-top: 60px;
+    text-align: center;
+    background-color: rgb(255, 205, 210);
+}
+.main1 h1{
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+.m1_1{
+    margin: 30px 0px;
+    font-weight: 400;
+    font-size: 18px;
+}
+.main1 .join{
+    margin-top: 25px
+}
+.main1 .j1{
+    width: 280px;
+    height: 48px;
+    border: 1px solid #000;
+    border-radius: 30px;
+    background-color: #121212;
+    text-align: center;
+    line-height: 45px;
+    margin: 0 auto;  
+}
+.main1 .j1 a{
+    text-decoration: none;
+    color: #f8f8f8;
+}
+.main1 .j2{
+    width: 280px;
+    height: 48px;
+    border: 1px solid #000;
+    border-radius: 30px;
+    background-color: rgb(255, 205, 210);
+    text-align: center;
+    line-height: 45px;
+    margin: 20px auto;   
+}
+
+.main1 .j2 a{
+    text-decoration: none;
+    color: #121212;
+    font-weight: 500;
+}
+
+.main1 .m1_2{
+    margin: 30px 0px;
+    width: 100%;
+    display: inline-block;
+    font-weight: 400;
+    font-size: 15px;
+}
+.main1 .m1_2 a{
+    color: #121212;
+}
+.main1 .main1_photo{
+    width: 280px;
+    height: 280px;
+    background-image: url(../img/main1_photo.jfif);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-indent: -9999px;
+    margin: auto;
+}
+/* 메인2 */
+.main2{
+    padding-top: 40px;
+    background-color: rgb(248, 248, 248);
+    padding-bottom: 30px;
+}
+.main2 h1{
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.2;
+    padding: 0;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.main2 .m2s{
+    display: block;
+    font-size: 19px;
+    text-align: center;
+}
+.app_dwn{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 30%;
+}
+.google_play{
+    margin-bottom: 20px;
+}
+.main2 > .inner > p{
+    margin-top: 30px;
+    width: 100%;
+    display: inline-block;
+    font-weight: 400;
+    font-size: 12px;
+    margin-left: 1%;
+    margin-right: 1%;
+    text-align: center;
+}
+/* 메인3 */
+.main3{
+    padding-top: 50px;
+}
+.main3 h1{
+    font-size: 28px;
+    font-weight: 900;
+    margin-left: 2%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.main3 > .inner > ul >li > #m3{
+    width: 142px;
+    height: 142px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top;
+    text-indent: -99999px;
+    margin-left: 5px;
+    margin-right: 25px;
+    margin-bottom: 45px;
+}
+
+.main3 > .inner > ul > li{
+    display: flex;
+}
+
+.main3 > .inner > ul >li >.m3_1{
+    background-image: url(../img/play_app.png);
+
+}
+.main3 > .inner > ul >li >.m3_2{
+    background-image: url(../img/music_app.png);
+}
+.main3 > .inner > ul >li >.m3_3{
+    background-image: url(../img/down_app.png);
+}
+.main3 > .inner > ul >li >.m3_4{
+    background-image: url(../img/app.png);
+}
+.main3 > .inner > ul > li > .m3_in{
+    width: 100%;
+    margin: 16px 0;
+}
+.main3 > .inner > ul >li >div >.p31{
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 21px;
+    padding: 0px;
+    line-height: 1.3em;
+}
+.main3 > .inner > ul >li >div >.p32{
+    line-height: 1.5;
+    font-size: 16px;
+}
+/* 메인4 */
+.main4{
+    background-color: #f8f8f8;
+    padding: 35px 15px;
+}
+.main4 > .inner{
+    margin: 0 auto;
+}
+.main4 h2{
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: -1.28px;
+    line-height: 1;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
+.main4 .p41{
+    font-size: 16px;
+    font-weight: normal;
+    margin: 10px 0px;
+    text-align: center;
+    padding: 0px;
+}
+
+.main4 .mbs{
+background-color: rgb(255, 255, 255);
+    margin-right: auto;
+    margin-left: auto;
+    width: 400px;
+    width: auto;
+    margin-bottom: 0px;
+}
+.main4 .display_1f{
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 16px;
+    box-shadow: rgb(255, 255, 255) 0px 8px 8px 0px, rgba(0, 0, 0, 0.3) 0px 6px 8px;
+    border-radius: 10px 10px 10px 10px;
+}
+.main4 .display_2f{
+    color: rgb(0, 0, 0);
+    border-radius: 10px 10px 0px 0px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-shadow: rgb(255, 255, 255) 0px 8px 0px 0px, rgba(0, 0, 0, 0.3) 0px 0px 8px;
+}
+.main4 .fmf{
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 4px 8px;
+    display: inline-block;
+    font-weight: 700;
+    margin: 0px 4px 10px 0px;
+    margin-block: 0px 10px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(46, 119, 208);
+}
+.main4 h3{
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 24px;
+    margin: 0px 0px 5px;
+    padding: 0px;
+}
+.display_1f p{
+    font-size: 16px;
+    font-weight: 300;
+}
+.display_1f .p42{
+    padding-bottom: 20px;
+    border-bottom: 1px solid #333;
+}
+.display_1f ul{
+    padding-top: 20px;
+
+}
+.display_1f > ul > li div{
+ display: flex;
+ margin-bottom: 20px;   
+}
+
+.display_1f .p43{
+    width: 40px;
+    height: 40px;
+    background-image: url(../img/check.PNG);
+    background-position: center top;
+    background-repeat: no-repeat;
+    margin-right: 5%;
+}
+.display_1f .p44{
+    font-size: 15px
+}
+
+.display_1f .m4_btn a, .m4_btn1 a, .m4_btn3 a{
+    color: #f8f8f8;
+    text-decoration: none;
+}
+.main4 .m4_btn, .m4_btn1, .m4_btn3{
+    width: 380px;
+    border: 1px solid #000;
+    border-radius: 30px;
+    background-color: #121212;
+    text-align: center;
+    line-height: 45px;
+    margin: 0 auto; 
+}
+
+.display_1f .p45{
+    font-size: 12px;
+    margin-top: 40px;
+    margin-bottom: 16px;
+}   
+
+.main5 h1{
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+}
+.main5 p{
+    font-size: 17px;
+    text-align: center;
+}
+.main5 .m1{
+    position: relative;
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    color: #121212;
+    background-color: #f6f6f6;
+    padding: 26px 28px;
+    cursor: pointer;
+}
+.main5 .m1::after{
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-image: url(../img/ico_down.PNG);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top:35%;
+    right:3%
+}
+.main5 > .inner > ul > li.active .m1::after{
+    transform: rotate(180deg);
+}
+.main5 .sub{
+    display: none;
+    padding:10px 15px 10px 15px;
+}
+/* 메인 끝 */
+/* Footer 시작 */
+#footer{
+    background-color: #000;
+}
+#footer .f_in{
+    padding-top: 50px;
+    padding-bottom: 20px;
+    margin-left :2%;
+
+}
+#footer .f_head a{
+    display: block;
+    width: 89px;
+    height: 30px;
+    background-image: url(../img/Spotify_Logo_CMYK_White.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+#footer .f_head{
+    text-indent: -99999px;
+}
+#footer .f_menu{
+    display: flex;
+    flex-direction: column;
+}
+#footer .f_menu dt{
+    color: #919496;
+    margin: 50px 0 20px;
+}
+#footer .f_menu dd{
+    padding: 3px 0 15px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+#footer .f_menu dd a{
+    color: #fff;
+    text-decoration: none;
+}
+#footer .f_menu dd a:hover{
+    color: #1ed760;
+}
+#footer .sns{
+    margin: 120px 15px 15px;
+}
+#footer .sns ul{
+    display: flex;
+    margin:20px 0 0  ;
+} 
+#footer .sns li span:hover{
+    background-color: #1ed760;
+}
+#footer .sns a{
+    position: relative;
+    display: block;
+    width: 44px;
+    height: 44px;
+    background-color: #222326;
+    border-radius: 50%;
+    overflow: hidden;
+    text-indent: -99999px;
+    align-items: center;
+}
+#footer .sns .ins span{
+    display: block;
+    position: absolute;
+    left: 23%;
+    top:21%;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    background-image: url(../img/insta.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;   
+}
+#footer .sns .twt{
+    margin-left: 2%;
+    margin-right: 2%;
+}
+#footer .sns .twt span{
+    display: block;
+    position: absolute;
+    left: 23%;
+    top:21%;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    background-image: url(../img/twitter.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;   
+}
+#footer .sns .fb span{
+    display: block;
+    position: absolute;
+    left: 23%;
+    top:21%;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    background-image: url(../img/facebook.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;   
+}
+#footer .lang{
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 15px 0 auto;
+}
+#footer .lang p{
+    display: block;
+    margin-top: 3px;
+    margin-right: 3px;
+    width: 12px;
+    height: 13px;
+    background-image: url(../img/earth.svg);
+    background-position: center;
+    background-size: 100%;
+    text-indent: -99999px;
+    background-color: #121212;
+}
+#footer .lang a{
+    font-size: 10px;
+    text-decoration: none;
+    color: #919496;
+    
+}
+#footer .f_bot{
+    display: flex;
+    justify-content: space-between;
+}
+#footer .f_bot ul{
+    display: flex;
+}
+#footer .f_bot li a{
+    color: #919496;
+    text-decoration: none;
+    margin: 0 45px 0 0;
+    padding: 0 0 0 15px;
+    font-size: 10px;
+}
+#footer .f_bot li a:hover{
+    color: #1ed760;
+}
+#footer .f_bot span{
+    font-size: 10px;
+    color: #919496;
+    margin: 0 15px 0 auto;
+    padding : 1em 0;
+}
+
+/* 768px 태블릿 시작 */
+@media screen and (min-width:760px) {
+    /* 태블릿 main1 */
+    .main1 .main1_photo{
+        width: 420px;
+        height: 420px;
+    }
+    /* main2 */
+    .main2 .app_dwn{
+        margin-left: 41%;
+    }
+    .main2 .appple_store{
+        margin-left : -1.5%
+    }
+    /* main3 */
+    .main3 ul{
+        margin-left : 25%
+    }
+    /* main4 */
+    .main4 .display_1f{
+        width: 440px;
+        margin-left: 22%;
+    }
+    .main4 .m4_btn{
+        width: 380px;
+        border: 1px solid #000;
+        border-radius: 30px;
+        background-color: #121212;
+        text-align: center;
+        line-height: 45px;
+        margin: 0 auto; 
+    }
+    .main4 .m4_btn1{
+        width: 380px;
+        border: 1px solid #000;
+        border-radius: 30px;
+        background-color: #121212;
+        text-align: center;
+        line-height: 45px;
+        margin: 0 auto; 
+    }
+    .main4 .m4_btn, .m4_btn1, .m4_btn3{
+        width: 380px;
+        border: 1px solid #000;
+        border-radius: 30px;
+        background-color: #121212;
+        text-align: center;
+        line-height: 45px;
+        margin: 0 auto; 
+    }
+    .main4 .m4_btn1 a, .m4_btn3 a{
+        color: #fff;
+        text-decoration: none;
+    }
+
+    /* 태블릿 footer 시작*/
+
+    #footer .f_menu{
+        padding-right: 20%;
+        justify-content: space-between;
+        flex-direction:row; 
+    }
+    
+}
+/* pc 1280px 시작 */
+@media screen and (min-width:1200px){
+    /* 헤더 */
+    #topBn_in{
+        height: 53px;
+    }
+    .side_top{
+        position: relative;
+        height: 80px;
+    }
+    .side_top a{
+        position: absolute;
+        width: 120px;
+        height: 60px;
+        top:10px;
+    }
+    .login{
+        display: none;
+    }
+    .side_menu > ul{
+        display: block;
+        display: flex;
+        position: absolute;
+        right : 1%;
+        top: 55%;    
+    }
+    .side_menu > ul > li a{
+        padding: 28px 17px
+    }
+    .side_menu .down{
+        display: inline-block;
+        height: 16px;
+        width: 1px;
+        background-color: #fff;
+        margin-top: 4px;
+    }
+    .side_menu .down a{
+        padding-left: 0;
+        padding-right: 0;
+        margin : 0;
+        
+    }
+    .side_menu > ul > li:hover a{
+        color: #1ed760;
+    }
+    /* pc헤더 끝 */
+    /* pc 메인1 */
+    .main1 h1{
+        margin-left: 20px;
+        text-align :left;
+        font-size: 38px;
+    }
+    .main1 .m1_1{
+        display: block;
+        text-align: left;
+        font-size: 25px;
+        margin-left: 20px;
+    }
+    .main1 .inner{
+        width: 1170px;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+    }
+    .main1 .main1_photo{
+        width: 420px;
+        height: 400px;
+        margin-left: 22px;
+        background-position: top ;
+    }
+    .main1 .join{
+        display: flex;
+        margin-left: 30px;
+    }
+    .main1 .j1{
+        width: 120px;
+        height: 48px;
+        margin: 0;
+    }
+    .main1 .j2{
+        margin-top: 0;
+        margin: 0;
+        margin-left: 15px;
+        width: 140px;
+        height: 50px;
+    }
+    .main1 .m1_2{
+        font-size: 12px;
+    }
+    /* 메인1 끝 */
+    /* 메인2 시작 */
+    .main2 h1{
+        padding-top: 20px;
+        font-size: 42px;
+        font-weight: 700;
+    }
+    .main2 .m2s{
+        margin-top: 20px;
+        font-size: 26px;
+    }
+    .main2 .app_dwn{
+        display: flex;
+    }
+    .main2 .appple_store{
+        margin-left: 1px;
+    }
+    /* 메인2 끝 */
+    /* 메인3 시작 */
+    .main3 .inner{
+        width: 1200px;
+        margin: 0 auto;
+    }
+    .main3 .inner h1{
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 70px;        
+    }
+    .main3 > .inner > ul{
+        display: flex;
+        margin: 0 auto;
+    }
+    .main3 > .inner > ul >li{
+        margin-right: 20px;
+        text-align: center;
+        display: block;
+    }
+    .main3 > .inner > ul > li > #m3{
+        width: 270px;
+    }
+    /* main3끝 */
+    /* main4시작 */
+    .main4 .inner{
+        width: 1200px;
+    }
+    .main4 .mbs{
+        display: flex;
+    }
+    .main4 .display_1f{
+        width: 334px;
+        margin-right: 25px;
+        margin: 0 auto;
+    }
+    .main4 .m4_btn, .m4_btn1, .m4_btn3{
+        width: auto;
+        height: 48px;
+        border: 1px solid #000;
+        border-radius: 30px;
+        background-color: #121212;
+        text-align: center;
+        line-height: 45px;
+        margin: 0 auto;  
+    }
+    .main4 .m4_btn1 a, .m4_btn3 a{
+        color: #fff;
+        text-decoration: none;
+    }
+    .main4 .m4_btn1{
+        width: auto;
+        margin-top: 58px;
+    }
+    .main4 .m4_btn3{
+     margin-top: 138px;
+    }
+    /* PC foot 시작 */
+    #footer .f_nav{
+        display: flex;
+        justify-content: space-between;
+    }
+    #footer .f_menu{
+        padding-left: 2;
+    }
+    #footer .f_menu dt{
+        margin: 20px 0;
+    }
+    
+    #footer .f_menu dl{
+        padding: 0 40px;
+        margin: 0;
+    }
+    #footer .f_head a{
+        height: 40%;
+        width: 132px;
+    }
+    #footer .sns{
+        margin: 20px 15px 15px;
+    }
+    #footer .sns{
+        margin-right: 5%;
+    }
+
+    #footer .sns a{
+        width: 54px;
+        height: 54px;
+    }
+    #footer .sns .ins span{
+        left:27%;
+        top:27%
+    }
+    #footer .sns .twt{
+        margin-left: 6%;
+        margin-right: 6%;
+    }
+    #footer .sns .twt span{
+        left:27%;
+        top:27%
+    }
+    #footer .sns .fb span{
+        left:27%;
+        top:27%
+    }
+}
+
+
+
