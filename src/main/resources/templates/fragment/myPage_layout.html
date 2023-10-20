@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/slick.css">
     <link rel="stylesheet" href="/css/style.css">    
-    <link rel="stylesheet" href="/css/csCenter/csCenter.css">    
+    <link rel="stylesheet" href="/css/member/myPage.css">    
 
     <!-- common.css 프로젝트 공통 css -->
     <link rel="stylesheet" href="/css/common.css">
@@ -28,13 +28,13 @@
                 <th:block th:replace="~{fragment/main_header :: mainHeaderFragment}"></th:block>
             </div>
         </div>
-        <div class="row cs_inner">
+        <div class="row my_inner">
             <!-- 사이드 메뉴 영역 -->
-            <div class="col-2 cs_side">
+            <div class="col-2 my_side">
                 <th:block th:replace="~{fragment/myPage_side :: myPageSideFragment}"></th:block>
             </div>
             <!-- 컨텐츠 영역 -->
-            <div class="col-10 my_content">
+            <div class="col-10 content">
                 <th:block layout:fragment="content"></th:block>    
             </div>
         </div>
