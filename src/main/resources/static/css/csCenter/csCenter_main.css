@@ -9,15 +9,210 @@
     margin-right: 30px;
 }
 
-.m_title{
+.title{
     font-size: 20px;
+    margin-bottom: 20px;
 }
 
-.m_title span{
+.title span{
     color: green;
 }
 
+.m_search{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.m_search input{
+    width: 87%;
+    padding: 15px;
+    border: 2px solid #222;
+}
+
+.m_search button{
+    width: 13%;
+    background-color: #222;
+    color: white;
+    border: 0;
+}
+
+.m_keyword{
+    display: flex;
+    margin-bottom: 60px;
+}
+
+.k_icon{
+    position: relative;
+    border: 1px solid #999;
+    background-color: #999;
+    padding: 3px 12px;
+    color: white;
+    margin-right: 30px;
+}
+
+.k_icon .triangle{
+    position: absolute;
+    top: 6px;
+    right: -21px;
+    display: inline-block;
+    border-top: 8px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 10px solid #999;
+}
+
+.m_keyword a{
+    color: #999;
+    margin-right: 30px;
+    line-height: 27px;
+}
+
+.m2{
+    position: relative;
+}
+
+.m2_title{
+    font-size: 22px;
+    font-weight: 700;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #222;
+}
+
+.m2_more_btn{
+    display: flex;
+    position: absolute;
+    top: -2px;
+    right: 30px;
+    height: 20px;
+}
+
+.m2_more_btn a{
+    text-align: center;
+    font-size: 17px;
+    color: #222;
+}
+
+.m2_more_btn a::after{
+    position: absolute;
+    top: 2px;
+    right: -25px;
+    width: 22px;
+    height: 20px;
+    display: inline-block;
+    content: "";
+    background-image: url(/img/ico-arrow-right.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+.m2_in li{
+    position: relative;
+    padding: 20px 10px;
+    border-bottom: 1px solid #999;
+    cursor: pointer;
+}
+
+.m2_in li span{
+    color: blueviolet;
+    margin-right: 30px;
+}
+
+.m2_in li::after{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+    content: "";
+    width: 17px;
+    height: 17px;
+    background-image: url(/img/mball_arrow.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+}
+
+.m2_in .list_last{
+    border-bottom: 1px solid #222;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .side{
     width: 30%;
-    background-color: blue;
+}
+
+.s1{
+    padding: 15px;
+    border: 2px solid green;
+    margin-bottom: 50px;
+}
+
+.s1_ment1{
+    font-size: 17px;
+    color: #999;
+}
+
+.s1_ment2{
+    margin-bottom: 10px;
+}
+
+.s1_btn button{
+    width: 45%;
+    height: 30px;
+    border: 1px solid #999;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.s1_btn button:hover{
+    color: green;
+    border: 1px solid green;
+}
+
+.s1_btn_left{
+    margin-right: 15px;
+}
+
+.s1_btn_right{
+    color: green;
+}
+
+.s2_title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.s2_title h3{
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.s2_title a{
+    font-size: 15px;
+    color: #222;
+}
+
+.s2_title a::after{
+
 }
