@@ -6,5 +6,5 @@ public class ConstantVariable {
     // 파일 업로드 경로
     public static final String UPLOAD_PATH = "D:\\dev\\workspaceSpring\\JejuGreenTour\\src\\main\\resources\\static\\img\\";
 
-
+    public static final String UPLOAD_PATH2 = "D:\\dev\\workspaceSpring\\JejuGreenTour\\src\\main\\resources\\static\\img\\accom\\";
 }

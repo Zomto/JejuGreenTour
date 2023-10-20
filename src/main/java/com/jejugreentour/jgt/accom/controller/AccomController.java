@@ -6,6 +6,7 @@ import com.jejugreentour.jgt.accom.vo.MainAccomImgVO;
 import com.jejugreentour.jgt.accom.vo.MainAccomVO;
 import com.jejugreentour.jgt.member.vo.MemberVO;
 import com.jejugreentour.jgt.util.UploadUtil;
+import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -38,15 +39,8 @@ public class AccomController {
         MemberVO loginInfo = (MemberVO)httpSession.getAttribute("loginInfo");
         mainAccomVO.setAccomCeo(loginInfo.getMemberId());
 
-        // -- 상품 이미지 등록 --//
-
         // 0. 다음에 들어 가야 할 ITEM_CODE 조회
         String accomCode = accomService.selectNextAccomCode();
-
-
-//        // 1. 상품 이미지 정보가 다 들어갈 통
-//        List<MainAccomImgVO> mainAccomImgList = new ArrayList<>();
-
 
         // 2. 이미지 정보 하나가 들어갈 수 있는 통!
         // 첨부파일 기능
@@ -64,8 +58,6 @@ public class AccomController {
 
         // 상품 등록 + 이미지 등록 쿼리
         mainAccomVO.setAccomCode(accomCode);
-        System.out.println(212121);
-        System.out.println(mainAccomVO);
         accomService.addAccom(mainAccomVO);
 
         // 상품 이미지 정보 등록 쿼리
@@ -77,7 +69,11 @@ public class AccomController {
     @GetMapping("/mainAccomDetail")
     public String mainAccomDetail(String accomCode, Model model){
         MainAccomVO vo = accomService.selectMainAccomDetail(accomCode);
+        List<MainAccomImgVO> img = accomService.selectSubImg(accomCode);
         model.addAttribute("mAccom", vo);
+        System.out.println(vo);
+        System.out.println(img);
+        model.addAttribute("imgList", img);
 
         return "content/accom/accom_detail";
     }
@@ -101,5 +97,36 @@ public class AccomController {
         return "content/accom/subAccom_add";
     }
 
+    @ResponseBody
+    @PostMapping("/updateMainAccomSubImg")
+    public List<MainAccomImgVO> updateMainAccomSubImg(String accomCode, MainAccomVO mainAccomVO, MultipartFile[] files, Model model){
+
+
+        // 첨부파일 기능 다중업로드
+        List<MainAccomImgVO> mainAccomImgList = UploadUtil.multiFileUpload(files);
+
+        for(MainAccomImgVO mainAccomImgVO : mainAccomImgList) {
+            mainAccomImgVO.setAccomCode(accomCode);
+        }
+
+        mainAccomVO.setMainAccomImgList(mainAccomImgList);
+
+        // 상품 등록 + 이미지 등록 쿼리
+        mainAccomVO.setAccomCode(accomCode);
+        accomService.updateMainAccomSubImg(mainAccomVO);
+
+        //MainAccomVO vo = accomService.selectMainAccomDetail(accomCode);
+        return mainAccomImgList;
+
+        // 상품 이미지 정보 등록 쿼리
+    }
+
+    @ResponseBody
+    @PostMapping("/deleteSubImg")
+    public List<MainAccomImgVO> deleteSubImg(String mainImgCode, String accomCode){
+        accomService.deleteSubImg(mainImgCode);
+        List<MainAccomImgVO> mainAccomImgList = accomService.selectSubImg(accomCode);
+        return mainAccomImgList;
+    }
 
 }
