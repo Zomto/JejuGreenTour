@@ -1,3 +1,8 @@
+//전역변수
+let timerstop = null
+let settimerstop = null
+let reatimerstop = null
+
 // 회원가입에서 주소검색 버튼 클릭 시 실행
 function openPost() {
     new daum.Postcode({
@@ -95,11 +100,11 @@ function checkId() {
         });
 }
 
-// 회원가입 버튼 비활성화 함수
+// 이메일인증전 회원가입 버튼 비활성화 함수
 function setDisabled() {
     document.querySelector('.join_btn').disabled = true;
 }
-let timerstop = null
+
 
 function startTimer(duration) {
     const timerElement = document.getElementById("timer");
@@ -126,7 +131,7 @@ function startTimer(duration) {
     const timerInterval = setInterval(updateTimer, 1000);
     timerstop = timerInterval;
     // 타이머가 종료되면 interval 정지
-    setTimeout(() => {
+    settimerstop= setTimeout(() => {
         clearInterval(timerInterval);
     }, duration);
 
@@ -136,11 +141,18 @@ function verifyCode() {
     var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 
     if (emailRegex.test(document.querySelector('#email').value + document.querySelector('#email_host').value)) {
+        if(timerstop != null){
+            console.log('이전 타이머 있음');
+            clearTimeout(timerstop);
+            console.log(timerstop);
+        }
+        clearTimeout(settimerstop);
+        clearTimeout(reatimerstop);
         clearInterval(timerstop);
-        document.getElementById("timer").textContent = "05:00";
+        document.getElementById("timer").textContent = "03:00";
         const additionalInputDiv = document.getElementById("additionalInput");
         additionalInputDiv.style.display = "block";
-        startTimer(300000);
+        startTimer(180000);
         document.querySelector('#verify_code').value = null;
         fetch('/member/verifyCode', { //요청경로
             method: 'POST',
@@ -164,21 +176,26 @@ function verifyCode() {
             })
             //fetch 통신 후 실행 영역
             .then((data) => {//data -> controller에서 리턴되는 데이터!
-                alert("인증메일이 발송 되었습니다! 메일함을 확인해주세요!")
+                document.querySelector('.alertbox').innerHTML="인증메일이 발송 되었습니다! 메일함을 확인해주세요!"
+                document.querySelector('.alertbox').style.color='black';
+        
                 confirmCode = data;
-                setTimeout(() => {
+                reatimerstop= setTimeout(() => {
                     confirmCode = null
-                }, 300000)
+                }, 180000)
 
             })
     } else {
-        alert("이메일 형식이 올바르지 않습니다. 다시 입력 해주세요.")
+        const additionalInputDiv = document.getElementById("additionalInput");
+            additionalInputDiv.style.display = "none";
     }
 }
 
 function checkCode() {
+    alert(confirmCode);
     if (confirmCode == null) {
-        alert("유효하지 않은 코드 입니다.")
+        document.querySelector('.alertbox').innerHTML="유효하지 않은 코드 입니다."
+        document.querySelector('.alertbox').style.color='red';
     } else {
         let inputCode = document.querySelector('#verify_code').value
         if (inputCode == confirmCode) {
@@ -187,7 +204,8 @@ function checkCode() {
             const additionalInputDiv = document.getElementById("additionalInput");
             additionalInputDiv.style.display = "none";
         } else {
-            alert("인증번호를 정확하게 입력해주세요")
+            document.querySelector('.alertbox').innerHTML="인증번호를 정확하게 입력해주세요"
+            document.querySelector('.alertbox').style.color='red';
         }
     }
 
