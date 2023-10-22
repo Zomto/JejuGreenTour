@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!-- layout:decorate="~{fragment/main_layout}" -->
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <!-- <th:block layout:fragment="content"> -->
+    <style>
+        .buybasket {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .buybasket_in {
+            background-color: #fff;
+            width: 400px;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .buy_button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+       
+        .del_button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff2c2c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .buy_button:hover {
+            background-color: #45a049;
+        }
+        .del_button:hover {
+            background-color: #d62121;
+        }
+    </style>
+    </head>
+
+    <body>
+        <div class="buybasket">
+            <div class="buybasket_in">
+
+                <h2 style="text-align: center;">숙박 상세 정보</h2>
+                <p>여관명: <span id="hotelName">여관 이름</span></p>
+                <p>방 이름: <span id="roomName">방 이름</span></p>
+                <p>숙박 일자: <span id="stayDates">[[${basketAccomVO.stayStartDate}]]</span></p>
+                <p>숙박 가격: <span id="stayPrice">숙박 가격</span></p>
+                <p>결제자명: <span id="stayPrice">숙박 가격</span></p>
+                <p>연 락 처 : <span id="stayPrice">010</span></p>
+                <p>숙박 날짜: 체크인 <span id="stayPrice">2022-10-22</span></p>
+                <p>숙박 날짜: 체크아웃<span id="stayPrice">2022-10-22</span></p>
+
+                <input class="buy_button" type="button" value="결제하기" onclick="confirmPayment()">
+                <input class="del_button" type="button" value="취소하기" onclick="cancelPayment()">
+            </div>
+
+        </div>
+        <script>
+            function confirmPayment() {
+                // 결제
+                if (confirm(new Date('2020-10-10T10:10:10'))) { 
+                    alert("결제가 완료되었습니다!");
+                } else {
+                    alert("결제가 취소되었습니다.");
+                }
+            }
+            function cancelPayment() {
+                alert("결제가 취소되었습니다.");
+                // fetch 기능으로 삭제
+            }
+        </script>
+        <!-- </th:block> -->
+    </body>
+
+</html>

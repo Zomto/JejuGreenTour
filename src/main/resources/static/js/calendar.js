@@ -332,14 +332,12 @@ function turndayuse(tag) {
                                break;
                            }
                            
-                        
-                        console.log(startDate);
-                        console.log(checkEvents[i].end);
+            
                     }
                     if (safe) {
-                        let candayuse = Number(checkin.value.split(':')[0]);
+                        let candayuse = Number(checkout.value.split(':')[0]);
                         let dayusecheckin = (candayuse + 1) / 10 >= 1 ? (candayuse + 1) : "0" + (candayuse + 1)
-                        let dayusecheckout = (candayuse + 6) / 10 >= 1 ? (candayuse + 6) : "0" + (candayuse + 6)
+                        let dayusecheckout = (candayuse + 1+Number(renttime)) / 10 >= 1 ? (candayuse + 6) : "0" + (candayuse + 6)
                         stayday.value = renttime;
                         var event = {
                             id: 'startDate',
@@ -363,7 +361,9 @@ function turndayuse(tag) {
         eventClick: function (info) {
             // 이벤트를 클릭할 때 추가 작업 수행 (예: 이벤트 삭제)
             if (info.event.id == 'startDate') {
-                console.log(checkin.value);
+
+                console.log(info.event.start);
+                console.log(info.event.end);
                 console.log(Number(checkout.value.split(':')[0])+Number(stayday.value) + Number(renttime))
                 if(Number(checkin.value.split(':')[0])>Number(checkout.value.split(':')[0])+Number(stayday.value) + Number(renttime)){
                     info.event.setProp('title', '대실-' + (Number(renttime) + Number(stayday.value)))
