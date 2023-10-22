@@ -12,6 +12,7 @@
 
 .container{
     font-family: 'Pretendard-Regular';
+
 }
 
 
@@ -25,4 +26,39 @@
     background-color: #0d6efd;
     color: white;
     font-weight: bold;
+}
+.category{
+    width: auto;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+
+
+ul.tabs{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+ul.tabs li{
+    background: none;
+    color: #222;
+    display: inline-block;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+ul.tabs li.current{
+    background: #ededed;
+    color: #222;
+}
+
+.tab-content{
+    display: none;
+    background: #ededed;
+    padding: 15px;
+}
+
+.tab-content.current{
+    display: inherit;
 }

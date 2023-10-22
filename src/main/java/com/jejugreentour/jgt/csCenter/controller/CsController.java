@@ -17,12 +17,6 @@ public class CsController {
 
     @GetMapping("/csForm")
     public String csForm(){
-
-
         return "content/csCenter/csCenter_main";
     }
-
-
-
-
 }
