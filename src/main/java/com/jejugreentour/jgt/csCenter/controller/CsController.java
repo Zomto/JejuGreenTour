@@ -29,7 +29,7 @@ public class CsController {
 
     // 공지 사항 목록 페이지
     @GetMapping("/annForm")
-    public String annForm(String annWriter, Model model){
+    public String annForm(Model model){
         model.addAttribute("annList", csService.annList());
         return "content/csCenter/announcement";
     }

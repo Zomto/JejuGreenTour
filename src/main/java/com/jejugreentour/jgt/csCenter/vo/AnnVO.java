@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class AnnVO {
-    private int accNum;
+    private int annNum;
     private String annCate;
     private String annWriter;
     private String annTitle;

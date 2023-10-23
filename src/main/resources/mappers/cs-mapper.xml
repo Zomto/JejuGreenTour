@@ -4,7 +4,7 @@
 <mapper namespace="csMapper">
 
     <resultMap id="announcement" type="com.jejugreentour.jgt.csCenter.vo.AnnVO">
-        <result column="ANN_NUM" property="accNum" />
+        <result column="ANN_NUM" property="annNum" />
         <result column="ANN_CATE" property="annCate" />
         <result column="ANN_WRITER" property="annWriter" />
         <result column="ANN_TITLE" property="annTitle" />
@@ -13,7 +13,13 @@
     </resultMap>
 
     <select id="annList" resultMap="announcement">
-        SELECT *
+        SELECT
+            ANN_NUM
+            , ANN_CATE
+            , ANN_WRITER
+            , ANN_TITLE
+            , ANN_CONTENT
+            , TO_CHAR(ANN_DATE,'YYYY-MM-DD') AS ANN_DATE
         FROM ANNOUNCEMENT
     </select>
 
