@@ -1,0 +1,226 @@
+@charset "utf-8";
+
+.w_in{
+    display: flex;
+}
+
+.main{
+    width: 70%;
+    margin-right: 30px;
+}
+
+.title{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.title span{
+    color: green;
+}
+
+.m_search{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.m_search input{
+    width: 87%;
+    padding: 15px;
+    border: 2px solid #222;
+}
+
+.m_search button{
+    width: 13%;
+    background-color: #222;
+    color: white;
+    border: 0;
+    cursor: pointer;
+}
+
+.m_keyword{
+    display: flex;
+    margin-bottom: 60px;
+}
+.m1_title{
+    color: #1db954;
+    font-size: 22px;
+    font-weight: 700;
+    padding-bottom: 15px;
+}
+.tbl table {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    border-collapse: separate;
+    table-layout: fixed;
+    font-size: 15px;
+}
+.tbl table.board_type th, .tbl table.board_type td {
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    color: #ffffff;
+
+}
+.tbl th {
+    background-color: #1ab752;
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+}
+.tbl th, .tbl td {
+    text-align: left;
+    min-height: 54px;
+    padding: 15px 20px;
+    font-weight: 400;
+    line-height: 23px;
+}
+.k_icon{
+    position: relative;
+    border: 1px solid #999;
+    background-color: #999;
+    padding: 3px 12px;
+    color: white;
+    margin-right: 30px;
+}
+
+.k_icon .triangle{
+    position: absolute;
+    top: 6px;
+    right: -21px;
+    display: inline-block;
+    border-top: 8px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 10px solid #999;
+}
+
+.m_keyword a{
+    color: #999;
+    margin-right: 30px;
+    line-height: 27px;
+}
+
+.m2{
+    position: relative;
+}
+
+.m2_title{
+    color: #1db954;
+    font-size: 22px;
+    font-weight: 700;
+    padding-bottom: 15px;
+    margin-top: 5%;
+}
+.m2> .tb1> .board_type{
+    margin-top: 5%;
+
+}
+.m2> .tb1 table{
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    border-collapse: separate;
+    table-layout: fixed;
+    font-size: 15px;
+}
+.tb1 th{
+    background-color: #1ab752;
+    font-size: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+.m2> .tb1> .board_type th,
+.m2> .tb1> .board_type td{
+    padding : 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    color: #ffffff;
+
+}
+.cont{
+    color: #000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.side{
+    width: 30%;
+}
+
+.s1{
+    padding: 15px;
+    border: 2px solid green;
+    margin-bottom: 42px;
+}
+
+.s1_ment1{
+    font-size: 17px;
+    color: #999;
+}
+
+.s1_ment2{
+    margin-bottom: 10px;
+}
+
+.s1_btn button{
+    width: 45%;
+    height: 30px;
+    border: 1px solid #999;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.s1_btn button:hover{
+    color: green;
+    border: 1px solid green;
+}
+
+.s1_btn_left{
+    margin-right: 15px;
+}
+
+.s1_btn_right{
+    color: green;
+}
+
+.s2_title{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    border-bottom: 1px solid #222;
+}
+
+.s2_title h3{
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+
+
+.s2 li{
+    padding: 20px 5px;
+    border-bottom: 1px solid #999;
+}
+
+.s2 span{
+    color: blueviolet;
+    margin-right: 30px;
+}
+

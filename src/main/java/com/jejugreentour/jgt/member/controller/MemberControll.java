@@ -69,4 +69,10 @@ public class MemberControll {
     public String myPageForm(){
         return "content/member/myPage_main";
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.removeAttribute("loginInfo");
+        return "redirect:/";
+    }
 }

@@ -59,6 +59,7 @@ a{
     font-weight: 700;
     padding-bottom: 20px;
     border-bottom: 2px solid #222;
+    color: #1db954;
 }
 
 .side_inner p{
@@ -75,8 +76,13 @@ a{
     border-bottom: 1px solid #222;
 }
 
-.side_inner > p > a:hover{
-    color: black;
+.myPageSide.on{
+    font-size: 20px;
+    font-weight: 700;
+    border-bottom: 2px solid #1db954;
+}
+.myPageSide.on a{
+    color: #1db954;
 }
 
 
