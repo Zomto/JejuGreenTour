@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!-- layout:decorate="~{fragment/main_layout}" -->
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<!-- <th:block layout:fragment="content"> -->
+
+<body>
+
+
+    <style>
+        .buybasket {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .buybasket_in {
+            background-color: #fff;
+            width: 400px;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .buy_button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .del_button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff2c2c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .buy_button:hover {
+            background-color: #45a049;
+        }
+
+        .del_button:hover {
+            background-color: #d62121;
+        }
+    </style>
+    <div class="buybasket">
+
+        <form action="/buy/accomReservation" method="post">
+            <div class="buybasket_in">
+
+                <h2 style="text-align: center;">숙박 상세 정보</h2>
+                <p>여관명: <span id="hotelName">[[${AccomCode.accomName}]]</span></p>
+                <p>방 이름: <span id="roomName">[[${subAccomCode.subAccomName}]]</span></p>
+                <p>숙박 일자: <span id="stayTerm">[[${basketAccomVO.stayTerm}]]</span></p>
+                <p th:if="${basketAccomVO.dayuse == 'N'}">숙박 가격: <span
+                        id="stayPrice">[[${subAccomCode.accomPrice}]]</span></p>
+                <p th:if="${basketAccomVO.dayuse == 'Y'}">숙박 가격: <span
+                        id="stayPrice">[[${subAccomCode.dayusePrice}]]</span></p>
+                <p>결제자명: <span id="memberId">[[${basketAccomVO.memberId}]]</span></p>
+                <!-- <p>연 락 처 : <span id="tel">010</span></p> -->
+                <p>숙박 날짜: 체크인 <span id="checkin">[[${basketAccomVO.stayStartDate}]]</span></p>
+                <p>숙박 날짜: 체크아웃<span id="checkout">[[${basketAccomVO.stayEndDate}]]</span></p>
+                <input type="hidden" name="dayuse" th:value="${basketAccomVO.dayuse}">
+                <input type="hidden" name="basketCode" th:value="${basketAccomVO.basketCode}">
+                <input class="buy_button" type="button" value="결제하기" onclick="confirmPayment()">
+                <input class="del_button" type="button" value="취소하기" onclick="cancelPayment()">
+            </div>
+        </form>
+    </div>
+    <script>
+        let stayTerm = document.querySelector('#stayTerm').innerHTML;
+        let stayPrice = document.querySelector('#stayPrice').innerHTML;
+        console.log(Number(stayTerm) * Number(stayPrice))
+        document.querySelector('#stayPrice').innerHTML = Number(stayTerm) * Number(stayPrice) + ''
+
+
+        function confirmPayment() {
+            // 결제
+            if (confirm("결제하시겠습니까?")) {
+                alert("결제가 완료되었습니다!");
+                document.querySelector('form').submit();
+            } else {
+                alert("결제가 취소되었습니다.");
+            }
+        }
+        function cancelPayment() {
+            if (confirm("취소하겠습니까?")) {
+                alert("결제가 취소되었습니다!");
+                location.href = "/"
+            } else {
+            }
+            // fetch 기능으로 삭제
+        }
+    </script>
+    <!-- </th:block> -->
+</body>
+
+</html>

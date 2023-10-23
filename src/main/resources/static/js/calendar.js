@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 for (let i = 0; i < allEvents.length; i++) {
                     if (allEvents[i].id == 'check') {
                         checkEvents.push({
-                            start: `${allEvents[i].start.getFullYear()}-${allEvents[i].start.getMonth() + 1}-${allEvents[i].start.getDate()}`,
-                            end: `${allEvents[i].end.getFullYear()}-${allEvents[i].end.getMonth() + 1}-${allEvents[i].end.getDate()}`
+                            start: eventsss[i].start.split('T')[0],//`${allEvents[i].start.getFullYear()}-${allEvents[i].start.getMonth() + 1}-${allEvents[i].start.getDate()}`
+                            end: eventsss[i].end.split('T')[0]//`${allEvents[i].end.getFullYear()}-${allEvents[i].end.getMonth() + 1}-${allEvents[i].end.getDate()}`
                         });
                     }
                 }
@@ -68,13 +68,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     setendday.value = null;
                     let safe = true;
                     for (let i = 0; i < checkEvents.length; i++) {
+
                         if ((checkEvents[i].start <= startDate && startDate < checkEvents[i].end)) {
+                            
                             console.log("안됨");
                             safe = false;
                             startinfo = null;
                             startDate = null;
-                            setendday.value = null;
-                            setstartday.value = null;
+                            setendday.value = '';
+                            setstartday.value = '';
                             break;
                         }
                     }
@@ -103,16 +105,14 @@ document.addEventListener('DOMContentLoaded', function () {
                         // }
                         //else {
                         if ((sta[i].value < endDate && endDate < en[i].value) || (startDate <= sta[i].value && sta[i].value < endDate)) {
-                            console.log(info)
-                            console.log(sta[i].value)
-                            console.log(en[i].value)
+                       
                             console.log("안됨");
                             calendar.getEventById('startDate').remove();
                             startDate = null;
                             startinfo = null;
                             endDate = null;
-                            setstartday.value = null;
-                            setendday.value = null;
+                            setstartday.value = '';
+                            setendday.value = '';
                             safe = false;
                             break;
                         }
@@ -239,6 +239,7 @@ function turndayuse(tag) {
     setstartday.value = null;
     setendday.value = null;
     stayday.value = 0;
+    let setday = 0;
     let sta = document.querySelectorAll('.start');
     let en = document.querySelectorAll('.end');
     let dayuse = document.querySelectorAll('.dayuse');
@@ -303,10 +304,14 @@ function turndayuse(tag) {
                 let checkEvents = [];
                 for (let i = 0; i < allEvents.length; i++) {
                     if (allEvents[i].id == 'check') {
-                        checkEvents.push({
-                            start: `${allEvents[i].start.getFullYear()}-${allEvents[i].start.getMonth() + 1}-${allEvents[i].start.getDate()}`,
-                            end: `${allEvents[i].end.getFullYear()}-${allEvents[i].end.getMonth() + 1}-${allEvents[i].end.getDate()}`
-                        });
+                        if (dayuse[i].value == 'Y') {
+                            checkEvents.push({
+                                start: eventsss[i].start,//`${allEvents[i].start.getFullYear()}-${allEvents[i].start.getMonth() + 1}-${allEvents[i].start.getDate()}`
+                                end: eventsss[i].end//`${allEvents[i].end.getFullYear()}-${allEvents[i].end.getMonth() + 1}-${allEvents[i].end.getDate()}`
+                            });
+                        }else{
+
+                        }
                     }
                 }
                 if (startDate != null) {
@@ -318,38 +323,38 @@ function turndayuse(tag) {
                     startDate = info.startStr;
                     setstartday.value = startDate;
                     setendday.value = startDate;
+                    let candayuse = Number(checkout.value.split(':')[0]);
+                    let dayusecheckin = (candayuse + 1) / 10 >= 1 ? (candayuse + 1) : "0" + (candayuse + 1)
+                    startDate=startDate+'T' + dayusecheckin + ':00:00';
                     let safe = true;
                     for (let i = 0; i < checkEvents.length; i++) {
-                        
-                            if ((checkEvents[i].start <= startDate && startDate < checkEvents[i].end)|| (checkEvents[i].start == checkEvents[i].end && checkEvents[i].start <= startDate && startDate <= checkEvents[i].end)) {//
+                       
+                        if ((checkEvents[i].start <= startDate && startDate < checkEvents[i].end) || (checkEvents[i].start == checkEvents[i].end && checkEvents[i].start <= startDate && startDate <= checkEvents[i].end)) {//
 
-                               console.log("안됨");
-                               safe = false;
-                               startinfo = null;
-                               startDate = null;
-                               setendday.value = null;
-                               setstartday.value = null;
-                               break;
-                           }
-                           
-                        
-                        console.log(startDate);
-                        console.log(checkEvents[i].end);
+                            console.log("안됨");
+                            safe = false;
+                            startinfo = null;
+                            startDate = null;
+                            setendday.value = '';
+                            setstartday.value = '';
+                            break;
+                        }
+
+
                     }
                     if (safe) {
-                        let candayuse = Number(checkin.value.split(':')[0]);
-                        let dayusecheckin = (candayuse + 1) / 10 >= 1 ? (candayuse + 1) : "0" + (candayuse + 1)
-                        let dayusecheckout = (candayuse + 6) / 10 >= 1 ? (candayuse + 6) : "0" + (candayuse + 6)
-                        stayday.value = renttime;
+                        let dayusecheckout = (candayuse + 1 + Number(renttime)) / 10 >= 1 ? (candayuse + 6) : "0" + (candayuse + 6)
+                        stayday.value = 1;
+                        setday = renttime
                         var event = {
                             id: 'startDate',
                             title: '대실-' + renttime, // 이벤트 제목
-                            start: startDate + 'T' + dayusecheckin + ':00:00', // 시작 날짜
+                            start: startDate , // 시작 날짜
                             end: startDate + 'T' + dayusecheckout + ':00:00', // 끝나는 날짜
                             backgroundColor: 'red', // 배경색 설정
                         };
-                        setStartDay.value =startDate.split('T')[0]+'T'+(Number(checkout.value.split(':')[0])+1)+':00:00';
-                        setEndDay.value =startDate.split('T')[0]+'T'+(Number(checkout.value.split(':')[0])+1+Number(renttime))+':00:00'
+                        setStartDay.value = startDate.split('T')[0] + 'T' + (Number(checkout.value.split(':')[0]) + 1) + ':00:00';
+                        setEndDay.value = startDate.split('T')[0] + 'T' + (Number(checkout.value.split(':')[0]) + 1 + Number(renttime)) + ':00:00'
                         // setEndDay.value =endDate.split('T')[0] +(checkin.value.split(':')[0]-1)+'00:00';
                         calendar.addEvent(event);
                         // 선택 영역 초기화
@@ -363,12 +368,13 @@ function turndayuse(tag) {
         eventClick: function (info) {
             // 이벤트를 클릭할 때 추가 작업 수행 (예: 이벤트 삭제)
             if (info.event.id == 'startDate') {
-                console.log(checkin.value);
-                console.log(Number(checkout.value.split(':')[0])+Number(stayday.value) + Number(renttime))
-                if(Number(checkin.value.split(':')[0])>Number(checkout.value.split(':')[0])+Number(stayday.value) + Number(renttime)){
-                    info.event.setProp('title', '대실-' + (Number(renttime) + Number(stayday.value)))
-                    stayday.value = Number(stayday.value) + Number(renttime);
-                    setEndDay.value =startDate.split('T')[0]+'T'+(Number(checkout.value.split(':')[0])+1+ Number(stayday.value))+':00:00'
+
+                console.log(Number(checkout.value.split(':')[0]) + Number(setday) + Number(renttime))
+                if (Number(checkin.value.split(':')[0]) > Number(checkout.value.split(':')[0]) + Number(setday) + Number(renttime)) {
+                    info.event.setProp('title', '대실-' + (Number(renttime) + Number(setday)))
+                    setday = Number(setday) + Number(renttime);
+                    stayday.value = Number(stayday.value) + 1;
+                    setEndDay.value = startDate.split('T')[0] + 'T' + (Number(checkout.value.split(':')[0]) + 1 + Number(setday)) + ':00:00'
                 }
             }
         },
@@ -439,8 +445,8 @@ function turnreserv(tag) {
                 for (let i = 0; i < allEvents.length; i++) {
                     if (allEvents[i].id == 'check') {
                         checkEvents.push({
-                            start: `${allEvents[i].start.getFullYear()}-${allEvents[i].start.getMonth() + 1}-${allEvents[i].start.getDate()}`,
-                            end: `${allEvents[i].end.getFullYear()}-${allEvents[i].end.getMonth() + 1}-${allEvents[i].end.getDate()}`
+                            start: eventsss[i].start.split('T')[0],//`${allEvents[i].start.getFullYear()}-${allEvents[i].start.getMonth() + 1}-${allEvents[i].start.getDate()}`
+                            end: eventsss[i].end.split('T')[0]//`${allEvents[i].end.getFullYear()}-${allEvents[i].end.getMonth() + 1}-${allEvents[i].end.getDate()}`
                         });
                     }
                 }
@@ -462,8 +468,8 @@ function turnreserv(tag) {
                             safe = false;
                             startinfo = null;
                             startDate = null;
-                            setendday.value = null;
-                            setstartday.value = null;
+                            setendday.value = '';
+                            setstartday.value = '';
                             break;
                         }
                     }
@@ -492,16 +498,14 @@ function turnreserv(tag) {
                         // }
                         //else {
                         if ((sta[i].value < endDate && endDate < en[i].value) || (startDate <= sta[i].value && sta[i].value < endDate)) {
-                            console.log(info)
-                            console.log(sta[i].value)
-                            console.log(en[i].value)
+                           
                             console.log("안됨");
                             calendar.getEventById('startDate').remove();
                             startDate = null;
                             startinfo = null;
                             endDate = null;
-                            setstartday.value = null;
-                            setendday.value = null;
+                            setstartday.value = '';
+                            setendday.value = '';
                             safe = false;
                             break;
                         }
@@ -547,7 +551,7 @@ function turnreserv(tag) {
                             console.log("안됨");
                             startinfo = null;
                             startDate = null;
-                            setstartday.value = null;
+                            setstartday.value = '';
                             safe = false;
                             break;
                         }
@@ -578,4 +582,23 @@ function turnreserv(tag) {
         // },
     });
     calendar.render();
+}
+
+function checksubmit(){
+
+    let setstartday = document.querySelector('#setStartDay');
+    let setendday = document.querySelector('#setEndDay');
+    let memberId=document.querySelector('#memberId');
+    if((setstartday.value!=null&&setstartday.value!='')&&(setendday.value!=null&&setendday.value!='')){
+        if(memberId!=null&&memberId.value!=''){
+            document.querySelector('#calendarform').submit();
+        }else{
+            if(confirm('로그인 하시겠습니까?')){
+                location.href='/member/loginForm';
+            }
+        }
+    }else{
+    alert('날짜를 제대로 서택해 주세요')
+}
+
 }

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/csCenter_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항 작성</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+</head>
+<body>
+    <th:block layout:fragment="content">
+        <form action="/cs/inputAnn" method="post">
+            <div class="wrap">
+                <div class="w_in">
+                    <div>
+                        <label for="">제목</label>
+                        <input type="text" name="annTitle">
+                    </div>
+                    <div>
+                        <label for="">카테고리</label>
+                        <select name="annCate">
+                            <option value="CATE_001">일반</option>
+                            <option value="CATE_002">오픈소식</option>
+                            <option value="CATE_003">서비스정보</option>
+                            <option value="CATE_004">당첨자발표</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="">작성자</label>
+                        <span></span>
+                    </div>
+                    <div>
+                        <label for="">내용</label>
+                        <textarea id="summernote" name="annContent"></textarea>
+                    </div>
+
+                    <input type="submit" value="작성완료">
+                </div>
+            </div>
+
+
+            
+
+
+            <!-- 썸머노트 적용 -->
+            <script>
+                $(document).ready(function() {
+                    $('#summernote').summernote();
+                });
+                </script>
+        
+            <!-- 썸머노트 툴바 -->
+            <script>
+                $('#summernote').summernote({
+                  placeholder: '내용을 작성해주세요.',
+                  tabsize: 2,
+                  height: 500,
+                  toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                  ],
+                    fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+                    fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+                });
+              </script>
+        </form>
+    </th:block>
+</body>
+</html>

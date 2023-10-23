@@ -10,4 +10,6 @@ public class BasketAccomVO {
     private String stayStartDate;
     private String stayEndDate;
     private String stayTerm;
+    private String dayuse;
+    private SampleSubVO sampleSubVO;
 }

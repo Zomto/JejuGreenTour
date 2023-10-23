@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="buyMapper">
+<mapper namespace="buyMapper" >
+
+
     <resultMap id="reservation" type="com.jejugreentour.jgt.buy.vo.ReservationVO">
         <id column="RESERVATION_CODE" property="reservationCode" />
         <result column="SUB_ACCOM_CODE" property="subAccomCode"/>
@@ -9,66 +11,142 @@
         <result column="STAY_START_DATE" property="stayStartDate"/>
         <result column="STAY_END_DATE" property="stayEndDate"/>
         <result column="RESERVATION_DATE" property="reservationDate"/>
+        <result column="RESERVATION_NAME" property="reservationName"/>
         <result column="RESERVATION_PRICE" property="reservationPrice"/>
+        <result column="DAY_USE" property="dayuse"/>
     </resultMap>
 
-    <resultMap id="basketAccom" type="com.jejugreentour.jgt.buy.vo.ReservationVO">
+    <resultMap id="Accom" type="com.jejugreentour.jgt.buy.vo.SampleACCVO">
+    <id column="ACCOM_CODE" property="accomCode" />
+    <result column="ACCOM_NAME" property="accomName"/>
+    </resultMap>
+
+    <resultMap id="subAccom" type="com.jejugreentour.jgt.buy.vo.SampleSubVO">
+        <id column="SUB_ACCOM_CODE" property="subAccomCode" />
+        <result column="ACCOM_CODE" property="accomCode"/>
+        <result column="SUB_ACCOM_NAME" property="subAccomName"/>
+        <result column="ACCOM_PRICE" property="accomPrice"/>
+        <result column="DAY_USE_PRICE" property="dayusePrice"/>
+        <result column="ACCOM_START_TIME" property="accomStartTime"/>
+        <result column="ACCOM_END_TIME" property="accomEndTime"/>
+        <result column="RENT_TIME" property="rentTime"/>
+        <result column="DAY_USE_CAN" property="dayuseCan"/>
+        <collection property="ReservationList" resultMap="reservation"/>
+    </resultMap>
+
+
+    <resultMap id="basketAccom" type="com.jejugreentour.jgt.buy.vo.BasketAccomVO">
         <id column="BASKET_CODE" property="basketCode" />
         <result column="SUB_ACCOM_CODE" property="subAccomCode"/>
         <result column="MEMBER_ID" property="memberId"/>
         <result column="STAY_START_DATE" property="stayStartDate"/>
         <result column="STAY_END_DATE" property="stayEndDate"/>
         <result column="STAY_TERM" property="stayTerm"/>
+        <result column="DAY_USE" property="dayuse"/>
+        <collection property="sampleSubVO" resultMap="subAccom"/>
     </resultMap>
 
+    <select id="selectAccom" resultMap="Accom">
+        SELECT * FROM MAIN_ACCOM
+        WHERE ACCOM_CODE = #{accomCode}
+    </select>
+
+    <!--방의 정보 가져오기-->
+    <select id="selectSubAccom" resultMap="subAccom">
+        SELECT * FROM SUB_ACCOM
+        WHERE SUB_ACCOM_CODE = #{subAccomCode}
+    </select>
+    <select id="selectbasketAccom" resultMap="basketAccom">
+        SELECT * FROM BASKET_STAY_ACCOM
+        WHERE BASKET_CODE = #{basketCode}
+    </select>
+
+    <!--방의 예약 정보 가져오기-->
     <select id="selectReservation" resultMap="reservation">
         SELECT RESERVATION_CODE
-        , TO_CHAR(STAY_START_DATE, 'YYYY-MM-DD HH24:MI:SS') AS STAY_START_DATE
-        , TO_CHAR(STAY_END_DATE, 'YYYY-MM-DD HH24:MI:SS') AS STAY_END_DATE
+        , STAY_START_DATE
+        , STAY_END_DATE
+        , DAY_USE
         FROM RESERVATION_STAY_ACCOM
         WHERE SUB_ACCOM_CODE = #{subAccomCode}
     </select>
-    
+    <select id="basketNum" resultType="String">
+        SELECT 'BAS_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(BASKET_CODE,5))),0)+1,3,'0')FROM BASKET_STAY_ACCOM
+    </select>
+    <select id="reservationNum" resultType="String">
+        SELECT 'RESERV_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(RESERVATION_CODE,8))),0)+1,3,'0')
+        FROM RESERVATION_STAY_ACCOM
+    </select>
+
+
     <insert id="insertBasketAccom">
         INSERT INTO BASKET_STAY_ACCOM(BASKET_CODE
         , SUB_ACCOM_CODE
         , MEMBER_ID
         , STAY_START_DATE
         , STAY_END_DATE
-        , STAY_TERM)
+        , STAY_TERM
+        , DAY_USE)
         VALUES((SELECT 'BAS_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(BASKET_CODE,5))),0)+1,3,'0')FROM BASKET_STAY_ACCOM)
         , #{subAccomCode}
         , #{memberId}
         , #{stayStartDate}
         , #{stayEndDate}
-        , #{stayTerm})
+        , #{stayTerm}
+        , #{dayuse})
     </insert>
 
+
     <select id="selectBasketAccomList" resultMap="basketAccom">
-        SELECT *
-        FROM BASKET_STAY_ACCOM
-        WHERE MEMBER_ID = #{memberId}
+        SELECT BASKET_CODE
+        , ba.SUB_ACCOM_CODE
+        , MEMBER_ID
+        , STAY_START_DATE
+        , STAY_END_DATE
+        , STAY_TERM
+        , DAY_USE
+        , SUB_ACCOM_NAME
+        , ACCOM_NAME
+        FROM BASKET_STAY_ACCOM ba ,SUB_ACCOM su ,MAIN_ACCOM ma
+        WHERE ba.MEMBER_ID = #{memberId}
+        AND ba.SUB_ACCOM_CODE =su.SUB_ACCOM_CODE
+        AND su.ACCOM_CODE= ma.ACCOM_CODE
     </select>
+
+    <select id="selectReservationOne" resultMap="reservation">
+        SELECT *
+        FROM RESERVATION_STAY_ACCOM
+        WHERE RESERVATION_CODE = #{reservationCode}
+    </select>
+
 
     <insert id="insertReservation">
         INSERT INTO RESERVATION_STAY_ACCOM(
-        RESERVATION_CODE, SUB_ACCOM_CODE, MEMBER_ID, STAY_START_DATE, STAY_END_DATE, RESERVATION_PRICE)
+        RESERVATION_CODE, SUB_ACCOM_CODE, MEMBER_ID, STAY_START_DATE, STAY_END_DATE, RESERVATION_PRICE, RESERVATION_NAME, DAY_USE)
         SELECT (SELECT 'RESERV_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(RESERVATION_CODE,8))),0)+1,3,'0')
-          FROM RESERVATION_STAY_ACCOM) AS RESERVATION_CODE
+        FROM RESERVATION_STAY_ACCOM) AS RESERVATION_CODE
         , BAS.SUB_ACCOM_CODE
         , MEMBER_ID
-        , TO_DATE((TO_CHAR(STAY_START_DATE, 'YYYY-MM-DD')||ACCOM_START_TIME),'YYYY-MM-DDHH:MI:SS') AS STAY_START_DATE
-        , TO_DATE((TO_CHAR(STAY_END_DATE, 'YYYY-MM-DD')||ACCOM_END_TIME),'YYYY-MM-DDHH:MI:SS') AS STAY_END_DATE
-        , (STAY_TERM*ACCOM_PRICE) AS RESERVATION_PRICE
+        , STAY_START_DATE
+        , STAY_END_DATE
+        <if test='dayuse.equals("N")'>
+            , (STAY_TERM*ACCOM_PRICE) AS RESERVATION_PRICE
+            ,  SUB_ACCOM_NAME||TO_CHAR(STAY_TERM)|| '박' || TO_CHAR(STAY_TERM+1) || '일'
+        </if>
+        <if test='dayuse.equals("Y")'>
+            , (STAY_TERM*DAY_USE_PRICE) AS RESERVATION_PRICE
+            ,  SUB_ACCOM_NAME || '대실' || TO_CHAR(STAY_TERM*RENT_TIME) || '시간'
+        </if>
+        , DAY_USE
         FROM BASKET_STAY_ACCOM BAS, SUB_ACCOM SUB
-        WHERE BASKET_CODE = #{BASKET_CODE}
+        WHERE BASKET_CODE = #{basketCode}
         AND BAS.SUB_ACCOM_CODE=SUB.SUB_ACCOM_CODE
     </insert>
+
     <delete id="deleteBasketAccom">
         DELETE FROM BASKET_STAY_ACCOM
         WHERE BASKET_CODE=#{basketCode}
     </delete>
-    
-    
-    
+
 </mapper>
+    
