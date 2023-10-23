@@ -10,13 +10,14 @@
 <th:block th:fragment="myPageSideFragment">
     <div class="side_menu">
         <div class="side_inner">
-            <h3>마이페이지</h3>
-            <p><a href="">예약내역</a></p>
-            <p><a href="">문의하기</a></p>
-            <p><a href="">문의내역</a></p>
-            <p class="menu_last"><a href="">자주 찾는 질문</a></p>
+            <a href=""><h3>마이페이지</h3></a>
+            <p class="myPageSide on"><a href="">예약내역 & 찜</a></p>
+            <p class="myPageSide"><a href="">정보수정</a></p>
+            <p class="myPageSide"><a href="">자주 찾는 질문</a></p>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/js/myPage_side.js"></script>
 </th:block>
 </body>
 </html>

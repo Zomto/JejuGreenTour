@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/myPage_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/member/myPage_main.css">
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <div class="wrap">
+            <div class="w_in">
+                <div class="main">
+                    <h3 class="m1_title">예약내역</h3>
+                    <div class="tbl">
+                        <table class="board_type">
+                            <colgroup>
+                                <col style="width : 14%; border-radius: 0 0 0 50%;">
+                                <col style="width: 50%">
+                                <col style="width : 15%;">
+                                <col style="width : 9%;">
+                                <col style="width : 12%;">
+                            </colgroup>
+                            <thead>
+                                <th style="border-radius: 15px 0 0 0;">예약날짜</th>
+                                <th>숙소명</th>
+                                <th>결제금액</th>
+                                <th>인원</th>
+                                <th style="border-radius: 0 15px 0 0;">예약상태</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6">
+                                        <div class="data_no">
+                                            <div class="cont">
+                                                <strong>"현재 예약 내역이 존재하지 않습니다."</strong><br>
+                                                "즐거운 여행 계획을 준비해 보세요!"
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="m2">
+                        <h3 class="m2_title">찜 목록</h3>
+                        <input type="button" value="전체삭제" class="m2_delete_all">
+                        <div class="tb1">
+                            <table class="board_type">
+                                <colgroup>
+                                    <col style="width : 100%; border-radius: 0 0 0 50%; ">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th style="border-radius: 15px 15px 0 0;">숙소명</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class=wish_inner>
+                                                <strong>찜에 담긴 상품이 없습니다.</strong>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="m3">
+                    </div>
+                </div>
+                <div class="side">
+                    <div class="s1">
+                        <div class="s1_ment1">1:1문의</div>
+                        <div class="s1_ment2">궁금하신 사항을 남겨주세요</div>
+                        <div class="s1_btn">
+                            <button class="s1_btn_left">문의내역 확인</button>
+                            <button class="s1_btn_right">문의하기</button>
+                        </div>
+                    </div>
+                    <div class="s2">
+                        <div class="s2_title">
+                            <h3>공지사항/당첨자발표</h3>
+                            <p class="s2_more_btn"><a href="">더보기</a></p>
+                        </div>
+                        <ul>
+                            <li><a href="">제발 집에 보내주세요</a></li>
+                            <li><a href=""><span>공지사항</span>제발 집에 보내주세요</a></li>
+                            <li><a href=""><span>공지사항</span>제발 집에 보내주세요</a></li>
+                            <li><a href=""><span>당첨자발표</span>제발 집에 보내주세요</a></li>
+                            <li><a href=""><span>당첨자발표</span>제발 집에 보내주세요</a></li>
+                        </ul>
+                    </div>
+                    <div class="s3"></div>
+                    <div class="s4"></div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</body>
+
+</html>

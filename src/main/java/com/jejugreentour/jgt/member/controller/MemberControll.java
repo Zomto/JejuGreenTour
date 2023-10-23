@@ -65,4 +65,14 @@ public class MemberControll {
         return Integer.parseInt(MailSender);
     }
 
+    @GetMapping("/myPageForm")
+    public String myPageForm(){
+        return "content/member/myPage_main";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.removeAttribute("loginInfo");
+        return "redirect:/";
+    }
 }

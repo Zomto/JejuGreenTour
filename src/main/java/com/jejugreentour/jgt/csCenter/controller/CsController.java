@@ -23,10 +23,9 @@ public class CsController {
     // 공지 사항 메인 페이지
     @GetMapping("/csForm")
     public String csForm(){
-
-
         return "content/csCenter/csCenter_main";
     }
+
 
     // 공지 사항 목록 페이지
     @GetMapping("/annForm")
