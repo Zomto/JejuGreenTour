@@ -42,14 +42,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="ann, state : ${ann}">
+                        <tr th:each="ann, state : ${annList}">
                             <td width="10%">[[${ann.annNum}]]</td>
                             <td width="15%">[[${ann.annCate}]]</td>
-                            <td width="">[[${ann.title}]]</td>
+                            <td width="">[[${ann.annTitle}]]</td>
                             <td width="15%">[[${ann.annDate}]]</td>
                         </tr>
                     </tbody>
                 </table>
+                <button onclick="location.href='/cs/snForm';">글 작성</button>
             </div>
         </div>
     </th:block>
