@@ -26,6 +26,15 @@ public class BuyServiceImpl implements BuyService{
     }
 
     @Override
+    public String selectNewbasketNum() {
+        return sqlSession.selectOne("buyMapper.basketNum");
+    }
+    @Override
+    public String selectNewreservationNum() {
+        return sqlSession.selectOne("buyMapper.reservationNum");
+    }
+
+    @Override
     public List<ReservationVO> selectReservation(String subAccomCode) {
        return sqlSession.selectList("buyMapper.selectReservation",subAccomCode);
     }
@@ -44,5 +53,10 @@ public class BuyServiceImpl implements BuyService{
     public void insertReservation(BasketAccomVO basketAccomVO) {
         sqlSession.insert("buyMapper.insertReservation",basketAccomVO);
         sqlSession.delete("buyMapper.deleteBasketAccom",basketAccomVO);
+    }
+
+    @Override
+    public ReservationVO selectReservationOne(String reservationCode) {
+        return sqlSession.selectOne("buyMapper.selectReservationOne",reservationCode);
     }
 }

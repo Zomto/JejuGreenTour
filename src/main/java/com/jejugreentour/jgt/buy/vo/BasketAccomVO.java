@@ -11,4 +11,5 @@ public class BasketAccomVO {
     private String stayEndDate;
     private String stayTerm;
     private String dayuse;
+    private SampleSubVO sampleSubVO;
 }
