@@ -1,0 +1,32 @@
+.checkSubAccomCate{
+    border: 1px solid #000;
+    border-bottom: 0;
+    width: 900px;
+    display: block !important;
+    margin-left: -4px;
+
+}
+.checkBoxSubAccomCate{
+    width: 20%;
+}
+.checkSubAccomCate1, .checkSubAccomCate2{
+    margin: 30px 0;
+}
+.input_joinBtn{
+    position: relative;
+}
+#join-btn{
+    position: absolute;
+    margin: 20px 0;
+    left: 50%;
+    margin-left: -30px;
+    border-radius: 5px;
+    width: 100px;
+    height: 50px;
+    border: 1px solid #015207 !important;
+    border-style: groove;
+    background-color: #0bb005;
+    color: aliceblue;
+    font-weight: 700;
+}
+

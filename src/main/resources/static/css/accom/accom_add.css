@@ -50,7 +50,8 @@ textarea{
 }
 
 .label_area{
-    width: 7%;
+    width: 110px;
+    box-sizing: border-box;
     border: 1px solid #222;
     border-right: 0;
     padding: 20px;
@@ -59,7 +60,7 @@ textarea{
 }
 
 .input_area{
-    width: 93%;
+    width: 900px;
     border: 1px solid #222;
     padding: 20px;
     border-bottom: 0;
@@ -80,7 +81,6 @@ textarea{
 .input_subImg p{
     border-bottom: 1px solid #222;
 }
-<<<<<<< HEAD
 
 .preview_mainImg p{
     border-bottom: 0;
@@ -94,5 +94,3 @@ textarea{
 .table_img .preview_mainImg, .table_img .preview_subImg{
     
 }
-=======
->>>>>>> el2013

@@ -1,0 +1,177 @@
+.wrap{
+    padding: 20px 0;
+}
+.inner{
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 50px;
+    width: 1200px;
+    border-radius: 10px;
+    border: 2px solid #000;
+}
+.Form{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.label_area{
+    box-sizing: border-box;
+    position: relative;
+    width: 100px;
+    height: 100%;
+    background-color: #1ab752;
+    border: 1px solid #ddd;
+    opacity: 0.9;
+    border-radius: 10px;
+    margin-right: 30px;
+}
+
+.label_area > label{
+    font-weight: 700;
+    color: #fff;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+}
+.input_area{
+    width: 500px;
+    height: 100%;
+    position: relative;
+    border: 1px solid #03c75a;
+    border-radius: 10px;
+}
+.input_area input{
+    font-size: 20px;
+    position: absolute;
+    border: 0;
+    width: 98%;
+    top: 20%;
+    left: 2%;
+}
+.Form.intro{
+    height: 100px;
+}
+.Form.intro > .label_area > label{
+    top: 30%;
+}
+.input_area input:focus{
+    border-color: transparent;
+    outline: none;
+}
+
+.input_area textarea{
+    font-size: 20px;
+    width: 98%;
+    border: 0;
+    padding: 10px 10px;
+    background-color: transparent;
+    resize: none;
+}
+.input_area textarea::placeholder{
+    color: #02883e;
+    
+}
+.input_area textarea:focus{
+    border-color: transparent;
+    outline: none;
+}
+.area1{
+    display: flex;
+    margin-right: 30px;
+}
+.area1 .label_area label{
+    top: 30%;
+    left: 24%;
+}
+.area1 .input_area{
+    display: flex;
+    position: relative;
+    width: 330px;
+    box-sizing: border-box;
+    padding: 0px 8px;
+}
+.area1 .input_area .input_inner{
+    margin: 10px;
+}
+.input_area span{
+    color: #02883e;
+    font-weight: 700;
+    font-size: 17px;
+    margin-right: 10px;
+}
+.input_inner select{
+    width: 50px;
+    height: 30px;
+    border-radius: 10px;
+    padding-top: 0px;
+    font-size: 17px;
+    color: #02883e;
+    border-color: #03c75a;
+}
+
+.input_area.time{
+    width: 470px;
+}
+
+.input_area.time select{
+    width: 50px;
+}
+
+.checkBoxRent{
+    display: flex;
+}
+.checkBoxRent span{
+    margin-top: 12px;
+}
+.rentDiv > .rent{
+    position: relative;
+    margin-top: 8px;
+    width: 20px;
+}
+.input_area.time > .input_inner{
+    margin: 10px 0;
+}
+.rentDiv input[type="radio"]:checked + label{
+    background-color: #03c75a;
+    color: #03c75a;
+}
+
+.input_area.time > .input_inner.fir{
+    margin-left: 10px;
+}
+.input_area.time > .input_inner.sec{
+    margin-right: 10px;
+}
+
+.Form.category > .label_area{
+    height: 100px;
+}
+.checkSubAccomCate1, .checkSubAccomCate2{
+    display: flex;
+}
+.Form.category > .label_area > label{
+    text-align: center;
+    top:29%;
+    left: 15%;
+}
+.Form.category > .input_area{
+    width: 958px;
+    height: 100px;
+}
+.checkBoxSubAccomCate{
+    width: 130px;
+    margin: 11px 40px;
+}
+.checkBoxSubAccomCate.last{
+    margin-right: 0;
+}
+.checkBoxSubAccomCate > input{
+    position: relative;
+    width: 10px;
+}
+
+.Form.category{
+    margin-bottom: 70px;
+}
