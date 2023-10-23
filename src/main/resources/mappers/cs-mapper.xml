@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="csMapper">
+
+    <resultMap id="announcement" type="com.jejugreentour.jgt.csCenter.vo.AnnVO">
+        <result column="ANN_NUM" property="accNum" />
+        <result column="ANN_CATE" property="annCate" />
+        <result column="ANN_WRITER" property="annWriter" />
+        <result column="ANN_TITLE" property="annTitle" />
+        <result column="ANN_CONTENT" property="annContent"/>
+        <result column="ANN_DATE" property="annDate"/>
+    </resultMap>
+
+    <select id="annList" resultMap="announcement">
+        SELECT *
+        FROM ANNOUNCEMENT
+    </select>
+
+    <insert id="inputAnn">
+        INSERT INTO ANNOUNCEMENT (
+            ANN_NUM
+            , ANN_CATE
+            , ANN_WRITER
+            , ANN_TITLE
+            , ANN_CONTENT
+            , ANN_DATE
+        )
+        VALUES (
+            (SELECT NVL(MAX(ANN_NUM), 0) + 1
+            FROM ANNOUNCEMENT)
+            , #{annCate}
+            , #{annWriter}
+            , #{annTitle}
+            , #{annContent}
+            , TO_DATE(#{annDate},'YYYY-MM-DD') AS ANN_DATE
+        );
+    </insert>
+
+</mapper>
