@@ -587,13 +587,16 @@ a{
     padding-top: 50px;
     padding-bottom: 60px;
     margin-bottom: 100px;
-    background-color: #48e57e;
+
 }
 /* 본문1~7 공통으로 사용*/
 .inner{
     width: 1200px;
+    padding: 30px;
     margin-left: auto;
     margin-right: auto;
+    background:linear-gradient(to right, #6bb88e, #3cc972);
+
 }
 .main1 .inner{
     align-items: center;
@@ -725,7 +728,7 @@ a{
 .m1_right{
     position: relative;
     width: 1200px;
-    background-color: #ddd4c7;
+
 }
 .ms_btn{
     position: absolute;
