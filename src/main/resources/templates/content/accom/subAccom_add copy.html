@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/main_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/accom/accom_add.css">
+    <link rel="stylesheet" href="/css/accom/subAccom_add.css">
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <form action="/accom/addSubAccom" id="joinForm" method="post" enctype="multipart/form-data">
+            <div id="wrap">
+                <div id="inner">
+                    <h3>숙박 등록(SUB)</h3>
+                    <div class="addAccomTable">
+                        <div class="table_inner">
+                            <div class="table_text">
+                                <div class="input_accomName">
+                                    <p class="label_area"><label for="accomName">ROOM NAME</label></p>
+                                    <p class="input_area"><input type="text" id="accomName" name="accomName"></p>
+                                </div>
+                                <div class="input_addrDetail">
+                                    <p class="label_area"><label for="accomAddr">상세주소</label></p>
+                                    <p class="input_area"><input type="text" id="addrDetail" name="addrDetail"></p>
+                                </div>
+                                <div class="input_accomCate">
+                                    <p class="label_area"><label for="accomCate">CATEGORY<br>(DETAIL)</label></p>
+                                    <div class="checkSubAccomCate">
+                                        <div class="checkSubAccomCate1">
+                                            <div class="checkBoxSubAccomCate">
+                                                <input type="checkbox" name="accomCate" value="CATE_001">
+                                                <span>해당 없음</span>
+                                            </div>
+                                            <div class="checkBoxSubAccomCate">
+                                                <input type="checkbox" name="accomCate" value="CATE_001">
+                                                <span>풀빌라</span>
+                                            </div>
+                                            <div class="checkBoxSubAccomCate">
+                                                <input type="checkbox" name="accomCate" value="CATE_001">
+                                                <span>오션 뷰</span>
+                                            </div>
+                                            <div class="checkBoxSubAccomCate">
+                                                <input type="checkbox" name="accomCate" value="CATE_001">
+                                                <span>PC 룸</span>
+                                            </div>
+                                            <div class="checkBoxSubAccomCate">
+                                                <input type="checkbox" name="accomCate" value="CATE_001">
+                                                <span>N플릭스</span>
+                                            </div>
+                                        </div>
+                                        <div class="checkSubAccomCate2">
+                                            <div class="checkBoxSubAccomCate">
+                                                <input type="checkbox" name="accomCate" value="CATE_001">
+                                                <span>금연</span>
+                                            </div>
+                                            <div class="checkBoxSubAccomCate">
+                                                <input type="checkbox" name="accomCate" value="CATE_001">
+                                                <span>흡연 O</span>
+                                            </div>
+                                            <div class="checkBoxSubAccomCate">
+                                                <input type="checkbox" name="accomCate" value="CATE_001">
+                                                <span>반려동물 O</span>
+                                            </div>
+                                            <div class="checkBoxSubAccomCate">
+                                                <input type="checkbox" name="accomCate" value="CATE_001">
+                                                <span>반려동물 X</span>
+                                            </div>
+                                            <div class="checkBoxSubAccomCate">
+                                                <input type="checkbox" name="accomCate" value="CATE_001">
+                                                <span>노키즈 존</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="input_accomIntro">
+                                    <p class="label_area"><label for="accomIntro">ROOM INTRO</label></p>
+                                    <p class="input_area"><textarea id="accomIntro" name="accomIntro"
+                                            rows="3"></textarea>
+                                    </p>
+                                </div>
+                                <div class="input_basicMan">
+                                    <div class="label_area1">
+                                        <p class="label_area2"><label for="basicMan">숙박 인원</label></p>
+                                        <p class="label_area2"><label for="accomTime">숙박 시간</label></p>
+                                    </div>
+                                    <div class="input_area">
+                                        <span>기준</span>
+                                        <select name="basicMan" id="basicMan">
+                                            <option value="basicMan">01</option>
+                                            <option value="basicMan">02</option>
+                                            <option value="basicMan">03</option>
+                                            <option value="basicMan">04</option>
+                                            <option value="basicMan">05</option>
+                                        </select>
+                                        <span>명</span>
+                                    </div>
+                                    <div class="input_area">
+                                        <span>최대</span>
+                                        <select name="maxMan" id="maxMan">
+                                            <option value="maxMan">01</option>
+                                            <option value="maxMan">02</option>
+                                            <option value="maxMan">03</option>
+                                            <option value="maxMan">04</option>
+                                            <option value="maxMan">05</option>
+                                            <option value="maxMan">06</option>
+                                            <option value="maxMan">07</option>
+                                            <option value="maxMan">08</option>
+                                            <option value="maxMan">제한 없음</option>
+                                        </select>
+                                        <span>명</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table_img">
+                                <div class="input_mainImg">
+                                    <p class="label_area"><label>메인이미지</label></p>
+                                    <p class="input_area"><input type="file" name="mainImg"></p>
+                                </div>
+                                <div class="preview_mainImg">
+                                    <p class="label_area"><label>메인 이미지 미리보기</label></p>
+                                    <p class="input_area">미리보기</p>
+                                </div>
+                                <div class="input_subImg">
+                                    <p class="label_area"><label>서브이미지</label></p>
+                                    <p class="input_area"><input type="file" name="subImg" multiple></p>
+                                </div>
+                                <div class="preview_subImg">
+                                    <p class="label_area"><label>서브 이미지 미리보기</label></p>
+                                    <p class="input_area"></p>
+                                </div>
+                            </div>
+                            <div class="validate">
+                                <div class="error-div" id="id-error-div1"></div>
+                                <div class="error-div" id="id-error-div2"></div>
+                                <div class="error-div" id="id-error-div3"></div>
+                                <div class="error-div" id="id-error-div"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input_joinBtn">
+                        <button id="join-btn" type="button" onclick="joinValidate();">등록하기</button>
+                    </div>
+                    <input id="accomLoc" name="accomLoc" class="accomLoc" type="hidden" value="accomLoc">
+                </div>
+            </div>
+            </div>
+            <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+            <script src="/js/accom/addAccom.js"></script>
+        </form>
+    </th:block>
+</body>
+
+</html>

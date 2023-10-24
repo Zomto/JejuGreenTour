@@ -27,7 +27,7 @@ public class BuyController {
     @GetMapping("/calendar")
     public String calendar(Model model ,String subAccomCode){
 
-        List<ReservationVO> reservationVOList = buyService.selectReservation("SU_001");
+        List<ReservationVO> reservationVOList = buyService.selectReservation("SUB_001");
         System.out.println(reservationVOList);
 
         if(subAccomCode==null||subAccomCode.equals(""))
@@ -37,20 +37,40 @@ public class BuyController {
         {
             model.addAttribute("SampleSubVO",buyService.selectSubAccom("subAccomCode"));
         }
+
         model.addAttribute("Reservationlist",reservationVOList);
         return "/buy/calendar";
     }
     @PostMapping("/buyBasket")
-    public String addBaske(BasketAccomVO basketAccomVO, HttpSession session){
-        System.out.println("111111111111111333333333333333333333333333333333333111111111111111");
-        System.out.println(basketAccomVO);
-        System.out.println( ((MemberVO)session.getAttribute("loginInfo")).getMemberId());
+    public String addBaske(BasketAccomVO basketAccomVO, HttpSession session, Model model){
+
+        basketAccomVO.setBasketCode(buyService.selectNewbasketNum());
+
+        SampleSubVO subVO=buyService.selectSubAccom(basketAccomVO.getSubAccomCode());
+        model.addAttribute("subAccomCode",subVO);
+        model.addAttribute("AccomCode",buyService.selectAccom(subVO.getAccomCode()));
+
         basketAccomVO.setMemberId( ((MemberVO)session.getAttribute("loginInfo")).getMemberId());
-        basketAccomVO.setStayStartDate(basketAccomVO.getStayStartDate().split("T")[0]+basketAccomVO.getStayStartDate().split("T")[1]);
-        basketAccomVO.setStayEndDate(basketAccomVO.getStayEndDate().split("T")[0]+basketAccomVO.getStayEndDate().split("T")[1]);
         buyService.insertBasketAccom(basketAccomVO);
+
         return "/buy/buy_basket";
     }
+    @PostMapping("/accomReservation")
+    public String accomReservation(BasketAccomVO basketAccomVO, Model model){
+        String reservationNum = buyService.selectNewreservationNum();
+        buyService.insertReservation(basketAccomVO);
+        ReservationVO reservationVO= buyService.selectReservationOne(reservationNum);
+        model.addAttribute("reservation",reservationVO);
+        return "buy/buy_reservation";
+    }
+
+    @GetMapping("/basketList")
+    public String basketList(Model model,HttpSession session){
+        List<BasketAccomVO> list=buyService.selectBasketAccomList(((MemberVO)session.getAttribute("loginInfo")).getMemberId());
+        model.addAttribute("basketList",list);
+        return "/buy/basket_list";
+    }
+
 
     @GetMapping("/adminCalendar")
     public String adminCalendar() {
@@ -58,13 +78,13 @@ public class BuyController {
         return"/buy/admin_calendar";
     }
 
-    @GetMapping("review")
+    @GetMapping("/review")
     public  String reviewWrite(ReservationVO reservationVO){
 
         return"/buy/review";
     }
 
-    @GetMapping("reviewList")
+    @GetMapping("/reviewList")
     public  String reviewList(ReservationVO reservationVO){
 
         return"/buy/review_list";

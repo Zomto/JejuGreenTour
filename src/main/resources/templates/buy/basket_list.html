@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/main_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+            }
+
+            .container {
+                width: 80%;
+                margin: 20px auto;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            th,
+            td {
+                padding: 15px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #f8f8f8;
+                color: #333;
+                text-transform: uppercase;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            tr:hover {
+                background-color: #e6e6e6;
+            }
+
+            h2 {
+                text-align: center;
+                margin-top: 20px;
+                color: #333;
+            }
+        </style>
+        <h2>장바구니</h2>
+        <div class="container">
+            <h2>장바구니</h2>
+            <table>
+                <tr>
+                    <th>No</th>
+                    <th>체크인</th>
+                    <th>체크아웃</th>
+                    <th>결제금액</th>
+                    <th>상품정보</th>
+                    <th>상품이름</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2023-10-23</td>
+                    <td>2023-10-23</td>
+                    <td>10000원</td>
+                    <td>상품정보1</td>
+                    <td>상품이름1</td>
+                </tr>
+                <tr th:each="basket, state : ${basketList}">
+                    <td>[[${state.index}]]</td>
+                    <td>[[${#strings.listSplit(basket.stayStartDate,'T')[0]}]]
+                        
+                    </td>
+                    <td>
+                        [[${#strings.listSplit(basket.stayEndDate,'T')[0]}]]
+                    </td>
+                    
+                    <td>[[${basket.stayTerm}]]</td>
+                    <td>상품정보1</td>
+                    <td>상품이름1</td>
+                </tr>
+                <!-- 이하 상품 추가 -->
+            </table>
+        </div>
+    </th:block>
+</body>
+
+</html>
