@@ -43,8 +43,8 @@
                     </thead>
                     <tbody>
                         <tr th:each="ann, state : ${annList}">
-                            <td width="10%">[[${ann.annNum}]]</td>
-                            <td width="15%">[[${ann.annCate}]]</td>
+                            <td width="10%">[[${#lists.size(annList) - state.index}]]</td>
+                            <td width="15%">[[${ann.annCateList.cateName}]]</td>
                             <td width="">[[${ann.annTitle}]]</td>
                             <td width="15%">[[${ann.annDate}]]</td>
                         </tr>
