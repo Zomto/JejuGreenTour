@@ -10,7 +10,7 @@
         <result column="GENDER"         property="gender"/>
         <result column="BIRTH_DATE"          property="birthDate"/>
         <result column="MEMBER_ROLL"    property="memberRoll"/>
-        <result column="MEMBER_MAIL"    property="memberMail"/>
+        <result column="MEMBER_MAIL"    property="member_mail"/>
 
     </resultMap>
 
@@ -36,7 +36,7 @@
         , #{member_mail}
         )
     </insert>
-
+<!--MemberVO(memberId=java, memberPw=1111, memberName=김자바, memberTel=null, memberTels=[1111, 1111], gender=남, birthDate=null, memberRoll=null, member_mail=null)-->
     <select id="login" resultMap="member">
         SELECT MEMBER_ID
         , MEMBER_NAME
@@ -51,5 +51,20 @@
         FROM JEJU_MEMBER
         WHERE MEMBER_ID = #{memberId}
     </select>
+
+    <update id = "updateMember1" parameterType="com.jejugreentour.jgt.member.vo.MemberVO">
+        UPDATE JEJU_MEMBER
+        SET
+        MEMBER_MAIL = #{memberMail}
+        ,MEMBER_TEL = #{memberTel}
+        WHERE MEMBER_ID = #{memberId}
+    </update>
+    <update id = "updateMember2" parameterType="com.jejugreentour.jgt.member.vo.MemberVO">
+        UPDATE JEJU_MEMBER
+        SET
+        MEMBER_PW = #{memberPw}
+        WHERE MEMBER_ID = #{memberId}
+    </update>
+
 
 </mapper>

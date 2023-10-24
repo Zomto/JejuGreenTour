@@ -587,7 +587,7 @@ a{
     padding-top: 50px;
     padding-bottom: 60px;
     margin-bottom: 100px;
-    background-color: #cfeffa;
+    background-color: #48e57e;
 }
 /* 본문1~7 공통으로 사용*/
 .inner{
@@ -596,8 +596,6 @@ a{
     margin-right: auto;
 }
 .main1 .inner{
-    display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 .m1_left{
@@ -726,7 +724,7 @@ a{
 /* 본문1 오른쪽 슬라이드 */
 .m1_right{
     position: relative;
-    width: 740px;
+    width: 1200px;
     background-color: #ddd4c7;
 }
 .ms_btn{
