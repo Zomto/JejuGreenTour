@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,22 +42,35 @@ public class BuyController {
         model.addAttribute("Reservationlist",reservationVOList);
         return "/buy/calendar";
     }
+    @ResponseBody
+    @PostMapping("/setBasketCode")
+    public String setBasketCode(){
+        return buyService.selectNewbasketNum();
+    }
+
     @PostMapping("/buyBasket")
     public String addBaske(BasketAccomVO basketAccomVO, HttpSession session, Model model){
-
-        basketAccomVO.setBasketCode(buyService.selectNewbasketNum());
 
         SampleSubVO subVO=buyService.selectSubAccom(basketAccomVO.getSubAccomCode());
         model.addAttribute("subAccomCode",subVO);
         model.addAttribute("AccomCode",buyService.selectAccom(subVO.getAccomCode()));
 
         basketAccomVO.setMemberId( ((MemberVO)session.getAttribute("loginInfo")).getMemberId());
-        buyService.insertBasketAccom(basketAccomVO);
+
+        System.out.println("ddddddddddddddddddddddddddddddddddddddddddd");
+        System.out.println(basketAccomVO.getBasketCode());
+        if(basketAccomVO.getBasketCode().equals(buyService.selectNewbasketNum())){
+            buyService.insertBasketAccom(basketAccomVO);
+        }
 
         return "/buy/buy_basket";
     }
     @PostMapping("/accomReservation")
     public String accomReservation(BasketAccomVO basketAccomVO, Model model){
+
+        if(buyService.selectbasketAccom(basketAccomVO.getBasketCode())){ //다른 체크 함수 제작시 옮김
+            return "redirect:/buy/calendar";
+        }
         String reservationNum = buyService.selectNewreservationNum();
         buyService.insertReservation(basketAccomVO);
         ReservationVO reservationVO= buyService.selectReservationOne(reservationNum);
@@ -67,8 +81,21 @@ public class BuyController {
     @GetMapping("/basketList")
     public String basketList(Model model,HttpSession session){
         List<BasketAccomVO> list=buyService.selectBasketAccomList(((MemberVO)session.getAttribute("loginInfo")).getMemberId());
+        System.out.println(list);
         model.addAttribute("basketList",list);
         return "/buy/basket_list";
+    }
+
+    @GetMapping("/deleteBasketAccom")
+    public String deleteBasketAccom(String basketCode){
+        buyService.deleteBasketAccom(basketCode);
+     return "redirect:/buy/basketList";
+    }
+
+    @ResponseBody
+    @PostMapping("/reservationList")
+    public List<ReservationVO> reservationList(String subAccomCode){
+        return  buyService.selectReservation(subAccomCode);
     }
 
 

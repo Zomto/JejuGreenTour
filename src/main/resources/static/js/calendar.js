@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     for (let i = 0; i < checkEvents.length; i++) {
 
                         if ((checkEvents[i].start <= startDate && startDate < checkEvents[i].end)) {
-                            
+
                             console.log("안됨");
                             safe = false;
                             startinfo = null;
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         // }
                         //else {
                         if ((sta[i].value < endDate && endDate < en[i].value) || (startDate <= sta[i].value && sta[i].value < endDate)) {
-                       
+
                             console.log("안됨");
                             calendar.getEventById('startDate').remove();
                             startDate = null;
@@ -309,7 +309,7 @@ function turndayuse(tag) {
                                 start: eventsss[i].start,//`${allEvents[i].start.getFullYear()}-${allEvents[i].start.getMonth() + 1}-${allEvents[i].start.getDate()}`
                                 end: eventsss[i].end//`${allEvents[i].end.getFullYear()}-${allEvents[i].end.getMonth() + 1}-${allEvents[i].end.getDate()}`
                             });
-                        }else{
+                        } else {
 
                         }
                     }
@@ -325,10 +325,10 @@ function turndayuse(tag) {
                     setendday.value = startDate;
                     let candayuse = Number(checkout.value.split(':')[0]);
                     let dayusecheckin = (candayuse + 1) / 10 >= 1 ? (candayuse + 1) : "0" + (candayuse + 1)
-                    startDate=startDate+'T' + dayusecheckin + ':00:00';
+                    startDate = startDate + 'T' + dayusecheckin + ':00:00';
                     let safe = true;
                     for (let i = 0; i < checkEvents.length; i++) {
-                       
+
                         if ((checkEvents[i].start <= startDate && startDate < checkEvents[i].end) || (checkEvents[i].start == checkEvents[i].end && checkEvents[i].start <= startDate && startDate <= checkEvents[i].end)) {//
 
                             console.log("안됨");
@@ -349,7 +349,7 @@ function turndayuse(tag) {
                         var event = {
                             id: 'startDate',
                             title: '대실-' + renttime, // 이벤트 제목
-                            start: startDate , // 시작 날짜
+                            start: startDate, // 시작 날짜
                             end: startDate + 'T' + dayusecheckout + ':00:00', // 끝나는 날짜
                             backgroundColor: 'red', // 배경색 설정
                         };
@@ -498,7 +498,7 @@ function turnreserv(tag) {
                         // }
                         //else {
                         if ((sta[i].value < endDate && endDate < en[i].value) || (startDate <= sta[i].value && sta[i].value < endDate)) {
-                           
+
                             console.log("안됨");
                             calendar.getEventById('startDate').remove();
                             startDate = null;
@@ -584,21 +584,54 @@ function turnreserv(tag) {
     calendar.render();
 }
 
-function checksubmit(){
+function checksubmit() {
 
+    let basketCode = document.querySelector('#basketCode');
+    fetch('/buy/setBasketCode', { //요청경로
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        //컨트롤러로 전달할 데이터
+        body: new URLSearchParams({
+        })
+    })
+        .then((response) => {
+            if (!response.ok) {
+                alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+                return;
+            }
+
+            return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
+            //return response.json(); //나머지 경우에 사용
+        })
+        //fetch 통신 후 실행 영역
+        .then((data) => {//data -> controller에서 리턴되는 데이터!
+            basketCode.value = data;
+            waitsubmit()
+        })
+        //fetch 통신 실패 시 실행 영역
+        .catch(err => {
+            alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+            console.log(err);
+        });
+}
+function waitsubmit(){
+    
     let setstartday = document.querySelector('#setStartDay');
     let setendday = document.querySelector('#setEndDay');
-    let memberId=document.querySelector('#memberId');
-    if((setstartday.value!=null&&setstartday.value!='')&&(setendday.value!=null&&setendday.value!='')){
-        if(memberId!=null&&memberId.value!=''){
+    let memberId = document.querySelector('#memberId');
+    if ((setstartday.value != null && setstartday.value != '') && (setendday.value != null && setendday.value != '')) {
+        if (memberId != null && memberId.value != '') {
             document.querySelector('#calendarform').submit();
-        }else{
-            if(confirm('로그인 하시겠습니까?')){
-                location.href='/member/loginForm';
+        } else {
+            if (confirm('로그인 하시겠습니까?')) {
+                location.href = '/member/loginForm';
             }
         }
-    }else{
-    alert('날짜를 제대로 서택해 주세요')
-}
+    } else {
+        alert('날짜를 제대로 서택해 주세요')
+    }
 
 }

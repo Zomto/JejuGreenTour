@@ -15,5 +15,6 @@ public class SampleSubVO {
     private String accomEndTime;
     private String rentTime;
     private String dayuseCan;
+    private SampleACCVO sampleACCVO;
     private List<ReservationVO> ReservationList;
 }
