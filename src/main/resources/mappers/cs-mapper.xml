@@ -4,43 +4,48 @@
 <mapper namespace="csMapper">
 
     <resultMap id="announcement" type="com.jejugreentour.jgt.csCenter.vo.AnnVO">
-        <result column="ANN_NUM" property="annNum" />
+        <id column="ANN_NUM" property="annNum" />
         <result column="ANN_CATE" property="annCate" />
         <result column="ANN_WRITER" property="annWriter" />
         <result column="ANN_TITLE" property="annTitle" />
         <result column="ANN_CONTENT" property="annContent"/>
         <result column="ANN_DATE" property="annDate"/>
+        <collection property="annCateList" resultMap="annCate"/>
+    </resultMap>
+
+    <resultMap id="annCate" type="com.jejugreentour.jgt.csCenter.vo.AnnCateVO">
+        <id column="CATE_CODE" property="cateCode"/>
+        <result column="CATE_NAME" property="cateName"/>
     </resultMap>
 
     <select id="annList" resultMap="announcement">
         SELECT
             ANN_NUM
-            , ANN_CATE
+            , CATE_CODE
+            , CATE_NAME
             , ANN_WRITER
             , ANN_TITLE
             , ANN_CONTENT
             , TO_CHAR(ANN_DATE,'YYYY-MM-DD') AS ANN_DATE
-        FROM ANNOUNCEMENT
+        FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LIST
+        WHERE ANN.ANN_CATE = LIST.CATE_CODE
+        ORDER BY ANN_NUM DESC
     </select>
 
     <insert id="inputAnn">
         INSERT INTO ANNOUNCEMENT (
             ANN_NUM
             , ANN_CATE
-            , ANN_WRITER
             , ANN_TITLE
             , ANN_CONTENT
-            , ANN_DATE
         )
         VALUES (
-            (SELECT NVL(MAX(ANN_NUM), 0) + 1
+            (SELECT 'ANN_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ANN_NUM, 5))),0) + 1, 3, '0')
             FROM ANNOUNCEMENT)
             , #{annCate}
-            , #{annWriter}
             , #{annTitle}
             , #{annContent}
-            , TO_DATE(#{annDate},'YYYY-MM-DD') AS ANN_DATE
-        );
+        )
     </insert>
 
 </mapper>
