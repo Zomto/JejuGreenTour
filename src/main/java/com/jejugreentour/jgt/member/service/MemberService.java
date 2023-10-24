@@ -13,4 +13,8 @@ public interface MemberService {
     //중복체크
     public boolean checkId(String memberId);
 
+    //회원 정보수정(이메일, 전화번호 = 1)
+    public int updateMember1(MemberVO memberVO);
+    //회원 정보수정(비밀번호 = 2)
+    public int updateMember2(MemberVO memberVO);
 }

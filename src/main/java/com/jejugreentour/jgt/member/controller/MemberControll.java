@@ -22,7 +22,9 @@ public class MemberControll {
 
     @PostMapping("/joinMember")
     public String joinMember(MemberVO memberVO){
+        System.out.println(memberVO);
         memberService.join(memberVO);
+
         return "redirect:/";
     }
 
@@ -74,5 +76,10 @@ public class MemberControll {
     public String logout(HttpSession session){
         session.removeAttribute("loginInfo");
         return "redirect:/";
+    }
+
+    @GetMapping("/info")
+    public String memberInfo(){
+        return "content/member/member_info";
     }
 }
