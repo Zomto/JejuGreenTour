@@ -50,6 +50,20 @@ public class CsController {
     }
 
 
+    // 문의하기 페이지 이동
+    @GetMapping("/inquireForm")
+    public String inquireForm(){
+
+        return "/content/csCenter/inquire";
+    }
+    
+    // QNA페이지 이동
+    @GetMapping("/qnaForm")
+    public String qnaForm(){
+
+        return "/content/csCenter/qna";
+    }
+
 
 
 
