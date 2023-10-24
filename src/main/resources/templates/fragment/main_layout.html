@@ -36,6 +36,10 @@
             <div class="col">
                 <th:block layout:fragment="content"></th:block>
             </div>
+            <!-- 푸터 메뉴 영역 -->
+            <div class="col-2">
+                <th:block th:replace="~{fragment/main_footer :: mainFooterFragment}"></th:block>
+            </div>
         </div>
     </div>
 

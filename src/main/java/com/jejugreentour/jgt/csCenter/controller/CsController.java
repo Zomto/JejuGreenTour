@@ -22,28 +22,28 @@ public class CsController {
 
     // 공지 사항 메인 페이지
     @GetMapping("/csForm")
-    public String csForm(){
+    public String csForm(AnnVO annVO, HttpSession session){
         return "content/csCenter/csCenter_main";
     }
 
 
     // 공지 사항 목록 페이지
     @GetMapping("/annForm")
-    public String annForm(Model model){
+    public String annForm(Model model, HttpSession session, AnnVO annVO){
         model.addAttribute("annList", csService.annList());
+        System.out.println(csService.annList());
         return "content/csCenter/announcement";
     }
 
     // 공지 사항 작성 페이지
     @GetMapping("/snForm")
-    public String snForm(HttpSession httpSession, Model model){
+    public String snForm(HttpSession session, Model model, AnnVO annVO){
         return "content/csCenter/snTest";
     }
 
     // 공지 사항 작성 후 목록페이지 이동
     @PostMapping("/inputAnn")
     public String inputAnn(AnnVO annVO, HttpSession httpSession){
-        annVO.setMemberId( ((MemberVO)httpSession.getAttribute("loginInfo")).getMemberId());
 
         csService.insertAnn(annVO);
         return "redirect:/cs/annForm";
