@@ -13,4 +13,6 @@ public class ReservationVO {
     private String reservationPrice;
     private String reservationName;
     private String dayuse;
+    private ReservationStateVO stateVO;
+    private SampleSubVO subAccom;
 }

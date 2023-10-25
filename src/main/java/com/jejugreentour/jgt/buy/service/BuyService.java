@@ -29,13 +29,18 @@ public interface BuyService {
     public List<BasketAccomVO> selectBasketAccomList(String memberId);
     //선택한 예약 결제
     public void insertReservation(BasketAccomVO basketAccomVO);
-
     //바스켓 삭제
     public void deleteBasketAccom(String basketCode);
 
 
     // 결제완료 환인
     public ReservationVO selectReservationOne(String reservationCode);
+
+    // 결제상태 리스트
+    public List<ReservationVO> selectMemberReservationList(String memberId);
+
+
+
 
     //결제 취소 admin 시점 user 시점 (환불금액 차이)
 
