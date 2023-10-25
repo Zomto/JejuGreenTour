@@ -1,6 +1,7 @@
 package com.jejugreentour.jgt.csCenter.service;
 
 import com.jejugreentour.jgt.csCenter.vo.AnnVO;
+import com.jejugreentour.jgt.csCenter.vo.QnaVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,15 @@ public class CsServiceImpl implements CsService{
     @Override
     public int insertAnn(AnnVO annVO) {
         return sqlSession.insert("csMapper.inputAnn", annVO);
+    }
+
+    @Override
+    public List<QnaVO> qnaList() {
+        return sqlSession.selectList("csMapper.qnaList");
+    }
+
+    @Override
+    public int insertQna(QnaVO qnaVO) {
+        return sqlSession.insert("csMapper.inputQna", qnaVO);
     }
 }

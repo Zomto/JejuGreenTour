@@ -5,16 +5,46 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet" href="/css/csCenter/qna.css">
 </head>
 <body>
     <th:block layout:fragment="content">
-        <div>
-            <div>
-                <div>
-                    <h3>QNA</h3>
+        <div class="wrap">
+            <div class="w_in">
+                <div class="title_group">
+                    <h3 class="title">자주 찾는 질문</h3>
+                    <div class="search_group">
+                        <div class="search_cate">
+                            <select>
+                                <option value="CATE_001">숙박 등록</option>
+                                <option value="CATE_002">결제</option>
+                                <option value="CATE_003">혜택</option>
+                                <option value="CATE_004">기타</option>
+                            </select>
+                        </div>
+                        <div class="search_input"><input type="text" name=""></div>
+                        <div class="search_btn"><button>검색</button></div>
+                    </div>
+                </div>
+                <div class="list_group">
+                    <div class="l_in">
+                        <ul>
+                            <li class="qna_d1" th:each="qna, state : ${qnaList}">
+                                <div class="qna_question"> <!-- 질문 -->
+                                    <span class="qna_span_q">Q</span>
+                                    [[${qna.qnaQuestion}]]
+                                </div>
+                                <div class="qna_answer"> <!-- 대답 -->
+                                    <span class="qna_span_a">A</span>
+                                    [[${qna.qnaAnswer}]]
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
+        <script src="/js/csCenter/qna.js"></script>
     </th:block>
 </body>
 </html>
