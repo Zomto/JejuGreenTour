@@ -7,7 +7,7 @@
     padding: 50px;
     width: 1200px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 1px solid #999;
 }
 .Form{
     width: 100%;
@@ -29,7 +29,7 @@
 }
 
 .label_area > label{
-    font-weight: 700;
+    font-weight: 300;
     color: #fff;
     position: absolute;
     top: 10%;
@@ -39,7 +39,7 @@
     width: 500px;
     height: 100%;
     position: relative;
-    border: 1px solid #03c75a;
+    border: 1px solid #999;
     border-radius: 10px;
 }
 .input_area input{
@@ -70,7 +70,7 @@
     resize: none;
 }
 .input_area textarea::placeholder{
-    color: #02883e;
+    color: #666;
     
 }
 .input_area textarea:focus{
@@ -96,8 +96,8 @@
     margin: 10px;
 }
 .input_area span{
-    color: #02883e;
-    font-weight: 700;
+    color: #666;
+    font-weight: 500;
     font-size: 17px;
     margin-right: 10px;
 }
@@ -107,8 +107,8 @@
     border-radius: 10px;
     padding-top: 0px;
     font-size: 17px;
-    color: #02883e;
-    border-color: #03c75a;
+    color: #666;
+    border-color: #888;
 }
 
 .input_area.time{
@@ -174,4 +174,45 @@
 
 .Form.category{
     margin-bottom: 70px;
+}
+.Form.price .input_area > span{
+    margin: 0px;
+    margin-top: 4px;
+}
+.Form.price .input_area{
+    display: flex;
+}
+.Form.price .input_area .input_inner{
+    margin-top: 12px;
+    margin-left: 16px;
+}
+
+.Form.price .input_area > .input_inner > input{
+    width: 100px;
+    position: relative;
+    border: 1px solid #999;
+    border-radius: 10px;
+    left: 0;
+    margin-top: -10px;
+    color: #666;
+    text-align: right;
+}
+.subAccomAdd{
+    width: 100px;
+    margin: 0 auto;
+}
+.subAccomAddBtn{
+    box-sizing: border-box;
+    position: relative;
+    width: 100px;
+    height: 50px;
+    background-color: #1ab752;
+    border: 1px solid #ddd;
+    opacity: 0.9;
+    border-radius: 10px;
+    margin-right: 30px;
+    color: #fff;
+}
+.subAccomAddBtn:hover{
+    background-color: #117c37;
 }
