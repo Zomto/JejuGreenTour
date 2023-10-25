@@ -54,11 +54,16 @@ a{
 
 
 .side_inner h3{
-    font-size: 25px;
-    font-weight: 700;
     padding-bottom: 20px;
     border-bottom: 2px solid #222;
 }
+
+.side_inner h3 .title_a{
+    color: #222;
+    font-size: 25px;
+    font-weight: 700;
+}
+
 
 .side_inner p{
     font-size: 20px;
@@ -69,6 +74,9 @@ a{
 .side_inner a{
     color: #999;
 }
+
+
+
 
 .side_inner .menu_last{
     border-bottom: 1px solid #222;

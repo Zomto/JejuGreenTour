@@ -54,6 +54,7 @@
 
             .review_textarea {
                 height: 100px;
+                resize: none;
             }
 
             .review_file {
@@ -99,12 +100,12 @@
                 <label for="review" class="review_label">리뷰 내용:</label>
                 <textarea class="input_review review_textarea" id="review" name="conte" required></textarea>
 
-                <label for="image" class="review_label" >제품 사진 업로드:</label>
+                <label for="image" class="review_label">제품 사진 업로드:</label>
                 <input class="input_review review_file" type="file" id="image" name="images" multiple>
 
                 <input class="submit_review" type="submit" value="리뷰 제출">
             </form>
-           
+
         </div>
     </th:block>
 </body>

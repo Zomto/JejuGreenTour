@@ -18,6 +18,7 @@ public interface BuyService {
 
     public String selectNewbasketNum();
     public String selectNewreservationNum();
+    public Boolean selectbasketAccom(String basketCode);
 
 
     //실제로 해당 방의 예약된 날짜 정보를 조회
@@ -28,6 +29,11 @@ public interface BuyService {
     public List<BasketAccomVO> selectBasketAccomList(String memberId);
     //선택한 예약 결제
     public void insertReservation(BasketAccomVO basketAccomVO);
+
+    //바스켓 삭제
+    public void deleteBasketAccom(String basketCode);
+
+
     // 결제완료 환인
     public ReservationVO selectReservationOne(String reservationCode);
 

@@ -49,6 +49,22 @@ public class CsController {
         return "redirect:/cs/annForm";
     }
 
+    // QNA 목록페이지 이동
+    @GetMapping("/qnaForm")
+    public String qnaForm(Model model){
+        model.addAttribute("qnaList", csService.qnaList());
+        return "/content/csCenter/qna";
+    }
+
+
+    // 문의하기 페이지 이동
+    @GetMapping("/inquireForm")
+    public String inquireForm(){
+
+        return "/content/csCenter/inquire";
+    }
+    
+
 
 
 

@@ -35,6 +35,11 @@ public class BuyServiceImpl implements BuyService{
     }
 
     @Override
+    public Boolean selectbasketAccom(String basketCode) {
+        return sqlSession.selectOne("buyMapper.selectbasketAccom", basketCode)==null;
+    }
+
+    @Override
     public List<ReservationVO> selectReservation(String subAccomCode) {
        return sqlSession.selectList("buyMapper.selectReservation",subAccomCode);
     }
@@ -53,6 +58,11 @@ public class BuyServiceImpl implements BuyService{
     public void insertReservation(BasketAccomVO basketAccomVO) {
         sqlSession.insert("buyMapper.insertReservation",basketAccomVO);
         sqlSession.delete("buyMapper.deleteBasketAccom",basketAccomVO);
+    }
+
+    @Override
+    public void deleteBasketAccom(String basketCode) {
+        sqlSession.delete("buyMapper.deleteBasketAccom",basketCode);
     }
 
     @Override
