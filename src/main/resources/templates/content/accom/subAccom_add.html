@@ -18,9 +18,10 @@
                         <div class="input_area"><input type="text" id="subAccomName" name="subAccomName"></div>
                     </div>
                     <div class="Form intro">
-                        <div class="label_area"><label for="subAccomIntro" >ROOM INTRO</label></div>
+                        <div class="label_area"><label for="subAccomIntro">ROOM INTRO</label></div>
                         <div class="input_area">
-                            <textarea id="subAccomIntro" name="subAccomIntro" rows="2" placeholder="방의 간략한 소개를 입력하여 주세요"></textarea>
+                            <textarea id="subAccomIntro" name="subAccomIntro" rows="2"
+                                placeholder="방의 간략한 소개를 입력하여 주세요"></textarea>
                         </div>
                     </div>
                     <div class="Form timeAndPeople">
@@ -143,10 +144,23 @@
                     <div class="Form price">
                         <div class="label_area"><label for="subAccomIntro">ROOM PRICE</label></div>
                         <div class="input_area">
-                            <textarea id="subAccomIntro" name="subAccomIntro" rows="2"></textarea>
+                            <div class="input_inner">
+                                <span>숙박 : </span>
+                                <input type="text" id="reservationPrice" name="reservationPrice">
+                                <span>원</span>
+                            </div>
+                            <div class="input_inner">
+                                <span>숙박 : </span>
+                                <input type="text" id="reservationPrice" name="reservationPrice">
+                                <span>원</span>
+                            </div>
                         </div>
                     </div>
+                    <div class="subAccomAdd">
+                        <button class="subAccomAddBtn" type="button" onclick="joinValidate();">등록하기</button>
+                    </div>
                 </div>
+
             </div>
             <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
             <script src="/js/accom/addAccom.js"></script>
