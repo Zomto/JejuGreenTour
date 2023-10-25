@@ -51,8 +51,8 @@ public class CsController {
 
     // QNA 목록페이지 이동
     @GetMapping("/qnaForm")
-    public String qnaForm(){
-
+    public String qnaForm(Model model){
+        model.addAttribute("qnaList", csService.qnaList());
         return "/content/csCenter/qna";
     }
 
