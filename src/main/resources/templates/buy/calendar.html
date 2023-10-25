@@ -43,17 +43,19 @@
                 <input type="hidden" class="subAccomName" th:value="${SampleSubVO.subAccomName}">
                 <input type="hidden" class="accomPrice" th:value="${SampleSubVO.accomPrice}">
                 <input type="hidden" class="dayusePrice" th:value="${SampleSubVO.dayusePrice}">
-                
+
 
             </th:block>
 
             <div>
+                <input type="hidden" name="basketCode" id="basketCode">
                 <input type="hidden" name="subAccomCode" th:value="${SampleSubVO.subAccomCode}">
                 <input type="text" id="setStartDay" name="stayStartDate" required readonly>
-                <input type="text" id="setEndDay" name="stayEndDate"required readonly>
-                <input type="number" id="stayDay" name="stayTerm"  readonly>
-                <input type="text" id="setdayuse" name="dayuse"  readonly>
-                <input type="hidden" id="memberId" th:if="${session.loginInfo != null}" th:value="${session.loginInfo.memberId}">
+                <input type="text" id="setEndDay" name="stayEndDate" required readonly>
+                <input type="number" id="stayDay" name="stayTerm" readonly>
+                <input type="text" id="setdayuse" name="dayuse" readonly>
+                <input type="hidden" id="memberId" th:if="${session.loginInfo != null}"
+                    th:value="${session.loginInfo.memberId}">
             </div>
             <div>
                 <input type="button" value="장바구니에 추가">
