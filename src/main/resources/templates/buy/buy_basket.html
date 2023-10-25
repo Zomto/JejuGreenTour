@@ -77,8 +77,11 @@
                 <p>숙박 날짜: 체크인 <span id="checkin">[[${basketAccomVO.stayStartDate}]]</span></p>
                 <p>숙박 날짜: 체크아웃<span id="checkout">[[${basketAccomVO.stayEndDate}]]</span></p>
                 <input type="hidden" name="dayuse" th:value="${basketAccomVO.dayuse}">
-                <input type="hidden" name="basketCode" th:value="${basketAccomVO.basketCode}">
-                <input class="buy_button" type="button" value="결제하기" onclick="confirmPayment()">
+                <input type="hidden" id="subAccomCode" th:value="${basketAccomVO.subAccomCode}">
+                <input type="hidden" class="basketCode" name="basketCode" th:value="${basketAccomVO.basketCode}" >
+                <input type="hidden" class="stayStartDate" name="stayStartDate" th:value="${basketAccomVO.stayStartDate}" >
+                <input type="hidden" class="stayEndDate" name="stayEndDate" th:value="${basketAccomVO.stayEndDate}" >
+                <input class="buy_button" type="button" value="결제하기" onclick="reservationcheck()">
                 <input class="del_button" type="button" value="취소하기" onclick="cancelPayment()">
             </div>
         </form>
@@ -88,6 +91,58 @@
         let stayPrice = document.querySelector('#stayPrice').innerHTML;
         console.log(Number(stayTerm) * Number(stayPrice))
         document.querySelector('#stayPrice').innerHTML = Number(stayTerm) * Number(stayPrice) + ''
+
+
+
+
+        function reservationcheck() {
+                fetch('/buy/reservationList', { //요청경로
+                    method: 'POST',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                    },
+                    //컨트롤러로 전달할 데이터
+                    body: new URLSearchParams({
+                        subAccomCode : document.querySelector('#subAccomCode').value
+                    })
+                })
+                    .then((response) => {
+                        if (!response.ok) {
+                            alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+                            return;
+                        }
+
+                       // return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
+                        return response.json(); //나머지 경우에 사용
+                    })
+                    //fetch 통신 후 실행 영역
+                    .then((data) => {//data -> controller에서 리턴되는 데이터!
+                        console.log(data)
+                        let stayStartDate = document.querySelector('.stayStartDate').value;
+                        let stayEndDate = document.querySelector('.stayEndDate').value;
+                        let safe=false;
+                        data.forEach(element => {
+                            console.log(element.stayStartDate)
+                            console.log(stayStartDate)
+                            // console.log(stayStartDate>=element.stayStartDate&&stayStartDate<)
+                            if((element.stayStartDate<=stayStartDate&&stayStartDate<element.stayEndDate)||(stayStartDate<=element.stayStartDate&&element.stayStartDate<stayEndDate)){
+                                safe = true;
+                            }
+                        });
+                        if(safe){
+                            alert('해당일자에 예약을 할 수 없습니다')
+                            location.href=`/buy/deleteBasketAccom?basketCode=${document.querySelector('.basketCode').value}`
+                        }else{
+                        confirmPayment()
+                        }
+                    })
+                    //fetch 통신 실패 시 실행 영역
+                    .catch(err => {
+                        alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+                        console.log(err);
+                    });
+            }
 
 
         function confirmPayment() {
@@ -102,7 +157,7 @@
         function cancelPayment() {
             if (confirm("취소하겠습니까?")) {
                 alert("결제가 취소되었습니다!");
-                location.href = "/"
+                location.href=`/buy/deleteBasketAccom?basketCode=${document.querySelector('.basketCode').value}`
             } else {
             }
             // fetch 기능으로 삭제

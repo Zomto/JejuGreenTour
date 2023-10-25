@@ -142,12 +142,13 @@ function startTimer(duration) {
 function verifyCode() {
     var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 
-    if (emailRegex.test(document.querySelector('#email').value + document.querySelector('#email_host').value)) {
+    if (emailRegex.test(document.querySelector('#memberEmail').value + document.querySelector('#email_host').value)) {
         if(timerstop != null){
             console.log('이전 타이머 있음');
             clearTimeout(timerstop);
             console.log(timerstop);
         }
+        document.querySelector('#member_mail').value = (document.querySelector('#memberEmail').value + document.querySelector('#email_host').value)
         clearTimeout(settimerstop);
         clearTimeout(reatimerstop);
         clearInterval(timerstop);
@@ -164,7 +165,7 @@ function verifyCode() {
             },
             //컨트롤러로 전달할 데이터
             body: new URLSearchParams({
-                email: document.querySelector('#email').value+document.querySelector('#email_host').value
+                email: document.querySelector('#memberEmail').value+document.querySelector('#email_host').value
             })
         })
             .then((response) => {

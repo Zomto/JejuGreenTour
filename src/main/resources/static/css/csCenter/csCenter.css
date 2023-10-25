@@ -54,11 +54,16 @@ a{
 
 
 .side_inner h3{
-    font-size: 25px;
-    font-weight: 700;
     padding-bottom: 20px;
     border-bottom: 2px solid #222;
 }
+
+.side_inner h3 .title_a{
+    color: #222;
+    font-size: 25px;
+    font-weight: 700;
+}
+
 
 .side_inner p{
     font-size: 20px;
@@ -70,11 +75,20 @@ a{
     color: #999;
 }
 
+
+
+
 .side_inner .menu_last{
     border-bottom: 1px solid #222;
 }
 
 
-
+.main_footer{
+    width: 1200px;
+    margin: 0 auto;
+    clear: both;
+    padding-top: 100px;
+    border-top: 1px solid #999;
+}
 
 

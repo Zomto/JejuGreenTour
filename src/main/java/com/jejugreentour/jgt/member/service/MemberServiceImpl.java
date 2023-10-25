@@ -26,4 +26,14 @@ public class MemberServiceImpl implements MemberService{
         System.out.println(selectMemberID);
         return selectMemberID == null ? true : false;
     }
+
+    @Override
+    public int updateMember1(MemberVO memberVO) {
+        return sqlSession.update("memberMapper.updateMember1", memberVO);
+    }
+
+    @Override
+    public int updateMember2(MemberVO memberVO) {
+        return sqlSession.update("memberMapper.updateMember2", memberVO);
+    }
 }

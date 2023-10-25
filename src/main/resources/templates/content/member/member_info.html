@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/myPage_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/member/myPage_main.css">
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <h2>회원정보 수정</h2>
+        <form action="/member/info" method="POST" class="category">
+            <ul class="tabs">
+                <li class="tab-link current" data-tab="tab-1">이메일/전화번호 변경</li>
+                <li class="tab-link" data-tab="tab-2">비밀번호 변경</li>
+            </ul>
+
+            <div id="tab-1" class="tab-content current">
+                <table>
+                    <div class="email_verify">
+                        <label class="form-label" for="email">이메일</label>
+                        <input class="form-control" type="email" id="email" name="email" />
+                        <select name="email_host" id="email_host">
+                            <option value="null" selected>선택해주세요</option>
+                            <option value="@naver.com">@naver.com</option>
+                            <option value="@daum.net">@daum.net</option>
+                            <option value="@gmail.com">@gmail.com</option>
+                            <option value="">직접입력</option>
+                        </select>
+                        <input type="button" class="verify" value="인증번호 발급" id="verifyButton" onclick="verifyCode()">
+                    </div><br><br>
+
+                    <div id="additionalInput" class="verify_box" style="display: none;">
+                        <!-- 추가 입력 필드가 여기에 동적으로 생성됨 -->
+                        <p>
+                            <label class="form-label" for="verify_code">인증번호</label>
+                            <input class="form-control" type="verify_code" id="verify_code" name="verify_code"
+                                required />
+                        <div id="timer">3:00</div>
+                        <div class="alertbox"></div>
+                        </p>
+                        <input type="button" class="verify" value="인증번호 확인" onclick="checkCode()" />
+                    </div><br><br>
+                    <div>
+                        <label for="memberTel">전화번호:</label>
+                        <input type="text" id="memberTel" name="memberTel"><br><br>
+                    </div><br>
+            </div>
+
+            </table>
+            <input class="join_btn" type="submit" value="수정하기">
+            </div>
+
+            <div id="tab-2" class="tab-content">
+                <table>
+                    <tr>
+                        <td>
+                            <label for="password">비밀번호:</label>
+                            <input type="password" id="password" name="password"><br><br>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" value="수정하기">
+            </div>
+        </form>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="/js/join.js"></script>
+    </th:block>
+</body>
+
+</html>

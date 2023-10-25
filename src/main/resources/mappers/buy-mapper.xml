@@ -31,6 +31,7 @@
         <result column="ACCOM_END_TIME" property="accomEndTime"/>
         <result column="RENT_TIME" property="rentTime"/>
         <result column="DAY_USE_CAN" property="dayuseCan"/>
+        <association property="sampleACCVO" resultMap="Accom"/>
         <collection property="ReservationList" resultMap="reservation"/>
     </resultMap>
 
@@ -43,7 +44,7 @@
         <result column="STAY_END_DATE" property="stayEndDate"/>
         <result column="STAY_TERM" property="stayTerm"/>
         <result column="DAY_USE" property="dayuse"/>
-        <collection property="sampleSubVO" resultMap="subAccom"/>
+        <association property="sampleSubVO" resultMap="subAccom"/>
     </resultMap>
 
     <select id="selectAccom" resultMap="Accom">
@@ -107,6 +108,9 @@
         , DAY_USE
         , SUB_ACCOM_NAME
         , ACCOM_NAME
+        , ACCOM_PRICE
+        , DAY_USE_PRICE
+        , RENT_TIME
         FROM BASKET_STAY_ACCOM ba ,SUB_ACCOM su ,MAIN_ACCOM ma
         WHERE ba.MEMBER_ID = #{memberId}
         AND ba.SUB_ACCOM_CODE =su.SUB_ACCOM_CODE
@@ -142,7 +146,6 @@
         WHERE BASKET_CODE = #{basketCode}
         AND BAS.SUB_ACCOM_CODE=SUB.SUB_ACCOM_CODE
     </insert>
-
     <delete id="deleteBasketAccom">
         DELETE FROM BASKET_STAY_ACCOM
         WHERE BASKET_CODE=#{basketCode}
