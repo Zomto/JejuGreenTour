@@ -48,4 +48,45 @@
         )
     </insert>
 
+    <resultMap id="qna" type="com.jejugreentour.jgt.csCenter.vo.QnaVO">
+        <id column="QNA_CODE" property="qnaCode"/>
+        <result column="CATE_CODE" property="cateCode"/>
+        <result column="QNA_QUESTION" property="qnaQuestion"/>
+        <result column="QNA_ANSWER" property="qnaAnswer"/>
+        <collection property="qnaCateList" resultMap="qnaCate"/>
+    </resultMap>
+
+    <resultMap id="qnaCate" type="com.jejugreentour.jgt.csCenter.vo.QnaCateVO">
+        <id column="CATE_CODE" property="cateCode"/>
+        <result column="CATE_NAME" property="cateName"/>
+    </resultMap>
+
+    <select id="qnaList" resultMap="qna">
+        SELECT
+        QNA_CODE
+        , QNA.CATE_CODE
+        , CATE_NAME
+        , QNA_QUESTION
+        , QNA_ANSWER
+        FROM QNA QNA, QNA_CATE_LIST LIST
+        WHERE QNA.CATE_CODE = LIST.CATE_CODE
+        ORDER BY QNA_CODE DESC
+    </select>
+
+    <insert id="inputQna">
+        INSERT INTO QNA (
+        QNA_CODE
+        , CATE_CODE
+        , QNA_QUESTION
+        , QNA_ANSWER
+        )
+        VALUES (
+        (SELECT 'QNA_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(QNA_CODE, 5))),0) + 1, 3, '0')
+        FROM QNA)
+        , #{cateCode}
+        , #{qnaQuestion}
+        , #{qnaAnswer}
+        )
+    </insert>
+
 </mapper>

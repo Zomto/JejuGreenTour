@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+
+.title_group{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.title{
+    font-size: 22px;
+    font-weight: 700;
+}
+
+
+.search_group{
+    display: flex;
+}
+
+
+.search_input{
+    margin-left: 15px;
+}
+
+.search_btn{
+    margin-left: 15px;
+}
+
