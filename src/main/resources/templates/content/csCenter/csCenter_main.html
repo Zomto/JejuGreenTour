@@ -33,17 +33,19 @@
                         <div class="m2_more_btn"><a href="/cs/qnaForm">더보기</a></div>
                         <div class="m2_in">
                             <ul>
-                                <li class="m2_question"><span>[카테고리]</span>Q. 제발 집에 보내주시면 안될까요?
-                                    <div class="m2_sub">
-                                        <div class="m2_answer"></div>
+                                <!-- ------------------------------------------------ -->
+                                <li class="m2_qna" th:each="qna, state : ${qnaList}">
+                                    <div class="m2_qna_question"> <!-- 질문 -->
+                                        <span class="m2_cateName m2_box">[ [[${qna.qnaCateList.cateName}]] ]</span>
+                                        <span class="m2_qna_span_q">Q.</span>
+                                        [[${qna.qnaQuestion}]]
+                                    </div>
+                                    <div class="m2_qna_answer"> <!-- 대답 -->
+                                        <span class="m2_box"></span>
+                                        <span class="m2_qna_span_a">A.</span>
+                                        [[${qna.qnaAnswer}]]
                                     </div>
                                 </li>
-                                <li class="m2_question"><span>[카테고리]</span>Q. 제발 집에 보내주시면 안될까요?</li>
-                                <li class="m2_question"><span>[카테고리]</span>Q. 제발 집에 보내주시면 안될까요?</li>
-                                <li class="m2_question"><span>[카테고리]</span>Q. 제발 집에 보내주시면 안될까요?</li>
-                                <li class="m2_question"><span>[카테고리]</span>Q. 제발 집에 보내주시면 안될까요?</li>
-                                <li class="m2_question"><span>[카테고리]</span>Q. 제발 집에 보내주시면 안될까요?</li>
-                                <li class="list_last m2_question"><span>[카테고리]</span>Q. 제발 집에 보내주시면 안될까요?</li>
                             </ul>
                         </div>
                     </div>
@@ -56,6 +58,9 @@
                         <div>dddddddddd</div>
                     </div>
                 </div>
+
+
+
                 <div class="side">
                     <div class="s1">
                         <div class="s1_ment1">1:1문의</div>
@@ -83,6 +88,8 @@
                 </div>
             </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="/js/csCenter/csCenter_main.js"></script>
     </th:block>
 </body>
 </html>

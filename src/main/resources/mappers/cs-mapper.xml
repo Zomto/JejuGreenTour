@@ -3,6 +3,7 @@
 
 <mapper namespace="csMapper">
 
+    <!--  공지사항  -->
     <resultMap id="announcement" type="com.jejugreentour.jgt.csCenter.vo.AnnVO">
         <id column="ANN_NUM" property="annNum" />
         <result column="ANN_CATE" property="annCate" />
@@ -18,6 +19,23 @@
         <result column="CATE_NAME" property="cateName"/>
     </resultMap>
 
+    <!--  고객센터 메인 페이지 공지사항 목록 조회  -->
+    <select id="annListOffset" resultMap="announcement">
+        SELECT
+            ANN_NUM
+            , CATE_CODE
+            , CATE_NAME
+            , ANN_WRITER
+            , ANN_TITLE
+            , ANN_CONTENT
+            , TO_CHAR(ANN_DATE,'YYYY-MM-DD') AS ANN_DATE
+        FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LIST
+        WHERE ANN.ANN_CATE = LIST.CATE_CODE
+        ORDER BY ANN_NUM DESC
+        OFFSET 0 ROWS FETCH FIRST 5 ROWS ONLY
+    </select>
+
+    <!--  공지사항 목록 조회  -->
     <select id="annList" resultMap="announcement">
         SELECT
             ANN_NUM
@@ -32,6 +50,7 @@
         ORDER BY ANN_NUM DESC
     </select>
 
+    <!--  공지사항 목록 추가  -->
     <insert id="inputAnn">
         INSERT INTO ANNOUNCEMENT (
             ANN_NUM
@@ -48,6 +67,7 @@
         )
     </insert>
 
+    <!--  자주 찾는 질문 (QNA)  -->
     <resultMap id="qna" type="com.jejugreentour.jgt.csCenter.vo.QnaVO">
         <id column="QNA_CODE" property="qnaCode"/>
         <result column="CATE_CODE" property="cateCode"/>
@@ -61,18 +81,35 @@
         <result column="CATE_NAME" property="cateName"/>
     </resultMap>
 
-    <select id="qnaList" resultMap="qna">
+    <!--  고객센터 메인 페이지 QNA 목록 조회  -->
+    <select id="qnaListOffset" resultMap="qna">
         SELECT
-        QNA_CODE
-        , QNA.CATE_CODE
-        , CATE_NAME
-        , QNA_QUESTION
-        , QNA_ANSWER
+            QNA_CODE
+            , QNA.CATE_CODE
+            , CATE_NAME
+            , QNA_QUESTION
+            , QNA_ANSWER
         FROM QNA QNA, QNA_CATE_LIST LIST
         WHERE QNA.CATE_CODE = LIST.CATE_CODE
         ORDER BY QNA_CODE DESC
+        OFFSET 0 ROWS FETCH FIRST 7 ROWS ONLY
     </select>
 
+    <!--  QNA 목록 조회  -->
+    <select id="qnaList" resultMap="qna">
+        SELECT
+            QNA_CODE
+            , QNA.CATE_CODE
+            , CATE_NAME
+            , QNA_QUESTION
+            , QNA_ANSWER
+        FROM QNA QNA, QNA_CATE_LIST LIST
+        WHERE QNA.CATE_CODE = LIST.CATE_CODE
+        ORDER BY QNA_CODE DESC
+        OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+    </select>
+
+    <!--  QNA 목록 추가  -->
     <insert id="inputQna">
         INSERT INTO QNA (
         QNA_CODE
@@ -88,5 +125,11 @@
         , #{qnaAnswer}
         )
     </insert>
+
+    <select id="selectQnaCnt" resultType="int">
+        SELECT COUNT(QNA_CODE)
+        FROM QNA
+    </select>
+
 
 </mapper>
