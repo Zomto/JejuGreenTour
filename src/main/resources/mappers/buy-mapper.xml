@@ -200,6 +200,17 @@
         ,TO_DATE(#{overDate},'YYYY-MM-DD'))
     </insert>
 
+    <update id="updateReservationstate">
+        UPDATE RESERVATION_STATE
+        SET
+        REFUND = #{refund}
+        , REVIEW=#{review}
+        , REFUND_PRICE=#{refundPrice}
+        <if test='refundDate != null and !refundDate.equals("") '>
+            , REFUND_DATE=TO_DATE(#{refundDate},'YYYY-MM-DD HH24:MI:SS')
+        </if>
+        WHERE RESERVATION_STATE_CODE = #{reservationStateCode}
+    </update>
 
     <delete id="deleteBasketAccom">
         DELETE FROM BASKET_STAY_ACCOM

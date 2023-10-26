@@ -75,4 +75,9 @@ public class BuyServiceImpl implements BuyService{
     public List<ReservationVO> selectMemberReservationList(String memberId) {
         return sqlSession.selectList("buyMapper.selectMemberReservationList",memberId);
     }
+
+    @Override
+    public int updateReservationstate(ReservationStateVO stateVO) {
+        return sqlSession.update("buyMapper.updateReservationstate",stateVO);
+    }
 }

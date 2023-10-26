@@ -2,6 +2,7 @@ package com.jejugreentour.jgt.buy.controller;
 
 import com.jejugreentour.jgt.buy.service.BuyService;
 import com.jejugreentour.jgt.buy.vo.BasketAccomVO;
+import com.jejugreentour.jgt.buy.vo.ReservationStateVO;
 import com.jejugreentour.jgt.buy.vo.ReservationVO;
 import com.jejugreentour.jgt.buy.vo.SampleSubVO;
 import com.jejugreentour.jgt.member.vo.MemberVO;
@@ -106,15 +107,23 @@ public class BuyController {
         return  "/buy/reservation_list";
     }
 
-    @GetMapping("/adminCalendar")
-    public String adminCalendar() {
-
-        return"/buy/admin_calendar";
+    @ResponseBody
+    @PostMapping("/refund")
+    public int refundReservation(ReservationStateVO stateVO){
+        System.out.println(stateVO);
+        return  buyService.updateReservationstate(stateVO);
     }
 
     @GetMapping("/review")
-    public  String reviewWrite(ReservationVO reservationVO){
-
+    public  String reviewWrite(ReservationVO reservationVO, HttpSession session, Model model){
+        reservationVO= buyService.selectReservationOne(reservationVO.getReservationCode());
+        System.out.println(reservationVO);
+//        if(session.getAttribute("loginInfo")!=null&&reservationVO.getMemberId().equals(((MemberVO)session.getAttribute("loginInfo")).getMemberId())){
+//            return"/buy/review";
+//        }else {
+//             return "redirect:/";
+//        }
+        model.addAttribute("reservation",reservationVO);
         return"/buy/review";
     }
 
@@ -124,4 +133,9 @@ public class BuyController {
         return"/buy/review_list";
     }
 
+    @GetMapping("/adminCalendar")
+    public String adminCalendar() {
+
+        return"/buy/admin_calendar";
+    }
 }
