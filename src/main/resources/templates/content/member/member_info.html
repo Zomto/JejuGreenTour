@@ -11,7 +11,7 @@
 <body>
     <th:block layout:fragment="content">
         <h2>회원정보 수정</h2>
-        <form action="/member/editMember" method="POST" class="category">
+        <form action="/member/editMember" method="POST" class="category change">
             <ul class="tabs">
                 <li class="tab-link current" data-tab="tab-1">이메일/전화번호 변경</li>
                 <li class="tab-link" data-tab="tab-2">비밀번호 변경</li>
@@ -51,8 +51,9 @@
                             <input type="text" id="memberTels" name="memberTels"><br><br>
                         </div><br>
                     </table>
+                    <input class="join_btn" type="submit" value="수정하기">
                 </div>
-                <input class="join_btn" type="submit" value="수정하기">
+
             </form>
 
 
@@ -64,9 +65,16 @@
                                 <label for="password">비밀번호:</label>
                                 <input type="password" id="memberPw" name="memberPw"><br><br>
                             </td>
+                            <td>
+                                <label for="password">비밀번호 확인:</label>
+                                <input type="password" id="memberPwCheck" name="memberPwCheck"><br><br>
+                            </td>
+                            <td>
+                                <div class="err-div"></div>
+                            </td>
                         </tr>
                     </table>
-                    <input type="submit" value="수정하기">
+                    <input type="button" onclick="changePw()" value="수정하기"/>
                 </div>
             </form>
 

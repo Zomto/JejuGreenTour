@@ -1,6 +1,3 @@
-@charset "utf-8";
-/* 기본셋팅, 공통값 */
-
 body, input{
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
@@ -28,188 +25,77 @@ a{
 
 #wrap{
     min-width: 920px;
-    background-color: aliceblue;
 }
-
+.h_in{
+    display: flex;
+    justify-content: space-between;
+}
+.h_icon{
+    display: flex;
+}
 #inner{
     width: 500px;
     margin: 0 auto;
     padding: 15px 30px;
     background-color: white;
 }
-
-.h_in{
-    display: flex;
-    justify-content: space-between;
+#header{
+    margin-bottom: 40px;
 }
-
-.h_left span{
+.bi.bi-arrow-left-square-fill:hover{
+    fill: rgb(22, 161, 22);
+}
+.textLogin{
     font-size: 20px;
+    font-weight: 700;
 }
 
-.h_left a{
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-image: url(/img/ico_back_24.png);
-    background-size: 100% auto;
-    background-position: center;
-    text-indent: -99999%;
-    margin-right: 10px;
+.bi.bi-house-fill:hover{
+    fill: rgb(22, 161, 22);
 }
-
-.h_right a{
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-image: url(/img/ico_home_24.png);
-    background-size: 100% auto;
-    background-position: center;
-    text-indent: -99999%;
-}
-
-
 .join_input_1{
+    padding: 0;
+
+    border-radius: 7px 7px 0 0;
     display: flex;
-    justify-content: space-between;
-    border: 1px solid #999;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    padding: 5px 20px 0 20px;
+    border: 1px solid #dadada;
+}
+.input_memberId{
+    position: relative;
+}
+.bi.bi-person-circle{
+    position: absolute;
+    z-index: 500;
+    top: 0px;
+    left: 10px;
 }
 
-.double_check button{
-    width: 80px;
+.input_memberId input{
+    box-sizing: border-box;
+    margin-left: -1px;
+    margin-top: -15px;
+    border: 1px solid #dadada;
+    border-radius: 7px 7px 0 0;
+    width: 500px;
+    height: 50px;
+    padding: 0 0 0 50px;
+}
+.input_memberId input:focus{
+    border: 1px solid #1ab752;
+    outline: none;
+    color: #444;
+}
+.double_check{
+    background-color: #03c75a;
+    color: #fff;
+    border-radius: 7px;
+    border: 1px solid #dadada;
+    width: 70px;
     height: 30px;
-    border-radius: 8px;
+    position: absolute;
+    top: -5px;
+    right: 10px;
 }
-
-
-.join_input_2{
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid #999;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    padding: 5px 20px 0 20px;
-}
-.join_input_2 > .pw_display a{
-    display: block;
-    width: 24px;
-    height: 24px;
-    text-indent: -99999px;
-    top: 45%;
-    right : 5%;
-}
-
-.pw_display > a#pw_on{
-    width: 24px;
-    height: 24px;
-    background: url(/img/pw_on.png) no-repeat center;
-    background-size: 100%;
-}
-.pw_display > a#pw_off{
-    width: 24px;
-    height: 24px;
-    background: url(/img/pw_hidden.png) no-repeat center;
-    background-size: 100%;
-}
-
-.join_input_3{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-
-.join_input_3_left{
-    width: 65%;
-    border: 1px solid #999;
-    border-radius: 8px;
-    padding: 5px 0 0 20px;
-}
-
-.join_input_3_right{
-    width: 25%;
-    border: 1px solid #999;
-    border-radius: 8px;
-    padding: 5px 0 0 20px;
-}
-
-.join_input_4{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-
-.join_input_4_left{
-    width: 50%;
-    border: 1px solid #999;
-    border-radius: 8px;
-}
-
-.input_tel{
-    padding-left: 15px;
-}
-
-.join_input_4_left .tel1{
-    width: 20%;
-}
-
-.join_input_4_left .tel2{
-    width: 30%;
-}
-
-.join_input_4_left .tel3{
-    width: 30%;
-}
-
-.join_input_4_right{
-    width: 48%;
-    border: 1px solid #999;
-    border-radius: 8px;
-}
-
-.input_memberBirth{
-    padding-left: 20px;
-}
-
-.input_memberBirth span{
-    margin-right: 15px;
-}
-
-.join_btn{
-    width: 80px;
-    height: 30px;
-}
-.email_verify{
-    border: 1px solid #999;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    padding: 5px 20px 0 20px;
-}
-.email_verify >.mb-3,
-.email_verify >.verify_box{
-    display: flex;
-    justify-content: space-between;
-}
-.email_verify >.mb-3 > .verify,
-.email_verify >.verify_box > .verify{
-    margin-top: 11px;
-    margin-bottom: 18px;
-}
-
-.hidden {
-    display: none;
-    opacity: 0;
-    max-height: 0;
-    transition: all 0.3s ease;
-}
-  
-.visible {
-    display: block;
-    opacity: 1;
-    max-height: 100px; /* 원하는 높이로 조정 */
-    transition: all 0.3s ease;
+.double_check:hover{
+    background-color:#1ab752;
 }

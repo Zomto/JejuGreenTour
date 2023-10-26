@@ -1,116 +1,64 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/css/member/join.css">
 </head>
+
 <body>
-<form action="/member/joinMember" method="post">
-    <div id="wrap">
-        <div id="inner">
-            <div id="header">
-                <div class="h_in">
-                    <div class="h_left"><a href="/">BACK</a>
-                        <span>회원가입</span>
+    <form action="/member/joinMember" method="post">
+        <div id="wrap">
+            <div id="inner">
+                <div id="header">
+                    <div class="h_in">
+                        <div class="h_left">
+                            <div class="h_icon">
+                                <a href="/member/loginForm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#03c75a"
+                                        class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="textLogin">회원가입</div>
+                        <div class="h_right"><a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                    fill="#03c75a" class="bi bi-house-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z" />
+                                    <path
+                                        d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                    <div class="h_right"><a href="/">HOME</a></div>
                 </div>
-            </div>
-            <div id="container">
-                <div class="c_in">
-                    <h3>회원가입을 위해<br>정보를 입력해 주세요.</h3>
-                    <div class="join_input_1">
-                        <p class="input_memberId">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
-                              </svg>
-                            <input type="text" name="memberId" id="memberId" placeholder="아이디" required>
-                        </p>
-                        <p class="double_check"><input type="button" value="중복확인" onclick="checkId()"></p>
-                    </div>
-                    <div class="join_input_2">
-                        <p  class="input_memberPw">
-                            <span><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
-                                <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
-                              </svg></span>
-                            <input type="password" id="password-input" name="memberPw" placeholder="비밀번호" required>
-                        </p>
-                        <p class="pw_display">
-                            <a href="#" id =  "pw_on"  class="hide">비밀번호 보이기</a>
-                            <a href="#" id = "pw_off" class="">비밀번호 가리기</a>
-                        </p>
-                    </div>
-                    <div class="join_input_3">
-                        <div class="join_input_3_left">
-                            <p class="input_memberName">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="green" class="bi bi-person" viewBox="0 0 16 16">
-                                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
-                                  </svg>
-                                <input type="text" name="memberName" placeholder="이름" required>
-                            </p>
-                        </div>
-                        <div class="join_input_3_right">
-                            <p  class="input_gender">
-                                <span>성별 </span>
-                                <input type="radio" name="gender" value="남" checked>남
-                                <input type="radio" name="gender" value="여">여
-                            </p>
+                <div id="container">
+                    <div class="inner">
+                        <div class="memberInfo">
+                            <div class="join_input_1">
+                                <div class="input_memberId">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#1ab752"
+                                        class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                        <path fill-rule="evenodd"
+                                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                    </svg>
+                                    <input type="text" name="memberId" id="memberId" placeholder="아이디" required>
+                                    <p><button type="button" class="double_check" onclick="checkId()">중복확인</button></p>
+                                </div>                      
+                            </div>
                         </div>
                     </div>
-                    <div class="join_input_4">
-                        <div class="join_input_4_left">
-                            <p  class="input_tel">
-                                <select class="tel1" name="memberTels" id="">
-                                    <option selected value="010">010</option>
-                                    <option  value="011">011</option>
-                                    <option  value="012">012</option>
-                                </select> -
-                                <input class="tel2" type="tel" name="memberTels" placeholder="전화번호" required> -
-                                <input class="tel3" type="tel" name="memberTels" placeholder="전화번호" required>
-                            </p>
-                        </div>
-                        <div class="join_input_4_right">
-                            <p  class="input_memberBirth">
-                                <span>생년월일 </span>
-                                <input type="date" name="birthDate" required>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="email_verify">
-                        <div class="mb-3">
-                            <p>
-                                <label class="form-label" for="email">Email</label>
-                                <input class="form-control" type="text" id="memberEmail" name="memberEmail" />
-                                <select name="email_host" id="email_host">
-                                    <option value="null" selected>선택해주세요</option>
-                                    <option value="@naver.com">@naver.com</option>
-                                    <option value="@daum.net">@daum.net</option>
-                                    <option value="@gmail.com">@gmail.com</option>
-                                    <option value="">직접입력</option>
-                                </select>
-                                <input type="hidden" name="member_mail" id="member_mail">
-                            </p>
-                            <input type="button" class="verify" value="인증번호 발급" id="verifyButton" onclick="verifyCode()" />
-                        </div>
-                        <div id="additionalInput" class="verify_box" style="display: none;">
-                            <!-- 추가 입력 필드가 여기에 동적으로 생성됨 -->
-                            <p>
-                                <label class="form-label" for="verify_code">인증번호</label>
-                                <input class="form-control" type="text" id="verify_code" name="verify_code" required />
-                                <div id="timer">3:00</div>
-                                <div class="alertbox"></div>
-                            </p>
-                            <input type="button" class="verify" value="인증번호 확인" onclick="checkCode()"/>
-                        </div>
-                    </div>                    
-                    <input class="join_btn" type="submit" value="가입하기">
                 </div>
             </div>
         </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="/js/join.js"></script>
-</form>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="/js/join.js"></script>
+    </form>
 </body>
+
 </html>

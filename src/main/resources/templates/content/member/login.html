@@ -1,50 +1,67 @@
 <!DOCTYPE html>
-<html lang="ko" 
-    xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title></title>
-<link rel="stylesheet" href="/css/member/login.css">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/member/login.css">
 </head>
+
 <body>
-<th:block layout:fragment="content">
+    <th:block layout:fragment="content">
         <form action="/member/login" method="post">
             <div id="wrap">
                 <div id="inner">
                     <div id="header">
                         <div class="h_in">
                             <div class="h_icon">
-                                <a href="/">BACK</a>
-                                <span>로그인</span>
+                                <a href="/">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#03c75a"
+                                        class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z" />
+                                    </svg>
+                                </a>
+                                <div class="textLogin">LOGIN</div>
                             </div>
-                            <div class="h_logo">LOGO</div>
+                            <a href="/"><div class="h_logo">LOGO</div></a>
                         </div>
                     </div>
                     <div id="container">
                         <div class="c_in">
                             <div class="login_input">
                                 <p class="input_memberId">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
-                                      </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#dadada"
+                                        class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                        <path fill-rule="evenodd"
+                                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                    </svg>
                                     <input type="text" name="memberId" placeholder="아이디">
                                 </p>
                                 <p class="input_memberPw">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
-                                        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#dadada"
+                                        class="bi bi-shield-lock-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm0 5a1.5 1.5 0 0 1 .5 2.915l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99A1.5 1.5 0 0 1 8 5z" />
                                     </svg>
                                     <input type="password" name="memberPw" placeholder="비밀번호">
                                 </p>
                             </div>
-                            <div>
-                                <input type="submit" value="로그인">
-                                <a href="/member/joinForm"><input type="button" value="회원가입"></a>
+                            <div class="loginBtnForm">
+                                <input class="loginBtn" type="submit" value="로그인">
                             </div>
+                        </div>
+                        <div class="loginFooter">
+                            <p><a href=""><input type="button" value="아이디 찾기"></a></p>
+                            <p><a href=""><input type="button" value="비밀번호 찾기"></a></p>
+                            <p><a href="/member/joinForm"><input type="button" value="회원가입"></a></p>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
-</th:block>
+    </th:block>
 </body>
+
 </html>

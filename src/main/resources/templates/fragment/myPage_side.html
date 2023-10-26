@@ -10,14 +10,15 @@
 <th:block th:fragment="myPageSideFragment">
     <div class="side_menu">
         <div class="side_inner">
-            <a href=""><h3>마이페이지</h3></a>
-            <p class="myPageSide on"><a href="">예약내역 & 찜</a></p>
-            <p class="myPageSide"><a href="">정보수정</a></p>
-            <p class="myPageSide"><a href="">자주 찾는 질문</a></p>
+            <h3 >마이페이지</h3>
+            <p class="myPageSide on" onclick="window.location.href = '/member/myPageForm'"><span>My 예약내역 & 찜</span></p>
+            <p class="myPageSide on" onclick="window.location.href = '/member/info'"><span>My 정보수정</span></p>
+            <p class="myPageSide on" onclick="window.location.href = '/your_custom_url'"><span>My 여행 플래너</span></p>
+            <p class="myPageSide on" onclick="window.location.href = '/your_custom_url'"><span>My 작성한 리뷰보기</span></p>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="/js/myPage_side.js"></script>
 </th:block>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/js/myPage_side.js"></script>
 </body>
 </html>

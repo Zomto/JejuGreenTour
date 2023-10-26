@@ -24,7 +24,7 @@ $(document).ready(function () {
     // 배경색을 변경하는 함수
     function changeBackgroundColor(currentSlide) {
         // Define background colors for each slide
-        const backgroundColors = ['rgba(74, 147, 216, 1)', 'rgba(33, 84, 202, 1)', 'rgba(185, 217, 242, 1)', 'rgba(0, 144, 230, 1)'];
+        const backgroundColors = ['rgba(74, 147, 216, 1)', 'rgba(33, 84, 202, 1)', 'rgba(124, 194, 254, 1)', 'rgba(0, 144, 230, 1)'];
         
         // Get the #Visual_Main element
         const visualMain = $('#Visual_Main');
