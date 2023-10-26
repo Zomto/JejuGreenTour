@@ -1,9 +1,6 @@
 package com.jejugreentour.jgt.buy.service;
 
-import com.jejugreentour.jgt.buy.vo.BasketAccomVO;
-import com.jejugreentour.jgt.buy.vo.ReservationVO;
-import com.jejugreentour.jgt.buy.vo.SampleACCVO;
-import com.jejugreentour.jgt.buy.vo.SampleSubVO;
+import com.jejugreentour.jgt.buy.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -57,6 +54,10 @@ public class BuyServiceImpl implements BuyService{
     @Override
     public void insertReservation(BasketAccomVO basketAccomVO) {
         sqlSession.insert("buyMapper.insertReservation",basketAccomVO);
+        ReservationStateVO vo=new ReservationStateVO();
+        vo.setCanRefundDate(basketAccomVO.getStayStartDate().split("T")[0]);
+        vo.setOverDate(basketAccomVO.getStayEndDate().split("T")[0]);
+        sqlSession.insert("buyMapper.insertReservationstate",vo);
         sqlSession.delete("buyMapper.deleteBasketAccom",basketAccomVO);
     }
 
@@ -68,5 +69,10 @@ public class BuyServiceImpl implements BuyService{
     @Override
     public ReservationVO selectReservationOne(String reservationCode) {
         return sqlSession.selectOne("buyMapper.selectReservationOne",reservationCode);
+    }
+
+    @Override
+    public List<ReservationVO> selectMemberReservationList(String memberId) {
+        return sqlSession.selectList("buyMapper.selectMemberReservationList",memberId);
     }
 }

@@ -93,11 +93,18 @@ public class BuyController {
     }
 
     @ResponseBody
-    @PostMapping("/reservationList")
+    @PostMapping("/reservationList") // 결제가능 여부 비교를 위해
     public List<ReservationVO> reservationList(String subAccomCode){
         return  buyService.selectReservation(subAccomCode);
     }
-
+    @GetMapping("/reservList") // 결제리스트 조회
+    public String reservList(HttpSession session, Model model){
+        MemberVO memberVO=(MemberVO)session.getAttribute("loginInfo") ;
+        System.out.println(memberVO);
+        List<ReservationVO> list= buyService.selectMemberReservationList(memberVO.getMemberId());
+        model.addAttribute("Reservationlist",list);
+        return  "/buy/reservation_list";
+    }
 
     @GetMapping("/adminCalendar")
     public String adminCalendar() {

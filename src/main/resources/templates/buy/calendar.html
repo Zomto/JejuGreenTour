@@ -25,7 +25,7 @@
         <div id="calendar"></div>
         <form action="/buy/buyBasket" method="post" id="calendarform">
 
-            <th:block th:if="${Reservationlist != null}" th:each="Reservation, state : ${Reservationlist}">
+            <th:block th:if="${Reservationlist != null && Reservation.stateVO.refund == 'N'}" th:each="Reservation, state : ${Reservationlist}">
                 <input type="hidden" class="start" th:value="${Reservation.stayStartDate}">
                 <input type="hidden" class="end" th:value="${Reservation.stayEndDate}">
                 <input type="hidden" class="dayuse" value="Y"><!--예약 대실 유무-->

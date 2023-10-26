@@ -1,15 +1,143 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{fragment/main_layout}">
+
 <head>
-<meta charset="UTF-8">
-<title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
+
 <body>
-<th:block layout:fragment="content">
+    <th:block layout:fragment="content">
+        <style>
+            .w_in {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
 
+            .main {
+                width: 70%;
+                margin-right: 30px;
+            }
 
-</th:block>
+            .m1_title {
+                color: #1db954;
+                font-size: 22px;
+                font-weight: 700;
+                padding-bottom: 15px;
+            }
+
+            .tbl table {
+                width: 100%;
+                border-bottom: 1px solid #ddd;
+                border-collapse: separate;
+                table-layout: fixed;
+                font-size: 15px;
+            }
+
+            .tbl table.board_type th,
+            .tbl table.board_type td {
+                padding: 15px;
+                text-align: center;
+                border-top: 1px solid #ddd;
+                color: black;
+
+            }
+
+            .tbl th {
+                background-color: #1ab752;
+                font-size: 15px;
+                font-weight: 600;
+                color: #111;
+            }
+
+            .tbl th,
+            .tbl td {
+                text-align: left;
+                min-height: 54px;
+                padding: 15px 20px;
+                font-weight: 400;
+                line-height: 23px;
+            }
+        </style>
+        <div>
+            <div class="w_in">
+                <div class="main">
+                    <h3 class="m1_title">예약내역</h3>
+                    <div class="tbl">
+                        <table class="board_type">
+                            <colgroup>
+                                <col width="20%" style=" border-radius: 0 0 0 50%;">
+                                <col width="*">
+                                <col width="20%">
+                                <col width="9%">
+                                <col width="15%">
+                            </colgroup>
+                            <thead>
+                                <th style="border-radius: 15px 0 0 0;">예약날짜</th>
+                                <th>숙소명</th>
+                                <th>숙박일자</th>
+                                <th>결제금액</th>
+                                <th style="border-radius: 0 15px 0 0;">예약상태</th>
+                            </thead>
+                            <tbody>
+                                <tr th:if="${ #lists.size(Reservationlist) == 0}">
+                                    <td colspan="6">
+                                        <div class="data_no">
+                                            <div class="cont">
+                                                <strong>"현재 예약 내역이 존재하지 않습니다."</strong><br>
+                                                "즐거운 여행 계획을 준비해 보세요!"
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr th:each="reserv , state : ${Reservationlist}">
+                                    <td>[[${reserv.reservationDate}]] </td>
+                                    <td>[[${reserv.subAccom.sampleACCVO.accomName}]][[${reserv.reservationName}]]</td>
+                                    <td>[[${reserv.stayStartDate}]] <br>
+                                        ~ <br>
+                                        [[${reserv.stayEndDate}]]</td>
+                                    <td>[[${reserv.reservationPrice}]]</td>
+                                    <td th:if="${reserv.stateVO.refund == 'N'}">Y
+                                        <div><input type="button" value="기타"></div><!-- 형태에 따라 다른 버튼 -->
+                                    </td>
+                                    <td th:if="${reserv.stateVO.refund == 'Y'}">N</td>
+                                    <input type="hidden">
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- <div class="m2">
+                        <h3 class="m2_title">찜 목록</h3>
+                        <input type="button" value="전체삭제" class="m2_delete_all">
+                        <div class="tb1">
+                            <table class="board_type">
+                                <colgroup>
+                                    <col style="width : 100%; border-radius: 0 0 0 50%; ">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th style="border-radius: 15px 15px 0 0;">숙소명</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class=wish_inner>
+                                                <strong>찜에 담긴 상품이 없습니다.</strong>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+    </th:block>
 </body>
+
 </html>
