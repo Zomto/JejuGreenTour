@@ -76,16 +76,16 @@
         </style>
         <div class="reviewin">
             <h1>숙소 리뷰 작성</h1>
-            <form action="/submit_review" method="post">
+            <form action="/buy/insertReview" method="post" enctype="multipart/form-data">
                 <label for="accomName" class="review_label">숙소명:</label>
-                <input class="input_review" type="text" id="accomName" name="accomName" readonly value="">
+                <input class="input_review" type="text" id="accomName" name="accomName" readonly th:value="${reservation.subAccom.sampleACCVO.accomName}">
                 <label for="memberName">아이디:</label>
-                <input class="input_review" type="text" id="memberName" name="memberName" readonly value="">
+                <input class="input_review" type="text" id="memberName" name="memberId" readonly th:value="${reservation.memberId}">
 
                 <label for="rating" class="reviewScore">평가 점수:</label>
                 <div>
                     <select name="score" class="reviewScore">
-                        <option value="2" class="Score">★ ☆ ☆ ☆ ☆
+                        <option value="2" class="Score" >★ ☆ ☆ ☆ ☆
                         </option>
                         <option value="4" class="Score">★ ★ ☆ ☆ ☆
                         </option>
@@ -93,17 +93,18 @@
                         </option>
                         <option value="8" class="Score">★ ★ ★ ★ ☆
                         </option>
-                        <option value="10" class="Score">★ ★ ★ ★ ★
+                        <option value="10" class="Score" selected>★ ★ ★ ★ ★
                         </option>
                     </select>
                 </div>
                 <label for="review" class="review_label">리뷰 내용:</label>
-                <textarea class="input_review review_textarea" id="review" name="conte" required></textarea>
+                <textarea class="input_review review_textarea" id="review" name="content" ></textarea>
 
-                <label for="image" class="review_label">제품 사진 업로드:</label>
-                <input class="input_review review_file" type="file" id="image" name="images" multiple>
+                <label for="image" class="review_label">사진 업로드:</label>
+                <input class="input_review review_file" type="file" id="image" name="imgs" multiple>
 
                 <input class="submit_review" type="submit" value="리뷰 제출">
+                <input type="hidden" name="accomCode" th:value="${reservation.subAccom.sampleACCVO.accomCode}">
             </form>
 
         </div>

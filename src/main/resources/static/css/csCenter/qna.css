@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+
+.title_group{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    background-color: beige;
+    border-bottom: 1px solid #999;
+}
+
+.title{
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.search_group{
+    display: flex;
+}
+
+
+.search_input{
+    margin-left: 15px;
+}
+
+.search_btn{
+    margin-left: 15px;
+}
+
+.qna_d1{
+    position: relative;
+    padding: 30px 10px 0px 10px;
+    border-bottom: 1px solid #999;
+    cursor: pointer;
+}
+
+.qna_d1::after{
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    display: inline-block;
+    content: "";
+    width: 25px;
+    height: 25px;
+    background-image: url(/img/mball_arrow.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+
+}
+
+.qna_d1:last-child{
+    border-bottom: 1px solid #222;
+}
+
+.qna_d1 div{
+    font-size: 22px;
+}
+
+
+.qna_d1 span{
+    display: inline-block;
+    text-align: center;
+    width: 35px;
+    height: 35px;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    color: white;
+    font-size: 22px;
+    margin-right: 30px;
+}
+
+.qna_span_q{
+    background-color: #999;
+}
+
+.qna_span_a{
+    background-color: green;
+}
+
+.active .qna_span_q{
+    background-color: #222;
+}
+
+.qna_answer{
+    display: block;
+    margin-top: 30px;
+    padding-bottom: 30px;
+}
+
+.qna_answer.active{
+    display: none;
+}
+
+.qna_question{
+    margin-bottom: 30px;
+}

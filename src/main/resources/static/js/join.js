@@ -214,3 +214,31 @@ function checkCode() {
 
 }
 let confirmCode = null
+
+function changePw(){
+    let pw = document.querySelector('#memberPw').value;
+    let pwCheck = document.querySelector('#memberPwCheck').value;
+    if(pw == ''){
+        inputInvalidate('.err-div', '비밀번호를 입력해주세요!');
+        return;
+    } else{
+        if(pwCheck == ''){
+            inputInvalidate('.err-div', '비밀번호를 확인해주세요!');
+            return;
+        } else{
+            if(pw == pwCheck){
+                document.querySelector('#editMember2').submit();
+                alert('회원 정보가 변경되었습니다.\n다시 로그인 해주세요')
+            } else{
+                inputInvalidate('.err-div', '비밀번호 다름!');
+                return ;
+            }
+        }
+    }
+}
+
+// Validate 실패시 메세지 설정
+function inputInvalidate(tagId, message){
+    document.querySelector(tagId).style.display = 'block';
+    document.querySelector(tagId).textContent = message;
+}

@@ -1,0 +1,87 @@
+@charset "UTF-8";
+#Visual_Main{
+    width: 1920px;
+    height: 610px;
+    margin: 0 auto;
+    position: relative;
+    transition: background-color 0.1s;
+}
+.slide_section{
+    position: absolute;
+    left: 25%;
+    margin: 0 auto;
+    width: 740px;
+    height: 610px;;
+}
+
+.slide_in{
+    display: flex;
+    position: relative;
+    width: 1920px;
+}
+.slide_1 .vm_1{
+    width: 740px;
+    height: 610px;
+    background: url(/img/mainBn_01.jpg) center no-repeat; 
+}
+.slide_2 .vm_2{
+    width: 740px;
+    height: 610px;
+    background: url(/img/bluedragon.JPG);
+}
+.slide_3 .vm_3{
+    width: 740px;
+    height: 610px;
+    background: url(/img/02.jpg);
+}
+.slide_4 .vm_4{
+    width: 740px;
+    height: 610px;
+    background: url(/img/747-green.JPG);
+}
+.m_remote{
+    position: absolute;
+    display: flex;
+    top: 4%;
+    right: 38%;
+    width: 90px;
+    height: 20px;
+    justify-content: space-between;
+}
+.m_remote p{
+    width: 11px;
+    height: 20px;
+    text-indent: -99999px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.m_remote .slide_prev{
+    background-image: url(/img/ms_prev.png);
+}
+.m_remote .slide_next{
+    background-image: url(/img/ms_next.png);
+}
+.m_remote .m_pause{
+    background-image: url(/img/ms_pause.png);
+}
+.m_remote .m_play{
+    background-image: url(/img/ms_play.png);
+    display: none;
+}
+
+
+.slide_1.active #Visual_Main {
+    background-color: rgba(74, 147, 216, 1) /* 1번 슬라이드가 활성화될 때 배경색을 bisque로 설정 */
+}
+
+.slide_2.active #Visual_Main {
+    background-color: rgba(33, 84, 202, 1); /* 2번 슬라이드가 활성화될 때 배경색을 aqua로 설정 */
+}
+
+.slide_3.active #Visual_Main {
+    background-color: rgba(124, 194, 254, 1); /* 3번 슬라이드가 활성화될 때 배경색을 green으로 설정 */
+}
+
+.slide_4.active #Visual_Main {
+    background-color: rgba(0, 144, 230, 1); /* 4번 슬라이드가 활성화될 때 배경색을 blue로 설정 */
+}

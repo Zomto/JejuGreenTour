@@ -109,14 +109,41 @@
 
 .m2_in li{
     position: relative;
-    padding: 20px 10px;
+    padding: 20px 10px 0 20px;
     border-bottom: 1px solid #999;
     cursor: pointer;
 }
 
-.m2_in li span{
-    color: blueviolet;
-    margin-right: 30px;
+.m2_qna_question{
+    display: block;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.m2_qna_answer{
+    display: none;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+
+
+
+.m2_qna_question .m2_cateName{
+    color: blueviolet; 
+}
+
+.m2_qna_span_a, .m2_qna_span_q{
+    margin-right: 15px;
+}
+
+.m2_box{
+    display: inline-block;
+    content: "";
+    width: 150px;
+}
+
+.hidden{
 }
 
 .m2_in li::after{

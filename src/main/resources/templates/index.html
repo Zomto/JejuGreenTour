@@ -7,6 +7,8 @@
     <title>Title</title>
 
     <link rel="stylesheet" href="/css/kakaomap.css">
+    <link rel="stylesheet" href="/css/slick.css">
+    <link rel="stylesheet" href="/css/index.css">
 
 </head>
 
@@ -24,22 +26,39 @@
     </div>
 </th:block>
 <div id="container">
-    <div class="top_main">
-        <div class="tinner">
-            <div class="tm_right">
-                <div class="main_slide">
-                    <div class="ms_img"><a href=""><img src="img/mainBn_01.jpg" alt=""></a></div>
-                    <div class="ms_btn">
-                        <p class="ms_prev"><span class="hide">이전으로</span></p>
-                        <p class="ms_next"><span class="hide">다음으로</span></p>
-                        <p class="ms_paly"><span class="hide">재생하기</span></p>
-                        <p class="ms_pause"><span class="hide">멈추기</span></p>
-                        <p class="ms_pager"><span>1/8</span></p>
+    <div id="Visual_Main">
+        <div class="slide_section">
+            <div class="m_slide_list">
+                <div class="slide_1">
+                    <div class="slide_in">
+                        <div class="vm_1"></div>
+                    </div>    
+                </div>
+                <div class="slide_2">
+                    <div class="slide_in">
+                        <div class="vm_2"></div>
                     </div>
                 </div>
-            </div>
+                <div class="slide_3">
+                    <div class="slide_in">
+                        <div class="vm_3"></div>
+                    </div>        
+                </div>
+                <div class="slide_4">
+                    <div class="slide_in">
+                        <div class="vm_4"></div>
+                    </div>        
+                </div>
+            </div> 
         </div>
-    </div> 
+        
+        <div class="m_remote">
+            <p class="slide_prev"><span>이전으로</span></p>
+            <p class="slide_next"><span>다음으로</span></p>                         
+            <p class="m_pause"><span class="hide">일시정지</span></p>
+            <p class="m_play"><span class="hide">재생</span></p>
+        </div>
+    </div>  
     <div class="main1">
         <div class="inner">
             <div class="m1_right">
@@ -217,7 +236,9 @@
         </script>
 </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	1faecd944d1bb1ff9e6939d4b20a8146&libraries=services"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="/js/kakaomap.js"></script>
+<script src="/js/slick.min.js"></script>
 
 </th:block>
 </body>

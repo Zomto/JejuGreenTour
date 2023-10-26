@@ -14,6 +14,19 @@
         <result column="RESERVATION_NAME" property="reservationName"/>
         <result column="RESERVATION_PRICE" property="reservationPrice"/>
         <result column="DAY_USE" property="dayuse"/>
+        <association property="stateVO" resultMap="reservationState"/>
+        <association property="subAccom" resultMap="subAccom"/>
+    </resultMap>
+
+    <resultMap id="reservationState" type="com.jejugreentour.jgt.buy.vo.ReservationStateVO">
+        <id column="RESERVATION_STATE_CODE" property="reservationStateCode" />
+        <result column="RESERVATION_CODE" property="reservationCode" />
+        <result column="REFUND" property="refund"/>
+        <result column="REVIEW" property="review"/>
+        <result column="REFUND_PRICE" property="refundPrice"/>
+        <result column="REFUND_DATE" property="refundDate"/>
+        <result column="CAN_REFUND_DATE" property="canRefundDate"/>
+        <result column="OVER_DATE" property="overDate"/>
     </resultMap>
 
     <resultMap id="Accom" type="com.jejugreentour.jgt.buy.vo.SampleACCVO">
@@ -32,7 +45,6 @@
         <result column="RENT_TIME" property="rentTime"/>
         <result column="DAY_USE_CAN" property="dayuseCan"/>
         <association property="sampleACCVO" resultMap="Accom"/>
-        <collection property="ReservationList" resultMap="reservation"/>
     </resultMap>
 
 
@@ -45,6 +57,23 @@
         <result column="STAY_TERM" property="stayTerm"/>
         <result column="DAY_USE" property="dayuse"/>
         <association property="sampleSubVO" resultMap="subAccom"/>
+    </resultMap>
+
+
+    <resultMap id="review" type="com.jejugreentour.jgt.buy.vo.ReviewVO">
+        <id column="REVIEW_CODE" property="reviewCode" />
+        <result column="ACCOM_CODE" property="accomCode"/>
+        <result column="MEMBER_ID" property="memberId"/>
+        <result column="SCORE" property="score"/>
+        <result column="CONTENT" property="content"/>
+        <result column="WRITE_DATE" property="writeDate"/>
+        <collection property="reviewImgList" resultMap="reviewImg"/>
+    </resultMap>
+    <resultMap id="reviewImg" type="com.jejugreentour.jgt.buy.vo.ReviewImgVO">
+        <id column="REVIEW_IMG_CODE" property="reviewImgCode" />
+        <result column="ORIGIN_FILE_NAME" property="originFileName"/>
+        <result column="ATTACHED_FILE_NAME" property="attachedFilrName"/>
+        <result column="REVIEW_CODE" property="reviewCode"/>
     </resultMap>
 
     <select id="selectAccom" resultMap="Accom">
@@ -64,13 +93,44 @@
 
     <!--방의 예약 정보 가져오기-->
     <select id="selectReservation" resultMap="reservation">
-        SELECT RESERVATION_CODE
+        SELECT RSA.RESERVATION_CODE
         , STAY_START_DATE
         , STAY_END_DATE
         , DAY_USE
-        FROM RESERVATION_STAY_ACCOM
+        , RESERVATION_STATE_CODE
+        , REFUND
+        , SUB_ACCOM_CODE
+        FROM RESERVATION_STAY_ACCOM RSA, RESERVATION_STATE RS
         WHERE SUB_ACCOM_CODE = #{subAccomCode}
+        AND RSA.RESERVATION_CODE=RS.RESERVATION_CODE
     </select>
+
+
+    <select id="selectMemberReservationList" resultMap="reservation">
+        SELECT RSA.RESERVATION_CODE
+        , STAY_START_DATE
+        , STAY_END_DATE
+        , RESERVATION_DATE
+        , RESERVATION_NAME
+        , RESERVATION_PRICE
+        , DAY_USE
+        , RESERVATION_STATE_CODE
+        , REFUND
+        , REVIEW
+        , REFUND_PRICE
+        , REFUND_DATE
+        , CAN_REFUND_DATE
+        , OVER_DATE
+        , ACCOM_NAME
+        , MS.ACCOM_CODE
+        , RSA.SUB_ACCOM_CODE
+        FROM RESERVATION_STAY_ACCOM RSA, RESERVATION_STATE RS, MAIN_ACCOM MS, SUB_ACCOM SA
+        WHERE MEMBER_ID = #{memberId}
+        AND RSA.RESERVATION_CODE=RS.RESERVATION_CODE
+        AND RSA.SUB_ACCOM_CODE=SA.SUB_ACCOM_CODE
+        AND  MS.ACCOM_CODE =SA.ACCOM_CODE
+    </select>
+
     <select id="basketNum" resultType="String">
         SELECT 'BAS_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(BASKET_CODE,5))),0)+1,3,'0')FROM BASKET_STAY_ACCOM
     </select>
@@ -135,21 +195,88 @@
         , STAY_END_DATE
         <if test='dayuse.equals("N")'>
             , (STAY_TERM*ACCOM_PRICE) AS RESERVATION_PRICE
-            ,  SUB_ACCOM_NAME||TO_CHAR(STAY_TERM)|| '박' || TO_CHAR(STAY_TERM+1) || '일'
+            ,  SUB_ACCOM_NAME||' 숙박 '||TO_CHAR(STAY_TERM)|| '박' || TO_CHAR(STAY_TERM+1) || '일'
         </if>
         <if test='dayuse.equals("Y")'>
             , (STAY_TERM*DAY_USE_PRICE) AS RESERVATION_PRICE
-            ,  SUB_ACCOM_NAME || '대실' || TO_CHAR(STAY_TERM*RENT_TIME) || '시간'
+            ,  SUB_ACCOM_NAME || ' 대실 ' || TO_CHAR(STAY_TERM*RENT_TIME) || '시간'
         </if>
         , DAY_USE
         FROM BASKET_STAY_ACCOM BAS, SUB_ACCOM SUB
         WHERE BASKET_CODE = #{basketCode}
         AND BAS.SUB_ACCOM_CODE=SUB.SUB_ACCOM_CODE
     </insert>
+    <insert id="insertReservationstate">
+        INSERT INTO RESERVATION_STATE(RESERVATION_STATE_CODE
+        , RESERVATION_CODE
+        , CAN_REFUND_DATE
+        , OVER_DATE)
+        VALUES ((SELECT 'STATE_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(RESERVATION_STATE_CODE,7))),0)+1,3,'0')FROM RESERVATION_STATE)
+        ,(SELECT 'RESERV_'||LPAD(MAX(TO_NUMBER(SUBSTR(RESERVATION_CODE,8))),3,'0')FROM RESERVATION_STAY_ACCOM)
+        ,TO_DATE(#{canRefundDate},'YYYY-MM-DD')
+        ,TO_DATE(#{overDate},'YYYY-MM-DD'))
+    </insert>
+
+    <update id="updateReservationstate">
+        UPDATE RESERVATION_STATE
+        SET
+        REFUND = #{refund}
+        , REVIEW=#{review}
+        , REFUND_PRICE=#{refundPrice}
+        <if test='refundDate != null and !refundDate.equals("") '>
+            , REFUND_DATE=TO_DATE(#{refundDate},'YYYY-MM-DD HH24:MI:SS')
+        </if>
+        WHERE RESERVATION_STATE_CODE = #{reservationStateCode}
+    </update>
+
     <delete id="deleteBasketAccom">
         DELETE FROM BASKET_STAY_ACCOM
         WHERE BASKET_CODE=#{basketCode}
     </delete>
+
+
+
+
+<!--    이미지넣기   -->
+    <select id="selectReviewCode" resultType="String">
+        SELECT 'REVIEW_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(REVIEW_CODE,8))),0)+1,3,'0')FROM REVIEW
+    </select>
+
+    <insert id="insertReview">
+        INSERT INTO REVIEW(
+        REVIEW_CODE
+        , ACCOM_CODE
+        , MEMBER_ID
+        , SCORE
+        , CONTENT
+        ) VALUES (
+        <!--        (SELECT 'REVIEW_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(REVIEW_CODE,8))),0)+1,3,'0')FROM REVIEW)-->
+        #{reviewCode}
+        , #{accomCode}
+        , #{memberId}
+        , #{score}
+        , #{content}
+        )
+    </insert>
+
+    <insert id="insertReviewImg">
+        <if test="reviewImgList.size()!=0">
+            INSERT INTO REVIEW_IMG(
+            REVIEW_IMG_CODE
+            , ORIGIN_FILE_NAME
+            , ATTACHED_FILE_NAME
+            , REVIEW_CODE
+            )
+            <foreach collection="reviewImgList" item="img" separator="UNION ALL" index="idx">
+                SELECT (SELECT 'RIMG_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(REVIEW_IMG_CODE,6))),0) + 1  + #{idx},3,'0')
+                FROM REVIEW_IMG)
+                , #{img.originFileName}
+                , #{img.attachedFileName}
+                , #{img.reviewCode}
+                FROM DUAL
+            </foreach>
+        </if>
+    </insert>
 
 </mapper>
     

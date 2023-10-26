@@ -77,11 +77,11 @@ a{
 }
 
 .myPageSide.on{
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 700;
     border-bottom: 2px solid #1db954;
 }
-.myPageSide.on a{
+.myPageSide.on{
     color: #1db954;
 }
 

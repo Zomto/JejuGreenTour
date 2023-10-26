@@ -21,10 +21,11 @@
     height: 500px;
 }
 .map_wrap > #map{
-    width: 800px;
-    height: 500px;
+    width: 500px;
+    height: 400px;
     position: absolute;
-    right: 0%;
+    top: 5%;
+    right: 10%;
     overflow: hidden;
 }
 
@@ -35,10 +36,14 @@
     bottom: 0;
     width: 390px;
     padding: 5px;
-    overflow-y: auto;
-    background: rgba(255, 255, 255, 0.7);
+    overflow-y: scroll;
+    background: #ffae00ea;
     z-index: 1;
     font-size: 12px;
+    border-radius: 10px;
+}
+#menu_wrap ::-webkit-scrollbar{
+    border-radius: 10px;
 }
 
 .bg_white {
@@ -112,7 +117,7 @@
     width: 36px;
     height: 37px;
     margin: 10px 0 0 10px;
-    background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;
+    background: url('../img/marker_number_blue.png') no-repeat;
 }
 
 #placesList .item .marker_1 {
