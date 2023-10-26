@@ -71,8 +71,8 @@
                                 <col width="20%" style=" border-radius: 0 0 0 50%;">
                                 <col width="*">
                                 <col width="20%">
-                                <col width="9%">
-                                <col width="15%">
+                                <col width="12%">
+                                <col width="18%">
                             </colgroup>
                             <thead>
                                 <th style="border-radius: 15px 0 0 0;">예약날짜</th>
@@ -83,7 +83,7 @@
                             </thead>
                             <tbody>
                                 <tr th:if="${ #lists.size(Reservationlist) == 0}">
-                                    <td colspan="6">
+                                    <td colspan="5">
                                         <div class="data_no">
                                             <div class="cont">
                                                 <strong>"현재 예약 내역이 존재하지 않습니다."</strong><br>
@@ -94,17 +94,152 @@
                                 </tr>
                                 <tr th:each="reserv , state : ${Reservationlist}">
                                     <td>[[${reserv.reservationDate}]] </td>
-                                    <td>[[${reserv.subAccom.sampleACCVO.accomName}]][[${reserv.reservationName}]]</td>
+                                    <td>[[${reserv.subAccom.sampleACCVO.accomName}]] <br>
+                                        [[${reserv.reservationName}]]</td>
                                     <td>[[${reserv.stayStartDate}]] <br>
                                         ~ <br>
                                         [[${reserv.stayEndDate}]]</td>
                                     <td>[[${reserv.reservationPrice}]]</td>
-                                    <td th:if="${reserv.stateVO.refund == 'N'}">Y
-                                        <div><input type="button" value="기타"></div><!-- 형태에 따라 다른 버튼 -->
+                                    <td
+                                        th:if="${reserv.stateVO.refund == 'N' && reserv.stateVO.canRefundDate ge #dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm:ss')}">
+                                        예약중
+                                        <div><input type="button" value="환불하기" onclick="refund(this)"
+                                                th:data-state-code="${reserv.stateVO.reservationStateCode}"
+                                                th:data-reservation-price="${reserv.reservationPrice}"
+                                                th:data-reservation-date="${reserv.reservationDate}"
+                                                th:data-can-refund="${reserv.stateVO.canRefundDate}"
+                                                th:data-now-date="${#dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm:ss')}">
+                                        </div><!-- 형태에 따라 다른 버튼 -->
                                     </td>
-                                    <td th:if="${reserv.stateVO.refund == 'Y'}">N</td>
+                                    <td
+                                        th:if="${reserv.stateVO.refund == 'N' && #dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm:ss') ge reserv.stateVO.canRefundDate && #dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm:ss') lt reserv.stateVO.overDate}">
+                                        <div>숙박중</div>
+                                    </td>
+                                    <td
+                                        th:if="${reserv.stateVO.refund == 'N' && reserv.stateVO.review == 'N' && reserv.stateVO.canRefundDate lt #dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm:ss')}">
+                                        <div><input type="button" value="리뷰작성하기" onclick="review(this)"
+                                                th:data-state-code="${reserv.stateVO.reservationStateCode}"
+                                                th:data-reservation-code="${reserv.reservationCode}"></div>
+                                    </td>
+                                    <td th:if="${reserv.stateVO.review == 'Y' }">
+                                        <div>리뷰를 <br> 작성하셨습니다</div>
+                                    </td>
+                                    <td th:if="${reserv.stateVO.refund == 'Y'}">환불함<br>
+                                        [[${#numbers.formatCurrency(reserv.stateVO.refundPrice)}]]원
+                                    </td>
                                     <input type="hidden">
                                 </tr>
+                                <script>
+
+
+                                    function refund(tag) {
+
+                                        console.log(tag.dataset.stateCode)
+                                        console.log(tag.dataset.reservationPrice)
+                                        console.log(tag.dataset.reservationDate)
+                                        console.log(tag.dataset.canRefund)
+                                        console.log(tag.dataset.nowDate)
+
+                                        console.log((new Date(tag.dataset.nowDate).getTime() - new Date(tag.dataset.reservationDate).getTime()) / (1000 * 60 * 60))//( 1000 * 60 * 60 * 24 )
+                                        let refundPrice = tag.dataset.reservationPrice;
+                                        let refundDay = (new Date(tag.dataset.canRefund).getTime() - new Date(tag.dataset.nowDate).getTime()) / (1000 * 60 * 60 * 24)
+                                        if ((new Date(tag.dataset.nowDate).getTime() - new Date(tag.dataset.reservationDate).getTime()) / (1000 * 60 * 60) > 3) {
+
+                                            if (refundDay <= 1) {
+                                                refundPrice = Math.ceil((refundPrice * 0.2) / 100) * 100
+                                            } else if (refundDay <= 3) {
+                                                refundPrice = Math.ceil((refundPrice * 0.5) / 100) * 100
+                                            } else if (refundDay <= 5) {
+                                                refundPrice = Math.ceil((refundPrice * 0.7) / 100) * 100
+                                            } else if (refundDay <= 7) {
+                                                refundPrice = Math.ceil((refundPrice * 0.9) / 100) * 100
+                                            } else if (refundDay <= 10) {
+                                                refundPrice = Math.ceil((refundPrice * 0.5) / 100) * 100
+                                            }
+                                        }
+
+
+                                        if (confirm("환불 하시겠습니까?")) {
+
+
+
+                                            fetch('/buy/refund', { //요청경로
+                                                method: 'POST',
+                                                cache: 'no-cache',
+                                                headers: {
+                                                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                                                },
+                                                //컨트롤러로 전달할 데이터
+                                                body: new URLSearchParams({
+                                                    reservationStateCode: tag.dataset.stateCode,
+                                                    refund: 'Y',
+                                                    review: 'N',
+                                                    refundPrice: refundPrice,
+                                                    refundDate: tag.dataset.nowDate
+                                                })
+                                            })
+                                                .then((response) => {
+                                                    if (!response.ok) {
+                                                        alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+                                                        return;
+                                                    }
+
+                                                    return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
+                                                    //return response.json(); //나머지 경우에 사용
+                                                })
+                                                //fetch 통신 후 실행 영역
+                                                .then((data) => {//data -> controller에서 리턴되는 데이터!
+                                                    location.reload()
+                                                })
+                                                //fetch 통신 실패 시 실행 영역
+                                                .catch(err => {
+                                                    alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+                                                    console.log(err);
+                                                });
+
+                                        }
+                                    }
+                                    function review(tag) {
+                                        if (confirm("리뷰를 작성 하시겠습니까?")) {
+
+
+
+                                            fetch('/buy/refund', { //요청경로
+                                                method: 'POST',
+                                                cache: 'no-cache',
+                                                headers: {
+                                                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                                                },
+                                                //컨트롤러로 전달할 데이터
+                                                body: new URLSearchParams({
+                                                    reservationStateCode: tag.dataset.stateCode,
+                                                    refund: 'N',
+                                                    review: 'Y',
+                                                    refundPrice: 0
+                                                })
+                                            })
+                                                .then((response) => {
+                                                    if (!response.ok) {
+                                                        alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+                                                        return;
+                                                    }
+
+                                                    return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
+                                                    //return response.json(); //나머지 경우에 사용
+                                                })
+                                                //fetch 통신 후 실행 영역
+                                                .then((data) => {//data -> controller에서 리턴되는 데이터!
+                                                    location.href = "/buy/review?reservationCode=" + tag.dataset.reservationCode;
+                                                })
+                                                //fetch 통신 실패 시 실행 영역
+                                                .catch(err => {
+                                                    alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+                                                    console.log(err);
+                                                });
+
+                                        }
+                                    }
+                                </script>
                             </tbody>
                         </table>
                     </div>

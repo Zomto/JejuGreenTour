@@ -1,9 +1,6 @@
 package com.jejugreentour.jgt.buy.service;
 
-import com.jejugreentour.jgt.buy.vo.BasketAccomVO;
-import com.jejugreentour.jgt.buy.vo.ReservationVO;
-import com.jejugreentour.jgt.buy.vo.SampleACCVO;
-import com.jejugreentour.jgt.buy.vo.SampleSubVO;
+import com.jejugreentour.jgt.buy.vo.*;
 import com.jejugreentour.jgt.member.vo.MemberVO;
 
 import java.util.List;
@@ -39,7 +36,14 @@ public interface BuyService {
     // 결제상태 리스트
     public List<ReservationVO> selectMemberReservationList(String memberId);
 
+    // 환불
+    public int updateReservationstate(ReservationStateVO stateVO);
 
+    //리뷰 코드가져오기
+    public String selectReviewCode();
+
+    //이미지 넣기
+    public void insertReview(ReviewVO reviewVO);
 
 
     //결제 취소 admin 시점 user 시점 (환불금액 차이)
