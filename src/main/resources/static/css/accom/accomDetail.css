@@ -6,11 +6,11 @@
     position: relative;
 }
 
-.accomDetail-inner{
+.accomDetail-inner {
     width: 1200px;
     box-sizing: border-box;
     margin: 0 auto;
-    padding: 20px 40px;
+    padding: 70px 40px 20px 40px;
     background-color: transparent;
 }
 
@@ -108,13 +108,14 @@
     box-sizing: border-box;
     width: 500px;
     height: 400px;
-    padding: 20px 20px;
+    padding: 1px 1px;
     border-radius: 5px;
     border: 1px solid #999;
 }
 .mainAccomMainImg img{
-    width: 460px;
-    height: 360px;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
 }
 
 .mainAccomDetail{
@@ -153,7 +154,7 @@
     width: 100%;
     position: relative;
     height: 40%;
-    border: 1px solid #999;
+    border: 1px solid #d4d4d4;
     border-radius: 5px;
     box-sizing: border-box;
     padding: 10px;
@@ -218,9 +219,10 @@
 }
 
 .mainAccomSubImg{
-    max-width: 1100px ;
+    max-width: 100%;
     position: relative;
     overflow: hidden;
+
 
 }
 
@@ -228,21 +230,23 @@
     border-radius: 5px;
     position: relative;
     width: 200px;
-    height: 300px;
-    background-color: azure;
+    height: 200px;
+    background-color: #03c75a;
     cursor: pointer;
     opacity: 0.5;
+    margin-right: 60px;
+    margin-top: 50px;
 
 }
 
-.addSubImg:hover, .addSubImg:hover .plus {
+.addSubImg:hover, .addSubImg:hover .plus, .addSubImg:hover > .plusText  {
     opacity: 1;
 }
 
 .plus{
     position: absolute;
     border-radius: 50%;
-    top: 125px;
+    top: 58px;
     left: 75px;
     width: 50px;
     height: 50px;
@@ -253,7 +257,7 @@
 .plus span{
     position: absolute;
     top: -13px;
-    left: 7px;
+    left: 9px;
     font-size: 50px;
     color: #777;
     opacity: 0.5;
@@ -276,10 +280,11 @@
     font-size: 18px;
     font-weight: 700;
     position: absolute;
-    top: 90px;
+    top: 127px;
     left: 50%;
-    margin-left: -40px;
+    margin-left: -35px;
     opacity: 0.5;
+    color: #fff;
 }
 
 .plusbutton{
@@ -289,37 +294,55 @@
     width: 200px;
     height: 300px;
     opacity: 0;
+    padding-right: 50px;
 }
 
 
 .mainImgSlide-inner{
     max-width: 100%;
-    height: 300px;
-    padding: 20px;
-    border: 1px solid #777;
+    height: 320px;
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
 }
 
-.imgListSlide .slick-active > img{
-    width: 220px;
-    height: 320px;
+.imgListSlide > img{
+    width: 100%;
+    height: 100%;
 }
+
+.imgListSlide{
+    display: block;
+    width: 320px;
+    height: 320px;
+    border-radius: 3px;
+    margin: 0 auto;
+    overflow: hidden;
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+.imgListSlide.slick-current,  .imgListSlide:hover{
+    transform: scale(1);
+    opacity: 1;
+}
+
 
 .deletebutton{
     position: absolute;
-    top: 3px;
-    right: 3px;
-    background-color: #777;
-    width: 10px;
-    height: 10px;
-    border: 1px solid #000;
+    top: 7px;
+    right: 7px;
+    border-radius: 5px;
+    background-color: #03c75a;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #999;
     cursor: pointer;
 }
 .deletebutton span{
-    font-size: 12px;
+    font-size: 17px;
     color: white;
     position: absolute;
-    top: -4px;
-    left: 1px;
+    top: -2px;
+    left: 5px;
 }
 
 /* 서브 숙소 정보 */
@@ -398,4 +421,20 @@
     left: -73px;
     width: 200px;
     height: 300px;
+}
+
+.mapbox > h2{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 32px;
+}
+.parking{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.parking::before{
+    border-top : 1px solid #333;
+}
+.parking > .p1{
+    margin-left: -7px;
 }
