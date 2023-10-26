@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class AnnVO {
+public class AnnVO extends PageVO{
     private String annNum;
     private String annCate;
     private String annWriter;

@@ -29,7 +29,7 @@
 
 .qna_d1{
     position: relative;
-    padding: 30px 10px;
+    padding: 30px 10px 0px 10px;
     border-bottom: 1px solid #999;
     cursor: pointer;
 }
@@ -46,6 +46,7 @@
     background-repeat: no-repeat;
     background-size: 100% auto;
     background-position: center;
+
 }
 
 .qna_d1:last-child{
@@ -84,4 +85,13 @@
 .qna_answer{
     display: block;
     margin-top: 30px;
+    padding-bottom: 30px;
+}
+
+.qna_answer.active{
+    display: none;
+}
+
+.qna_question{
+    margin-bottom: 30px;
 }

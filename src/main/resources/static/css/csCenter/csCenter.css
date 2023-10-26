@@ -76,11 +76,14 @@ a{
 }
 
 
-
-
 .side_inner .menu_last{
     border-bottom: 1px solid #222;
 }
+
+
+
+
+/* 푸터 영역 */
 
 
 .main_footer{
@@ -90,5 +93,3 @@ a{
     padding-top: 100px;
     border-top: 1px solid #999;
 }
-
-

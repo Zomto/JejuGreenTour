@@ -34,7 +34,7 @@
                                     <span class="qna_span_q">Q</span>
                                     [[${qna.qnaQuestion}]]
                                 </div>
-                                <div class="qna_answer"> <!-- 대답 -->
+                                <div class="qna_answer active"> <!-- 대답 -->
                                     <span class="qna_span_a">A</span>
                                     [[${qna.qnaAnswer}]]
                                 </div>
@@ -42,8 +42,18 @@
                         </ul>
                     </div>
                 </div>
+                <div>
+                    <a th:href="@{/cs/qnaForm(nowPage=${qnaVO.beginPage - 1})}"><span th:if="${qnaVO.prev}">이전</span></a>
+
+                    <th:block th:each="pageNum : ${#numbers.sequence(qnaVO.beginPage, qnaVO.endPage)}">
+                        <a th:href="@{/cs/qnaForm(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
+                    </th:block>
+
+                    <a th:href="@{/cs/qnaForm(nowPage=${qnaVO.endPage + 1})}"><span th:if="${qnaVO.next}">다음</span></a>
+                </div>
             </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="/js/csCenter/qna.js"></script>
     </th:block>
 </body>
