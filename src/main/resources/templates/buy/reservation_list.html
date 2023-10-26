@@ -95,7 +95,7 @@
                                 <tr th:each="reserv , state : ${Reservationlist}">
                                     <td>[[${reserv.reservationDate}]] </td>
                                     <td>[[${reserv.subAccom.sampleACCVO.accomName}]] <br>
-                                         [[${reserv.reservationName}]]</td>
+                                        [[${reserv.reservationName}]]</td>
                                     <td>[[${reserv.stayStartDate}]] <br>
                                         ~ <br>
                                         [[${reserv.stayEndDate}]]</td>
@@ -133,28 +133,28 @@
 
 
                                     function refund(tag) {
-                                        
+
                                         console.log(tag.dataset.stateCode)
                                         console.log(tag.dataset.reservationPrice)
                                         console.log(tag.dataset.reservationDate)
                                         console.log(tag.dataset.canRefund)
                                         console.log(tag.dataset.nowDate)
 
-                                        console.log((new Date(tag.dataset.nowDate).getTime()-new Date(tag.dataset.reservationDate).getTime() )/(1000*60*60))//( 1000 * 60 * 60 * 24 )
+                                        console.log((new Date(tag.dataset.nowDate).getTime() - new Date(tag.dataset.reservationDate).getTime()) / (1000 * 60 * 60))//( 1000 * 60 * 60 * 24 )
                                         let refundPrice = tag.dataset.reservationPrice;
-                                        let refundDay=(new Date(tag.dataset.canRefund).getTime()-new Date(tag.dataset.nowDate).getTime() )/(1000*60*60*24)
-                                        if((new Date(tag.dataset.nowDate).getTime()-new Date(tag.dataset.reservationDate).getTime() )/(1000*60*60) > 3){
-                                            
-                                            if(refundDay<=1){
-                                                refundPrice=Math.ceil((refundPrice*0.2)/100)*100
-                                            }else if(refundDay<=3){
-                                                refundPrice=Math.ceil((refundPrice*0.5)/100)*100
-                                            }else if(refundDay<=5){
-                                                refundPrice=Math.ceil((refundPrice*0.7)/100)*100
-                                            }else if(refundDay<=7){
-                                                refundPrice=Math.ceil((refundPrice*0.9)/100)*100
-                                            }else if(refundDay<=10){
-                                                refundPrice=Math.ceil((refundPrice*0.5)/100)*100
+                                        let refundDay = (new Date(tag.dataset.canRefund).getTime() - new Date(tag.dataset.nowDate).getTime()) / (1000 * 60 * 60 * 24)
+                                        if ((new Date(tag.dataset.nowDate).getTime() - new Date(tag.dataset.reservationDate).getTime()) / (1000 * 60 * 60) > 3) {
+
+                                            if (refundDay <= 1) {
+                                                refundPrice = Math.ceil((refundPrice * 0.2) / 100) * 100
+                                            } else if (refundDay <= 3) {
+                                                refundPrice = Math.ceil((refundPrice * 0.5) / 100) * 100
+                                            } else if (refundDay <= 5) {
+                                                refundPrice = Math.ceil((refundPrice * 0.7) / 100) * 100
+                                            } else if (refundDay <= 7) {
+                                                refundPrice = Math.ceil((refundPrice * 0.9) / 100) * 100
+                                            } else if (refundDay <= 10) {
+                                                refundPrice = Math.ceil((refundPrice * 0.5) / 100) * 100
                                             }
                                         }
 
@@ -229,7 +229,7 @@
                                                 })
                                                 //fetch 통신 후 실행 영역
                                                 .then((data) => {//data -> controller에서 리턴되는 데이터!
-                                                    location.href = "/buy/review?reservationCode" + tag.dataset.reservationCode;
+                                                    location.href = "/buy/review?reservationCode=" + tag.dataset.reservationCode;
                                                 })
                                                 //fetch 통신 실패 시 실행 영역
                                                 .catch(err => {

@@ -123,10 +123,9 @@
                         let stayEndDate = document.querySelector('.stayEndDate').value;
                         let safe=false;
                         data.forEach(element => {
-                            console.log(element.stayStartDate)
-                            console.log(stayStartDate)
+                            console.log(element.subAccom)
                             // console.log(stayStartDate>=element.stayStartDate&&stayStartDate<)
-                            if((element.stayStartDate<=stayStartDate&&stayStartDate<element.stayEndDate)||(stayStartDate<=element.stayStartDate&&element.stayStartDate<stayEndDate)){
+                            if((element.stateVO.refund == 'N')&&((element.stayStartDate<=stayStartDate&&stayStartDate<element.stayEndDate)||(stayStartDate<=element.stayStartDate&&element.stayStartDate<stayEndDate))){
                                 safe = true;
                             }
                         });

@@ -39,6 +39,12 @@ public interface BuyService {
     // 환불
     public int updateReservationstate(ReservationStateVO stateVO);
 
+    //리뷰 코드가져오기
+    public String selectReviewCode();
+
+    //이미지 넣기
+    public void insertReview(ReviewVO reviewVO);
+
 
     //결제 취소 admin 시점 user 시점 (환불금액 차이)
 

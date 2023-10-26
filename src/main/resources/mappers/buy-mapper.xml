@@ -59,6 +59,23 @@
         <association property="sampleSubVO" resultMap="subAccom"/>
     </resultMap>
 
+
+    <resultMap id="review" type="com.jejugreentour.jgt.buy.vo.ReviewVO">
+        <id column="REVIEW_CODE" property="reviewCode" />
+        <result column="ACCOM_CODE" property="accomCode"/>
+        <result column="MEMBER_ID" property="memberId"/>
+        <result column="SCORE" property="score"/>
+        <result column="CONTENT" property="content"/>
+        <result column="WRITE_DATE" property="writeDate"/>
+        <collection property="reviewImgList" resultMap="reviewImg"/>
+    </resultMap>
+    <resultMap id="reviewImg" type="com.jejugreentour.jgt.buy.vo.ReviewImgVO">
+        <id column="REVIEW_IMG_CODE" property="reviewImgCode" />
+        <result column="ORIGIN_FILE_NAME" property="originFileName"/>
+        <result column="ATTACHED_FILE_NAME" property="attachedFilrName"/>
+        <result column="REVIEW_CODE" property="reviewCode"/>
+    </resultMap>
+
     <select id="selectAccom" resultMap="Accom">
         SELECT * FROM MAIN_ACCOM
         WHERE ACCOM_CODE = #{accomCode}
@@ -216,6 +233,50 @@
         DELETE FROM BASKET_STAY_ACCOM
         WHERE BASKET_CODE=#{basketCode}
     </delete>
+
+
+
+
+<!--    이미지넣기   -->
+    <select id="selectReviewCode" resultType="String">
+        SELECT 'REVIEW_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(REVIEW_CODE,8))),0)+1,3,'0')FROM REVIEW
+    </select>
+
+    <insert id="insertReview">
+        INSERT INTO REVIEW(
+        REVIEW_CODE
+        , ACCOM_CODE
+        , MEMBER_ID
+        , SCORE
+        , CONTENT
+        ) VALUES (
+        <!--        (SELECT 'REVIEW_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(REVIEW_CODE,8))),0)+1,3,'0')FROM REVIEW)-->
+        #{reviewCode}
+        , #{accomCode}
+        , #{memberId}
+        , #{score}
+        , #{content}
+        )
+    </insert>
+
+    <insert id="insertReviewImg">
+        <if test="reviewImgList.size()!=0">
+            INSERT INTO REVIEW_IMG(
+            REVIEW_IMG_CODE
+            , ORIGIN_FILE_NAME
+            , ATTACHED_FILE_NAME
+            , REVIEW_CODE
+            )
+            <foreach collection="reviewImgList" item="img" separator="UNION ALL" index="idx">
+                SELECT (SELECT 'RIMG_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(REVIEW_IMG_CODE,6))),0) + 1  + #{idx},3,'0')
+                FROM REVIEW_IMG)
+                , #{img.originFileName}
+                , #{img.attachedFileName}
+                , #{img.reviewCode}
+                FROM DUAL
+            </foreach>
+        </if>
+    </insert>
 
 </mapper>
     

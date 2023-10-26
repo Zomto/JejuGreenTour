@@ -1,11 +1,9 @@
 package com.jejugreentour.jgt.buy.controller;
 
 import com.jejugreentour.jgt.buy.service.BuyService;
-import com.jejugreentour.jgt.buy.vo.BasketAccomVO;
-import com.jejugreentour.jgt.buy.vo.ReservationStateVO;
-import com.jejugreentour.jgt.buy.vo.ReservationVO;
-import com.jejugreentour.jgt.buy.vo.SampleSubVO;
+import com.jejugreentour.jgt.buy.vo.*;
 import com.jejugreentour.jgt.member.vo.MemberVO;
+import com.jejugreentour.jgt.util.UploadReviewUtil;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,15 +28,16 @@ public class BuyController {
     @GetMapping("/calendar")
     public String calendar(Model model ,String subAccomCode){
 
-        List<ReservationVO> reservationVOList = buyService.selectReservation("SUB_001");
-        System.out.println(reservationVOList);
 
+        List<ReservationVO> reservationVOList ;
         if(subAccomCode==null||subAccomCode.equals(""))
         {
             model.addAttribute("SampleSubVO",buyService.selectSubAccom("SUB_001"));
+            reservationVOList = buyService.selectReservation("SUB_001");
         }else
         {
-            model.addAttribute("SampleSubVO",buyService.selectSubAccom("subAccomCode"));
+            model.addAttribute("SampleSubVO",buyService.selectSubAccom(subAccomCode));
+            reservationVOList = buyService.selectReservation(subAccomCode);
         }
 
         model.addAttribute("Reservationlist",reservationVOList);
@@ -117,14 +117,36 @@ public class BuyController {
     @GetMapping("/review")
     public  String reviewWrite(ReservationVO reservationVO, HttpSession session, Model model){
         reservationVO= buyService.selectReservationOne(reservationVO.getReservationCode());
-        System.out.println(reservationVO);
 //        if(session.getAttribute("loginInfo")!=null&&reservationVO.getMemberId().equals(((MemberVO)session.getAttribute("loginInfo")).getMemberId())){
 //            return"/buy/review";
 //        }else {
 //             return "redirect:/";
 //        }
+        SampleSubVO subVO = buyService.selectSubAccom(reservationVO.getSubAccomCode());
+        subVO.setSampleACCVO(buyService.selectAccom(subVO.getAccomCode()));
+        reservationVO.setSubAccom(subVO);
+        System.out.println(reservationVO);
         model.addAttribute("reservation",reservationVO);
+
         return"/buy/review";
+    }
+    @PostMapping("/insertReview")
+    public String insertReview(ReviewVO reviewVO, MultipartFile[] imgs){
+        String reviewCode= buyService.selectReviewCode();
+        System.out.println(imgs);
+        List<ReviewImgVO> imgList = UploadReviewUtil.multiFileUpload(imgs);
+        if (!imgList.isEmpty()) {
+            for (ReviewImgVO imgVO : imgList) {
+                imgVO.setReviewCode(reviewCode);
+            }
+        }else {
+            imgList = new ArrayList<>();
+        }
+        reviewVO.setReviewImgList(imgList);
+
+        reviewVO.setReviewCode(reviewCode);
+        buyService.insertReview(reviewVO);
+        return "redirect:/";
     }
 
     @GetMapping("/reviewList")
@@ -138,4 +160,6 @@ public class BuyController {
 
         return"/buy/admin_calendar";
     }
+
 }
+
