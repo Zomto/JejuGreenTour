@@ -1,19 +1,27 @@
-body, input{
+body,
+input {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
     line-height: 1.5;
     color: #121212;
 }
-img, input, button{
+
+img,
+input,
+button {
     vertical-align: top;
 }
-input, button{
+
+input,
+button {
     padding: 0;
 }
-a{
+
+a {
     text-decoration: none;
 }
-.hide{
+
+.hide {
     position: fixed;
     top: -99999px;
     left: -99999px;
@@ -23,54 +31,70 @@ a{
     overflow: hidden;
 }
 
-#wrap{
+#wrap {
     min-width: 920px;
 }
-.h_in{
+
+.h_in {
     display: flex;
     justify-content: space-between;
 }
-.h_icon{
+
+.h_icon {
     display: flex;
 }
-#inner{
+
+#inner {
     width: 500px;
     margin: 0 auto;
     padding: 15px 30px;
     background-color: white;
 }
-#header{
+
+#header {
     margin-bottom: 40px;
 }
-.bi.bi-arrow-left-square-fill:hover{
+
+.bi.bi-arrow-left-square-fill:hover {
     fill: rgb(22, 161, 22);
 }
-.textLogin{
+
+.textLogin {
     font-size: 20px;
     font-weight: 700;
+    color: rgb(117, 117, 117);
 }
 
-.bi.bi-house-fill:hover{
+.bi.bi-house-fill:hover {
     fill: rgb(22, 161, 22);
 }
-.join_input{
-    padding: 0;
 
+.join_input {
+    padding: 0;
+    position: relative;
     border-radius: 7px 7px 0 0;
     display: flex;
 
 }
-.inputMem{
+
+.inputMem {
     position: relative;
 }
-.inputMem > svg{
+
+.inputMem.memberId {
+    border: 1px solid #dadada;
+    border-radius: 7px 7px 0 0;
+    width: 500px;
+}
+
+.inputMem>svg {
     position: absolute;
     z-index: 500;
     top: 12px;
     left: 10px;
 }
 
-.inputMem input{
+.inputMem input {
     box-sizing: border-box;
     border: 1px solid #dadada;
     border-radius: 7px 7px 0 0;
@@ -78,16 +102,37 @@ a{
     height: 50px;
     padding: 0 0 0 50px;
 }
-#memberId.no::placeholder{
+
+#memberId {
+    width: 400px;
+    height: 50px;
+    border: 0;
+}
+
+.join_input_one {
+    position: relative;
+}
+
+.join_input_one>.inputMem input {
+    box-sizing: border-box;
+    border: 1px solid #dadada;
+    border-radius: 7px 7px 0 0;
+    width: 500px;
+    height: 50px;
+    padding: 0 95px 0 50px;
+}
+
+#memberId.no::placeholder {
     color: #ff3f3f;
 }
 
-.inputMem input:focus{
+.inputMem input:focus {
     border: 1px solid #1ab752;
     outline: none;
     color: #444;
 }
-.double_check{
+
+.double_check {
     background-color: #03c75a;
     color: #fff;
     border-radius: 5px;
@@ -95,45 +140,54 @@ a{
     border: 0;
     width: 90px;
     height: 35px;
+    right: 7px;
+    top: 8px;
     position: absolute;
-    top: 10px;
-    right: 10px;
 }
-.double_check:hover{
-    background-color:#1ab752;
+
+.double_check:hover {
+    background-color: #1ab752;
 }
-.inputMem > #memberPw{
+
+.inputMem>#memberPw {
     position: relative;
     border-top: 0;
     border-radius: 0 0 7px 7px;
 }
-.inputMem > #memberPw:focus{
+
+.inputMem>#memberPw:focus {
     border-top: 1px solid #1ab752;
 }
-.pw_display{
+
+.pw_display {
     z-index: 500;
     margin-top: 14px;
     margin-left: -40px;
 }
 
-.inputMem > #memberName{
+.inputMem>#memberName {
     position: relative;
     border-radius: 7px 0 0 0;
 }
-.inputMem > #memberName:focus{
+
+.inputMem>#memberName:focus {
     border-top: 1px solid #1ab752;
 }
-#memberName{
+
+#memberName {
     width: 250px;
 }
-.input_gender{
+
+.input_gender {
     position: absolute;
     display: flex;
 }
+
 .gender_check input[type="radio"] {
     display: none;
 }
-.gender_check input[type="radio"] + span{
+
+.gender_check input[type="radio"]+span {
     display: inline-block;
     background: none;
     border: 1px solid #dadada;
@@ -145,37 +199,120 @@ a{
     font-weight: 500;
     cursor: pointer;
 }
-.gender_check.male input[type="radio"] + span{
+
+.gender_check.male input[type="radio"]+span {
     border-radius: 5px 0 0 5px;
 }
-.gender_check.female input[type="radio"] + span{
+
+.gender_check.female input[type="radio"]+span {
     border-radius: 0 5px 5px 0;
 }
-.gender_check input[type="radio"]:checked +span{
+
+.gender_check input[type="radio"]:checked+span {
     border: 1px solid #03c75a;
     background: #03c75a;
     color: #fff;
 
 }
-.join_input_3_right{
+
+.join_input_3_right {
     position: relative;
     width: 250px;
     border: 1px solid #dadada;
     border-left: 0;
     border-radius: 0 7px 0 0;
 }
-.input_gender{
+
+.input_gender {
     position: absolute;
     top: 7px;
     left: 32px;
 }
-.memberInfo{
+
+.memberInfo {
     margin-bottom: 30px;
 }
 
-.join_input.four{
+.join_input.four {
+    position: relative;
+    width: 249px;
     height: 50px;
     border: 1px solid #dadada;
     border-top: 0;
     border-radius: 0;
+}
+
+.join_input>svg {
+    position: absolute;
+    z-index: 500;
+    top: 12px;
+    left: 10px;
+}
+
+.tel1,
+.tel2,
+.tel3 {
+    border-radius: 7px;
+    border: 1px solid #dadada;
+    color: rgb(117, 117, 117);
+    font-weight: 100;
+    font-size: 15px;
+    width: 50px;
+    height: 20px;
+    outline: none;
+}
+
+.tel1:focus,
+.tel2:focus,
+.tel3:focus {
+    border: 1px solid #1ab752;
+}
+
+.input_tel {
+    margin-top: 15px;
+    margin-left: 48px;
+}
+
+.tel2,
+.tel3 {
+    width: 50px;
+    box-sizing: border-box;
+    padding: 0 0 0 5px;
+    letter-spacing: 3px;
+}
+
+.inputDate {
+    border: 0;
+    outline: none;
+}
+
+.join_input.five {
+    border: 1px solid #dadada;
+    border-top: 0;
+    border-left: 0;
+    border-radius: 0;
+    width: 250px;
+    height: 50px;
+    position: relative;
+}
+
+.inputDateDiv {
+    display: flex;
+    margin-left: 38px;
+}
+
+.dateText {
+    margin-top: 15px;
+    font-size: 15px;
+    color: rgb(117, 117, 117);
+}
+
+.inputDate {
+    margin-top: 1px;
+    margin-left: 30px;
+    width: 100px;
+    color: rgb(117, 117, 117);
+}
+.callnDate{
+    display: flex;
 }
