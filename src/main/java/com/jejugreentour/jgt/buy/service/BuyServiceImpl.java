@@ -59,6 +59,7 @@ public class BuyServiceImpl implements BuyService{
         ReservationStateVO vo=new ReservationStateVO();
         vo.setCanRefundDate(basketAccomVO.getStayStartDate().split("T")[0]);
         vo.setOverDate(basketAccomVO.getStayEndDate().split("T")[0]);
+        vo.setReservationCode(basketAccomVO.getReservUuid());
         sqlSession.insert("buyMapper.insertReservationstate",vo);
         sqlSession.delete("buyMapper.deleteBasketAccom",basketAccomVO);
     }
@@ -93,5 +94,20 @@ public class BuyServiceImpl implements BuyService{
     public void insertReview(ReviewVO reviewVO) {
         sqlSession.insert("buyMapper.insertReview",reviewVO);
         sqlSession.insert("buyMapper.insertReviewImg",reviewVO);
+    }
+
+    @Override
+    public List<ReviewVO> accomReviewList(String accomCode) {
+        return sqlSession.selectList("buyMapper.accomReviewList",accomCode);
+    }
+
+    @Override
+    public List<ReviewVO> memberReviewList(String memberId) {
+        return sqlSession.selectList("buyMapper.memberReviewList",memberId);
+    }
+
+    @Override
+    public int insertAdminReview(ReviewAdminVO reviewAdminVO) {
+        return sqlSession.insert("buyMapper.insertAdminReview",reviewAdminVO);
     }
 }

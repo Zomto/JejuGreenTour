@@ -42,8 +42,17 @@ public interface BuyService {
     //리뷰 코드가져오기
     public String selectReviewCode();
 
-    //이미지 넣기
+    //이미지 리뷰 넣기
     public void insertReview(ReviewVO reviewVO);
+
+    //숙박시설 리뷰조회
+    public List<ReviewVO> accomReviewList(String accomCode);
+    //회원이 쓴 리뷰조회
+    public List<ReviewVO> memberReviewList(String memberId);
+
+    //숙박업소주인 답변달기
+    public int insertAdminReview(ReviewAdminVO reviewAdminVO);
+
 
 
     //결제 취소 admin 시점 user 시점 (환불금액 차이)

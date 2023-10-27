@@ -12,5 +12,7 @@ public class ReviewVO {
     private String score;
     private String content;
     private String writeDate;
+    private SampleACCVO sampleACCVO;
+    private ReviewAdminVO reviewAdminVO;
     private List<ReviewImgVO> reviewImgList;
 }
