@@ -43,18 +43,48 @@ function inputInvalidate(tagId, message) {
     document.querySelector(tagId).style.display = 'block';
     document.querySelector(tagId).textContent = message;
 }
+let tags = document.querySelectorAll('.inputInfo');
+tags.forEach((element, idx) => {
+    element.addEventListener('click', e=> {
+        element.querySelector('.bi').setAttribute("fill", "#03c75a");
+    });
+});
 
+let tags2 = document.querySelectorAll('.join_input');
+tags2.forEach((element, idx) => {
+    element.addEventListener('click', e=> {
+        element.querySelector('.bi').setAttribute("fill", "#03c75a");
+    });
+});
+
+let tagss = document.querySelector('.inputMem.memberId');
+$('.inputMemberId').click(function(){
+    tagss.style.borderColor = "#03c75a";
+    document.querySelector('.bi-person-circle').setAttribute("fill", "#03c75a");
+})
+$('.join_input.four').click(function(){
+    document.querySelector('.join_input.four').style.borderTop = "1px solid #03c75a";
+    document.querySelector('.join_input.four').style.borderColor = "#03c75a";
+    document.querySelector('.bi-telephone-fill').setAttribute("fill", "#03c75a");
+})
+$('.join_input.five').click(function(){
+    document.querySelector('.join_input.five').style.borderTop = "1px solid #03c75a";
+    document.querySelector('.join_input.five').style.borderLeft = "1px solid #03c75a";
+    document.querySelector('.join_input.five').style.borderColor = "#03c75a";
+    document.querySelector('.bi-calendar-check').setAttribute("fill", "#03c75a");
+})
 // 화원가입 시 아이디 중복 체크
 function checkId() {
 
     let memberIdvalue = document.querySelector('#memberId').value;
     let memberIdInput = document.querySelector('#memberId');
+    let memberIdBoarder = document.querySelector('.inputMem.memberId');
     let memberIdBtn = document.querySelector('.double_check');
     let idSvg = document.querySelector('.bi-person-circle');
     if(memberIdvalue == ""){
         memberIdInput.classList.toggle('no');
         idSvg.setAttribute("fill", "#ff3f3f");
-        memberIdInput.style.borderColor = "#ff3f3f";
+        memberIdBoarder.style.borderColor = "#ff3f3f";
         memberIdInput.placeholder = "아이디를 입력해주세요";
         memberIdBtn.style = "background-color : #dadada";
         memberIdBtn.addEventListener('mouseover', (event) => {
@@ -262,3 +292,9 @@ function inputInvalidate(tagId, message){
     document.querySelector(tagId).style.display = 'block';
     document.querySelector(tagId).textContent = message;
 }
+
+// let svgIcon = document.querySelector
+// $('.join_input').click(function(){
+//     $(this).find('.bi').setAttribute("fill", "#03c75a");
+// });
+

@@ -318,8 +318,9 @@ function deleteSubImg(mainImgCode, accomCode) {
             addSubImgDiv.appendChild(plusDiv);
             addSubImgDiv.appendChild(plusTextDiv);
             mainAccomImg.appendChild(addSubImgDiv);
-
+            console.log(data)
             for (const data1 of data) {
+    
                 const imageListSlide = document.createElement("div");
                 imageListSlide.className = "imgListSlide slick-slide";
 
