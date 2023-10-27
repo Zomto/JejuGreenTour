@@ -52,11 +52,13 @@
 
 table{
     text-align: center;
+    margin-bottom: 50px;
 }
 
 td{
     border: 1px solid #999;
     padding: 15px 10px;
+    white-space: nowrap;
 }
 
 .column{
@@ -64,4 +66,43 @@ td{
     color: #222;
     font-size: 17px;
     font-weight: 500;
+}
+
+.annTitle{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #222;
+}
+
+
+
+/* 페이징 */
+
+.page_prevBtn{
+    font-size: 20px;
+}
+
+.page_nextBtn{
+    font-size: 20px;
+}
+
+.page_numBtn{
+    font-size: 20px;
+
+}
+
+.pageBtn > a{
+    color: #222;
+    margin-right: 10px;
+}
+
+.btn_group{
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.annBtn{
+    position: absolute;
+    top: 0;
+    right: 0;
 }

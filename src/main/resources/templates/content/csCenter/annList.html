@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="/css/csCenter/announcement.css">
+    <link rel="stylesheet" href="/css/csCenter/annList.css">
 </head>
 <body>
     <th:block layout:fragment="content">
@@ -32,25 +32,38 @@
                         <li class="cate_last">당첨자발표</li>
                     </ul>
                 </div>
-                <table width="100%">
-                    <thead>
-                        <tr width="100%" class="column">
+                <table width="1000px">
+                    <thead width="100%">
+                        <tr class="column">
                             <td width="10%">번호</td>
                             <td width="15%">구분</td>
-                            <td width="">제목</td>
+                            <td>제목</td>
                             <td width="15%">등록일</td>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="ann, state : ${annList}">
-                            <td width="10%">[[${#lists.size(annList) - state.index}]]</td>
-                            <td width="15%">[[${ann.annCateList.cateName}]]</td>
-                            <td width="">[[${ann.annTitle}]]</td>
-                            <td width="15%">[[${ann.annDate}]]</td>
+                        <tr width="100%" th:each="ann, state : ${annList}">
+                            <td>[[${annVO.totalDataCnt - state.index - (annVO.displayDataCnt * (annVO.nowPage - 1))}]]</td>
+                            <td>[[${ann.annCateList.cateName}]]</td>
+                            <td><a class="annTitle" th:href="@{/cs/annDetailForm(annNum=${ann.annNum})}">[[${ann.annTitle}]]</a></td>
+                            <td>[[${ann.annDate}]]</td>
                         </tr>
                     </tbody>
                 </table>
-                <button onclick="location.href='/cs/snForm';">글 작성</button>
+                <div class="btn_group">
+                    <div class="pageBtn">
+                        <a class="page_prevBtn" th:href="@{/cs/annForm(nowPage=${annVO.beginPage - 1})}"><span th:if="${annVO.prev}">이전</span></a>
+    
+                        <th:block th:each="pageNum : ${#numbers.sequence(annVO.beginPage, annVO.endPage)}">
+                            <a class="page_numBtn" th:href="@{/cs/annForm(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
+                        </th:block>
+    
+                        <a class="page_nextBtn" th:href="@{/cs/annForm(nowPage=${annVO.endPage + 1})}"><span th:if="${annVO.next}">다음</span></a>
+                    </div>
+                    <div class="annBtn">
+                        <button onclick="location.href='/cs/snForm';">글 작성</button>
+                    </div>
+                </div>
             </div>
         </div>
     </th:block>
