@@ -15,7 +15,7 @@
 }
 
 .title span{
-    color: green;
+    color: #1db954;
 }
 
 .m_search{
@@ -109,38 +109,44 @@
 
 .m2_in li{
     position: relative;
-    padding: 20px 10px 0 20px;
+    padding: 15px 10px 0 20px;
     border-bottom: 1px solid #999;
     cursor: pointer;
 }
 
 .m2_qna_question{
     display: block;
-    font-size: 20px;
-    margin-bottom: 20px;
+    font-size: 17px;
+    margin-bottom: 15px;
 }
 
 .m2_qna_answer{
     display: none;
-    font-size: 20px;
-    margin-bottom: 20px;
+    font-size: 17px;
+    margin-bottom: 15px;
 }
-
-
 
 
 .m2_qna_question .m2_cateName{
-    color: blueviolet; 
+    color: #1db954; 
 }
 
 .m2_qna_span_a, .m2_qna_span_q{
+    display: inline-block;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #1db954;
+    background-color: #1db954;
+    border-radius: 50%;
     margin-right: 15px;
+    color: white;
 }
 
 .m2_box{
     display: inline-block;
     content: "";
-    width: 150px;
+    width: 100px;
 }
 
 .m2_in li::after{
@@ -188,7 +194,7 @@
 
 .s1{
     padding: 15px;
-    border: 2px solid green;
+    border: 2px solid #1db954;
     margin-bottom: 42px;
 }
 
@@ -211,8 +217,8 @@
 }
 
 .s1_btn button:hover{
-    color: green;
-    border: 1px solid green;
+    color: #1db954;
+    border: 1px solid #1db954;
 }
 
 .s1_btn_left{
@@ -220,7 +226,7 @@
 }
 
 .s1_btn_right{
-    color: green;
+    color: #1db954;
 }
 
 .s2_title{
@@ -262,12 +268,28 @@
 }
 
 .s2 li{
-    padding: 20px 5px;
+    padding: 15px 5px;
     border-bottom: 1px solid #999;
+    font-size: 17px;
 }
 
-.s2 span{
-    color: blueviolet;
-    margin-right: 30px;
+
+.s2_ann_link{
+    cursor: pointer;
+}
+
+.s2_annList li{
+    display: flex;
+}
+
+.s2_ann_link{
+    white-space: nowrap;
+    color: #1db954;
+    margin-right: 10px;
+}
+
+.s2_ann_title{
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
