@@ -53,34 +53,36 @@ a{
 .bi.bi-house-fill:hover{
     fill: rgb(22, 161, 22);
 }
-.join_input_1{
+.join_input{
     padding: 0;
 
     border-radius: 7px 7px 0 0;
     display: flex;
-    border: 1px solid #dadada;
+
 }
-.input_memberId{
+.inputMem{
     position: relative;
 }
-.bi.bi-person-circle{
+.inputMem > svg{
     position: absolute;
     z-index: 500;
-    top: 0px;
+    top: 12px;
     left: 10px;
 }
 
-.input_memberId input{
+.inputMem input{
     box-sizing: border-box;
-    margin-left: -1px;
-    margin-top: -15px;
     border: 1px solid #dadada;
     border-radius: 7px 7px 0 0;
     width: 500px;
     height: 50px;
     padding: 0 0 0 50px;
 }
-.input_memberId input:focus{
+#memberId.no::placeholder{
+    color: #ff3f3f;
+}
+
+.inputMem input:focus{
     border: 1px solid #1ab752;
     outline: none;
     color: #444;
@@ -88,14 +90,92 @@ a{
 .double_check{
     background-color: #03c75a;
     color: #fff;
-    border-radius: 7px;
-    border: 1px solid #dadada;
-    width: 70px;
-    height: 30px;
+    border-radius: 5px;
+    /* border: 1px solid #dadada; */
+    border: 0;
+    width: 90px;
+    height: 35px;
     position: absolute;
-    top: -5px;
+    top: 10px;
     right: 10px;
 }
 .double_check:hover{
     background-color:#1ab752;
+}
+.inputMem > #memberPw{
+    position: relative;
+    border-top: 0;
+    border-radius: 0 0 7px 7px;
+}
+.inputMem > #memberPw:focus{
+    border-top: 1px solid #1ab752;
+}
+.pw_display{
+    z-index: 500;
+    margin-top: 14px;
+    margin-left: -40px;
+}
+
+.inputMem > #memberName{
+    position: relative;
+    border-radius: 7px 0 0 0;
+}
+.inputMem > #memberName:focus{
+    border-top: 1px solid #1ab752;
+}
+#memberName{
+    width: 250px;
+}
+.input_gender{
+    position: absolute;
+    display: flex;
+}
+.gender_check input[type="radio"] {
+    display: none;
+}
+.gender_check input[type="radio"] + span{
+    display: inline-block;
+    background: none;
+    border: 1px solid #dadada;
+    padding: 0px 10px;
+    text-align: center;
+    width: 70px;
+    height: 33px;
+    line-height: 33px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.gender_check.male input[type="radio"] + span{
+    border-radius: 5px 0 0 5px;
+}
+.gender_check.female input[type="radio"] + span{
+    border-radius: 0 5px 5px 0;
+}
+.gender_check input[type="radio"]:checked +span{
+    border: 1px solid #03c75a;
+    background: #03c75a;
+    color: #fff;
+
+}
+.join_input_3_right{
+    position: relative;
+    width: 250px;
+    border: 1px solid #dadada;
+    border-left: 0;
+    border-radius: 0 7px 0 0;
+}
+.input_gender{
+    position: absolute;
+    top: 7px;
+    left: 32px;
+}
+.memberInfo{
+    margin-bottom: 30px;
+}
+
+.join_input.four{
+    height: 50px;
+    border: 1px solid #dadada;
+    border-top: 0;
+    border-radius: 0;
 }
