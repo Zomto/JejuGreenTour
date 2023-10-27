@@ -5,7 +5,6 @@
     display: flex;
     justify-content: space-between;
     padding-bottom: 20px;
-    background-color: beige;
     border-bottom: 1px solid #999;
 }
 
@@ -25,6 +24,10 @@
 
 .search_btn{
     margin-left: 15px;
+}
+
+.list_group{
+    margin-bottom: 50px;
 }
 
 .qna_d1{
@@ -75,11 +78,11 @@
 }
 
 .qna_span_a{
-    background-color: green;
+    background-color: #222;
 }
 
 .active .qna_span_q{
-    background-color: #222;
+    background-color: rgb(22, 161, 22);
 }
 
 .qna_answer{
@@ -94,4 +97,39 @@
 
 .qna_question{
     margin-bottom: 30px;
+}
+
+.page_prevBtn{
+    font-size: 20px;
+}
+
+.page_nextBtn{
+    font-size: 20px;
+}
+
+.page_numBtn{
+    font-size: 20px;
+
+}
+
+.pageBtn > a{
+    color: #222;
+    margin-right: 10px;
+}
+
+.btn_group{
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.inquireBtn button{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 50px;
+    background-color: #03c75a;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
 }

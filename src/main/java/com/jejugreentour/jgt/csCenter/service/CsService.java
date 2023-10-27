@@ -12,11 +12,15 @@ public interface CsService {
     public List<AnnVO> annListOffset();
 
     // 공지사항 목록 조회
-    public List<AnnVO> annList();
+    public List<AnnVO> annList(AnnVO annVO);
 
     // 공지사항 목록 추가
     public int insertAnn(AnnVO annVO);
+    
+    // 공지사항 게시물 총 개수 조회
+    public int selectAnnCnt();
 
+    // --------------------------------------------------------------------------------
 
     // 고객센터 메인 페이지 QNA 목록 조회
     public List<QnaVO> qnaListOffset();
@@ -26,8 +30,7 @@ public interface CsService {
 
     // QNA 목록 추가
     public int insertQna(QnaVO qnaVO);
-
-
+    
     // 게시물 총 개수 조회
     public int selectQnaCnt();
 

@@ -143,9 +143,6 @@
     width: 150px;
 }
 
-.hidden{
-}
-
 .m2_in li::after{
     position: absolute;
     top: 20px;
@@ -163,6 +160,7 @@
 .m2_in .list_last{
     border-bottom: 1px solid #222;
 }
+
 
 
 

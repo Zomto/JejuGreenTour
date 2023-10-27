@@ -21,8 +21,8 @@ public class CsServiceImpl implements CsService{
 
     // 공지사항 목록 조회
     @Override
-    public List<AnnVO> annList() {
-        return sqlSession.selectList("csMapper.annList");
+    public List<AnnVO> annList(AnnVO annVO) {
+        return sqlSession.selectList("csMapper.annList", annVO);
     }
     
     
@@ -31,6 +31,14 @@ public class CsServiceImpl implements CsService{
     public int insertAnn(AnnVO annVO) {
         return sqlSession.insert("csMapper.inputAnn", annVO);
     }
+
+    // 공지사항 게시물  총 개수
+    @Override
+    public int selectAnnCnt() {
+        return sqlSession.selectOne("csMapper.selectAnnCnt");
+    }
+
+    // -----------------------------------------------------------------------------------------
 
     // 고객센터 메인 페이지 QNA 목록 조회
     @Override

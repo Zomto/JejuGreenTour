@@ -48,6 +48,7 @@
         FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LIST
         WHERE ANN.ANN_CATE = LIST.CATE_CODE
         ORDER BY ANN_NUM DESC
+        OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
 
     <!--  공지사항 목록 추가  -->
@@ -66,6 +67,14 @@
             , #{annContent}
         )
     </insert>
+
+    <select id="selectAnnCnt" resultType="int">
+        SELECT COUNT(ANN_NUM)
+        FROM ANNOUNCEMENT
+    </select>
+
+
+    <!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 
     <!--  자주 찾는 질문 (QNA)  -->
     <resultMap id="qna" type="com.jejugreentour.jgt.csCenter.vo.QnaVO">

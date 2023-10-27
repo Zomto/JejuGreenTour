@@ -7,7 +7,7 @@ $('.qna_d1').click(function(){
         $('.qna_d1').removeClass('active');
         $('.qna_answer').slideUp();
         $(this).children('.qna_answer').slideDown();
-        $(this).children('.qna_answer').addClass('active');
+        $(this).addClass('active');
     }
     return false;
 });
