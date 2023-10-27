@@ -194,193 +194,419 @@ function inputInvalidate3(tagId, message) {
 $('.mainAccomSubImg').slick({
     arrows: false,
     variableWidth: true,
-    infinite: false,
+    infinite: false
+    // centerMode : true,
+    // focusOnSelect: true,
 });
 
 function addsubImg(tag, accomCode) {
     const form = new FormData();
-    // console.log(tag.files);
-
 
     for (let a of tag.files) {
         form.append('files', a);
     }
     form.append('accomCode', accomCode);
 
-
-
-
-
-
-
-
-    // ------------------- 두번째 방식(가장 많이 쓰는 방식) ---------------//
-    fetch('/accom/updateMainAccomSubImg', { //요청경로
+    fetch('/accom/updateMainAccomSubImg', {
         method: 'POST',
         cache: 'no-cache',
-        headers: {
-            //'Content-Type': 'application/json; charset=UTF-8'
-        },
-        //컨트롤러로 전달할 데이터
-        body: form
-
+        body: form  // Content-Type을 지정하지 않아야 함
     })
-        .then((response) => {
-            return response.json(); //나머지 경우에 사용
-        })
-        //fetch 통신 후 실행 영역
-        .then((data) => {//data -> controller에서 리턴되는 데이터!
-            alert('업소의 상태가 변경되었습니다.')
-            // console.log(data);
-            console.log(data)
-
-
-            var slicktrack = document.querySelector('.slick-track');
-
+        .then((response) => response.json())
+        .then((data) => {
+            alert('업소의 상태가 변경되었습니다.');
+            $('.mainAccomSubImg').slick("unslick");
+            const slicktrack = document.querySelector('.mainAccomSubImg');
+            // 이미지를 추가하기 위한 새로운 요소를 만듭니다.
+            const newImages = document.createDocumentFragment();
 
             for (const data1 of data) {
-                var imageListSlide = document.createElement("div");
+                const imageListSlide = document.createElement("div");
                 imageListSlide.className = "imgListSlide slick-slide";
 
-                var imgElement = document.createElement("img");
+                const imgElement = document.createElement("img");
                 imgElement.className = "imgSlideList";
                 imgElement.src = '/img/accom/' + data1.attachedFileName;
                 imgElement.alt = '';
 
-                var inputElement = document.createElement("input");
+                const inputElement = document.createElement("input");
                 inputElement.type = "hidden";
                 inputElement.name = "mainAccomImgCode";
                 inputElement.value = data1.mainImgCode;
 
-                var deleteButton = document.createElement("div");
+                const deleteButton = document.createElement("div");
                 deleteButton.className = "deletebutton";
                 deleteButton.innerHTML = '<span>X</span>';
                 deleteButton.addEventListener('click', function () {
-                    deleteSubImg(data1.mainImgCode, data1.accomCode)})
-            
+                    deleteSubImg(data1.mainImgCode, accomCode);
+                });
+
                 imageListSlide.appendChild(imgElement);
                 imageListSlide.appendChild(inputElement);
                 imageListSlide.appendChild(deleteButton);
+                
+                // 새 이미지를 이미지 목록에 추가합니다.
                 slicktrack.appendChild(imageListSlide);
+                // console.log(imageListSlide);
+                // alert(imageListSlide);
+            }
 
 
-
-
-            };
-
-
+           // Slick 슬라이더 업데이트
+            $('.mainAccomSubImg').slick({
+                arrows: false,
+                variableWidth: true,
+                infinite: false,
+                centerMode: true,
+                focusOnSelect: true,
+            });
         })
-        //fetch 통신 실패 시 실행 영역
         .catch(err => {
             alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
             console.log(err);
         });
-
 }
 
 function deleteSubImg(mainImgCode, accomCode) {
-
-
-
-    // ------------------- 첫번째 방식 ---------------//
-    fetch('/accom/deleteSubImg', { //요청경로
+    fetch('/accom/deleteSubImg', {
         method: 'POST',
         cache: 'no-cache',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         },
-        //컨트롤러로 전달할 데이터
         body: new URLSearchParams({
             'mainImgCode': mainImgCode,
             'accomCode': accomCode
         })
     })
-        .then((response) => {
-            if (!response.ok) {
-                alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
-                return;
-            }
+        .then((response) => response.json())
+        .then((data) => {
+            alert('업소의 상태가 변경되었습니다.');
+            $('.mainAccomSubImg').slick("unslick");
+            const mainAccomImg = document.querySelector('.mainAccomSubImg');
+            mainAccomImg.innerHTML='';
 
-            // return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
-            return response.json(); //나머지 경우에 사용
-        })
-        //fetch 통신 후 실행 영역
-        .then((data) => {//data -> controller에서 리턴되는 데이터!
-            alert('삭제되었습니다.')
+            const addSubImgDiv = document.createElement("div");
+            addSubImgDiv.className = "addSubImg";
 
-            var slicktrack = document.querySelector('.slick-track');
-            slicktrack.innerHTML = "";
+            const plusDiv = document.createElement("div");
+            plusDiv.className = "plus";
+            const plusSpan = document.createElement("span");
+            plusSpan.textContent = "+";
 
-            var newAddSubImgElement = document.createElement('div');
-            newAddSubImgElement.className = 'addSubImg slick-slide slick-current slick-active';
+            const formElement = document.createElement("form");
+            formElement.action = "";
+            formElement.id = "mainAccomSubImgs";
+            formElement.enctype = "multipart/form-data";
 
-
-            var plusElement = document.createElement('div');
-            plusElement.className = 'plus';
-
-            var spanElement = document.createElement('span');
-            spanElement.textContent = '+';
-
-            var formElement = document.createElement('form');
-            formElement.action = '';
-            formElement.id = 'mainAccomSubImgs';
-            formElement.enctype = 'multipart/form-data';
-
-            var inputElement = document.createElement('input');
-            inputElement.className = 'plusbutton';
-            inputElement.type = 'file';
-            inputElement.name = 'subImg';
+            const inputElement = document.createElement("input");
+            inputElement.className = "plusbutton";
+            inputElement.type = "file";
+            inputElement.name = "subImg";
             inputElement.multiple = true;
-
-            inputElement.addEventListener('change', function () {
+            inputElement.addEventListener("change", function() {
                 addsubImg(this, accomCode);
             });
 
+            const plusTextDiv = document.createElement("div");
+            plusTextDiv.className = "plusText";
+            plusTextDiv.textContent = "사진 추가";
+
             formElement.appendChild(inputElement);
-            plusElement.appendChild(spanElement);
-            plusElement.appendChild(formElement);
-
-            var plusTextElement = document.createElement('div');
-            plusTextElement.className = 'plusText';
-            plusTextElement.textContent = '사진 추가';
-
-            newAddSubImgElement.appendChild(plusElement);
-            newAddSubImgElement.appendChild(plusTextElement);
-            slicktrack.appendChild(newAddSubImgElement);
-
+            plusDiv.appendChild(plusSpan);
+            plusDiv.appendChild(formElement);
+            addSubImgDiv.appendChild(plusDiv);
+            addSubImgDiv.appendChild(plusTextDiv);
+            mainAccomImg.appendChild(addSubImgDiv);
+            console.log(data)
             for (const data1 of data) {
-                console.log(data1)
-                var imageListSlide = document.createElement("div");
+    
+                const imageListSlide = document.createElement("div");
                 imageListSlide.className = "imgListSlide slick-slide";
 
-                var imgElement = document.createElement("img");
+                const imgElement = document.createElement("img");
                 imgElement.className = "imgSlideList";
                 imgElement.src = '/img/accom/' + data1.attachedFileName;
                 imgElement.alt = '';
 
-                var inputElement = document.createElement("input");
+                const inputElement = document.createElement("input");
                 inputElement.type = "hidden";
                 inputElement.name = "mainAccomImgCode";
                 inputElement.value = data1.mainImgCode;
 
-                var deleteButton = document.createElement("div");
+                const deleteButton = document.createElement("div");
                 deleteButton.className = "deletebutton";
                 deleteButton.innerHTML = '<span>X</span>';
-                deleteButton.onclick = function () {
-                    deleteSubImg(data1.mainImgCode, accomCode);
-                };
+                deleteButton.addEventListener('click', function () {
+                    deleteSubImg(data1.mainImgCode, data1.accomCode);
+                });
+
                 imageListSlide.appendChild(imgElement);
                 imageListSlide.appendChild(inputElement);
                 imageListSlide.appendChild(deleteButton);
-                slicktrack.appendChild(imageListSlide);
-                // }
+                
+                // 새 이미지를 이미지 목록에 추가합니다.
+                mainAccomImg.appendChild(imageListSlide);
+            }
 
 
-            };
+           // Slick 슬라이더 업데이트
+            $('.mainAccomSubImg').slick({
+                arrows: false,
+                variableWidth: true,
+                infinite: false,
+                centerMode: true,
+                focusOnSelect: true,
+            });
         })
-        //fetch 통신 실패 시 실행 영역
         .catch(err => {
             alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
             console.log(err);
         });
 }
+
+
+
+
+// function addsubImg(tag, accomCode) {
+//     const form = new FormData();
+//     // console.log(tag.files);
+
+
+//     for (let a of tag.files) {
+//         form.append('files', a);
+//     }
+//     form.append('accomCode', accomCode);
+
+//     // ------------------- 두번째 방식(가장 많이 쓰는 방식) ---------------//
+//     fetch('/accom/updateMainAccomSubImg', { //요청경로
+//         method: 'POST',
+//         cache: 'no-cache',
+//         headers: {
+//             //'Content-Type': 'application/json; charset=UTF-8'
+//         },
+//         //컨트롤러로 전달할 데이터
+//         body: form
+
+//     })
+//         .then((response) => {
+//             return response.json(); //나머지 경우에 사용
+//         })
+//         //fetch 통신 후 실행 영역
+//         .then((data) => {//data -> controller에서 리턴되는 데이터!
+//             alert('업소의 상태가 변경되었습니다.')
+//             // console.log(data);
+//             console.log(data)
+
+
+//             var slicktrack = document.querySelector('.slick-track');
+
+
+//             for (const data1 of data) {
+//                 var imageListSlide = document.createElement("div");
+//                 imageListSlide.className = "imgListSlide slick-slide";
+
+//                 var imgElement = document.createElement("img");
+//                 imgElement.className = "imgSlideList";
+//                 imgElement.src = '/img/accom/' + data1.attachedFileName;
+//                 imgElement.alt = '';
+
+//                 var inputElement = document.createElement("input");
+//                 inputElement.type = "hidden";
+//                 inputElement.name = "mainAccomImgCode";
+//                 inputElement.value = data1.mainImgCode;
+
+//                 var deleteButton = document.createElement("div");
+//                 deleteButton.className = "deletebutton";
+//                 deleteButton.innerHTML = '<span>X</span>';
+//                 deleteButton.addEventListener('click', function () {
+//                     deleteSubImg(data1.mainImgCode, data1.accomCode)})
+            
+//                 imageListSlide.appendChild(imgElement);
+//                 imageListSlide.appendChild(inputElement);
+//                 imageListSlide.appendChild(deleteButton);
+//                 slicktrack.appendChild(imageListSlide);
+
+
+
+
+//             };
+
+
+//         })
+//         //fetch 통신 실패 시 실행 영역
+//         .catch(err => {
+//             alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+//             console.log(err);
+//         });
+
+// }
+
+// function deleteSubImg(mainImgCode, accomCode) {
+
+
+
+//     // ------------------- 첫번째 방식 ---------------//
+//     fetch('/accom/deleteSubImg', { //요청경로
+//         method: 'POST',
+//         cache: 'no-cache',
+//         headers: {
+//             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+//         },
+//         //컨트롤러로 전달할 데이터
+//         body: new URLSearchParams({
+//             'mainImgCode': mainImgCode,
+//             'accomCode': accomCode
+//         })
+//     })
+//         .then((response) => {
+//             if (!response.ok) {
+//                 alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+//                 return;
+//             }
+
+//             // return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
+//             return response.json(); //나머지 경우에 사용
+//         })
+//         //fetch 통신 후 실행 영역
+//         .then((data) => {//data -> controller에서 리턴되는 데이터!
+//             alert('삭제되었습니다.');
+
+//             const tag = document.querySelector('.slick-track');
+//             const tag1 = document.querySelector('.mainAccomSubImg')
+//             tag.innerHTML = '';
+//             str = 
+//             `
+//             <div class="addSubImg">
+//                 <div class="plus">
+//                     <span>+</span>
+//                     <form action="" id="mainAccomSubImgs" enctype="multipart/form-data">
+//                         <input class="plusbutton" type="file" name="subImg" multiple
+//                             th:onchange="addsubImg(this, '${data[0].accomCode}')">
+//                     </form>
+//                 </div>
+//                 <div class="plusText">
+//                     사진 추가
+//                 </div>
+//             </div>
+//             `;
+
+//             data.forEach((element, idx) => {
+//                 str +=
+//                 `
+//                 <div class="imgListSlide">
+//                     <img class="imgSlideList" src="/img/accom/${element.attachedFileName}" alt="">
+//                     <input type="hidden" name="mainAccomImgCode" value="${element.mainImgCode}">
+//                     <div class="deletebutton" onclick="deleteSubImg('${element.mainImgCode}', '${element.accomCode}')">
+//                         <span>X</span>
+//                     </div>
+//                 </div>
+//                 `;
+//             });
+//             $('.mainAccomSubImg').slick("unslick");
+
+//             tag.insertAdjacentHTML('afterbegin', str);
+//             // console.log(str);
+
+//             $('.mainAccomSubImg').slick({
+//                 arrows: false,
+//                 variableWidth: true,
+//                 infinite: false,
+//                 centerMode : true,
+//                 focusOnSelect: true,
+//             });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//         //     let slicktrack = document.querySelector('.slick-track');
+
+       
+//         //    slicktrack.innerHTML = "";
+
+
+//         //    var newAddSubImgElement = document.createElement('div');
+//         //    newAddSubImgElement.className = 'addSubImg slick-slide slick-current slick-active';
+
+
+//         //    var plusElement = document.createElement('div');
+//         //    plusElement.className = 'plus';
+
+//         //    var spanElement = document.createElement('span');
+//         //    spanElement.textContent = '+';
+
+//         //    var formElement = document.createElement('form');
+//         //    formElement.action = '';
+//         //    formElement.id = 'mainAccomSubImgs';
+//         //    formElement.enctype = 'multipart/form-data';
+
+//         //    var inputElement = document.createElement('input');
+//         //    inputElement.className = 'plusbutton';
+//         //    inputElement.type = 'file';
+//         //    inputElement.name = 'subImg';
+//         //    inputElement.multiple = true;
+
+//         //    inputElement.addEventListener('change', function () {
+//         //        addsubImg(this, accomCode);
+//         //    });
+
+//         //    formElement.appendChild(inputElement);
+//         //    plusElement.appendChild(spanElement);
+//         //    plusElement.appendChild(formElement);
+
+//         //    var plusTextElement = document.createElement('div');
+//         //    plusTextElement.className = 'plusText';
+//         //    plusTextElement.textContent = '사진 추가';
+
+//         //    newAddSubImgElement.appendChild(plusElement);
+//         //    newAddSubImgElement.appendChild(plusTextElement);
+//         //    slicktrack.appendChild(newAddSubImgElement);
+
+//         //    for (const data1 of data) {
+//         //        console.log(data1)
+//         //        var imageListSlide = document.createElement("div");
+//         //        imageListSlide.className = "imgListSlide slick-slide";
+
+//         //        var imgElement = document.createElement("img");
+//         //        imgElement.className = "imgSlideList";
+//         //        imgElement.src = '/img/accom/' + data1.attachedFileName;
+//         //        imgElement.alt = '';
+
+//         //        var inputElement = document.createElement("input");
+//         //        inputElement.type = "hidden";
+//         //        inputElement.name = "mainAccomImgCode";
+//         //        inputElement.value = data1.mainImgCode;
+
+//         //        var deleteButton = document.createElement("div");
+//         //        deleteButton.className = "deletebutton";
+//         //        deleteButton.innerHTML = '<span>X</span>';
+//         //        deleteButton.onclick = function () {
+//         //            deleteSubImg(data1.mainImgCode, accomCode);
+//         //        };
+//         //        imageListSlide.appendChild(imgElement);
+//         //        imageListSlide.appendChild(inputElement);
+//         //        imageListSlide.appendChild(deleteButton);
+//         //        slicktrack.appendChild(imageListSlide);
+//         //        // }
+
+
+//         //    };
+          
+          
+//         })
+//         //fetch 통신 실패 시 실행 영역
+//         .catch(err => {
+//             alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+//             console.log(err);
+//         });
+// }

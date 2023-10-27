@@ -78,4 +78,8 @@ public class PageVO {
     public boolean getNext(){
         return next;
     }
+
+    public int getTotalDataCnt(){
+        return totalDataCnt;
+    }
 }

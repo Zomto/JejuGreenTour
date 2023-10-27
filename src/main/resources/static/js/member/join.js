@@ -43,10 +43,58 @@ function inputInvalidate(tagId, message) {
     document.querySelector(tagId).style.display = 'block';
     document.querySelector(tagId).textContent = message;
 }
+let tags = document.querySelectorAll('.inputInfo');
+tags.forEach((element, idx) => {
+    element.addEventListener('click', e=> {
+        element.querySelector('.bi').setAttribute("fill", "#03c75a");
+    });
+});
 
+let tags2 = document.querySelectorAll('.join_input');
+tags2.forEach((element, idx) => {
+    element.addEventListener('click', e=> {
+        element.querySelector('.bi').setAttribute("fill", "#03c75a");
+    });
+});
+
+let tagss = document.querySelector('.inputMem.memberId');
+$('.inputMemberId').click(function(){
+    tagss.style.borderColor = "#03c75a";
+    document.querySelector('.bi-person-circle').setAttribute("fill", "#03c75a");
+})
+$('.join_input.four').click(function(){
+    document.querySelector('.join_input.four').style.borderTop = "1px solid #03c75a";
+    document.querySelector('.join_input.four').style.borderColor = "#03c75a";
+    document.querySelector('.bi-telephone-fill').setAttribute("fill", "#03c75a");
+})
+$('.join_input.five').click(function(){
+    document.querySelector('.join_input.five').style.borderTop = "1px solid #03c75a";
+    document.querySelector('.join_input.five').style.borderLeft = "1px solid #03c75a";
+    document.querySelector('.join_input.five').style.borderColor = "#03c75a";
+    document.querySelector('.bi-calendar-check').setAttribute("fill", "#03c75a");
+})
 // 화원가입 시 아이디 중복 체크
 function checkId() {
-    fetch('/member/checkId', {
+
+    let memberIdvalue = document.querySelector('#memberId').value;
+    let memberIdInput = document.querySelector('#memberId');
+    let memberIdBoarder = document.querySelector('.inputMem.memberId');
+    let memberIdBtn = document.querySelector('.double_check');
+    let idSvg = document.querySelector('.bi-person-circle');
+    if(memberIdvalue == ""){
+        memberIdInput.classList.toggle('no');
+        idSvg.setAttribute("fill", "#ff3f3f");
+        memberIdBoarder.style.borderColor = "#ff3f3f";
+        memberIdInput.placeholder = "아이디를 입력해주세요";
+        memberIdBtn.style = "background-color : #dadada";
+        memberIdBtn.addEventListener('mouseover', (event) => {
+            memberIdBtn.style = "background-color : #1ab752"});
+        memberIdBtn.addEventListener('mouseout', (event) => {
+            memberIdBtn.style = "background-color : #dadada"});
+        return;
+        
+    }else {
+        fetch('/member/checkId', {
         method: 'POST',
         cache: 'no-cache',
         headers: {
@@ -75,6 +123,8 @@ function checkId() {
             alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
             console.log(err);
         });
+    }
+    
 }
 //비밀번호 가리기, 보이기
 $(document).ready(function() {
@@ -82,7 +132,7 @@ $(document).ready(function() {
     $('#pw_off').click(function(e) {
         e.preventDefault(); // 링크 클릭 시 기본 동작 방지
         // 비밀번호 입력 필드의 type 속성을 'text'로 변경하여 비밀번호를 보여줌
-        $('#password-input').attr('type', 'text');
+        $('#memberPw').attr('type', 'text');
         // '비밀번호 보이기' 버튼을 숨김
         $(this).addClass('hide');
         // '비밀번호 가리기' 버튼을 표시
@@ -93,7 +143,7 @@ $(document).ready(function() {
     $('#pw_on').click(function(e) {
         e.preventDefault(); // 링크 클릭 시 기본 동작 방지
         // 비밀번호 입력 필드의 type 속성을 'password'로 변경하여 비밀번호를 가림
-        $('#password-input').attr('type', 'password');
+        $('#memberPw').attr('type', 'password');
         // '비밀번호 가리기' 버튼을 숨김
         $(this).addClass('hide');
         // '비밀번호 보이기' 버튼을 표시
@@ -243,4 +293,11 @@ function inputInvalidate(tagId, message){
     document.querySelector(tagId).textContent = message;
 }
 
+<<<<<<< HEAD:src/main/resources/static/js/member/join.js
+=======
+// let svgIcon = document.querySelector
+// $('.join_input').click(function(){
+//     $(this).find('.bi').setAttribute("fill", "#03c75a");
+// });
+>>>>>>> 94bf911eb1da24a12a34ba74c81e73a49dca1f59:src/main/resources/static/js/join.js
 
