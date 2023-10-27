@@ -8,12 +8,11 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.mail.Session;
+import java.util.List;
 
 
 @Controller
@@ -35,7 +34,10 @@ public class MemberControll {
     public String joinForm(){
         return "content/member/join";
     }
-
+    @GetMapping("/find")
+    public String findIdPw(){
+        return "content/member/find_IdPw";
+    }
 
     @GetMapping("/loginForm")
     public String loginForm(MemberVO memberVO){
@@ -60,15 +62,23 @@ public class MemberControll {
 
     @ResponseBody
     @PostMapping("/verifyCode")
-    public int verifyCode(
-            String email){
+    public int verifyCode(String email){
 
         String MailSender= SendMail.generateRandomCode(6);
 
-        SendMail.setAndsend("제주그린투어 가입인증 메일 입니다." ,"인증번호 : "+MailSender +"입니다." ,"jejugreentour" ,"jejugreen123!" ,email);
+        SendMail.setAndsend("제주그린투어 인증 메일 입니다." ,"인증번호 : "+MailSender +"입니다." ,"jejugreentour" ,"jejugreen123!" ,email);
 
         return Integer.parseInt(MailSender);
     }
+
+    @ResponseBody
+    @PostMapping("/modifyPw")
+    public int modifyPw(String email){
+        String MailSender= SendMail.generateRandomCode(6);
+        SendMail.setAndsend("제주그린투어 비밀번호 변경 메일 입니다", "변경된 비밀 번호:"+MailSender +"입니다. 로그인후 마이페이지에서 비밀번호를 변경해주세요","jejugreentour" ,"jejugreen123!" ,email);
+        return Integer.parseInt(MailSender);
+    }
+
 
     @GetMapping("/myPageForm")
     public String myPageForm(){
@@ -79,10 +89,6 @@ public class MemberControll {
     public String logout(HttpSession session){
         session.removeAttribute("loginInfo");
         return "redirect:/";
-    }
-    @GetMapping("/info")
-    public String memberInfo(){
-        return "content/member/member_info";
     }
 
     @PostMapping("/editMember1")
@@ -115,4 +121,32 @@ public class MemberControll {
         // 리다이렉트 또는 다른 처리
         return "redirect:/member/logout";
     }
+    @GetMapping("/find_IdForm")
+    public String findIdForm(){
+        return "content/member/find_Id";
+    }
+
+    @ResponseBody
+    @PostMapping("/findId")
+    public List<MemberVO> findId(String member_mail1) {
+        String input = member_mail1;
+        String member_mail = input.replace("%40", "@");
+        List<MemberVO> members = memberService.findId(member_mail);
+
+        return members;
+    }
+    @GetMapping("/find_PwForm")
+    public String findPwForm(){
+        return "content/member/find_Pw";
+    }
+    @ResponseBody
+    @PostMapping("/findPw")
+    public void findPw(@RequestBody MemberVO memberVO) {
+        String input = memberVO.getMember_mail();
+        String member_mail = input.replace("%40", "@");
+        // 이제 memberVO 객체에는 새로운 비밀번호 정보가 포함됩니다.
+        memberService.updatePw(memberVO);
+    }
+
+
 }

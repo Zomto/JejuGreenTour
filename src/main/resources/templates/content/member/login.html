@@ -53,8 +53,8 @@
                             </div>
                         </div>
                         <div class="loginFooter">
-                            <p><a href=""><input type="button" value="아이디 찾기"></a></p>
-                            <p><a href=""><input type="button" value="비밀번호 찾기"></a></p>
+                            <p><a href=""><input type="button" value="아이디 찾기" onclick="openfindId()"></a></p>
+                            <p><a href=""><input type="button" value="비밀번호 찾기" onclick="openfindPw()"></a></p>
                             <p><a href="/member/joinForm"><input type="button" value="회원가입"></a></p>
                         </div>
                     </div>
@@ -63,5 +63,12 @@
         </form>
     </th:block>
 </body>
-
+<script>
+function openfindId(){
+    var popup = window.open('/member/find_IdForm', '아이디찾기', 'width=700px,height=800px,scrollbars=yes');
+  }
+function openfindPw(){
+    var popup = window.open('/member/find_PwForm', '아이디찾기', 'width=700px,height=800px,scrollbars=yes');
+  }
+</script>
 </html>
