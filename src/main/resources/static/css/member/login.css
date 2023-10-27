@@ -27,7 +27,6 @@ a{
 
 #wrap{
     min-width: 920px;
-    background-color: aliceblue;
 }
 
 #inner{
@@ -40,21 +39,27 @@ a{
 .h_icon{
     margin-bottom: 30px;
 }
+.bi.bi-arrow-left-square-fill:hover{
+    fill: rgb(22, 161, 22);
+}
 
-.h_icon span{
+.h_icon > .textLogin{
+
+    margin: -36px 0 0 50px;
     font-size: 20px;
+    font-weight: 700;
 }
 
 .h_icon a{
+    
     content: "";
-    display: inline-block;
     width: 20px;
     height: 20px;
-    background-image: url(/img/ico_back_24.png);
-    background-size: 100% auto;
-    background-position: center;
-    text-indent: -99999%;
     margin-right: 10px;
+}
+.bi.bi-person-circle, .bi.bi-shield-lock-fill{
+    position: absolute;
+    z-index: 500;
 }
 
 .h_logo{
@@ -68,7 +73,85 @@ a{
     margin: 0 auto 30px auto;
 }
 
+.login_input{
+    position: relative;
+    border: 1px solid #dadada;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
+}
+
 .login_input p{
-    border: 1px solid #999;
     padding: 15px;
+    margin: 0;
+}
+.input_memberId, .input_memberPw{
+    box-sizing: border-box;
+    position: relative;
+    height: 60px;
+}
+
+.c_in{
+    border: 1px solid #c6c6c6;
+    border-radius: 5px;
+    padding: 20px 30px;
+}
+.login_input > .input_memberId input, .login_input > .input_memberPw input{
+    box-sizing: border-box;
+    padding-left: 50px;
+    position: absolute;
+
+    width: 438px;
+
+
+}
+.login_input > .input_memberId input:focus, .login_input > .input_memberPw input:focus{
+    border: 1px solid #1ab752;
+    outline: none;
+    color: #444;
+}
+.login_input > .input_memberId input{
+    border: 1px solid #dadada;
+    height: 61px;
+    border-radius: 10px 10px 0 0;
+    top: -1px;
+    left: -1px;
+}
+.login_input > .input_memberPw input{
+    border-left: 1px solid #dadada;
+    border-bottom: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+    border-top: transparent;
+    height: 61px;
+    border-radius: 0 0 10px 10px;
+    bottom: -1px;
+    left: -1px;
+}
+.loginBtn{
+    width: 400px;
+    height: 53px;
+    border-radius: 6px;
+    border: 1px solid #dadada;
+    background-color: #03c75a;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+.loginBtnForm{
+    padding: 20px 20px 0 20px;
+}
+.loginFooter{
+    padding: 20px 100px;
+    justify-content: space-between;
+    display: flex;
+}
+
+.loginFooter a > input{
+    background-color: #fff;
+    border: 0;
+    color: #888;
+    cursor: pointer;
+}
+.loginFooter a > input:hover{
+    color: #333;
+    border-bottom: 1px solid #000;
 }

@@ -46,7 +46,25 @@ function inputInvalidate(tagId, message) {
 
 // 화원가입 시 아이디 중복 체크
 function checkId() {
-    fetch('/member/checkId', {
+
+    let memberIdvalue = document.querySelector('#memberId').value;
+    let memberIdInput = document.querySelector('#memberId');
+    let memberIdBtn = document.querySelector('.double_check');
+    let idSvg = document.querySelector('.bi-person-circle');
+    if(memberIdvalue == ""){
+        memberIdInput.classList.toggle('no');
+        idSvg.setAttribute("fill", "#ff3f3f");
+        memberIdInput.style.borderColor = "#ff3f3f";
+        memberIdInput.placeholder = "아이디를 입력해주세요";
+        memberIdBtn.style = "background-color : #dadada";
+        memberIdBtn.addEventListener('mouseover', (event) => {
+            memberIdBtn.style = "background-color : #1ab752"});
+        memberIdBtn.addEventListener('mouseout', (event) => {
+            memberIdBtn.style = "background-color : #dadada"});
+        return;
+        
+    }else {
+        fetch('/member/checkId', {
         method: 'POST',
         cache: 'no-cache',
         headers: {
@@ -75,6 +93,8 @@ function checkId() {
             alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
             console.log(err);
         });
+    }
+    
 }
 //비밀번호 가리기, 보이기
 $(document).ready(function() {
@@ -82,7 +102,7 @@ $(document).ready(function() {
     $('#pw_off').click(function(e) {
         e.preventDefault(); // 링크 클릭 시 기본 동작 방지
         // 비밀번호 입력 필드의 type 속성을 'text'로 변경하여 비밀번호를 보여줌
-        $('#password-input').attr('type', 'text');
+        $('#memberPw').attr('type', 'text');
         // '비밀번호 보이기' 버튼을 숨김
         $(this).addClass('hide');
         // '비밀번호 가리기' 버튼을 표시
@@ -93,7 +113,7 @@ $(document).ready(function() {
     $('#pw_on').click(function(e) {
         e.preventDefault(); // 링크 클릭 시 기본 동작 방지
         // 비밀번호 입력 필드의 type 속성을 'password'로 변경하여 비밀번호를 가림
-        $('#password-input').attr('type', 'password');
+        $('#memberPw').attr('type', 'password');
         // '비밀번호 가리기' 버튼을 숨김
         $(this).addClass('hide');
         // '비밀번호 보이기' 버튼을 표시
@@ -214,3 +234,31 @@ function checkCode() {
 
 }
 let confirmCode = null
+
+function changePw(){
+    let pw = document.querySelector('#memberPw').value;
+    let pwCheck = document.querySelector('#memberPwCheck').value;
+    if(pw == ''){
+        inputInvalidate('.err-div', '비밀번호를 입력해주세요!');
+        return;
+    } else{
+        if(pwCheck == ''){
+            inputInvalidate('.err-div', '비밀번호를 확인해주세요!');
+            return;
+        } else{
+            if(pw == pwCheck){
+                document.querySelector('#editMember2').submit();
+                alert('회원 정보가 변경되었습니다.\n다시 로그인 해주세요')
+            } else{
+                inputInvalidate('.err-div', '비밀번호 다름!');
+                return ;
+            }
+        }
+    }
+}
+
+// Validate 실패시 메세지 설정
+function inputInvalidate(tagId, message){
+    document.querySelector(tagId).style.display = 'block';
+    document.querySelector(tagId).textContent = message;
+}

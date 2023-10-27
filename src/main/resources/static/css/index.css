@@ -79,7 +79,7 @@
 }
 
 .slide_3.active #Visual_Main {
-    background-color: rgba(185, 217, 242, 1); /* 3번 슬라이드가 활성화될 때 배경색을 green으로 설정 */
+    background-color: rgba(124, 194, 254, 1); /* 3번 슬라이드가 활성화될 때 배경색을 green으로 설정 */
 }
 
 .slide_4.active #Visual_Main {

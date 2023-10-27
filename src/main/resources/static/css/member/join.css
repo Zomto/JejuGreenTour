@@ -1,6 +1,3 @@
-@charset "utf-8";
-/* 기본셋팅, 공통값 */
-
 body, input{
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
@@ -28,188 +25,157 @@ a{
 
 #wrap{
     min-width: 920px;
-    background-color: aliceblue;
 }
-
+.h_in{
+    display: flex;
+    justify-content: space-between;
+}
+.h_icon{
+    display: flex;
+}
 #inner{
     width: 500px;
     margin: 0 auto;
     padding: 15px 30px;
     background-color: white;
 }
-
-.h_in{
-    display: flex;
-    justify-content: space-between;
+#header{
+    margin-bottom: 40px;
 }
-
-.h_left span{
+.bi.bi-arrow-left-square-fill:hover{
+    fill: rgb(22, 161, 22);
+}
+.textLogin{
     font-size: 20px;
+    font-weight: 700;
 }
 
-.h_left a{
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-image: url(/img/ico_back_24.png);
-    background-size: 100% auto;
-    background-position: center;
-    text-indent: -99999%;
-    margin-right: 10px;
+.bi.bi-house-fill:hover{
+    fill: rgb(22, 161, 22);
 }
+.join_input{
+    padding: 0;
 
-.h_right a{
-    content: "";
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-image: url(/img/ico_home_24.png);
-    background-size: 100% auto;
-    background-position: center;
-    text-indent: -99999%;
-}
-
-
-.join_input_1{
+    border-radius: 7px 7px 0 0;
     display: flex;
-    justify-content: space-between;
-    border: 1px solid #999;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    padding: 5px 20px 0 20px;
+
+}
+.inputMem{
+    position: relative;
+}
+.inputMem > svg{
+    position: absolute;
+    z-index: 500;
+    top: 12px;
+    left: 10px;
 }
 
-.double_check button{
-    width: 80px;
-    height: 30px;
-    border-radius: 8px;
+.inputMem input{
+    box-sizing: border-box;
+    border: 1px solid #dadada;
+    border-radius: 7px 7px 0 0;
+    width: 500px;
+    height: 50px;
+    padding: 0 0 0 50px;
+}
+#memberId.no::placeholder{
+    color: #ff3f3f;
 }
 
+.inputMem input:focus{
+    border: 1px solid #1ab752;
+    outline: none;
+    color: #444;
+}
+.double_check{
+    background-color: #03c75a;
+    color: #fff;
+    border-radius: 5px;
+    /* border: 1px solid #dadada; */
+    border: 0;
+    width: 90px;
+    height: 35px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.double_check:hover{
+    background-color:#1ab752;
+}
+.inputMem > #memberPw{
+    position: relative;
+    border-top: 0;
+    border-radius: 0 0 7px 7px;
+}
+.inputMem > #memberPw:focus{
+    border-top: 1px solid #1ab752;
+}
+.pw_display{
+    z-index: 500;
+    margin-top: 14px;
+    margin-left: -40px;
+}
 
-.join_input_2{
+.inputMem > #memberName{
+    position: relative;
+    border-radius: 7px 0 0 0;
+}
+.inputMem > #memberName:focus{
+    border-top: 1px solid #1ab752;
+}
+#memberName{
+    width: 250px;
+}
+.input_gender{
+    position: absolute;
     display: flex;
-    justify-content: space-between;
-    border: 1px solid #999;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    padding: 5px 20px 0 20px;
 }
-.join_input_2 > .pw_display a{
-    display: block;
-    width: 24px;
-    height: 24px;
-    text-indent: -99999px;
-    top: 45%;
-    right : 5%;
-}
-
-.pw_display > a#pw_on{
-    width: 24px;
-    height: 24px;
-    background: url(/img/pw_on.png) no-repeat center;
-    background-size: 100%;
-}
-.pw_display > a#pw_off{
-    width: 24px;
-    height: 24px;
-    background: url(/img/pw_hidden.png) no-repeat center;
-    background-size: 100%;
-}
-
-.join_input_3{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-
-.join_input_3_left{
-    width: 65%;
-    border: 1px solid #999;
-    border-radius: 8px;
-    padding: 5px 0 0 20px;
-}
-
-.join_input_3_right{
-    width: 25%;
-    border: 1px solid #999;
-    border-radius: 8px;
-    padding: 5px 0 0 20px;
-}
-
-.join_input_4{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-
-.join_input_4_left{
-    width: 50%;
-    border: 1px solid #999;
-    border-radius: 8px;
-}
-
-.input_tel{
-    padding-left: 15px;
-}
-
-.join_input_4_left .tel1{
-    width: 20%;
-}
-
-.join_input_4_left .tel2{
-    width: 30%;
-}
-
-.join_input_4_left .tel3{
-    width: 30%;
-}
-
-.join_input_4_right{
-    width: 48%;
-    border: 1px solid #999;
-    border-radius: 8px;
-}
-
-.input_memberBirth{
-    padding-left: 20px;
-}
-
-.input_memberBirth span{
-    margin-right: 15px;
-}
-
-.join_btn{
-    width: 80px;
-    height: 30px;
-}
-.email_verify{
-    border: 1px solid #999;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    padding: 5px 20px 0 20px;
-}
-.email_verify >.mb-3,
-.email_verify >.verify_box{
-    display: flex;
-    justify-content: space-between;
-}
-.email_verify >.mb-3 > .verify,
-.email_verify >.verify_box > .verify{
-    margin-top: 11px;
-    margin-bottom: 18px;
-}
-
-.hidden {
+.gender_check input[type="radio"] {
     display: none;
-    opacity: 0;
-    max-height: 0;
-    transition: all 0.3s ease;
 }
-  
-.visible {
-    display: block;
-    opacity: 1;
-    max-height: 100px; /* 원하는 높이로 조정 */
-    transition: all 0.3s ease;
+.gender_check input[type="radio"] + span{
+    display: inline-block;
+    background: none;
+    border: 1px solid #dadada;
+    padding: 0px 10px;
+    text-align: center;
+    width: 70px;
+    height: 33px;
+    line-height: 33px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.gender_check.male input[type="radio"] + span{
+    border-radius: 5px 0 0 5px;
+}
+.gender_check.female input[type="radio"] + span{
+    border-radius: 0 5px 5px 0;
+}
+.gender_check input[type="radio"]:checked +span{
+    border: 1px solid #03c75a;
+    background: #03c75a;
+    color: #fff;
+
+}
+.join_input_3_right{
+    position: relative;
+    width: 250px;
+    border: 1px solid #dadada;
+    border-left: 0;
+    border-radius: 0 7px 0 0;
+}
+.input_gender{
+    position: absolute;
+    top: 7px;
+    left: 32px;
+}
+.memberInfo{
+    margin-bottom: 30px;
+}
+
+.join_input.four{
+    height: 50px;
+    border: 1px solid #dadada;
+    border-top: 0;
+    border-radius: 0;
 }

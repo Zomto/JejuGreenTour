@@ -113,6 +113,6 @@ public class MemberControll {
         }
 
         // 리다이렉트 또는 다른 처리
-        return "redirect:/logout";
+        return "redirect:/member/logout";
     }
 }
