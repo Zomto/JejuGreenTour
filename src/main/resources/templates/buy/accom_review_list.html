@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/main_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <style>
+            .w_in {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .main {
+                width: 70%;
+                margin-right: 30px;
+            }
+
+            .m1_title {
+                color: #1db954;
+                font-size: 22px;
+                font-weight: 700;
+                padding-bottom: 15px;
+            }
+
+            .tbl table {
+                width: 100%;
+                border-bottom: 1px solid #ddd;
+                border-collapse: separate;
+                table-layout: fixed;
+                font-size: 15px;
+            }
+
+            .tbl table.board_type th,
+            .tbl table.board_type td {
+                padding: 15px;
+                text-align: center;
+                border-top: 1px solid #ddd;
+                color: black;
+
+            }
+
+            .tbl th {
+                background-color: #03c75a;
+                font-size: 15px;
+                font-weight: 600;
+                color: #111;
+            }
+
+            .tbl th,
+            .tbl td {
+                text-align: left;
+                min-height: 54px;
+                padding: 15px 20px;
+                font-weight: 400;
+                line-height: 23px;
+            }
+
+            .re_btn {
+                background-color: #03c75a;
+                color: white;
+                padding: 12px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .re_btn:hover {
+                background-color: #03c75a;
+            }
+
+            .starbo2 {
+                display: inline-block;
+                background-image: url(/img/emptystarwhite.png);
+                background-size: contain;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+        <div>
+            <div class="w_in">
+                <div class="main">
+                    <h3 class="m1_title">예약내역</h3>
+                    <div class="tbl">
+                        <table class="board_type">
+                            <colgroup>
+                                <col width="20%" style=" border-radius: 0 0 0 50%;">
+                                <col width="10%">
+                                <col width="20%">
+                                <col width="20%">
+                                <col width="*">
+                            </colgroup>
+                            <thead>
+                                <th style="border-radius: 15px 0 0 0;">평점</th>
+                                <th>작성자</th>
+                                <th>작성일자</th>
+                                <th>숙박업소명</th>
+                                <th style="border-radius: 0 15px 0 0;">내용</th>
+                            </thead>
+
+                            <tr th:if="${myReviewList == null}">
+                                <td colspan="5">
+                                    <div class="data_no">
+                                        <div class="cont">
+                                            <strong>"현재 예약 내역이 존재하지 않습니다."</strong><br>
+                                            "즐거운 여행 계획을 준비해 보세요!"
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr th:each="review , state : ${myReviewList}" onclick="reply(this)"
+                                th:data-can-reply="${review.reviewAdminVO.memberId == null}"
+                                th:data-review-code="${review.reviewCode}"
+                                th:data-written-content="${review.reviewAdminVO.content}">
+                                <td>
+                                    <div class="star" th:data-set-score="${review.score}"
+                                        style="width: 100px; margin: 0 auto; height: 20px; background-image: linear-gradient(to right, yellow 70%, transparent 30%)">
+                                        <div class="starbo2">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>[[${review.memberId}]]</td>
+                                <td>[[${review.writeDate}]]</td>
+                                <td>[[${review.sampleACCVO.accomName}]]</td>
+                                <td>[[${review.content}]]</td>
+                            </tr>
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            //별점반영
+            let acticvreply = false;
+            let befostr = null;
+            scorestar();
+            function scorestar() {
+                document.querySelectorAll('.star').forEach(element => {
+                    let yellow = element.dataset.setScore * 10
+                    let transparent = 100 - yellow
+                    element.style.backgroundImage = `linear-gradient(to right, yellow ${yellow}%, transparent ${transparent}%)`
+                });
+            }
+
+            function reply(tag) {
+                if (JSON.parse(tag.dataset.canReply) && !acticvreply) {
+                    console.log(JSON.parse(tag.dataset.canReply))
+                    let str = `<tr colspan="5">
+                                    <td>
+                                        <textarea name="" id="" cols="100" rows="10"></textarea>
+                                        <input type="button"value="답변달기" onclick="replace(this)"
+                                        data-review-code ="${tag.dataset.reviewCode}">
+                                    </td>
+                                </tr>`
+                    tag.dataset.canReply = false;
+                    befostr = tag.parentNode.innerHTML
+                    tag.parentNode.innerHTML = str;
+                    acticvreply = true;
+                } else {
+                    //답변작성여부 표시
+                    //전에 작성한 답변 표시
+                    let str = `<tr colspan="5">
+                                    <td>
+                                        <textarea name="" id="" cols="100" rows="10">${tag.dataset.writtenContent}</textarea>
+                                        <input type="button"value="닫기" onclick="reset(this)"
+                                        data-review-code ="${tag.dataset.reviewCode}">
+                                    </td>
+                                </tr>`
+                    tag.dataset.canReply = false;
+                    befostr = tag.parentNode.innerHTML
+                    tag.parentNode.innerHTML = str;
+                    acticvreply = true;
+                }
+            }
+            function reset(tag){
+                        tag.parentNode.parentNode.parentNode.innerHTML = befostr
+                        acticvreply = false;
+            }
+
+            function replace(tag) {
+
+                fetch('/buy/adminReply', { //요청경로
+                    method: 'POST',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                    },
+                    //컨트롤러로 전달할 데이터
+                    body: new URLSearchParams({
+                        // 데이터명 : 데이터값
+                        reviewCode: tag.dataset.reviewCode
+                        , content: document.querySelector('textarea').value
+                    })
+                })
+                    .then((response) => {
+                        if (!response.ok) {
+                            alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+                            return;
+                        }
+
+                        return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
+                        //return response.json(); //나머지 경우에 사용
+                    })
+                    //fetch 통신 후 실행 영역
+                    .then((data) => {//data -> controller에서 리턴되는 데이터!
+
+                        tag.parentNode.parentNode.parentNode.innerHTML = befostr
+                        acticvreply = false;
+                    })
+                    //fetch 통신 실패 시 실행 영역
+                    .catch(err => {
+                        alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+                        console.log(err);
+                    });
+
+            }
+
+
+
+        </script>
+    </th:block>
+</body>
+
+</html>

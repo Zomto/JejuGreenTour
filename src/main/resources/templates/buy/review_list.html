@@ -9,155 +9,165 @@
 
 <body>
     <th:block layout:fragment="content">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <style>
-            body {
-                padding: 50px;
-                font-family: Arial, sans-serif;
+            .w_in {
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
-            .card {
-                max-width: 300px;
-                margin: 20px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            .main {
+                width: 70%;
+                margin-right: 30px;
             }
 
-            .card-img-top {
-                object-fit: cover;
-                max-height: 200px;
-                transition: transform 0.5s;
+            .m1_title {
+                color: #1db954;
+                font-size: 22px;
+                font-weight: 700;
+                padding-bottom: 15px;
             }
 
-            .card-img-top:hover {
-                transform: scale(1.2);
+            .tbl table {
+                width: 100%;
+                border-bottom: 1px solid #ddd;
+                border-collapse: separate;
+                table-layout: fixed;
+                font-size: 15px;
             }
 
-            .card-body {
-                padding: 20px;
+            .tbl table.board_type th,
+            .tbl table.board_type td {
+                padding: 15px;
+                text-align: center;
+                border-top: 1px solid #ddd;
+                color: black;
+
             }
 
-            .card-title {
-                font-size: 1.25rem;
-                margin-bottom: 10px;
+            .tbl th {
+                background-color: #03c75a;
+                font-size: 15px;
+                font-weight: 600;
+                color: #111;
             }
 
-            .card-subtitle {
-                color: #6c757d;
-                margin-bottom: 10px;
+            .tbl th,
+            .tbl td {
+                text-align: left;
+                min-height: 54px;
+                padding: 15px 20px;
+                font-weight: 400;
+                line-height: 23px;
             }
 
-            .card-text {
-                margin-bottom: 20px;
+            .re_btn {
+                background-color: #03c75a;
+                color: white;
+                padding: 12px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .re_btn:hover {
+                background-color: #03c75a;
+            }
+
+            .starbo2 {
+                display: inline-block;
+                background-image: url(/img/emptystarwhite.png);
+                background-size: contain;
+                width: 100%;
+                height: 100%;
             }
         </style>
+        <div>
+            <div class="w_in">
+                <div class="main">
+                    <h3 class="m1_title">예약내역</h3>
+                    <div class="tbl">
+                        <table class="board_type">
+                            <colgroup>
+                                <col width="20%" style=" border-radius: 0 0 0 50%;">
+                                <col width="10%">
+                                <col width="20%">
+                                <col width="10%">
+                                <col width="30%">
+                                <col width="10%">
+                            </colgroup>
+                            <thead>
+                                <th style="border-radius: 15px 0 0 0;">평점</th>
+                                <th>작성자</th>
+                                <th>작성일자</th>
+                                <th>숙박업소명</th>
+                                <th>내용</th>
+                                <th style="border-radius: 0 15px 0 0;">답변</th>
+                            </thead>
+                            <tbody>
+                                <tr th:if="${myReviewList == null}">
+                                    <td colspan="6">
+                                        <div class="data_no">
+                                            <div class="cont">
+                                                <strong>"현재 예약 내역이 존재하지 않습니다."</strong><br>
+                                                "즐거운 여행 계획을 준비해 보세요!"
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr th:each="review , state : ${myReviewList}">
+                                    <td>
+                                        <div class="star" th:data-set-score="${review.score}"
+                                            style="width: 100px; margin: 0 auto; height: 20px; background-image: linear-gradient(to right, yellow 70%, transparent 30%)">
+                                            <div class="starbo2">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>[[${review.memberId}]]</td>
+                                    <td>[[${review.writeDate}]]</td>
+                                    <td>[[${review.sampleACCVO.accomName}]]</td>
+                                    <td>[[${review.content}]]</td>
+                                    <td th:if="${review.reviewAdminVO.memberId == null}">X</td>
+                                    <td th:if="${review.reviewAdminVO.memberId != null}">
+                                        <input type="button" value="답변보기" onclick="openPopup(this)"
+                                            th:data-reply-id="${review.reviewAdminVO.memberId}"
+                                            th:data-reply-content="${review.reviewAdminVO.content}"
+                                            th:data-reply-date="${review.reviewAdminVO.writeDate}">
 
-        <div class="container">
-            <h2 class="mb-4">리뷰 게시판</h2>
+                                    </td>
+                                </tr>
 
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="card">
-                        <img class="card-img-top" src="https://via.placeholder.com/400x200" alt="제품 사진">
-                        <div class="card-body">
-                            <h5 class="card-title">작성자: John Doe</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">업소 이름: ABC Company</h6>
-                            <p class="card-text">평가 점수: ★★★★☆</p>
-                            <p class="card-text">내용: 이 제품은 가격 대비 성능이 우수합니다. 다만 디자인이 조금 아쉽네요.</p>
-                            <p class="card-text">등록 날짜: 2023년 10월 19일</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyModal">
-                                리뷰에 답변 작성
-                            </button>
-                            <ul class="list-group mt-3" id="replyList">
-                                <!-- 답변 리스트가 여기에 추가됩니다 -->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="card">
-                        <img class="card-img-top" src="https://via.placeholder.com/400x200" alt="제품 사진">
-                        <div class="card-body">
-                            <h5 class="card-title">작성자: John Doe</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">업소 이름: ABC Company</h6>
-                            <p class="card-text">평가 점수: ★★★★☆</p>
-                            <p class="card-text">내용: 이 제품은 가격 대비 성능이 우수합니다. 다만 디자인이 조금 아쉽네요.</p>
-                            <p class="card-text">등록 날짜: 2023년 10월 19일</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyModal">
-                                리뷰에 답변 작성
-                            </button>
-                            <ul class="list-group mt-3" id="replyList">
-                                <!-- 답변 리스트가 여기에 추가됩니다 -->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card">
-                        <img class="card-img-top" src="https://via.placeholder.com/400x200" alt="제품 사진">
-                        <div class="card-body">
-                            <h5 class="card-title">작성자: John Doe</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">업소 이름: ABC Company</h6>
-                            <p class="card-text">평가 점수: ★★★★☆</p>
-                            <p class="card-text">내용: 이 제품은 가격 대비 성능이 우수합니다. 다만 디자인이 조금 아쉽네요.</p>
-                            <p class="card-text">등록 날짜: 2023년 10월 19일</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyModal">
-                                리뷰에 답변 작성
-                            </button>
-                            <ul class="list-group mt-3" id="replyList">
-                                <!-- 답변 리스트가 여기에 추가됩니다 -->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <!-- 모달 -->
-        <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="replyModalLabel">리뷰에 답변 작성</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- 리뷰 답변 작성 폼 -->
-                        <form id="replyForm">
-                            <div class="form-group">
-                                <label for="replyContent">답변 내용</label>
-                                <textarea class="form-control" id="replyContent" rows="3"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">답변 작성</button>
-                        </form>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+
         </div>
-
-
         <script>
-            document.getElementById('replyForm').addEventListener('submit', function (e) {
-                e.preventDefault();
-                var replyContent = document.getElementById('replyContent').value;
-                document.getElementById('replyContent').value = '';
-                var listGroup = document.getElementById('replyList');
-                var listItem = document.createElement('li');
-                listItem.classList.add('list-group-item');
-                listItem.textContent = replyContent;
-                listGroup.appendChild(listItem);
-                $('#replyModal').modal('hide');
-            });
+            let myWindow=null;
+            scorestar();
+            function scorestar() {
+                document.querySelectorAll('.star').forEach(element => {
+                    let yellow = element.dataset.setScore * 10
+                    let transparent = 100 - yellow
+                    element.style.backgroundImage = `linear-gradient(to right, yellow ${yellow}%, transparent ${transparent}%)`
+                });
+            }
+            function openPopup(tag) {
+                if(myWindow!=null){
+                    myWindow.close();
+                }
+                myWindow = window.open("", "myWindow", "width=200,height=100,top=440,left=780");
+                myWindow.document.write(`
+                        <div>
+                            작성자 : ${tag.dataset.replyId} 작성일자 : ${tag.dataset.replyDate}
+                        </div>
+                        <textarea name="" id="" cols="100" rows="100" style="
+                        resize: none;">${tag.dataset.replyContent}</textarea>
+            `);
+            }
         </script>
-        <!-- 부트스트랩 스크립트 링크 추가 -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </th:block>
 </body>
 

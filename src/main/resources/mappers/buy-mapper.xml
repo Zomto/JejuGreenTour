@@ -67,15 +67,23 @@
         <result column="SCORE" property="score"/>
         <result column="CONTENT" property="content"/>
         <result column="WRITE_DATE" property="writeDate"/>
+        <association property="sampleACCVO" resultMap="Accom"/>
+        <association property="reviewAdminVO" resultMap="reviewAdmin"/>
         <collection property="reviewImgList" resultMap="reviewImg"/>
     </resultMap>
     <resultMap id="reviewImg" type="com.jejugreentour.jgt.buy.vo.ReviewImgVO">
         <id column="REVIEW_IMG_CODE" property="reviewImgCode" />
         <result column="ORIGIN_FILE_NAME" property="originFileName"/>
-        <result column="ATTACHED_FILE_NAME" property="attachedFilrName"/>
+        <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
         <result column="REVIEW_CODE" property="reviewCode"/>
     </resultMap>
-
+    <resultMap id="reviewAdmin" type="com.jejugreentour.jgt.buy.vo.ReviewAdminVO">
+        <id column="REVEIW_ADMIN_CODE" property="reviewAdminCode" />
+        <result column="ADMIN_MEMBER_ID" property="memberId"/>
+        <result column="REVIEW_CODE" property="reviewCode"/>
+        <result column="ADMIN_CONTENT" property="content"/>
+        <result column="ADMIN_WRITE_DATE" property="writeDate"/>
+    </resultMap>
     <select id="selectAccom" resultMap="Accom">
         SELECT * FROM MAIN_ACCOM
         WHERE ACCOM_CODE = #{accomCode}
@@ -129,15 +137,16 @@
         AND RSA.RESERVATION_CODE=RS.RESERVATION_CODE
         AND RSA.SUB_ACCOM_CODE=SA.SUB_ACCOM_CODE
         AND  MS.ACCOM_CODE =SA.ACCOM_CODE
+        ORDER BY RESERVATION_DATE DESC
     </select>
 
     <select id="basketNum" resultType="String">
         SELECT 'BAS_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(BASKET_CODE,5))),0)+1,3,'0')FROM BASKET_STAY_ACCOM
     </select>
-    <select id="reservationNum" resultType="String">
-        SELECT 'RESERV_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(RESERVATION_CODE,8))),0)+1,3,'0')
-        FROM RESERVATION_STAY_ACCOM
-    </select>
+<!--    <select id="reservationNum" resultType="String">-->
+<!--        SELECT 'RESERV_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(RESERVATION_CODE,8))),0)+1,3,'0')-->
+<!--        FROM RESERVATION_STAY_ACCOM-->
+<!--    </select>-->
 
 
     <insert id="insertBasketAccom">
@@ -187,8 +196,10 @@
     <insert id="insertReservation">
         INSERT INTO RESERVATION_STAY_ACCOM(
         RESERVATION_CODE, SUB_ACCOM_CODE, MEMBER_ID, STAY_START_DATE, STAY_END_DATE, RESERVATION_PRICE, RESERVATION_NAME, DAY_USE)
-        SELECT (SELECT 'RESERV_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(RESERVATION_CODE,8))),0)+1,3,'0')
-        FROM RESERVATION_STAY_ACCOM) AS RESERVATION_CODE
+        SELECT
+<!--        (SELECT 'RESERV_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(RESERVATION_CODE,8))),0)+1,3,'0')-->
+<!--        FROM RESERVATION_STAY_ACCOM) AS RESERVATION_CODE-->
+        #{reservUuid} AS RESERVATION_CODE
         , BAS.SUB_ACCOM_CODE
         , MEMBER_ID
         , STAY_START_DATE
@@ -212,7 +223,8 @@
         , CAN_REFUND_DATE
         , OVER_DATE)
         VALUES ((SELECT 'STATE_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(RESERVATION_STATE_CODE,7))),0)+1,3,'0')FROM RESERVATION_STATE)
-        ,(SELECT 'RESERV_'||LPAD(MAX(TO_NUMBER(SUBSTR(RESERVATION_CODE,8))),3,'0')FROM RESERVATION_STAY_ACCOM)
+<!--        ,(SELECT 'RESERV_'||LPAD(MAX(TO_NUMBER(SUBSTR(RESERVATION_CODE,8))),3,'0')FROM RESERVATION_STAY_ACCOM)-->
+        ,#{reservationCode}
         ,TO_DATE(#{canRefundDate},'YYYY-MM-DD')
         ,TO_DATE(#{overDate},'YYYY-MM-DD'))
     </insert>
@@ -241,7 +253,11 @@
     <select id="selectReviewCode" resultType="String">
         SELECT 'REVIEW_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(REVIEW_CODE,8))),0)+1,3,'0')FROM REVIEW
     </select>
-
+    <select id="selectReviewList" resultType="String">
+        SELECT * FROM REVIEW
+        WHERE  ACCOMCODE = #{accomCode}
+        ORDER BY WRITE_DATE DESC
+    </select>
     <insert id="insertReview">
         INSERT INTO REVIEW(
         REVIEW_CODE
@@ -277,6 +293,70 @@
             </foreach>
         </if>
     </insert>
+
+    <select id="accomReviewList" resultMap="review">
+        SELECT
+        RE.REVIEW_CODE
+        , ACCOM_CODE
+        ,(SELECT ACCOM_NAME FROM MAIN_ACCOM
+        WHERE MAIN_ACCOM.ACCOM_CODE= RE.ACCOM_CODE) AS ACCOM_NAME
+        , MEMBER_ID
+        , SCORE
+        , CONTENT
+        , WRITE_DATE
+        , REVIEW_IMG_CODE
+        , ORIGIN_FILE_NAME
+        , ATTACHED_FILE_NAME
+        ,(SELECT ADMIN_MEMBER_ID FROM REVIEW_ADMIN
+        WHERE REVIEW_ADMIN.REVIEW_CODE= RE.REVIEW_CODE) AS ADMIN_MEMBER_ID
+        ,(SELECT ADMIN_CONTENT FROM REVIEW_ADMIN
+        WHERE REVIEW_ADMIN.REVIEW_CODE= RE.REVIEW_CODE) AS ADMIN_CONTENT
+        ,(SELECT ADMIN_WRITE_DATE FROM REVIEW_ADMIN
+        WHERE REVIEW_ADMIN.REVIEW_CODE= RE.REVIEW_CODE) AS ADMIN_WRITE_DATE
+        FROM REVIEW RE , REVIEW_IMG REIMG
+        WHERE ACCOM_CODE = #{accomCode}
+        AND RE.REVIEW_CODE = REIMG.REVIEW_CODE
+        ORDER BY WRITE_DATE
+    </select>
+
+    <select id="memberReviewList" resultMap="review">
+        SELECT
+        RE.REVIEW_CODE
+        , ACCOM_CODE
+        ,(SELECT ACCOM_NAME FROM MAIN_ACCOM
+        WHERE MAIN_ACCOM.ACCOM_CODE= RE.ACCOM_CODE) AS ACCOM_NAME
+        , RE.MEMBER_ID
+        , SCORE
+        , CONTENT
+        , WRITE_DATE
+        , REVIEW_IMG_CODE
+        , ORIGIN_FILE_NAME
+        , ATTACHED_FILE_NAME
+        ,(SELECT ADMIN_MEMBER_ID FROM REVIEW_ADMIN
+        WHERE REVIEW_ADMIN.REVIEW_CODE= RE.REVIEW_CODE) AS ADMIN_MEMBER_ID
+        ,(SELECT ADMIN_CONTENT FROM REVIEW_ADMIN
+        WHERE REVIEW_ADMIN.REVIEW_CODE= RE.REVIEW_CODE) AS ADMIN_CONTENT
+        ,(SELECT ADMIN_WRITE_DATE FROM REVIEW_ADMIN
+        WHERE REVIEW_ADMIN.REVIEW_CODE= RE.REVIEW_CODE) AS ADMIN_WRITE_DATE
+        FROM REVIEW RE , REVIEW_IMG REIMG
+        WHERE MEMBER_ID= #{memberId}
+        AND RE.REVIEW_CODE = REIMG.REVIEW_CODE
+        ORDER BY WRITE_DATE
+    </select>
+<insert id="insertAdminReview">
+    INSERT INTO REVIEW_ADMIN(
+    REVIEW_ADMIN_CODE
+    , ADMIN_MEMBER_ID
+    , REVIEW_CODE
+    , ADMIN_CONTENT)
+    VALUES(
+    (SELECT 'READ_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(REVIEW_ADMIN_CODE,6))),0)+1,3,'0')FROM REVIEW_ADMIN)
+    ,#{memberId}
+    ,#{reviewCode}
+    ,#{content}
+    )
+</insert>
+
 
 </mapper>
     

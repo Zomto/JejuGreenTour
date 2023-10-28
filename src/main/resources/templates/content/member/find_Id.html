@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/member/login.css">
+    <link rel="stylesheet" href="/css/member/test.css">
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <form action="/member/find_Id" method="post">
+            <div id="wrap">
+                <div id="inner">
+                    <div id="header">
+                        <div class="h_in">
+                            <div class="h_icon">
+                                <a href="/">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#03c75a"
+                                        class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z" />
+                                    </svg>
+                                </a>
+                                <div class="textLogin">LOGIN</div>
+                            </div>
+                            <a href="/"><div class="h_logo">LOGO</div></a>
+                        </div>
+                    </div>
+                    <div id="container">
+                        <div class="c_in">
+                            <div class="login_input">
+                                <div class="email_verify">
+                                    <div class="mb-3">
+                                        <p>
+                                            <label class="form-label" for="email">Email</label>
+                                            <input class="form-control" type="text" id="memberEmail" name="memberEmail" />
+                                            <select name="email_host" id="email_host">
+                                                <option value="null" selected>선택해주세요</option>
+                                                <option value="@naver.com">@naver.com</option>
+                                                <option value="@daum.net">@daum.net</option>
+                                                <option value="@gmail.com">@gmail.com</option>
+                                                <option value="">직접입력</option>
+                                            </select>
+                                            <input type="hidden" name="member_mail" id="member_mail">
+                                        </p>
+                                        <input type="button" class="verify" value="인증번호 발급" id="verifyButton" onclick="verifyCode()" />
+                                        <input type="button" class="verify" value="아이디 찾기" id="findIdButton" style="display: none;" onclick="findId()" />
+                                    </div>
+                                    <div id="additionalInput" class="verify_box" style="display: none;">
+                                        <!-- 추가 입력 필드가 여기에 동적으로 생성됨 -->
+                                        <p>
+                                            <label class="form-label" for="verify_code">인증번호</label>
+                                            <input class="form-control" type="text" id="verify_code" name="verify_code" required />
+                                            <div id="timer">3:00</div>
+                                            <div class="alertbox"></div>
+                                        </p>
+                                        <input type="button" class="verify" value="인증번호 확인" onclick="checkCode()"/>
+                                    </div>
+                            
+                                    <div class="result">
+                                        
+                                    </div>
+                                </div>                   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="/js/member/find.js"></script>
+    </th:block>
+</body>
+</html>

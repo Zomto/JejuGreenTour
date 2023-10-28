@@ -12,4 +12,5 @@ public class BasketAccomVO {
     private String stayTerm;
     private String dayuse;
     private SampleSubVO sampleSubVO;
+    private String reservUuid;
 }

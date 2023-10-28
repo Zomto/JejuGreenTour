@@ -11,7 +11,6 @@
         <result column="BIRTH_DATE"          property="birthDate"/>
         <result column="MEMBER_ROLL"    property="memberRoll"/>
         <result column="MEMBER_MAIL"    property="member_mail"/>
-
     </resultMap>
 
     <insert id="join">
@@ -66,5 +65,16 @@
         WHERE MEMBER_ID = #{memberId}
     </update>
 
+    <select id ="findId" resultMap="member">
+        SELECT MEMBER_ID
+        FROM JEJU_MEMBER
+        WHERE MEMBER_MAIL = #{member_mail}
+    </select>
 
+    <update id="updatePw" >
+        UPDATE JEJU_MEMBER
+        SET
+        MEMBER_PW = #{memberPw}
+        WHERE MEMBER_ID = #{memberId}
+    </update>
 </mapper>
