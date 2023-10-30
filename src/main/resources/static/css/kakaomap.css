@@ -16,28 +16,32 @@
 }
 
 .map_wrap {
+    border-radius: 7px;
+    border: 1px solid #dadada;
     position: relative;
-    width: 100%;
-    height: 500px;
+    width: 1100px;
+    padding: 20px 30px;
+    height: 530px;
 }
 .map_wrap > #map{
-    width: 500px;
-    height: 400px;
+    width: 600px;
+    height: 500px;
     position: absolute;
-    top: 5%;
-    right: 10%;
+    top: 1%;
+    right: 100px;
     overflow: hidden;
 }
 
 #menu_wrap {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 20px;
+    left: 30px;
     bottom: 0;
     width: 390px;
     padding: 5px;
-    overflow-y: scroll;
-    background: #ffae00ea;
+    height: 510px;
+    border: 1px solid #dadada;
+    background: #fff;
     z-index: 1;
     font-size: 12px;
     border-radius: 10px;
@@ -69,19 +73,34 @@
 #menu_wrap .option button {
     margin-left: 5px;
 }
-
+.result{
+    margin-top: 3px;
+    border: 1px solid #dadada;
+    border-radius: 0 0 5px 5px;
+    overflow-y: scroll;
+    height: 433px;
+    z-index: 1;
+}
 #placesList li {
     list-style: none;
 }
 
 #placesList .item {
     position: relative;
-    border-bottom: 1px solid #888;
     overflow: hidden;
     cursor: pointer;
     min-height: 65px;
 }
-
+#placesList .item:hover{
+    border: 1px solid #1ab752;
+    border-radius: 5px;
+}
+.item div{
+    display: none;
+}
+.item >.info{
+    display: block;
+}
 #placesList .item span {
     display: block;
     margin-top: 4px;
@@ -195,5 +214,37 @@
     cursor: default;
     color: #777;
 }
-
-
+.option{
+    z-index: 700;
+}
+.option input{
+    font-size: 22px;
+    margin-bottom: 3px;
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #dadada;
+    outline: none;
+}
+.option input:focus{
+    border: 1px solid #1ab752;
+}
+.option button{
+    background-color: #03c75a;
+    color: #fff;
+    border: #dadada;
+    border-radius: 5px;
+    width: 50px;
+    height: 32px;
+}
+.option div text{
+    display: none;
+}
+.info h5{
+    font-size: 20px;
+    font-weight: 700;
+    color: #444;
+}
+.info span{
+    font-size: 15px;
+}

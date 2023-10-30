@@ -65,13 +65,13 @@ public class CsController {
     }
 
     // QNA 목록 페이지 이동
-    @GetMapping("/qnaForm")
+    @GetMapping("/qnaListForm")
     public String qnaForm(Model model, QnaVO qnaVO){
         // 페이지 정보 세팅
         qnaVO.setTotalDataCnt(csService.selectQnaCnt());
         qnaVO.setPageInfo();
         model.addAttribute("qnaList", csService.qnaList(qnaVO));
-        return "/content/csCenter/qna";
+        return "/content/csCenter/qnaList";
     }
 
     // 문의 내역 목록 조회 페이지 이동

@@ -63,8 +63,8 @@ a{
 }
 
 .h_logo{
-    width: 120px;
-    height: 80px;
+    width: 200px;
+    height: 160px;
     background-image: url(/img/logo.png);
     background-size: 100% auto;
     background-position: center;

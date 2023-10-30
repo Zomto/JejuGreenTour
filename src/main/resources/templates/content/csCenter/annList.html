@@ -5,7 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="/css/csCenter/annList.css">
+    <!-- css영역 -->
+    <th:block th:fragment="content_css">
+        <link rel="stylesheet" href="/css/csCenter/annList.css">
+    </th:block>
 </head>
 <body>
     <th:block layout:fragment="content">
@@ -67,5 +70,8 @@
             </div>
         </div>
     </th:block>
+
+    <!-- js영역 -->
+    <th:block th:fragment="content_js"></th:block>
 </body>
 </html>
