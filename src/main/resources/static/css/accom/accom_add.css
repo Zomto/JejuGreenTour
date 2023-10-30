@@ -31,66 +31,133 @@ textarea{
 }
 
 #inner{
-    width: 1200px;
+    width: 800px;
     box-sizing: border-box;
     margin: 0 auto;
-    padding: 15px 30px;
-    background-color: aliceblue;
+    padding: 45px 30px;
+    background-color: #fff;
 }
-
-.table_inner{
-    border: 1px solid #999;
-    padding: 30px 50px;
+.table_text{
+    margin-bottom: 20px;
 }
-
-
-.table_text div{
+.accomAddHeader{
     display: flex;
-    padding: 0 15px;
+    margin-bottom: 30px;
 }
-
-.label_area{
-    width: 110px;
-    box-sizing: border-box;
-    border: 1px solid #222;
-    border-right: 0;
-    padding: 20px;
-    align-items: center;
-    border-bottom: 0;
+.hText{
+    height: 41px;
+    font-size: 30px;
+    font-weight: 700;
+    color: #999;
+    margin-left: 20px;
+    margin-top: 6px;
 }
-
-.input_area{
-    width: 900px;
-    border: 1px solid #222;
-    padding: 20px;
-    border-bottom: 0;
+.input{
+    border: 1px solid #dadada;
+    width: 600px;
 }
-
-.input_area input{
-    width: 50%;
-    padding: 5px
+.input input{
+    width: 92%;
+    height: 24px;
+    outline: none;
+    border: 0;
+    margin: 10px 10px 10px 15px;
 }
-
-
-
-.table_img div{
+.input select{
+    width: 20%;
+    height: 24px;
+    outline: none;
+    border: 0;
+    margin: 10px 10px 10px 10px;
+    color: #555;
+}
+.input textarea{
+    width: 96%;
+    outline: none;
+    margin: 10px;
+    border: 0;
+    color: #555;
+}
+.input textarea::placeholder{
+    color: #555;
+}
+.input input:focus{
+    border: 0;
+}
+.labelArea{
     display: flex;
-    padding: 0 15px;
 }
-
-.input_subImg p{
-    border-bottom: 1px solid #222;
+.labelArea>svg{
+    margin-top: 10px;
+    margin-left: 10px;
 }
-
-.preview_mainImg p{
-    border-bottom: 0;
+.labelText{
+    color: #555;
 }
-
-.preview_subImg p{
+.addrBox > .input.addrDetail{
+    width: 300px;
+}
+.addrBox> .input.accomAddr{
+    width: 299px;
+}
+.addrBox{
+    display: flex;
+}
+.labelText{
+    margin: 11px 0 0 10px;
+}
+.input.accomName{
+    border-radius: 7px 7px 0 0;
+}
+.input.accomAddr{
     border-top: 0;
-    border-bottom: 1px solid #222;
 }
-
-.table_img .preview_mainImg, .table_img .preview_subImg{
-    
+.input.addrDetail{
+    border-top: 0;
+    border-left: 0;
+}
+.input.accomCate{
+    border-top: 0;
+}
+.input.accomIntro{
+    border-top: 0;
+    border-radius: 0 0 7px 7px;
+}
+.input.mainImg{
+    border-radius: 7px 7px 0 0;
+}
+.input.mainImg>input, .input.subImg>input{
+    height: 25px;
+}
+.input.subImg{
+    border-radius: 0 0 7px 7px;
+    border-top: 0;
+}
+.table_img{
+    margin-bottom: 30px;
+}
+.join_btn{
+    width: 420px;
+    height: 53px;
+    border-radius: 6px;
+    border: 1px solid #dadada;
+    background-color: #03c75a;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    margin-left: 85px;
+}
+.join_btn:hover{
+    background-color: #1ab752;
+}
+.table_text {
+    border-radius: 7px;
+    width: 602px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
+}
+.table_img{
+    border-radius: 7px;
+    width: 602px;
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
 }

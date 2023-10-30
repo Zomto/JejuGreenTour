@@ -84,7 +84,7 @@ a {
 .inputMem.memberId {
     border: 1px solid #dadada;
     border-radius: 7px 7px 0 0;
-    width: 500px;
+    width: 499px;
 }
 
 .inputMem>svg {
@@ -231,6 +231,10 @@ a {
 
 .memberInfo {
     margin-bottom: 30px;
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
+}
+.memberInfo_2{
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
 }
 
 .join_input.four {
@@ -315,4 +319,102 @@ a {
 }
 .callnDate{
     display: flex;
+}
+.inputMemEmail{
+    width:499px;
+    height: 50px;
+    border: 1px solid #dadada;
+    border-top: 0;
+    border-radius: 0 0 7px 7px;
+    display: flex;
+}
+#memberEmail{
+    outline: 0;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    margin-left: 50px;
+    color : rgb(117, 117, 117);
+}
+.join_input.six{
+    position: relative;
+    display: block;
+}
+.inputMemEmail>svg{
+    position: absolute;
+    z-index: 500;
+    top: 12px;
+    left: 10px;
+}
+.mb-3{
+    display: flex;
+}
+.verify{
+    background-color: #03c75a;
+    color: #fff;
+    border-radius: 5px;
+    border: 1px solid #dadada; 
+    border: 0;
+    width: 90px;
+    height: 35px;
+    right: 7px;
+    top: 8px;
+    font-size: 12px;
+    position: absolute;
+}
+#email_host{
+    border-radius: 7px;
+    border: 1px solid #dadada;
+    color: rgb(117, 117, 117);
+    font-weight: 100;
+    font-size: 15px;
+    width: 120px;
+    height: 20px;
+    outline: none;
+}
+.verify_box{
+    width: 499px;
+    height: 50px;
+    border-radius: 0 0 7px 7px;
+    border: 1px solid #dadada;
+    border-top: 0;
+}
+.bi.bi-key{
+    position: absolute;
+    z-index: 500;
+    top: 60px;
+    left: 10px;
+}
+#verify_code{
+    color: rgb(117, 117, 117);
+    outline: 0;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    margin-left: 50px;
+    margin-top: 12px;
+}
+.verfyBox{
+    display: flex;
+}
+#timer{
+    color: #888;
+
+    margin-left: 30px;
+    margin-top: 12px;
+}
+.joinBtnBox{
+    width: 500px;
+}
+.join_btn{
+    width: 420px;
+    height: 53px;
+    border-radius: 6px;
+    border: 1px solid #dadada;
+    background-color: #03c75a;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 30px 40px;
+}
+.join_btn:hover{
+    background-color: #1ab752;
 }

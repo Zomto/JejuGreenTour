@@ -191,8 +191,9 @@ function startTimer(duration) {
 
 function verifyCode() {
     var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-
+    
     if (emailRegex.test(document.querySelector('#memberEmail').value + document.querySelector('#email_host').value)) {
+        
         if(timerstop != null){
             console.log('이전 타이머 있음');
             clearTimeout(timerstop);
@@ -204,6 +205,8 @@ function verifyCode() {
         clearInterval(timerstop);
         document.getElementById("timer").textContent = "03:00";
         const additionalInputDiv = document.getElementById("additionalInput");
+        document.querySelector('.inputMemEmail').style.borderBottom = "0px solid #dadada"
+        document.querySelector('.inputMemEmail').style.borderRadius = "0px"
         additionalInputDiv.style.display = "block";
         startTimer(180000);
         document.querySelector('#verify_code').value = null;
@@ -293,11 +296,8 @@ function inputInvalidate(tagId, message){
     document.querySelector(tagId).textContent = message;
 }
 
-<<<<<<< HEAD:src/main/resources/static/js/member/join.js
-=======
 // let svgIcon = document.querySelector
 // $('.join_input').click(function(){
 //     $(this).find('.bi').setAttribute("fill", "#03c75a");
 // });
->>>>>>> 94bf911eb1da24a12a34ba74c81e73a49dca1f59:src/main/resources/static/js/join.js
 

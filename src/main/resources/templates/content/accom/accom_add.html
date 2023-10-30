@@ -1,86 +1,164 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{fragment/main_layout}">
+
 <head>
-<meta charset="UTF-8">
-<title></title>
-<link rel="stylesheet" href="/css/accom/accom_add.css">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/accom/accom_add.css">
 </head>
+
 <body>
-<th:block layout:fragment="content">
-    <form action="/accom/addAccom" id="joinForm" method="post" enctype="multipart/form-data">
-        <div id="wrap">
-            <div id="inner">
-                <h3>숙박 등록</h3>
-                <div class="addAccomTable">
-                    <div class="table_inner">
-                        <div class="table_text">
-                            <div class="input_accomName">
-                                <p class="label_area"><label for="accomName">업소명</label></p>
-                                <p class="input_area"><input type="text" id="accomName" name="accomName"></p>
-                            </div>
-                            <div class="input_accomAddr">
-                                <p class="label_area"><label for="accomAddr">ADDRESS</label></p>
-                                <p class="input_area"><input type="text" id="accomAddr" name="accomAddr" onclick="openPost();" readonly></p>
-                            </div>
-                            <div class="input_addrDetail">
-                                <p class="label_area"><label for="accomAddr">상세주소</label></p>
-                                <p class="input_area"><input type="text" id="addrDetail" name="addrDetail"></p>
-                            </div>
-                            <div class="input_accomCate">
-                                <p class="label_area"><label for="accomCate">카테고리</label></p>
-                                <p class="input_area">
+    <th:block layout:fragment="content">
+        <form action="/accom/addAccom" id="joinForm" method="post" enctype="multipart/form-data">
+            <div id="wrap">
+                <div id="inner">
+                    <div class="accomAddHeader">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#03c75a"
+                            class="bi bi-house-add-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 1 1-1 0v-1h-1a.5.5 0 1 1 0-1h1v-1a.5.5 0 0 1 1 0Z" />
+                            <path
+                                d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z" />
+                            <path d="m8 3.293 4.712 4.712A4.5 4.5 0 0 0 8.758 15H3.5A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z" />
+                        </svg>
+                        <div class="hText">
+                            숙박 등록
+                        </div>
+                    </div>
+
+                    <div class="addAccomTable">
+                        <div class="table_inner">
+                            <div class="table_text">
+                                <div class="input accomName">
+                                    <div class="labelArea">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#dadada"
+                                            class="bi bi-house-door" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z" />
+                                        </svg>
+                                        <div class="labelText">
+                                            숙소 이름
+                                        </div>
+                                    </div>
+                                    <input type="text" id="accomName" name="accomName" placeholder="NAME">
+                                </div>
+                                <div class="addrBox">
+                                    <div class="input accomAddr">
+                                        <div class="labelArea">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                fill="#dadada" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                                            </svg>
+                                            <div class="labelText">
+                                                숙소주소
+                                            </div>
+                                        </div>
+                                        <input type="text" id="accomAddr" name="accomAddr" placeholder="ADDRESS"
+                                            onclick="openPost();" readonly>
+                                    </div>
+                                    <div class="input addrDetail">
+                                        <div class="labelArea">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                fill="#dadada" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+                                                <path
+                                                    d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                            </svg>
+                                            <div class="labelText">
+                                                상세 주소
+                                            </div>
+                                        </div>
+                                        <input type="text" id="addrDetail" name="addrDetail"
+                                            placeholder="ADDRESS_DETAIL">
+                                    </div>
+                                </div>
+                                <div class="input accomCate">
+                                    <div class="labelArea">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#dadada"
+                                            class="bi bi-tag" viewBox="0 0 16 16">
+                                            <path
+                                                d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z" />
+                                            <path
+                                                d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z" />
+                                        </svg>
+                                        <div class="labelText">
+                                            카테고리
+                                        </div>
+                                    </div>
                                     <select name="accomCate" id="accomCate">
-                                        <option value="CATE_000">선택</option>
+                                        <option value="CATE_000">CATEGORY</option>
                                         <option value="CATE_001">호텔</option>
                                         <option value="CATE_002">모텔</option>
                                         <option value="CATE_003">펜션</option>
                                         <option value="CATE_004">글램핑</option>
                                     </select>
-                                </p>
+                                </div>
+                                <div class="input accomIntro">
+                                    <div class="labelArea">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#dadada"
+                                            class="bi bi-card-text" viewBox="0 0 16 16">
+                                            <path
+                                                d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+                                            <path
+                                                d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z" />
+                                        </svg>
+                                        <div class="labelText">
+                                            숙소 소개
+                                        </div>
+                                    </div>
+                                    <div class="input_area">
+                                        <textarea id="accomIntro" name="accomIntro" rows="3">
+                                        </textarea>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="input_accomIntro">
-                                <p class="label_area"><label for="accomIntro">간략 소개</label></p>
-                                <p class="input_area"><textarea id="accomIntro" name="accomIntro" rows="3"></textarea></p>
+                            <div class="table_img">
+                                <div class="input mainImg">
+                                    <div class="labelArea">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#dadada"
+                                            class="bi bi-image" viewBox="0 0 16 16">
+                                            <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                            <path
+                                                d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z" />
+                                        </svg>
+                                        <div class="labelText">
+                                            ( MAIN ) 이미지 
+                                        </div>
+                                    </div>
+                                    <input type="file" name="mainImg">
+                                </div>
+
+                                <div class="input subImg">
+                                    <div class="labelArea">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#dadada"
+                                            class="bi bi-images" viewBox="0 0 16 16">
+                                            <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                                            <path
+                                                d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2zM14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1zM2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1h-10z" />
+                                        </svg>
+                                        <div class="labelText">
+                                            ( SUB ) 이미지 
+                                        </div>
+                                    </div>
+                                    <input type="file" name="subImg" multiple>
+                                </div>
                             </div>
                         </div>
-                        <div class="table_img">
-                            <div class="input_mainImg">
-                                <p class="label_area"><label>메인이미지</label></p>
-                                <p class="input_area"><input type="file" name="mainImg"></p>
-                            </div>
-                            <div class="preview_mainImg">
-                                <p class="label_area"><label>메인 이미지 미리보기</label></p>
-                                <p class="input_area">미리보기</p>
-                            </div>
-                            <div class="input_subImg">
-                                <p class="label_area"><label>서브이미지</label></p>
-                                <p class="input_area"><input type="file" name="subImg" multiple></p>
-                            </div>
-                            <div class="preview_subImg">
-                                <p class="label_area"><label>서브 이미지 미리보기</label></p>
-                                <p class="input_area"></p>
-                            </div>
+                        <div class="input_joinBtn">
+                            <button class="join_btn" id="join-btn" type="button" onclick="joinValidate();">등록하기</button>
                         </div>
-                        <div class="validate">
-                            <div class="error-div" id="id-error-div1"></div>
-                            <div class="error-div" id="id-error-div2"></div>
-                            <div class="error-div" id="id-error-div3"></div>
-                            <div class="error-div" id="id-error-div"></div>
-                        </div>
+                        <input id="accomLoc" name="accomLoc" class="accomLoc" type="hidden" value="accomLoc">
                     </div>
-                    <div class="input_joinBtn">
-                        <button id="join-btn" type="button" onclick="joinValidate();">등록하기</button>
-                    </div>
-                    <input id="accomLoc" name="accomLoc" class="accomLoc" type="hidden" value="accomLoc">
                 </div>
             </div>
-        </div>
-        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-        <script src="/js/accom/addAccom.js"></script>
-        <script src="/js/csCenter/csCenter_main.js"></script>
-    </form>
-</th:block>
+            <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+            <script src="/js/accom/addAccom.js"></script>
+            <script src="/js/csCenter/csCenter_main.js"></script>
+        </form>
+    </th:block>
 </body>
+
 </html>
