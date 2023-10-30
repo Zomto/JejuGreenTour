@@ -12,6 +12,32 @@
             <div>
                 <h3>문의 내역</h3>
             </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>유형</td>
+                            <td>제목</td>
+                            <td>작성일</td>
+                            <td>답변상태</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:if="${inqList != null}" th:each="inq, state : ${inqList}">
+                            <td>[[${inq.inqCateList.cateName}]]</td>
+                            <td><a th:href="@{/cs/inqDetailForm(inqCode=${inq.inqCode})}">[[${inq.title}]]</a></td>
+                            <td>[[${inq.inqDate}]]</td>
+                            <td>[[${inq.isResponse}]]</td>
+                        </tr>
+                        <tr th:if="${inqList == null}">
+                            <td>
+                                <div>icon</div>
+                                <div>상담 문의내역이 없습니다.</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </th:block>
 </body>

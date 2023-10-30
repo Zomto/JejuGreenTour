@@ -2,6 +2,7 @@ package com.jejugreentour.jgt.csCenter.controller;
 
 import com.jejugreentour.jgt.csCenter.service.CsService;
 import com.jejugreentour.jgt.csCenter.vo.AnnVO;
+import com.jejugreentour.jgt.csCenter.vo.InquireVO;
 import com.jejugreentour.jgt.csCenter.vo.QnaVO;
 import com.jejugreentour.jgt.member.vo.MemberVO;
 import jakarta.annotation.Resource;
@@ -73,11 +74,22 @@ public class CsController {
         return "/content/csCenter/qna";
     }
 
-    // 문의 내역 페이지 이동
+    // 문의 내역 목록 조회 페이지 이동
     @GetMapping("/inquireListForm")
-    public String inquireListForm(){
-
+    public String inquireListForm(Model model, InquireVO inquireVO){
+        // 페이지 정보 세팅
+        inquireVO.setTotalDataCnt(csService.selectInqCnt());
+        inquireVO.setPageInfo();
+        model.addAttribute("inqList", csService.InqList(inquireVO));
+        System.out.println(csService.InqList(inquireVO));
         return "/content/csCenter/inquireList";
+    }
+
+    @GetMapping("/inqDetailForm")
+    public String inqDetailForm(){
+
+
+        return "/content/csCenter/inqDetail";
     }
 
 
