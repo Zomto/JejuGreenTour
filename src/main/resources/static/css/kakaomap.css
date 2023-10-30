@@ -74,9 +74,10 @@
     margin-left: 5px;
 }
 .result{
-
+    margin-top: 3px;
+    border: 1px solid #dadada;
+    border-radius: 0 0 5px 5px;
     overflow-y: scroll;
-    overflow: hidden;
     height: 433px;
     z-index: 1;
 }
@@ -247,7 +248,3 @@
 .info span{
     font-size: 15px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 0dbf7b2f20e416902b8c26a4d8888747ca0d3384

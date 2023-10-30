@@ -115,54 +115,6 @@ textarea{
 .input.addrDetail{
     border-top: 0;
     border-left: 0;
-<<<<<<< HEAD
-}
-.input.accomCate{
-    border-top: 0;
-}
-.input.accomIntro{
-    border-top: 0;
-    border-radius: 0 0 7px 7px;
-}
-.input.mainImg{
-    border-radius: 7px 7px 0 0;
-}
-.input.mainImg>input, .input.subImg>input{
-    height: 25px;
-}
-.input.subImg{
-    border-radius: 0 0 7px 7px;
-    border-top: 0;
-}
-.table_img{
-    margin-bottom: 30px;
-}
-.join_btn{
-    width: 420px;
-    height: 53px;
-    border-radius: 6px;
-    border: 1px solid #dadada;
-    background-color: #03c75a;
-    color: #fff;
-    font-weight: 700;
-    cursor: pointer;
-    margin-left: 85px;
-}
-.join_btn:hover{
-    background-color: #1ab752;
-}
-.table_text {
-    border-radius: 7px;
-    width: 602px;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
-}
-.table_img{
-    border-radius: 7px;
-    width: 602px;
-    box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
-=======
->>>>>>> 0dbf7b2f20e416902b8c26a4d8888747ca0d3384
 }
 .input.accomCate{
     border-top: 0;

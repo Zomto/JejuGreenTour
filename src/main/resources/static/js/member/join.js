@@ -193,11 +193,7 @@ function verifyCode() {
     var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
     
     if (emailRegex.test(document.querySelector('#memberEmail').value + document.querySelector('#email_host').value)) {
-<<<<<<< HEAD
         
-=======
-
->>>>>>> 0dbf7b2f20e416902b8c26a4d8888747ca0d3384
         if(timerstop != null){
             console.log('이전 타이머 있음');
             clearTimeout(timerstop);
@@ -300,10 +296,6 @@ function inputInvalidate(tagId, message){
     document.querySelector(tagId).textContent = message;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 0dbf7b2f20e416902b8c26a4d8888747ca0d3384
 // let svgIcon = document.querySelector
 // $('.join_input').click(function(){
 //     $(this).find('.bi').setAttribute("fill", "#03c75a");

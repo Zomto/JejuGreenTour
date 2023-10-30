@@ -122,7 +122,7 @@ margin-bottom: 30px;
     display: flex;
 }
 .tab-link{
-    padding: 12px 20px;
+    padding: 1% 1%;
     text-align: center;
     width: 114px;
     border: 1px solid #dadada;;
@@ -156,11 +156,7 @@ margin-bottom: 30px;
     border-top: 0;
     border-radius: 0 0 7px 7px;
     background-color: #fff;
-<<<<<<< HEAD
-} 
-=======
 }
->>>>>>> 0dbf7b2f20e416902b8c26a4d8888747ca0d3384
 .headerText{
     width: 800px;
     font-size: 25px;
@@ -168,8 +164,4 @@ margin-bottom: 30px;
     color: #444;
     border-bottom: 2px solid #dadada;
     margin-bottom: 20px;
-<<<<<<< HEAD
 }   
-=======
-}
->>>>>>> 0dbf7b2f20e416902b8c26a4d8888747ca0d3384
