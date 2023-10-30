@@ -146,6 +146,8 @@
                                     </td>
                                     <td th:if="${reserv.stateVO.review == 'Y' }">
                                         <div>리뷰를 <br> 작성하셨습니다</div>
+                                        <input class="re_btn" type="button" value="리뷰수정하기" onclick="reviewUpdate(this)"
+                                            th:data-reservation-code="${reserv.reservationCode}">
                                     </td>
                                     <td th:if="${reserv.stateVO.refund == 'Y'}">환불함<br>
                                         [[${#numbers.formatCurrency(reserv.stateVO.refundPrice)}]]
@@ -292,6 +294,12 @@
                             console.log(err);
                         });
 
+                }
+            }
+            function reviewUpdate(tag) {
+
+                if (confirm("리뷰를 수정 하시겠습니까?")) {
+                    location.href = "/buy/reviewReset?reservationCode=" + tag.dataset.reservationCode;
                 }
             }
         </script>
