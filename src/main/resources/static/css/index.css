@@ -71,7 +71,7 @@
 
 
 .slide_1.active #Visual_Main {
-    background-color: rgba(74, 147, 216, 1) /* 1번 슬라이드가 활성화될 때 배경색을 bisque로 설정 */
+    background-color: rgba(29, 84, 159, 1) /* 1번 슬라이드가 활성화될 때 배경색을 bisque로 설정 */
 }
 
 .slide_2.active #Visual_Main {
@@ -162,6 +162,5 @@ margin-bottom: 30px;
     font-size: 25px;
     font-weight: 700;
     color: #444;
-    border-bottom: 2px solid #dadada;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }   
