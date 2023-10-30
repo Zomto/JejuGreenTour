@@ -193,6 +193,7 @@ function verifyCode() {
     var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 
     if (emailRegex.test(document.querySelector('#memberEmail').value + document.querySelector('#email_host').value)) {
+
         if(timerstop != null){
             console.log('이전 타이머 있음');
             clearTimeout(timerstop);
@@ -204,6 +205,8 @@ function verifyCode() {
         clearInterval(timerstop);
         document.getElementById("timer").textContent = "03:00";
         const additionalInputDiv = document.getElementById("additionalInput");
+        document.querySelector('.inputMemEmail').style.borderBottom = "0px solid #dadada"
+        document.querySelector('.inputMemEmail').style.borderRadius = "0px"
         additionalInputDiv.style.display = "block";
         startTimer(180000);
         document.querySelector('#verify_code').value = null;
@@ -231,7 +234,7 @@ function verifyCode() {
             .then((data) => {//data -> controller에서 리턴되는 데이터!
                 document.querySelector('.alertbox').innerHTML="인증메일이 발송 되었습니다! 메일함을 확인해주세요!"
                 document.querySelector('.alertbox').style.color='black';
-        
+
                 confirmCode = data;
                 reatimerstop= setTimeout(() => {
                     confirmCode = null
@@ -297,4 +300,3 @@ function inputInvalidate(tagId, message){
 // $('.join_input').click(function(){
 //     $(this).find('.bi').setAttribute("fill", "#03c75a");
 // });
-

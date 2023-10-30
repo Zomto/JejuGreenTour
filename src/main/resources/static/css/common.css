@@ -11,6 +11,19 @@
 }
 
 .container{
+@charset "UTF-8";
+
+
+/* 폰트 */
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.container{
     font-family: 'Pretendard-Regular';
 
 }
@@ -20,46 +33,4 @@
     color: red;
     font-size: 0.8rem;
     display: none;
-}
-
-.table-list-head thead td{
-    background-color: #0d6efd;
-    color: white;
-    font-weight: bold;
-}
-.category{
-    width: auto;
-    margin: 0 auto;
-    margin-bottom: 50px;
-    margin-left: 16%;
-}
-
-
-
-ul.tabs{
-    margin: 0px;
-    padding: 0px;
-    list-style: none;
-}
-ul.tabs li{
-    background: none;
-    color: #222;
-    display: inline-block;
-    padding: 10px 15px;
-    cursor: pointer;
-}
-
-ul.tabs li.current{
-    background: #ededed;
-    color: #222;
-}
-
-.tab-content{
-    display: none;
-    background: #ededed;
-    padding: 15px;
-}
-
-.tab-content.current{
-    display: inherit;
 }
