@@ -19,6 +19,10 @@ public interface CsService {
     
     // 공지사항 게시물 총 개수 조회
     public int selectAnnCnt();
+    
+    // 공지사항 상세 조회
+    public AnnVO selectAnnDetail(AnnVO annVO);
+
 
     // --------------------------------------------------------------------------------
 

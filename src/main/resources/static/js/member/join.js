@@ -296,7 +296,14 @@ function inputInvalidate(tagId, message){
     document.querySelector(tagId).textContent = message;
 }
 
+<<<<<<< HEAD:src/main/resources/static/js/member/join.js
+=======
 // let svgIcon = document.querySelector
 // $('.join_input').click(function(){
 //     $(this).find('.bi').setAttribute("fill", "#03c75a");
 // });
+<<<<<<< HEAD:src/main/resources/static/js/join.js
+=======
+>>>>>>> 94bf911eb1da24a12a34ba74c81e73a49dca1f59:src/main/resources/static/js/join.js
+
+>>>>>>> 9c4528dd0193ba12859ce94e41a92c18213421c4:src/main/resources/static/js/member/join.js

@@ -38,6 +38,12 @@ public class CsServiceImpl implements CsService{
         return sqlSession.selectOne("csMapper.selectAnnCnt");
     }
 
+    // 공지사항 상세 조회
+    @Override
+    public AnnVO selectAnnDetail(AnnVO annVO) {
+        return sqlSession.selectOne("csMapper.selectAnnDetail", annVO);
+    }
+
     // -----------------------------------------------------------------------------------------
 
     // 고객센터 메인 페이지 QNA 목록 조회

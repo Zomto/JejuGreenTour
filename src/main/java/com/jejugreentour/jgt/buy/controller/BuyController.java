@@ -1,5 +1,6 @@
 package com.jejugreentour.jgt.buy.controller;
 
+import com.jejugreentour.jgt.accom.vo.SubAccomVO;
 import com.jejugreentour.jgt.buy.service.BuyService;
 import com.jejugreentour.jgt.buy.vo.*;
 import com.jejugreentour.jgt.member.vo.MemberVO;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller
@@ -72,9 +74,10 @@ public class BuyController {
         if(buyService.selectbasketAccom(basketAccomVO.getBasketCode())){ //다른 체크 함수 제작시 옮김
             return "redirect:/buy/calendar";
         }
-        String reservationNum = buyService.selectNewreservationNum();
+        String randid= UUID.randomUUID().toString().split("-")[0].toUpperCase();
+        basketAccomVO.setReservUuid(randid);
         buyService.insertReservation(basketAccomVO);
-        ReservationVO reservationVO= buyService.selectReservationOne(reservationNum);
+        ReservationVO reservationVO= buyService.selectReservationOne(randid);
         model.addAttribute("reservation",reservationVO);
         return "buy/buy_reservation";
     }
@@ -146,14 +149,37 @@ public class BuyController {
 
         reviewVO.setReviewCode(reviewCode);
         buyService.insertReview(reviewVO);
-        return "redirect:/";
+        return "redirect:/buy/reservList";
     }
 
+    //손님이 작성한 리뷰리스트
     @GetMapping("/reviewList")
-    public  String reviewList(ReservationVO reservationVO){
+    public  String reviewList(HttpSession session ,Model model){
+        MemberVO vo =(MemberVO)session.getAttribute("loginInfo");
+        System.out.println(buyService.memberReviewList(vo.getMemberId()));
+        model.addAttribute("myReviewList",buyService.memberReviewList(vo.getMemberId()));
 
-        return"/buy/review_list";
+        return"buy/review_list";
     }
+    
+    //주인이 보는 리뷰리스트 답변추가
+    @GetMapping("/accomReviewList")
+    public  String reviewList(SubAccomVO subAccomVO,Model model){
+        System.out.println(buyService.accomReviewList(subAccomVO.getAccomCode()));
+        model.addAttribute("myReviewList",buyService.accomReviewList(subAccomVO.getAccomCode()));
+
+        return"buy/accom_review_list";
+    }
+
+    @ResponseBody
+    @PostMapping("/adminReply")
+    public int adminReply(ReviewAdminVO reviewAdminVO, HttpSession session){
+        MemberVO vo =(MemberVO)session.getAttribute("loginInfo");
+        reviewAdminVO.setMemberId(vo.getMemberId());
+        System.out.println(reviewAdminVO);
+        return  buyService.insertAdminReview(reviewAdminVO);
+    }
+
 
     @GetMapping("/adminCalendar")
     public String adminCalendar() {

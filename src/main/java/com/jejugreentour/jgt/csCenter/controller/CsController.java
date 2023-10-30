@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -53,6 +54,13 @@ public class CsController {
 
         csService.insertAnn(annVO);
         return "redirect:/cs/annForm";
+    }
+
+    // 공지 사항 세부 페이지 이동
+    @GetMapping("/annDetailForm")
+    public String annDetailForm(AnnVO annVO, Model model){
+        model.addAttribute("annDetail", csService.selectAnnDetail(annVO));
+        return "content/csCenter/annDetail";
     }
 
     // QNA 목록 페이지 이동
