@@ -24,12 +24,13 @@
     height: 530px;
 }
 .map_wrap > #map{
-    width: 600px;
-    height: 500px;
+    width: 677px;
+    height: 517px;
     position: absolute;
-    top: 1%;
-    right: 100px;
-    overflow: hidden;
+    top: 23px;
+    right: 24px;
+    border: 1px solid #dadada;
+    border-radius: 7px;
 }
 
 #menu_wrap {
@@ -46,9 +47,9 @@
     font-size: 12px;
     border-radius: 10px;
 }
-#menu_wrap ::-webkit-scrollbar{
+/* #menu_wrap ::-webkit-scrollbar{
     border-radius: 10px;
-}
+} */
 
 .bg_white {
     background: #fff;
