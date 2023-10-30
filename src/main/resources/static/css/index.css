@@ -22,7 +22,7 @@
 .slide_1 .vm_1{
     width: 740px;
     height: 610px;
-    background: url(/img/mainBn_01.jpg) center no-repeat; 
+    background: url(/img/mainBn_01.jpg) center no-repeat;
 }
 .slide_2 .vm_2{
     width: 740px;
@@ -156,7 +156,11 @@ margin-bottom: 30px;
     border-top: 0;
     border-radius: 0 0 7px 7px;
     background-color: #fff;
+<<<<<<< HEAD
 } 
+=======
+}
+>>>>>>> 0dbf7b2f20e416902b8c26a4d8888747ca0d3384
 .headerText{
     width: 800px;
     font-size: 25px;
@@ -164,4 +168,8 @@ margin-bottom: 30px;
     color: #444;
     border-bottom: 2px solid #dadada;
     margin-bottom: 20px;
+<<<<<<< HEAD
 }   
+=======
+}
+>>>>>>> 0dbf7b2f20e416902b8c26a4d8888747ca0d3384

@@ -31,15 +31,24 @@ $('.gnb .d1').mouseover(function(){
 });
 
 $(document).ready(function(){
+<<<<<<< HEAD
 	
 	$('.tab-link').click(function(){
 		var tab_id = $(this).attr('data-tab');
 
 		$('.tab-link').removeClass('current');
 		$('.tab-content').removeClass('current');
+=======
 
-		$(this).addClass('current');
-		$("#"+tab_id).addClass('current');
-	})
+    $('.tab-link').click(function(){
+       var tab_id = $(this).attr('data-tab');
+>>>>>>> 0dbf7b2f20e416902b8c26a4d8888747ca0d3384
+
+       $('.tab-link').removeClass('current');
+       $('.tab-content').removeClass('current');
+
+       $(this).addClass('current');
+       $("#"+tab_id).addClass('current');
+    })
 
 })
