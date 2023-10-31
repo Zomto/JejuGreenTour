@@ -19,9 +19,10 @@ public interface MemberService {
     public int updateMember1(MemberVO memberVO);
     //회원 정보수정(비밀번호 = 2)
     public int updateMember2(MemberVO memberVO);
-
     // 아이디 찾기
     public List<MemberVO> findId(String member_mail);
+    // 아이디, 이메일 일치여부확인
+    public String checkInfo(MemberVO memberVO);
     //비밀번호 업데이트
     public void updatePw(MemberVO memberVO);
     

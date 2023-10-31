@@ -50,6 +50,13 @@
         FROM JEJU_MEMBER
         WHERE MEMBER_ID = #{memberId}
     </select>
+    <select id ="checkInfo" resultType="String">
+        SELECT MEMBER_ID
+        FROM JEJU_MEMBER
+        WHERE MEMBER_ID = #{memberId}
+        AND MEMBER_MAIL = #{member_mail}
+    </select>
+
 
     <update id = "updateMember1" parameterType="com.jejugreentour.jgt.member.vo.MemberVO">
         UPDATE JEJU_MEMBER
@@ -70,6 +77,7 @@
         FROM JEJU_MEMBER
         WHERE MEMBER_MAIL = #{member_mail}
     </select>
+
 
     <update id="updatePw" >
         UPDATE JEJU_MEMBER

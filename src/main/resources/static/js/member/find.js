@@ -95,44 +95,44 @@ function verifyCode() {
 function findId() {
     const memberMail = document.getElementById("member_mail").value;
     const mailTail = document.querySelector('#email_host').value;
-    console.log(memberMail);
-    console.log(mailTail);
 
-    fetch('/member/findId', { //요청경로
+    fetch('/member/findId', {
         method: 'POST',
         cache: 'no-cache',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         },
-        //컨트롤러로 전달할 데이터
         body: new URLSearchParams({
-           "member_mail1" : document.querySelector('#memberEmail').value+document.querySelector('#email_host').value
+            "member_mail1": document.querySelector('#memberEmail').value + document.querySelector('#email_host').value
         })
     })
     .then((response) => {
-        if(!response.ok){
-            alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
-            return ;
+        if (!response.ok) {
+            alert('fetch error!\n컨트롤러로 통신 중에 오류가 발생했습니다.');
+            return;
         }
-    
-        //return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
-        return response.json(); //나머지 경우에 사용
+
+        return response.json();
     })
-    //fetch 통신 후 실행 영역
-    .then((data) => {//data -> controller에서 리턴되는 데이터!
+    .then((data) => {
         console.log(data);
         let resultDiv = document.querySelector('.result');
-        for (const data1 of data) {
-            console.log(data1.memberId);
-            var resultEmail = document.createElement("input");
+
+        if (data.length === 0) {
+            resultDiv.innerHTML = "해당 이메일로 가입된 회원이 존재하지 않습니다. <a href='/member/joinForm'>회원가입</a> 을 하시겠습니까?";
+        } else {
+            // 이메일 주소가 여러 개일 경우 모두 표시
+            data.forEach(data1 => {
+                var resultEmail = document.createElement("input");
                 resultEmail.className = "resultEmail";
                 resultEmail.value = data1.memberId;
                 resultDiv.appendChild(resultEmail);
+            });
         }
-        resultDiv.style = "display : block";
+
+        resultDiv.style.display = "block"; // 화면에 표시
     })
-    //fetch 통신 실패 시 실행 영역
-    .catch(err=>{
+    .catch((err) => {
         alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
         console.log(err);
     });
@@ -140,13 +140,14 @@ function findId() {
 
 
 function checkCode() {
+    console.log(confirmCode);
     if (confirmCode == null) {
         document.querySelector('.alertbox').innerHTML="유효하지 않은 코드 입니다."
         document.querySelector('.alertbox').style.color='red';
     } else {
         let inputCode = document.querySelector('#verify_code').value
         if (inputCode == confirmCode) {
-            alert("인증되었습니다! 가입절차를 진행해주세요!")
+            alert("인증되었습니다! 다음절차를 진행해주세요!")
             const additionalInputDiv = document.getElementById("additionalInput");
             additionalInputDiv.style.display = "none";
             document.querySelector('#verifyButton').style = "display : none";

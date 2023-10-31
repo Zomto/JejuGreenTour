@@ -60,6 +60,7 @@ public class MemberControll {
     }
 
 
+
     @ResponseBody
     @PostMapping("/verifyCode")
     public int verifyCode(String email){
@@ -135,6 +136,20 @@ public class MemberControll {
 
         return members;
     }
+
+    @ResponseBody
+    @PostMapping("/checkInfo")
+    public String checkInfo(String memberId,String member_mail, MemberVO memberVO){
+        MemberVO memberVO1 = new MemberVO();
+        memberVO1.setMemberId(memberId);
+        memberVO1.setMember_mail(member_mail);
+
+        System.out.println(memberService.checkInfo(memberVO1));
+
+        return memberService.checkInfo(memberVO1) == null ? "false" :memberService.checkInfo(memberVO1);
+    }
+
+
     @GetMapping("/find_PwForm")
     public String findPwForm(){
         return "content/member/find_Pw";
@@ -148,5 +163,11 @@ public class MemberControll {
         memberService.updatePw(memberVO);
     }
 
+    @GetMapping("/changePwForm")
+    public String changePwForm(String memberId, Model model){
+        model.addAttribute("memberId", memberId);
+        System.out.println(memberId);
+        return "content/member/changePw";
+    }
 
 }
