@@ -5,10 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-</head>
-
-<body>
-    <th:block layout:fragment="content">
+    <th:block layout:fragment="content_css">
         <style>
             .w_in {
                 display: flex;
@@ -82,6 +79,12 @@
                 height: 100%;
             }
         </style>
+    </th:block>
+</head>
+    
+<body>
+
+    <th:block layout:fragment="content">
         <div>
             <div class="w_in">
                 <div class="main">
@@ -118,7 +121,7 @@
                                 <tr th:each="review , state : ${myReviewList}">
                                     <td>
                                         <div class="star" th:data-set-score="${review.score}"
-                                            style="width: 100px; margin: 0 auto; height: 20px; background-image: linear-gradient(to right, yellow 70%, transparent 30%)">
+                                            style="width: 100px; margin: 0 auto; height: 20px;">
                                             <div class="starbo2">
                                             </div>
                                         </div>
@@ -142,33 +145,37 @@
                     </div>
                 </div>
             </div>
-
         </div>
-        <script>
-            let myWindow=null;
-            scorestar();
-            function scorestar() {
-                document.querySelectorAll('.star').forEach(element => {
-                    let yellow = element.dataset.setScore * 10
-                    let transparent = 100 - yellow
-                    element.style.backgroundImage = `linear-gradient(to right, yellow ${yellow}%, transparent ${transparent}%)`
-                });
-            }
-            function openPopup(tag) {
-                if(myWindow!=null){
-                    myWindow.close();
-                }
-                myWindow = window.open("", "myWindow", "width=200,height=100,top=440,left=780");
-                myWindow.document.write(`
-                        <div>
-                            작성자 : ${tag.dataset.replyId} 작성일자 : ${tag.dataset.replyDate}
-                        </div>
-                        <textarea name="" id="" cols="100" rows="100" style="
-                        resize: none;">${tag.dataset.replyContent}</textarea>
-            `);
-            }
-        </script>
+
+
     </th:block>
 </body>
+
+<th:block layout:fragment="content_js">
+    <script>
+        let myWindow = null;
+        scorestar();
+        function scorestar() {
+            document.querySelectorAll('.star').forEach(element => {
+                let yellow = element.dataset.setScore * 10
+                console.log(yellow)
+                element.style.backgroundImage = `linear-gradient(to right, yellow ${yellow}%, transparent ${yellow}%)`
+            });
+        }
+        function openPopup(tag) {
+            if (myWindow != null) {
+                myWindow.close();
+            }
+            myWindow = window.open("", "myWindow", "width=200,height=100,top=440,left=780");
+            myWindow.document.write(`
+                <div>
+                    작성자 : ${tag.dataset.replyId} 작성일자 : ${tag.dataset.replyDate}
+                </div>
+                <textarea name="" id="" cols="100" rows="100" style="
+                resize: none;">${tag.dataset.replyContent}</textarea>
+    `);
+        }
+    </script>
+</th:block>
 
 </html>

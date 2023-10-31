@@ -5,58 +5,61 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <th:block layout:fragment="content_css">
+        <style>
+            .buybasket {
+                font-family: Arial, sans-serif;
+                background-color: #f2f2f2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+    
+            .buybasket_in {
+                background-color: #fff;
+                width: 400px;
+                padding: 40px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+    
+            .buy_button {
+                width: 100%;
+                padding: 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+    
+            .del_button {
+                width: 100%;
+                padding: 10px;
+                background-color: #ff2c2c;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+    
+            .buy_button:hover {
+                background-color: #45a049;
+            }
+    
+            .del_button:hover {
+                background-color: #d62121;
+            }
+        </style>
+    </th:block>
 </head>
-<!-- <th:block layout:fragment="content"> -->
 
 <body>
-    <style>
-        .buybasket {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .buybasket_in {
-            background-color: #fff;
-            width: 400px;
-            padding: 40px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .buy_button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .del_button {
-            width: 100%;
-            padding: 10px;
-            background-color: #ff2c2c;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .buy_button:hover {
-            background-color: #45a049;
-        }
-
-        .del_button:hover {
-            background-color: #d62121;
-        }
-    </style>
+<th:block layout:fragment="content">
+   
     <div class="buybasket">
 
         <form action="/buy/accomReservation" method="post">
@@ -84,6 +87,10 @@
             </div>
         </form>
     </div>
+    
+    </th:block>
+</body>
+<th:block layout:fragment="content_js">
     <script>
         let stayTerm = document.querySelector('#stayTerm').innerHTML;
         let stayPrice = document.querySelector('#stayPrice').innerHTML;
@@ -160,7 +167,6 @@
             // fetch 기능으로 삭제
         }
     </script>
-    <!-- </th:block> -->
-</body>
+</th:block>
 
 </html>

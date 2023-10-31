@@ -107,6 +107,31 @@ public class BuyServiceImpl implements BuyService{
     }
 
     @Override
+    public ReviewVO selectReviewOne(String reservattonCode) {
+        return sqlSession.selectOne("buyMapper.selectReviewOne",reservattonCode);
+    }
+
+    @Override
+    public List<ReviewImgVO> selectReviewImgList(String reviewCode) {
+        return sqlSession.selectList("buyMapper.selectReviewImgList",reviewCode);
+    }
+
+    @Override
+    public void deleteReviewImg(ReviewVO reviewVO) {
+        sqlSession.delete("buyMapper.deleteReviewImg",reviewVO);
+    }
+
+    @Override
+    public void ReInsertReviewImg(ReviewVO reviewVO) {
+        sqlSession.insert("buyMapper.insertReviewImg",reviewVO);
+    }
+
+    @Override
+    public void updateReview(ReviewVO reviewVO) {
+       sqlSession.update("buyMapper.updateReview",reviewVO);
+    }
+
+    @Override
     public int insertAdminReview(ReviewAdminVO reviewAdminVO) {
         return sqlSession.insert("buyMapper.insertAdminReview",reviewAdminVO);
     }
