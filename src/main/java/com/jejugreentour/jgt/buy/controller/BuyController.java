@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -101,6 +102,7 @@ public class BuyController {
     public List<ReservationVO> reservationList(String subAccomCode){
         return  buyService.selectReservation(subAccomCode);
     }
+
     @GetMapping("/reservList") // 결제리스트 조회
     public String reservList(HttpSession session, Model model){
         MemberVO memberVO=(MemberVO)session.getAttribute("loginInfo") ;
@@ -137,6 +139,7 @@ public class BuyController {
 
     @GetMapping("/review")
     public  String reviewWrite(ReservationVO reservationVO, HttpSession session, Model model){
+
         reservationVO= buyService.selectReservationOne(reservationVO.getReservationCode());
 //        if(session.getAttribute("loginInfo")!=null&&reservationVO.getMemberId().equals(((MemberVO)session.getAttribute("loginInfo")).getMemberId())){
 //            return"/buy/review";
@@ -146,7 +149,6 @@ public class BuyController {
         SampleSubVO subVO = buyService.selectSubAccom(reservationVO.getSubAccomCode());
         subVO.setSampleACCVO(buyService.selectAccom(subVO.getAccomCode()));
         reservationVO.setSubAccom(subVO);
-        System.out.println(reservationVO);
         model.addAttribute("reservation",reservationVO);
 
         return"/content/buy/review";
@@ -155,10 +157,10 @@ public class BuyController {
 
 
     @PostMapping("/insertReview")
-    public String insertReview(ReviewVO reviewVO, MultipartFile[] imgs){
-       if(reviewVO.getReviewCode().equals("")||reviewVO.getReviewCode()==null){
+    public String insertReview(ReviewVO reviewVO,String[] reviewImgCode, MultipartFile[] imgs){
+
+        if(reviewVO.getReviewCode()==null||reviewVO.getReviewCode().equals("")){
             String reviewCode= buyService.selectReviewCode();
-            System.out.println(imgs);
             List<ReviewImgVO> imgList = UploadReviewUtil.multiFileUpload(imgs);
             if (!imgList.isEmpty()) {
                 for (ReviewImgVO imgVO : imgList) {
@@ -168,10 +170,42 @@ public class BuyController {
                 imgList = new ArrayList<>();
             }
             reviewVO.setReviewImgList(imgList);
-
             reviewVO.setReviewCode(reviewCode);
             buyService.insertReview(reviewVO);
+
+            ReservationStateVO stateVO=new ReservationStateVO();
+            stateVO.setReview("Y");
+            stateVO.setRefund("N");
+            stateVO.setRefundPrice("0");
+            stateVO.setReservationCode(reviewVO.getReservationCode());
+            buyService.updateReservationstate(stateVO);
         }else {
+
+           if (imgs[0].isEmpty()){
+               buyService.updateReview(reviewVO);
+           }else {
+            reviewVO.setReviewImgList(new ArrayList<>());
+               for (String ImgCode:reviewImgCode) {
+                   ReviewImgVO r=new ReviewImgVO();
+                   r.setReviewCode(ImgCode);
+                   reviewVO.getReviewImgList().add(r);
+               }
+               buyService.deleteReviewImg(reviewVO);
+               List<ReviewImgVO> imgList = UploadReviewUtil.multiFileUpload(imgs);
+               if (!imgList.isEmpty()) {
+                   for (ReviewImgVO imgVO : imgList) {
+                       imgVO.setReviewCode(reviewVO.getReviewCode());
+                   }
+               }else {
+                   imgList = new ArrayList<>();
+               }
+               reviewVO.setReviewImgList(imgList);
+               reviewVO.setReviewCode(reviewVO.getReviewCode());
+               buyService.ReInsertReviewImg(reviewVO);
+               buyService.updateReview(reviewVO);
+
+           }
+           System.out.println(Arrays.toString(reviewImgCode));
            System.out.println(reviewVO);
        }
         return "redirect:/buy/reservList";

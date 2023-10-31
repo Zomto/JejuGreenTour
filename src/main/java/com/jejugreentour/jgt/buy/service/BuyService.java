@@ -56,8 +56,11 @@ public interface BuyService {
     //리뷰 이미지 가져오기
     public  List<ReviewImgVO> selectReviewImgList(String reviewCode);
 
+    public  void  deleteReviewImg(ReviewVO reviewVO);
 
+    public  void  ReInsertReviewImg(ReviewVO reviewVO);
 
+    public  void  updateReview(ReviewVO reviewVO);
 
     //숙박업소주인 답변달기
     public int insertAdminReview(ReviewAdminVO reviewAdminVO);

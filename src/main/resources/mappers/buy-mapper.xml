@@ -239,7 +239,12 @@
         <if test='refundDate != null and !refundDate.equals("") '>
             , REFUND_DATE=TO_DATE(#{refundDate},'YYYY-MM-DD HH24:MI:SS')
         </if>
-        WHERE RESERVATION_STATE_CODE = #{reservationStateCode}
+        <if test='reservationStateCode != null and !reservationStateCode.equals("") '>
+            WHERE RESERVATION_STATE_CODE = #{reservationStateCode}
+        </if>
+        <if test='reservationStateCode == null or reservationStateCode.equals("") '>
+            WHERE RESERVATION_CODE = #{reservationCode}
+        </if>
     </update>
 
     <delete id="deleteBasketAccom">
@@ -369,7 +374,17 @@
     ,#{content}
     )
 </insert>
-
-
+    <update id="updateReview">
+        UPDATE REVIEW
+        SET
+        SCORE= #{score}
+        , CONTENT = #{content}
+        , WRITE_DATE = SYSDATE
+        WHERE  REVIEW_CODE= #{reviewCode}
+    </update>
+    <delete id="deleteReviewImg">
+        DELETE FROM REVIEW_IMG
+        WHERE  REVIEW_CODE= #{reviewCode}
+    </delete>
 </mapper>
     

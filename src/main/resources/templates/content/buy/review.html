@@ -5,10 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-</head>
-
-<body>
-    <th:block layout:fragment="content">
+    <th:block layout:fragment="content_css">
         <style>
             .starbox {
                 display: inline-block;
@@ -74,6 +71,12 @@
                 background-color: #45a049;
             }
         </style>
+    </th:block>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+
         <div class="reviewin">
             <h1>숙소 리뷰 작성</h1>
             <form action="/buy/insertReview" method="post" enctype="multipart/form-data">
@@ -109,32 +112,55 @@
                 </th:block>
 
                 <label for="image" class="review_label">사진 업로드:</label>
-                <input class="input_review review_file" type="file" id="image" name="imgs" multiple onchange="imagecheck()">
+                <input class="input_review review_file" type="file" id="image" name="imgs" multiple
+                    onclick="imagecheck()" onchange="readURL(this);">
+                <img id="preview" style="width: auto; height: 100px; margin-right: 20px; margin-bottom: 20px;" />
                 <div class="reset_img">
-                    <th:block th:each="img : ${review.reviewImgList}">
-                        <img style="width: auto; height: 100px; margin-right: 20px; margin-bottom: 20px;"
-                            th:src="${'/img/review/'+ img.attachedFileName}" alt="">
+                    <th:block th:if="${review != null}">
+                        <th:block th:each="img : ${review.reviewImgList}">
+                            <img style="width: auto; height: 100px; margin-right: 20px; margin-bottom: 20px;"
+                                th:src="${'/img/review/'+ img.attachedFileName}" alt="">
+                        </th:block>
                     </th:block>
                 </div>
+
+
                 <div>
                     <input class="submit_review" type="submit" value="리뷰 제출">
                 </div>
-                <input type="hidden" name="reviewCode" th:value="${review.reviewCode}">
                 <input type="hidden" name="accomCode" th:value="${reservation.subAccom.sampleACCVO.accomCode}">
                 <input type="hidden" name="reservationCode" th:value="${reservation.reservationCode}">
-                <th:block th:each="img : ${review.reviewImgList}">
-                    <input type="hidden" name="reviewImgCode" th:value="${img.reviewImgCode}">        
+
+                <th:block th:if="${review != null}">
+                    <input type="hidden" name="reviewCode" th:value="${review.reviewCode}">
+                    <th:block th:each="img : ${review.reviewImgList}">
+                        <input type="hidden" name="reviewImgCode" th:value="${img.reviewImgCode}">
+                    </th:block>
+
                 </th:block>
             </form>
 
         </div>
-        <script>
+        
+    </th:block>
+</body>
+<th:block layout:fragment="content_js">
+    <script>
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById('preview').src = e.target.result;
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                } else {
+                    document.getElementById('preview').src = "";
+                }
+            }
             //이미지 수정여부를 확인
-            function imagecheck(){
+            function imagecheck() {
                 document.querySelector('.reset_img').remove()
             }
         </script>
-    </th:block>
-</body>
-
+</th:block>
 </html>
