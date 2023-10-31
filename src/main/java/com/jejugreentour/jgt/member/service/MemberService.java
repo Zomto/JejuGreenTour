@@ -27,6 +27,5 @@ public interface MemberService {
 
     public void changePw(MemberVO memberVO);
 
-    public int updatePw(MemberVO memberVO);
     
 }

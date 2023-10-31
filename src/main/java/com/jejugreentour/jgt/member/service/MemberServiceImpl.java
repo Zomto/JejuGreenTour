@@ -59,9 +59,6 @@ public class MemberServiceImpl implements MemberService{
         sqlSession.update("memberMapper.changePw", memberVO);
     }
 
-    public int updatePw(MemberVO memberVO) {
-        return sqlSession.update("memberMapper.updatePw", memberVO);
-    }
 
 
 }

@@ -122,11 +122,12 @@ public class MemberControll {
         // 리다이렉트 또는 다른 처리
         return "redirect:/member/logout";
     }
-    @ResponseBody
+
     @PostMapping("/changePw")
-    public void changePw(MemberVO memberVO) {
-        System.out.println(memberVO);
-        memberService.changePw(memberVO);
+    public void changePw(String memberId, String memberPw, MemberVO memberVO) {
+        System.out.println(memberId);
+        System.out.println(memberPw);
+//        memberService.changePw(memberVO1);
     }
 
 
@@ -175,11 +176,7 @@ public class MemberControll {
         memberService.changePw(memberVO);
     }
 
-    @PostMapping("/changePw")
-    public String updatePw(MemberVO memberVO) {
-        memberService.updatePw(memberVO);
-        return "redirect:content/member/login";
-    }
+
 
     @GetMapping("/changePwForm")
     public String changePwForm(String memberId, Model model){

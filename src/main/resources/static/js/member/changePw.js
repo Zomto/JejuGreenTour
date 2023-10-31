@@ -15,5 +15,6 @@ function changePw() {
         // 비밀번호 일치, 폼 제출
         document.querySelector('#changePwForm').submit();
         alert('회원 정보가 변경되었습니다.\n다시 로그인 해주세요.');
-    }window.close();
+        window.close();
+    }
 }
