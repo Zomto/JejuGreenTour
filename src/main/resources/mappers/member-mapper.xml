@@ -78,12 +78,8 @@
         WHERE MEMBER_MAIL = #{member_mail}
     </select>
 
-<<<<<<< HEAD
-    <update id="updatePw">
-=======
 
     <update id="updatePw" >
->>>>>>> 83a6a44fec44cb4a50def74bcbc8a7d776db12c9
         UPDATE JEJU_MEMBER
         SET
         MEMBER_PW = #{memberPw}
