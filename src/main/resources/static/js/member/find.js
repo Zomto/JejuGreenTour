@@ -106,6 +106,7 @@ function findId() {
             "member_mail1": document.querySelector('#memberEmail').value + document.querySelector('#email_host').value
         })
     })
+<<<<<<< HEAD
         .then((response) => {
             if (!response.ok) {
                 alert('fetch error!\n컨트롤러로 통신 중에 오류가 발생했습니다.');
@@ -136,6 +137,38 @@ function findId() {
             alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
             console.log(err);
         });
+=======
+    .then((response) => {
+        if (!response.ok) {
+            alert('fetch error!\n컨트롤러로 통신 중에 오류가 발생했습니다.');
+            return;
+        }
+
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data);
+        let resultDiv = document.querySelector('.result');
+
+        if (data.length === 0) {
+            resultDiv.innerHTML = "해당 이메일로 가입된 회원이 존재하지 않습니다. <a href='/member/joinForm'>회원가입</a> 을 하시겠습니까?";
+        } else {
+            // 이메일 주소가 여러 개일 경우 모두 표시
+            data.forEach(data1 => {
+                var resultEmail = document.createElement("input");
+                resultEmail.className = "resultEmail";
+                resultEmail.value = data1.memberId;
+                resultDiv.appendChild(resultEmail);
+            });
+        }
+
+        resultDiv.style.display = "block"; // 화면에 표시
+    })
+    .catch((err) => {
+        alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+        console.log(err);
+    });
+>>>>>>> 83a6a44fec44cb4a50def74bcbc8a7d776db12c9
 }
 
 

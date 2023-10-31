@@ -298,4 +298,3 @@ function inputInvalidate(tagId, message){
 // $('.join_input').click(function(){
 //     $(this).find('.bi').setAttribute("fill", "#03c75a");
 // });
-
