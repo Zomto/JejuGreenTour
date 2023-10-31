@@ -1,5 +1,6 @@
 package com.jejugreentour.jgt.csCenter.service;
 
+import com.jejugreentour.jgt.csCenter.vo.AnnCateVO;
 import com.jejugreentour.jgt.csCenter.vo.AnnVO;
 import com.jejugreentour.jgt.csCenter.vo.InquireVO;
 import com.jejugreentour.jgt.csCenter.vo.QnaVO;
@@ -43,6 +44,11 @@ public class CsServiceImpl implements CsService{
     @Override
     public AnnVO selectAnnDetail(AnnVO annVO) {
         return sqlSession.selectOne("csMapper.selectAnnDetail", annVO);
+    }
+
+    @Override
+    public List<AnnCateVO> annCateList(AnnCateVO annCateVO) {
+        return sqlSession.selectList("csMapper.annCateList", annCateVO);
     }
 
     // -----------------------------------------------------------------------------------------

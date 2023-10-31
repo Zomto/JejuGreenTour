@@ -6,42 +6,57 @@
     <meta charset="UTF-8">
     <title></title>
     <!-- css영역 -->
-    <th:block th:fragment="content_css"></th:block>
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/csCenter/inquire.css">
+    </th:block>
 </head>
 <body>
     <th:block layout:fragment="content">
-        <div class="wrap">
-            <div class="w_in">
-                <h3>1:1 문의하기</h3>
-                <div>
-                    <p>icon 문의하시기 전 확인해 주세요.</p>
-                    <p>고객님의 소중한 의견을 빠르고 정확하게 해결하기 위해 최선을 다하겠습니다.</p>
-                    <p>문의에 대한 답변은 [마이메뉴 > 마이페이지 > 1:1 문의]에서 확인할 수 있습니다.</p>
-                </div>
-
-                <div>
-                    <label for="">문의유형</label>
-                    <input type="text" name="cateName">
-                    <label for="">작성자</label>
-                    <input type="text" name="memberId">
-                    <label for="">예약코드</label>
-                    <input type="text" name="resCode">
-                    <label for=""></label>
-                    <input type="text" name="title">
-                    <label for="">제목</label>
-                    <input type="text" name="content">
-                    <label for="">내용</label>
-                    <input type="file" name="inqImg" multiple>
-                    <label for="">사진</label>
-                </div>
-                <div>
-                    <button onclick="">취소</button>
-                    <button onclick="">등록</button>
+        <form action="" method="post">
+            <div class="wrap">
+                <div class="w_in">
+                    <h3>1:1 문의하기</h3>
+                    <div>
+                        <p>icon 문의하시기 전 확인해 주세요.</p>
+                        <p>고객님의 소중한 의견을 빠르고 정확하게 해결하기 위해 최선을 다하겠습니다.</p>
+                        <p>문의에 대한 답변은 [마이메뉴 > 마이페이지 > 1:1 문의]에서 확인할 수 있습니다.</p>
+                    </div>
+    
+                    <div class="box">
+                        <div>
+                            <label for="">문의유형</label>
+                            <input type="text" name="cateName">
+                        </div>
+                        <div>
+                            <label for="">작성자</label>
+                            <input type="text" name="memberId">
+                        </div>
+                        <div>
+                            <label for="">예약코드</label>
+                            <input type="text" name="resCode">
+                        </div>
+                        <div>
+                            <label for="">제목</label>
+                            <input type="text" name="title">
+                        </div>
+                        <div>
+                            <label for="">내용</label>
+                            <input type="text" name="content">
+                        </div>
+                        <div>
+                            <label for="">사진</label>
+                            <input type="file" name="inqImg" multiple>
+                        </div>
+                    </div>
+                    <div>
+                        <button onclick="">취소</button>
+                        <button onclick="">등록</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </th:block>
     <!-- js영역 -->
-    <th:block th:fragment="content_js"></th:block>
+    <th:block layout:fragment="content_js"></th:block>
 </body>
 </html>

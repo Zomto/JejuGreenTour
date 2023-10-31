@@ -6,7 +6,9 @@
     <meta charset="UTF-8">
     <title></title>
     <!-- css영역 -->
-    <th:block th:fragment="content_css"></th:block>
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/csCenter/inquireList.css">
+    </th:block>
 </head>
 <body>
     <th:block layout:fragment="content">
@@ -43,6 +45,6 @@
         </div>
     </th:block>
     <!-- js영역 -->
-    <th:block th:fragment="content_js"></th:block>
+    <th:block layout:fragment="content_js"></th:block>
 </body>
 </html>

@@ -7,16 +7,18 @@
     <meta charset="UTF-8">
     <title></title>
 <!-- css영역 -->
-<th:block th:fragment="content_css">
-
+<th:block layout:fragment="content_css">
+    <link rel="stylesheet" href="/css/csCenter/qna.css">
 </th:block>
 </head>
 <body>
     <th:block layout:fragment="content">
-
+        <div class="wrap">
+            <div class="w_in"></div>
+        </div>
     </th:block>
 <!-- js영역 -->
-<th:block th:fragment="content_js">
+<th:block layout:fragment="content_js">
 
 </th:block>
 </body>

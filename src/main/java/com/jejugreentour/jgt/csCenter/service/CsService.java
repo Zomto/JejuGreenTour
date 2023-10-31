@@ -1,5 +1,6 @@
 package com.jejugreentour.jgt.csCenter.service;
 
+import com.jejugreentour.jgt.csCenter.vo.AnnCateVO;
 import com.jejugreentour.jgt.csCenter.vo.AnnVO;
 import com.jejugreentour.jgt.csCenter.vo.InquireVO;
 import com.jejugreentour.jgt.csCenter.vo.QnaVO;
@@ -23,6 +24,9 @@ public interface CsService {
     
     // 공지사항 상세 조회
     public AnnVO selectAnnDetail(AnnVO annVO);
+
+    // 공지사항 메뉴 목록 조회
+    public List<AnnCateVO> annCateList(AnnCateVO annCateVO);
 
 
     // --------------------------------------------------------------------------------
