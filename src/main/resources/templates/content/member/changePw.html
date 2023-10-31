@@ -8,26 +8,27 @@
 
 <body>
     <th:block>
-        <form method="post" action="/member/changePw">
+        <form method="post" action="/member/changePw" id="changePwForm">
         <div class="idBlock">
             <div class="idTag">아이디 : </div>
             <div class="memberId" name="memberId" id="memberId">[[${memberId}]]</div>
+            <input type="hidden" class="memberId" name="memberId" id="memberId" th:value="${memberId}">
             </div>
         </div>
         <div class="pwBlock">
             <div class="changePw">
-                <input id="InputchangePw">
+                <input id="InputchangePw" type="password" name="memberPw" >
             </div>
             <div class="changePwCheck">
-                <input id="InputchangePwCheck">
+                <input id="InputchangePwCheck" type="password" name="memberPwCheck">
             </div>
         </div>
         <div class="btnBlock">
-            <input type="button" value="변경하기">
+            <input type="button" value="변경하기" onclick="changePw()">
         </div>
     </form>
     </th:block>
     
 </body>
-
+<script src="/js/member/changePw.js"></script>
 </html>

@@ -51,7 +51,7 @@ public class MemberControll {
         if(loginInfo !=null){
             session.setAttribute("loginInfo",loginInfo);
         }
-        return "redirect:/";
+        return "/index";
     }
     @ResponseBody
     @PostMapping("/checkId")
@@ -122,6 +122,15 @@ public class MemberControll {
         // 리다이렉트 또는 다른 처리
         return "redirect:/member/logout";
     }
+    @ResponseBody
+    @PostMapping("/changePw")
+    public void changePw(MemberVO memberVO) {
+        System.out.println(memberVO);
+        memberService.changePw(memberVO);
+    }
+
+
+
     @GetMapping("/find_IdForm")
     public String findIdForm(){
         return "content/member/find_Id";
@@ -160,7 +169,7 @@ public class MemberControll {
         String input = memberVO.getMember_mail();
         String member_mail = input.replace("%40", "@");
         // 이제 memberVO 객체에는 새로운 비밀번호 정보가 포함됩니다.
-        memberService.updatePw(memberVO);
+        memberService.changePw(memberVO);
     }
 
     @GetMapping("/changePwForm")
@@ -169,5 +178,7 @@ public class MemberControll {
         System.out.println(memberId);
         return "content/member/changePw";
     }
+
+
 
 }

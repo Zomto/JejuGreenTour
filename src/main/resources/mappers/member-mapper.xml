@@ -79,10 +79,11 @@
     </select>
 
 
-    <update id="updatePw" >
+    <update id="changePw" >
         UPDATE JEJU_MEMBER
         SET
         MEMBER_PW = #{memberPw}
         WHERE MEMBER_ID = #{memberId}
     </update>
+
 </mapper>
