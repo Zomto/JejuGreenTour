@@ -84,7 +84,7 @@ a {
 .inputMem.memberId {
     border: 1px solid #dadada;
     border-radius: 7px 7px 0 0;
-    width: 499px;
+    width: 498px;
 }
 
 .inputMem>svg {
@@ -152,13 +152,20 @@ a {
 .inputMem>#memberPw {
     position: relative;
     border-top: 0;
+    border-radius: 0;
+}
+.inputMem>#memberPwch {
+    position: relative;
+    border-top: 0;
     border-radius: 0 0 7px 7px;
 }
 
 .inputMem>#memberPw:focus {
     border-top: 1px solid #1ab752;
 }
-
+.inputMem>#memberPwch:focus {
+    border-top: 1px solid #1ab752;
+}
 .pw_display {
     z-index: 500;
     margin-top: 14px;

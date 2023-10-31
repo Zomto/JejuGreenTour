@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/csCenter_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- css영역 -->
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/csCenter/qnaList.css">
+    </th:block>
+</head>
+<body>
+    <th:block layout:fragment="content">
+        <div class="wrap">
+            <div class="w_in">
+                <div class="title_group">
+                    <h3 class="title">자주 찾는 질문</h3>
+                    <div class="search_group">
+                        <div class="search_cate">
+                            <select>
+                                <option value="CATE_001">숙박 등록</option>
+                                <option value="CATE_002">결제</option>
+                                <option value="CATE_003">혜택</option>
+                                <option value="CATE_004">기타</option>
+                            </select>
+                        </div>
+                        <div class="search_input"><input type="text" name=""></div>
+                        <div class="search_btn"><button>검색</button></div>
+                    </div>
+                </div>
+                <div class="list_group">
+                    <div class="l_in">
+                        <ul>
+                            <li class="qna_d1" th:each="qna, state : ${qnaList}">
+                                <div class="qna_question"> <!-- 질문 -->
+                                    <span class="qna_span_q">Q</span>
+                                    [[${qna.qnaQuestion}]]
+                                </div>
+                                <div class="qna_answer active"> <!-- 대답 -->
+                                    <span class="qna_span_a">A</span>
+                                    [[${qna.qnaAnswer}]]
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn_group">
+                    <div class="pageBtn">
+                        <a class="page_prevBtn" th:href="@{/cs/qnaListForm(nowPage=${qnaVO.beginPage - 1})}"><span th:if="${qnaVO.prev}">이전</span></a>
+    
+                        <th:block th:each="pageNum : ${#numbers.sequence(qnaVO.beginPage, qnaVO.endPage)}">
+                            <a class="page_numBtn" th:href="@{/cs/qnaListForm(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
+                        </th:block>
+    
+                        <a class="page_nextBtn" th:href="@{/cs/qnaListForm(nowPage=${qnaVO.endPage + 1})}"><span th:if="${qnaVO.next}">다음</span></a>
+                    </div>
+                    <div class="inquireBtn">
+                        <button class="qnaFormBtn" onclick="location.href='/cs/qnaForm';">글 추가</button>
+                        <button class="inqFormBtn" onclick="location.href='/cs/inquireForm';">문의하기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+    </th:block>
+
+    <!-- js 영역 -->
+    <th:block layout:fragment="content_js">   
+        <script src="/js/csCenter/qnaList.js"></script>
+    </th:block>
+</body>
+</html>

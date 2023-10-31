@@ -18,6 +18,9 @@
     <!-- common.css 프로젝트 공통 css -->
     <link rel="stylesheet" href="/css/common.css">
 
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css"></th:block>
+
 
 </head>
 <body>
@@ -45,11 +48,14 @@
             </div>
         </div>
     </div>
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="/js/slick.min.js"></script>
     <script src="/js/commen.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/csCenter/csCenter.js"></script>
+
+    <!-- js 영역 -->
+    <th:block layout:fragment="content_js"></th:block>
     
 </body>
 </html>

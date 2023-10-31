@@ -52,6 +52,7 @@ a{
     width: 83%;
 }
 
+/* 사이드 영역 */
 
 .side_inner h3{
     padding-bottom: 20px;
@@ -80,7 +81,9 @@ a{
     border-bottom: 1px solid #222;
 }
 
-
+.sideForm.active a{
+    color: #1db954;
+}
 
 
 /* 푸터 영역 */

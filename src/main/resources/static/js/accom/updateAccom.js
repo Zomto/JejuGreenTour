@@ -201,7 +201,44 @@ $('.mainAccomSubImg').slick({
 
 function addsubImg(tag, accomCode) {
     const form = new FormData();
+    $('.mainAccomSubImg').slick("unslick");
+    const slicktrack = document.querySelector('.mainAccomSubImg');
+    // 이미지를 추가하기 위한 새로운 요소를 만듭니다.
+    const newImages = document.createDocumentFragment();
 
+    for (const file of tag.files) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+        const imageListSlide = document.createElement("div");
+        imageListSlide.className = "imgListSlide slick-slide";
+
+        const imgElement = document.createElement("img");
+        imgElement.className = "imgSlideList";
+        imgElement.src = e.target.result;
+        imgElement.alt = '';
+
+        const inputElement = document.createElement("input");
+        inputElement.type = "hidden";
+        inputElement.name = "mainAccomImgCode";
+        // inputElement.value = data1.mainImgCode;
+
+        const deleteButton = document.createElement("div");
+        deleteButton.className = "deletebutton";
+        deleteButton.innerHTML = '<span>X</span>';
+        // deleteButton.addEventListener('click', function () {
+        //     deleteSubImg(data1.mainImgCode, accomCode);
+        // });
+
+        imageListSlide.appendChild(imgElement);
+        imageListSlide.appendChild(inputElement);
+        imageListSlide.appendChild(deleteButton);
+        
+        // 새 이미지를 이미지 목록에 추가합니다.
+        slicktrack.appendChild(imageListSlide);
+    }
+    reader.readAsDataURL(file);
+    }
+           
     for (let a of tag.files) {
         form.append('files', a);
     }
@@ -215,51 +252,17 @@ function addsubImg(tag, accomCode) {
         .then((response) => response.json())
         .then((data) => {
             alert('업소의 상태가 변경되었습니다.');
-            $('.mainAccomSubImg').slick("unslick");
-            const slicktrack = document.querySelector('.mainAccomSubImg');
-            // 이미지를 추가하기 위한 새로운 요소를 만듭니다.
-            const newImages = document.createDocumentFragment();
-
-            for (const data1 of data) {
-                const imageListSlide = document.createElement("div");
-                imageListSlide.className = "imgListSlide slick-slide";
-
-                const imgElement = document.createElement("img");
-                imgElement.className = "imgSlideList";
-                imgElement.src = '/img/accom/' + data1.attachedFileName;
-                imgElement.alt = '';
-
-                const inputElement = document.createElement("input");
-                inputElement.type = "hidden";
-                inputElement.name = "mainAccomImgCode";
-                inputElement.value = data1.mainImgCode;
-
-                const deleteButton = document.createElement("div");
-                deleteButton.className = "deletebutton";
-                deleteButton.innerHTML = '<span>X</span>';
-                deleteButton.addEventListener('click', function () {
-                    deleteSubImg(data1.mainImgCode, accomCode);
-                });
-
-                imageListSlide.appendChild(imgElement);
-                imageListSlide.appendChild(inputElement);
-                imageListSlide.appendChild(deleteButton);
-                
-                // 새 이미지를 이미지 목록에 추가합니다.
-                slicktrack.appendChild(imageListSlide);
-                // console.log(imageListSlide);
-                // alert(imageListSlide);
-            }
-
-
-           // Slick 슬라이더 업데이트
-            $('.mainAccomSubImg').slick({
+            
+              // Slick 슬라이더 업데이트
+              $('.mainAccomSubImg').slick({
                 arrows: false,
                 variableWidth: true,
                 infinite: false,
                 centerMode: true,
                 focusOnSelect: true,
             });
+
+          
         })
         .catch(err => {
             alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');

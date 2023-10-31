@@ -5,7 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="/css/csCenter/annDetail.css">
+    <!-- css영역 -->
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/csCenter/annDetail.css">
+    </th:block>
 </head>
 <body>
     <th:block layout:fragment="content">
@@ -15,7 +18,11 @@
                     <h3>공지사항</h3>
                     <div class="title_area"><span class="title_cate">[ [[${annDetail.annCateList.cateName}]] ]</span>[[${annDetail.annTitle}]]<span class="title_date">[[${annDetail.annDate}]]</span></div>
                 </div>
-                <div class="content_group" th:utext="${annDetail.annContent}"></div>
+                <div class="content_group" th:utext="${annDetail.annContent}">
+                    <div th:class="${숫자 +클래스 이름}">
+                        내용 출력 
+                    </div>
+                </div>
                 <div class="page_group">
                     <!-- <div class="pageBtn">
                         <a class="page_prevBtn" th:href="@{/cs/annDetailForm(nowPage=${annVO.beginPage - 1})}"><span th:if="${annVO.prev}">이전</span></a>
@@ -33,5 +40,8 @@
             </div>
         </div>
     </th:block>
+
+    <!-- js 영역 -->
+    <th:block layout:fragment="content_js"></th:block>
 </body>
 </html>

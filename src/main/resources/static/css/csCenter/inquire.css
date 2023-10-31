@@ -1,2 +1,10 @@
-@charset "utf-8";
+@charset "UTF-8";
 
+.box div{
+    border: 1px solid #999;
+    padding: 20px;
+}
+
+.inquire a{
+    color: #1db954;
+}
