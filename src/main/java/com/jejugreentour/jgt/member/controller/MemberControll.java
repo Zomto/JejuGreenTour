@@ -139,13 +139,13 @@ public class MemberControll {
     public String findPwForm(){
         return "content/member/find_Pw";
     }
+
+
     @ResponseBody
-    @PostMapping("/findPw")
-    public void findPw(@RequestBody MemberVO memberVO) {
-        String input = memberVO.getMember_mail();
-        String member_mail = input.replace("%40", "@");
-        // 이제 memberVO 객체에는 새로운 비밀번호 정보가 포함됩니다.
+    @PostMapping("/changePw")
+    public String updatePw(MemberVO memberVO) {
         memberService.updatePw(memberVO);
+        return "redirect:content/member/login";
     }
 
 

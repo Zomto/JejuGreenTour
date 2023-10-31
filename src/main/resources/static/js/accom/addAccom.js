@@ -8,12 +8,9 @@ function openPost(){
             let sido = data.sido;
 
             if(sido != "제주특별자치도"){
-                inputInvalidate('#id-error-div2', '제주 내 업소만 등록가능!');
+                document.querySelector('#accomAddr').placeholder = "제주도 내 주소만 가능"
                 return;
             }
-            else{
-            inputInvalidate('#id-error-div2', '');}
-
             document.querySelector('#accomAddr').value = data.roadAddress;
 
             if(bname1 == ''){
@@ -51,15 +48,15 @@ function joinValidate(){
 
     // form 태그 안의 name 속성이 memberId인 태그의 value
     if(inputAccomName == ''){
-        inputInvalidate('#id-error-div1', '업소명은 필수입력!');
+        document.querySelector('#accomName').placeholder = "업소명 필수 입력"
         return ;
     }
     if(inputAccomAddr == ''){
-        inputInvalidate('#id-error-div2', '주소 필수입력!');
+        document.querySelector('#accomAddr').placeholder = "주소 필수 입력"
         return ;
     }
     if(inputAccomCate == 'CATE_000'){
-        inputInvalidate('#id-error-div3', '카테고리를 선택해주세요!');
+        // inputInvalidate('#id-error-div3', '카테고리를 선택해주세요!');
         return ;
     }
 
@@ -72,10 +69,7 @@ function joinValidate(){
 }
 
 // Validate 실패시 메세지 설정
-function inputInvalidate(tagId, message){
-    document.querySelector(tagId).style.display = 'block';
-    document.querySelector(tagId).textContent = message;
-}
+
 
 
 

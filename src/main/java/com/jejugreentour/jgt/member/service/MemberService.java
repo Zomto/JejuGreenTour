@@ -23,6 +23,6 @@ public interface MemberService {
     // 아이디 찾기
     public List<MemberVO> findId(String member_mail);
     //비밀번호 업데이트
-    public void updatePw(MemberVO memberVO);
+    public int updatePw(MemberVO memberVO);
     
 }

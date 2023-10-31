@@ -71,7 +71,7 @@
         WHERE MEMBER_MAIL = #{member_mail}
     </select>
 
-    <update id="updatePw" >
+    <update id="updatePw">
         UPDATE JEJU_MEMBER
         SET
         MEMBER_PW = #{memberPw}
