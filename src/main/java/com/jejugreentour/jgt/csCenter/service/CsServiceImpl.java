@@ -1,6 +1,8 @@
 package com.jejugreentour.jgt.csCenter.service;
 
+import com.jejugreentour.jgt.csCenter.vo.AnnCateVO;
 import com.jejugreentour.jgt.csCenter.vo.AnnVO;
+import com.jejugreentour.jgt.csCenter.vo.InquireVO;
 import com.jejugreentour.jgt.csCenter.vo.QnaVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -44,6 +46,11 @@ public class CsServiceImpl implements CsService{
         return sqlSession.selectOne("csMapper.selectAnnDetail", annVO);
     }
 
+    @Override
+    public List<AnnCateVO> annCateList(AnnCateVO annCateVO) {
+        return sqlSession.selectList("csMapper.annCateList", annCateVO);
+    }
+
     // -----------------------------------------------------------------------------------------
 
     // 고객센터 메인 페이지 QNA 목록 조회
@@ -67,5 +74,15 @@ public class CsServiceImpl implements CsService{
     @Override
     public int selectQnaCnt() {
         return sqlSession.selectOne("csMapper.selectQnaCnt");
+    }
+
+    @Override
+    public List<InquireVO> InqList(InquireVO inquireVO) {
+        return sqlSession.selectList("csMapper.inqList", inquireVO);
+    }
+
+    @Override
+    public int selectInqCnt() {
+        return sqlSession.selectOne("csMapper.selectInqCnt");
     }
 }

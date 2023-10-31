@@ -39,7 +39,7 @@
     <select id="annList" resultMap="announcement">
         SELECT
             ANN_NUM
-            , CATE_CODE
+            , ANN_CATE
             , CATE_NAME
             , ANN_WRITER
             , ANN_TITLE
@@ -47,8 +47,20 @@
             , TO_CHAR(ANN_DATE,'YYYY-MM-DD') AS ANN_DATE
         FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LIST
         WHERE ANN.ANN_CATE = LIST.CATE_CODE
+        <if test="annCate != null">
+            AND ANN_CATE = #{annCate}
+        </if>
         ORDER BY ANN_NUM DESC
         OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+    </select>
+
+    <!--  카테고리 목록 조회  -->
+    <select id="annCateList" resultMap="annCate">
+        SELECT
+            CATE_CODE
+            , CATE_NAME
+        FROM ANN_CATE_LIST
+        ORDER BY CATE_CODE
     </select>
 
     <!--  공지사항 목록 추가  -->
@@ -152,6 +164,66 @@
     <select id="selectQnaCnt" resultType="int">
         SELECT COUNT(QNA_CODE)
         FROM QNA
+    </select>
+
+
+    <!--  문의하기  -->
+    <resultMap id="inquire" type="com.jejugreentour.jgt.csCenter.vo.InquireVO" >
+        <id column="INQ_CODE" property="inqCode"/>
+        <result column="CATE_CODE" property="cateCode"/>
+        <result column="MEMBER_ID" property="memberId"/>
+        <result column="TITLE" property="title"/>
+        <result column="CONTENT" property="content"/>
+        <result column="IS_RESPONSE" property="isResponse"/>
+        <result column="INQ_DATE" property="inqDate"/>
+        <collection property="inqCateList" resultMap="inqCate"/>
+    </resultMap>
+
+    <resultMap id="inqCate" type="com.jejugreentour.jgt.csCenter.vo.InqCateVO">
+        <id column="CATE_CODE" property="cateCode"/>
+        <result column="CATE_NAME" property="cateName"/>
+    </resultMap>
+
+    <resultMap id="inqImg" type="com.jejugreentour.jgt.csCenter.vo.InqImgVO">
+        <id column="IMG_CODE" property="imgCode"/>
+        <result column="ORIGIN_FILE_NAME" property="originFileName"/>
+        <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
+        <result column="INQ_CODE" property="inqCode"/>
+    </resultMap>
+
+
+    <select id="inqList" resultMap="inquire">
+        SELECT
+            INQ_CODE
+            , INQ.CATE_CODE
+            , CATE_NAME
+            , MEMBER_ID
+            , TITLE
+            , IS_RESPONSE
+            , TO_CHAR(INQ_DATE,'YYYY-MM-DD') AS INQ_DATE
+        FROM INQUIRE INQ, INQ_CATE_LIST CATE
+        WHERE INQ.CATE_CODE = CATE.CATE_CODE
+        OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+    </select>
+    
+    <select id="InqDetail">
+        SELECT
+            , INQ_CODE
+            , INQ.CATE_CODE
+            , CATE NAME
+            , MEMBER_ID
+            , TITLE
+            , CONTENT
+            , TO_CHAR(INQ_DATE,'YYYY-MM-DD') AS INQ_DATE
+            , IS_RESPONSE
+        FROM INQUIRE INQ, INQ_CATE CATE
+        WHERE INQ.CATE_CODE = CATE.CATE_CODE
+        AND INQ_CODE = #{inqCode}
+    </select>
+
+    <select id="selectInqCnt" resultType="int">
+        SELECT COUNT(INQ_CODE)
+        FROM INQUIRE
     </select>
 
 

@@ -191,9 +191,9 @@ function startTimer(duration) {
 
 function verifyCode() {
     var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-    
+
     if (emailRegex.test(document.querySelector('#memberEmail').value + document.querySelector('#email_host').value)) {
-        
+
         if(timerstop != null){
             console.log('이전 타이머 있음');
             clearTimeout(timerstop);
@@ -300,4 +300,3 @@ function inputInvalidate(tagId, message){
 // $('.join_input').click(function(){
 //     $(this).find('.bi').setAttribute("fill", "#03c75a");
 // });
-
