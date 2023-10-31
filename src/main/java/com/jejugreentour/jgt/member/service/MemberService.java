@@ -24,10 +24,9 @@ public interface MemberService {
     // 아이디, 이메일 일치여부확인
     public String checkInfo(MemberVO memberVO);
     //비밀번호 업데이트
-<<<<<<< HEAD
+
     public void changePw(MemberVO memberVO);
-=======
+
     public int updatePw(MemberVO memberVO);
->>>>>>> 469b3ed077ca9b04a71714cd6f76550c3c8693e2
     
 }

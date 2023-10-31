@@ -166,19 +166,19 @@ public class MemberControll {
 
 
     @ResponseBody
-<<<<<<< HEAD
+
     @PostMapping("/findPw")
     public void findPw(@RequestBody MemberVO memberVO) {
         String input = memberVO.getMember_mail();
         String member_mail = input.replace("%40", "@");
         // 이제 memberVO 객체에는 새로운 비밀번호 정보가 포함됩니다.
         memberService.changePw(memberVO);
-=======
+    }
+
     @PostMapping("/changePw")
     public String updatePw(MemberVO memberVO) {
         memberService.updatePw(memberVO);
         return "redirect:content/member/login";
->>>>>>> 469b3ed077ca9b04a71714cd6f76550c3c8693e2
     }
 
     @GetMapping("/changePwForm")
