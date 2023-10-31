@@ -21,7 +21,7 @@ function joinValidate() {
         return;
     }
 
-  
+
 
     //휴대폰 정규식표현식
     var telRegex = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
@@ -92,7 +92,7 @@ function checkId() {
         memberIdBtn.addEventListener('mouseout', (event) => {
             memberIdBtn.style = "background-color : #dadada"});
         return;
-        
+
     }else {
         fetch('/member/checkId', {
         method: 'POST',
@@ -124,7 +124,7 @@ function checkId() {
             console.log(err);
         });
     }
-    
+
 }
 //비밀번호 가리기, 보이기
 $(document).ready(function() {
@@ -232,9 +232,7 @@ function verifyCode() {
             })
             //fetch 통신 후 실행 영역
             .then((data) => {//data -> controller에서 리턴되는 데이터!
-                document.querySelector('.alertbox').innerHTML="인증메일이 발송 되었습니다! 메일함을 확인해주세요!"
-                document.querySelector('.alertbox').style.color='black';
-
+                alert("인증메일이 발송 되었습니다! 메일함을 확인해주세요!")
                 confirmCode = data;
                 reatimerstop= setTimeout(() => {
                     confirmCode = null

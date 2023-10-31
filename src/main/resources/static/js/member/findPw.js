@@ -63,9 +63,13 @@ function verifyCode() {
                 let resultDiv = document.querySelector('.result');
 
                 if (data == "false") {
-                    resultDiv.innerHTML = "해당 아이디와 메일이 일치하지 않습니다. 더 이상 도와줄 방법이 없네용~ ";
+                    document.querySelector('.bi.bi-envelope-at-fill').setAttribute("fill", "#ff3f3f");
+                    resultDiv.innerHTML = "해당 아이디와 메일이 일치하지 않습니다.";
+                    resultDiv.style = "color : #ff3f3f"
+    
                     return;
                 } else{
+                    resultDiv.innerHTML = "";
                     if (timerstop !== null) {
                         console.log('이전 타이머 있음');
                         clearTimeout(timerstop);
@@ -176,6 +180,7 @@ function checkCode() {
     if (confirmCode == null) {
         document.querySelector('.alertbox').innerHTML = "유효하지 않은 코드 입니다."
         document.querySelector('.alertbox').style.color = 'red';
+        document.querySelector('.bi.bi-key').setAttribute("fill", "#ff3f3f");
     } else {
         let inputCode = document.querySelector('#verify_code').value
         if (inputCode == confirmCode) {
@@ -187,6 +192,7 @@ function checkCode() {
         } else {
             document.querySelector('.alertbox').innerHTML = "인증번호를 정확하게 입력해주세요"
             document.querySelector('.alertbox').style.color = 'red';
+            document.querySelector('.bi.bi-key').setAttribute("fill", "#ff3f3f");
         }
     }
 
@@ -226,3 +232,9 @@ function goPw(){
     var popup = window.open(`/member/changePwForm?memberId=${memberId}`, '비밀번호 변경', 'width=700px,height=800px,scrollbars=yes');
 }
 
+$('#memberId').click(function(){
+    document.querySelector('.bi.bi-person-circle').setAttribute("fill", "#03c75a");
+})
+$('#memberEmail').click(function(){
+    document.querySelector('.bi.bi-envelope-at-fill').setAttribute("fill", "#03c75a");
+})

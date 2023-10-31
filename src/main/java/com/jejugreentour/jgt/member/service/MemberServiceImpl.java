@@ -55,8 +55,13 @@ public class MemberServiceImpl implements MemberService{
 
 
     @Override
+<<<<<<< HEAD
     public void changePw(MemberVO memberVO) {
        sqlSession.update("memberMapper.changePw", memberVO);
+=======
+    public int updatePw(MemberVO memberVO) {
+        return sqlSession.update("memberMapper.updatePw", memberVO);
+>>>>>>> 469b3ed077ca9b04a71714cd6f76550c3c8693e2
     }
 
 

@@ -30,7 +30,7 @@ function startTimer(duration) {
     const timerInterval = setInterval(updateTimer, 1000);
     timerstop = timerInterval;
     // 타이머가 종료되면 interval 정지
-    settimerstop= setTimeout(() => {
+    settimerstop = setTimeout(() => {
         clearInterval(timerInterval);
     }, duration);
 
@@ -40,7 +40,7 @@ function verifyCode() {
     var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 
     if (emailRegex.test(document.querySelector('#memberEmail').value + document.querySelector('#email_host').value)) {
-        if(timerstop != null){
+        if (timerstop != null) {
             console.log('이전 타이머 있음');
             clearTimeout(timerstop);
             console.log(timerstop);
@@ -62,7 +62,7 @@ function verifyCode() {
             },
             //컨트롤러로 전달할 데이터
             body: new URLSearchParams({
-                email: document.querySelector('#memberEmail').value+document.querySelector('#email_host').value
+                email: document.querySelector('#memberEmail').value + document.querySelector('#email_host').value
             })
         })
             .then((response) => {
@@ -76,11 +76,11 @@ function verifyCode() {
             })
             //fetch 통신 후 실행 영역
             .then((data) => {//data -> controller에서 리턴되는 데이터!
-                document.querySelector('.alertbox').innerHTML="인증메일이 발송 되었습니다! 메일함을 확인해주세요!"
-                document.querySelector('.alertbox').style.color='black';
-        
+                document.querySelector('.alertbox').innerHTML = "인증메일이 발송 되었습니다! 메일함을 확인해주세요!"
+                document.querySelector('.alertbox').style.color = 'black';
+
                 confirmCode = data;
-                reatimerstop= setTimeout(() => {
+                reatimerstop = setTimeout(() => {
                     confirmCode = null
                 }, 180000)
 
@@ -88,8 +88,8 @@ function verifyCode() {
     } else {
         alert("이메일을 다시 확인 해주세요!")
         const additionalInputDiv = document.getElementById("additionalInput");
-  
-            additionalInputDiv.style.display = "none";
+
+        additionalInputDiv.style.display = "none";
     }
 }
 function findId() {
@@ -106,44 +106,44 @@ function findId() {
             "member_mail1": document.querySelector('#memberEmail').value + document.querySelector('#email_host').value
         })
     })
-    .then((response) => {
-        if (!response.ok) {
-            alert('fetch error!\n컨트롤러로 통신 중에 오류가 발생했습니다.');
-            return;
-        }
+        .then((response) => {
+            if (!response.ok) {
+                alert('fetch error!\n컨트롤러로 통신 중에 오류가 발생했습니다.');
+                return;
+            }
 
-        return response.json();
-    })
-    .then((data) => {
-        console.log(data);
-        let resultDiv = document.querySelector('.result');
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+            let resultDiv = document.querySelector('.result');
 
-        if (data.length === 0) {
-            resultDiv.innerHTML = "해당 이메일로 가입된 회원이 존재하지 않습니다. <a href='/member/joinForm'>회원가입</a> 을 하시겠습니까?";
-        } else {
-            // 이메일 주소가 여러 개일 경우 모두 표시
-            data.forEach(data1 => {
-                var resultEmail = document.createElement("input");
-                resultEmail.className = "resultEmail";
-                resultEmail.value = data1.memberId;
-                resultDiv.appendChild(resultEmail);
-            });
-        }
+            if (data.length === 0) {
+                resultDiv.innerHTML = "해당 이메일로 가입된 회원이 존재하지 않습니다. <a href='/member/joinForm'>회원가입</a> 을 하시겠습니까?";
+            } else {
+                // 이메일 주소가 여러 개일 경우 모두 표시
+                data.forEach(data1 => {
+                    var resultEmail = document.createElement("input");
+                    resultEmail.className = "resultEmail";
+                    resultEmail.value = data1.memberId;
+                    resultDiv.appendChild(resultEmail);
+                });
+            }
 
-        resultDiv.style.display = "block"; // 화면에 표시
-    })
-    .catch((err) => {
-        alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
-        console.log(err);
-    });
+            resultDiv.style.display = "block"; // 화면에 표시
+        })
+        .catch((err) => {
+            alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+            console.log(err);
+        });
 }
 
 
 function checkCode() {
     console.log(confirmCode);
     if (confirmCode == null) {
-        document.querySelector('.alertbox').innerHTML="유효하지 않은 코드 입니다."
-        document.querySelector('.alertbox').style.color='red';
+        document.querySelector('.alertbox').innerHTML = "유효하지 않은 코드 입니다."
+        document.querySelector('.alertbox').style.color = 'red';
     } else {
         let inputCode = document.querySelector('#verify_code').value
         if (inputCode == confirmCode) {
@@ -151,40 +151,98 @@ function checkCode() {
             const additionalInputDiv = document.getElementById("additionalInput");
             additionalInputDiv.style.display = "none";
             document.querySelector('#verifyButton').style = "display : none";
-            document.querySelector('#findIdButton').style = "display : block";
+            document.querySelector('.alertbox').style = "display : none";
+            const memberMail = document.getElementById("member_mail").value;
+            const mailTail = document.querySelector('#email_host').value;
+
+            fetch('/member/findId', {
+                method: 'POST',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                },
+                body: new URLSearchParams({
+                    "member_mail1": document.querySelector('#memberEmail').value + document.querySelector('#email_host').value
+                })
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        alert('fetch error!\n컨트롤러로 통신 중에 오류가 발생했습니다.');
+                        return;
+                    }
+
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log(data);
+                    let result = document.querySelector('.result');
+                    let resultId = document.querySelector('.resultId');
+                    let mb3 = document.querySelector('.mb-3');
+
+                    if (data.length === 0) {
+                        resultId.innerHTML = "해당 이메일로 가입된 회원이 존재하지 않습니다. <a href='/member/joinForm'>회원가입</a> 을 하시겠습니까?";
+                    } else {
+                        // 이메일 주소가 여러 개일 경우 모두 표시
+                        data.forEach(data1 => {
+                            mb3.style = "margin-left :"
+                            var resultIdTextDiv = document.createElement("div");
+                            resultIdTextDiv.className = "resultIdText";
+
+                            var resultEmail = document.createElement("div");
+                            resultEmail.className = "resultEmail";
+                            resultEmail.textContent = data1.memberId;
+
+
+                            var aElement = document.createElement("a");
+                            aElement.className = "resultA";
+                            aElement.href = "/find_Pw.html";
+                            aElement.textContent = "비밀번호 찾기";
+
+                            resultIdTextDiv.appendChild(resultEmail);
+                            resultIdTextDiv.appendChild(aElement);
+                            resultId.appendChild(resultIdTextDiv)
+                        });
+                    }
+
+                    result.style.display = "block"; // 화면에 표시
+                })
+                .catch((err) => {
+                    alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+                    console.log(err);
+                });
         } else {
-            document.querySelector('.alertbox').innerHTML="인증번호를 정확하게 입력해주세요"
-            document.querySelector('.alertbox').style.color='red';
+            document.querySelector('.alertbox').innerHTML = "인증번호를 정확하게 입력해주세요"
+            document.querySelector('.alertbox').style.color = 'red';
         }
     }
 
 }
 let confirmCode = null
 
-function changePw(){
+function changePw() {
     let pw = document.querySelector('#memberPw').value;
     let pwCheck = document.querySelector('#memberPwCheck').value;
-    if(pw == ''){
+    if (pw == '') {
         inputInvalidate('.err-div', '비밀번호를 입력해주세요!');
         return;
-    } else{
-        if(pwCheck == ''){
+    } else {
+        if (pwCheck == '') {
             inputInvalidate('.err-div', '비밀번호를 확인해주세요!');
             return;
-        } else{
-            if(pw == pwCheck){
+        } else {
+            if (pw == pwCheck) {
                 document.querySelector('#editMember2').submit();
                 alert('회원 정보가 변경되었습니다.\n다시 로그인 해주세요')
-            } else{
+            } else {
                 inputInvalidate('.err-div', '비밀번호 다름!');
-                return ;
+                return;
             }
         }
     }
 }
 
 // Validate 실패시 메세지 설정
-function inputInvalidate(tagId, message){
+function inputInvalidate(tagId, message) {
     document.querySelector(tagId).style.display = 'block';
     document.querySelector(tagId).textContent = message;
 }
