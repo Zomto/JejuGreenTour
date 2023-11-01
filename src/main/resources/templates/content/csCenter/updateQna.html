@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+    layout:decorate="~{fragment/main_layout}">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<!-- css 영역 -->
+<th:block layout:fragment="content_css">
+
+</th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="wrap">
+        <div class="w_in">
+            <div>
+                <div>
+                    <label for="">유형</label>
+                    <select name="cateCode" id="">
+                        <option value="CATE_001">숙박</option>
+                        <option value="CATE_002">결제</option>
+                        <option value="CATE_003">혜택</option>
+                        <option value="CATE_004">기타</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="">질문</label>
+                    <input type="text" name="qnaQuestion">
+                </div>
+                <div>
+                    <label for="">답변</label>
+                    <textarea name="qnaAnswer" id="" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+</body>
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+
+</th:block>
+</html>

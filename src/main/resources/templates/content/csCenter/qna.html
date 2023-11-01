@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{fragment/main_layout}">
+    layout:decorate="~{fragment/csCenter_layout}">
 <head>
     <meta charset="UTF-8">
     <title></title>
@@ -13,9 +13,34 @@
 </head>
 <body>
     <th:block layout:fragment="content">
-        <div class="wrap">
-            <div class="w_in"></div>
-        </div>
+        <form action="/cs/insertQna" method="post">
+            <div class="wrap">
+                <div class="w_in">
+                    <div>
+                        <div>
+                            <label for="">카테고리</label>
+                            <select name="cateCode" id="">
+                                <option value="CATE_001">숙박</option>
+                                <option value="CATE_002">결제</option>
+                                <option value="CATE_003">혜택</option>
+                                <option value="CATE_004">기타</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="">제목</label>
+                            <input type="text" name="qnaQuestion">
+                        </div>
+                        <div>
+                            <label for="">내용</label>
+                            <input type="text" name="qnaAnswer">
+                        </div>
+                        <div>
+                            <input type="submit" value="등록하기">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </th:block>
 <!-- js영역 -->
 <th:block layout:fragment="content_js">

@@ -1,9 +1,6 @@
 package com.jejugreentour.jgt.csCenter.service;
 
-import com.jejugreentour.jgt.csCenter.vo.AnnCateVO;
-import com.jejugreentour.jgt.csCenter.vo.AnnVO;
-import com.jejugreentour.jgt.csCenter.vo.InquireVO;
-import com.jejugreentour.jgt.csCenter.vo.QnaVO;
+import com.jejugreentour.jgt.csCenter.vo.*;
 
 import java.util.List;
 
@@ -20,13 +17,19 @@ public interface CsService {
     public int insertAnn(AnnVO annVO);
     
     // 공지사항 게시물 총 개수 조회
-    public int selectAnnCnt();
+    public int selectAnnCnt(String annCate);
     
     // 공지사항 상세 조회
     public AnnVO selectAnnDetail(AnnVO annVO);
 
     // 공지사항 메뉴 목록 조회
     public List<AnnCateVO> annCateList(AnnCateVO annCateVO);
+    
+    // 공지사항 수정
+    public int updateAnn(AnnVO annVO);
+
+    // 공지사항 삭제
+    public int deleteAnn(AnnVO annVO);
 
 
     // --------------------------------------------------------------------------------
@@ -43,14 +46,31 @@ public interface CsService {
     // 게시물 총 개수 조회
     public int selectQnaCnt();
 
+    // QNA 수정
+    public int updateQna(QnaVO qnaVO);
+
+    // QNA 삭제
+    public int deleteQna(QnaVO qnaVO);
+
     // ---------------------------------------------------
 
     // 문의 내역 목록 조회
     public List<InquireVO> InqList(InquireVO inquireVO);
 
-    // 게시물 총 개수 조회
+    // 문의 내역 목록 추가
+    public void insertInq(InquireVO inquireVO);
+
+    // 문의 내역 총 개수 조회
     public int selectInqCnt();
 
+    // 다음 문의 코드 조회
+    public String nextInqCode();
+
+    // 문의 내역 세부 조회
+    public InquireVO inqDetail(String inqCode);
+
+    // 문의 내역 사진 조회
+    public List<InqImgVO> inqImgList(String inqCode);
 
 
 

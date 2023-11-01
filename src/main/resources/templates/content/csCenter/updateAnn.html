@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+    layout:decorate="~{fragment/csCenter_layout}">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<!-- css 영역 -->
+<th:block layout:fragment="content_css">
+
+</th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <form action="/cs/updateAnn" method="post">
+        <div class="wrap">
+            <div class="w_in">
+                <div>
+                    <div>
+                        <label for="">카테고리</label>
+                        <select name="annCate" id="">
+                            <option value="CATE_001">일반</option>
+                            <option value="CATE_002">오픈소식</option>
+                            <option value="CATE_003">서비스</option>
+                            <option value="CATE_004">당첨자발표</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="">제목</label>
+                        <input type="text" name="annTitle" id="">
+                    </div>
+                    <div>
+                        <label for="">내용</label>
+                        <textarea name="annContent" cols="60" rows="10"></textarea>
+                    </div>
+                    <div>
+                        <input type="hidden" name="annNum" th:value="${annVO.annNum}">
+                        <input type="submit" value="수정완료">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</th:block>
+</body>
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+
+</th:block>
+</html>

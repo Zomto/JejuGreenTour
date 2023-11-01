@@ -8,3 +8,8 @@
 .inquire a{
     color: #1db954;
 }
+
+
+textarea{
+    resize: none;
+}

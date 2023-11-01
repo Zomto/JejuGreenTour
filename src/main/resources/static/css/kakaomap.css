@@ -16,6 +16,7 @@
 }
 
 .map_wrap {
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,0.2);
     border-radius: 7px;
     border: 1px solid #dadada;
     position: relative;
@@ -24,6 +25,7 @@
     height: 530px;
 }
 .map_wrap > #map{
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,0.2);
     width: 677px;
     height: 517px;
     position: absolute;
@@ -34,6 +36,7 @@
 }
 
 #menu_wrap {
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,0.2);
     position: absolute;
     top: 20px;
     left: 30px;

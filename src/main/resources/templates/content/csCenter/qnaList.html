@@ -41,6 +41,10 @@
                                     <span class="qna_span_a">A</span>
                                     [[${qna.qnaAnswer}]]
                                 </div>
+                                <div class="qna_btn">
+                                    <input type="button" th:onclick="|location.href='@{/cs/updateQnaForm(qnaCode=${qna.qnaCode})}'|" value="수정">
+                                    <input type="button" th:onclick="|location.href='@{/cs/delelteQna(qnaCode=${qna.qnaCode})}'|" value="삭제">
+                                </div>
                             </li>
                         </ul>
                     </div>

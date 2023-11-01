@@ -139,6 +139,7 @@ function findId() {
 }
 
 
+
 function checkCode() {
     console.log(confirmCode);
     if (confirmCode == null) {
@@ -193,16 +194,24 @@ function checkCode() {
                             resultEmail.textContent = data1.memberId;
 
 
-                            var aElement = document.createElement("a");
+                            var aElement = document.createElement("div");
                             aElement.className = "resultA";
-                            aElement.href = "/find_Pw.html";
+                            aElement.addEventListener('click',function(){
+                                let memberId = document.querySelector('.resultEmail').textContent;
+                                var popup = window.open(`/member/changePwForm?memberId=${memberId}`, '비밀번호 변경', 'width=652px,height=600px,scrollbars=yes');
+                                window.close();
+                            }
+         );
                             aElement.textContent = "비밀번호 찾기";
 
                             resultIdTextDiv.appendChild(resultEmail);
                             resultIdTextDiv.appendChild(aElement);
                             resultId.appendChild(resultIdTextDiv)
+
+                            
                         });
                     }
+
 
                     result.style.display = "block"; // 화면에 표시
                 })
@@ -217,6 +226,13 @@ function checkCode() {
     }
 
 }
+                    function goPw(){
+                        //let memberId = document.querySelector('.resultEmail').textContent;
+                        //var popup = window.open(`/member/changePwForm?memberId=${memberId}`, '비밀번호 변경', 'width=652px,height=600px,scrollbars=yes');
+                        window.close();
+                    }
+
+
 let confirmCode = null
 
 function changePw() {

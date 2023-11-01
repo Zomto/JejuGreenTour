@@ -12,4 +12,6 @@ public class ConstantVariable {
 
     public static final String UPLOAD_REVIEW_PATH="D:\\dev\\workspaceSpring\\JejuGreenTour\\src\\main\\resources\\static\\img\\review\\";
 
+    public static final String UPLOAD_PATH_CS="D:\\dev\\workspaceSpring\\JejuGreenTour\\src\\main\\resources\\static\\img\\cs\\";
+
 }

@@ -5,83 +5,125 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="/css/member/myPage_main.css">
+    <link rel="stylesheet" href="/css/member/member_info.css">
 </head>
 
 <body>
     <th:block layout:fragment="content">
         <h2>회원정보 수정</h2>
         <form action="/member/editMember" method="POST" class="category change">
-            <ul class="tabs">
-                <li class="tab-link current" data-tab="tab-1">이메일/전화번호 변경</li>
-                <li class="tab-link" data-tab="tab-2">비밀번호 변경</li>
-            </ul>
-
-            <form action="/member/editMember1" method="POST" id="editMember1">
-                <div id="tab-1" class="tab-content current">
-                    <table>
-                        <div class="email_verify">
-                            <label class="form-label" for="email">이메일</label>
-                            <input class="form-control" type="text" id="memberEmail" name="memberEmail" />
-                            <select name="email_host" id="email_host">
-                                <option value="null" selected>선택해주세요</option>
-                                <option value="@naver.com">@naver.com</option>
-                                <option value="@daum.net">@daum.net</option>
-                                <option value="@gmail.com">@gmail.com</option>
-                                <option value="">직접입력</option>
-                            </select>
-                            <input type="hidden" name="member_mail" id="member_mail">
-                            <input type="button" class="verify" value="인증번호 발급" id="verifyButton"
-                                onclick="verifyCode()">
-                        </div><br><br>
-
-                        <div id="additionalInput" class="verify_box" style="display: none;">
-                            <!-- 추가 입력 필드가 여기에 동적으로 생성됨 -->
-                            <p>
-                                <label class="form-label" for="verify_code">인증번호</label>
-                                <input class="form-control" type="verify_code" id="verify_code" name="verify_code"
-                                    required />
-                            <div id="timer">3:00</div>
-                            <div class="alertbox"></div>
-                            </p>
-                            <input type="button" class="verify" value="인증번호 확인" onclick="checkCode()" />
-                        </div><br><br>
-                        <div>
-                            <label for="memberTel">전화번호:</label>
-                            <input type="text" id="memberTels" name="memberTels"><br><br>
-                        </div><br>
-                    </table>
-                    <input class="join_btn" type="submit" value="수정하기">
+            <div class="tab">
+                <ul class="tabnav">
+                  <li><a href="#tab01">이메일/전화번호 변경</a></li>
+                  <li><a href="#tab02">비밀번호 변경</a></li>
+                </ul>
+                <div class="tabcontent">
+                  <div id="tab01">
+                    <form action="/member/editMember1" method="POST" id="editMember1">
+                        <div class="contentBlock">
+                            <div class="inputIdBlock">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#dadada"
+                                    class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                    <path fill-rule="evenodd"
+                                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                </svg>
+                                <input class="w3-input" type="text" id="memberId" name="memberId" placeholder="아이디" required>
+                            </div>
+                            <div class="email_verify">
+                                <div class="inputMemEmail">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#dadada"
+                                        class="bi bi-envelope-at-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2H2Zm-2 9.8V4.698l5.803 3.546L0 11.801Zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 9.671V4.697l-5.803 3.546.338.208A4.482 4.482 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671Z" />
+                                        <path
+                                            d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034v.21Zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791Z" />
+                                    </svg>
+                                    <input class="form-control" type="text" id="memberEmail" name="memberEmail" required />
+                                    <select name="email_host" id="email_host">
+                                        <option value="null" selected>선택해주세요</option>
+                                        <option value="@naver.com">@naver.com</option>
+                                        <option value="@daum.net">@daum.net</option>
+                                        <option value="@gmail.com">@gmail.com</option>
+                                        <option value="">직접입력</option>
+                                    </select>
+                                    <input type="hidden" name="member_mail" id="member_mail" placeholder="이메일">
+                                    <input type="button" class="verify" value="인증번호 발급" id="verifyButton" onclick="verifyCode()" />
+                                    
+                                </div>
+                                <div id="additionalInput" style="display: none;">
+                                    <div class="verify_box">
+                                        <!-- 추가 입력 필드가 여기에 동적으로 생성됨 -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#03c75a"
+                                            class="bi bi-key" viewBox="0 0 16 16">
+                                            <path
+                                                d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
+                                            <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                        </svg>
+                                        <input class="form-control" placeholder="인증번호" type="text" id="verify_code"
+                                            name="verify_code" required />
+                                        <div id="timer">3:00</div>
+                                        <input type="button" class="verify" value="인증번호 확인" onclick="checkCode()" />
+                                    </div>
+                                    <div class="alertbox"></div>
+                                </div>
+                            </div>
+                            <div class="result"></div>
+                            <div class="join_input four">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#dadada"
+                                    class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                                </svg>
+                                <div class="input_tel">
+                                    <select class="tel1" name="memberTels" id="">
+                                        <option selected value="010">010</option>
+                                        <option value="011">011</option>
+                                        <option value="012">012</option>
+                                    </select> -
+                                    <input class="tel2" type="tel" name="memberTels" placeholder="" required> -
+                                    <input class="tel3" type="tel" name="memberTels" placeholder="" required>
+                                </div>
+                            </div>
+                            <button id="editMember_1" name="editMember_1">수정하기</button>
+                            
+                        </div>
+                    </form>
+                  </div>
+                  <div id="tab02">
+                        <form action="/member/editMember2" method="POST" id="editMember2" >
+                            <div class="block1 pw">
+                                <div class="changePw">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#dadada"
+                                                class="bi bi-shield-lock-fill" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm0 5a1.5 1.5 0 0 1 .5 2.915l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99A1.5 1.5 0 0 1 8 5z" />
+                                            </svg>
+                                    <input class="InputchangePw" id="InputchangePw" type="password" name="memberPw" placeholder="비밀번호">
+                                </div>
+                                <div class="changePw Check">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#dadada" class="bi bi-shield-lock" viewBox="0 0 16 16">
+                                        <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
+                                        <path d="M9.5 6.5a1.5 1.5 0 0 1-1 1.415l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99a1.5 1.5 0 1 1 2-1.415z"/>
+                                      </svg>
+                                    <input class="InputchangePw" id="InputchangePwCheck" type="password" name="memberPwCheck" placeholder="비밀번호 확인">
+                                </div>
+                            </div>
+                            <button id="editMember_2" name="editMember_2" onclick="changePw()">수정하기</button>
+                        </form>
+                  </div>
                 </div>
-
-            </form>
-
-
-            <form action="/member/editMember2" method="POST" id="editMember2">
-                <div id="tab-2" class="tab-content">
-                    <table>
-                        <tr>
-                            <td>
-                                <label for="password">비밀번호:</label>
-                                <input type="password" id="memberPw" name="memberPw"><br><br>
-                            </td>
-                            <td>
-                                <label for="password">비밀번호 확인:</label>
-                                <input type="password" id="memberPwCheck" name="memberPwCheck"><br><br>
-                            </td>
-                            <td>
-                                <div class="err-div"></div>
-                            </td>
-                        </tr>
-                    </table>
-                    <input type="button" onclick="changePw()" value="수정하기"/>
-                </div>
-            </form>
+              </div>
+                    
+               
+            
+                
 
         </form>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="/js/join.js"></script>
+        <script src="/js/member/member_info.js"></script>
     </th:block>
 </body>
 
 </html>
+
