@@ -2,6 +2,8 @@ package com.jejugreentour.jgt.csCenter.vo;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class InquireVO extends PageVO{
     private String inqCode;
@@ -12,4 +14,5 @@ public class InquireVO extends PageVO{
     private String inqDate;
     private String isResponse;
     private InqCateVO inqCateList;
+    private List<InqImgVO> inqImgList;
 }

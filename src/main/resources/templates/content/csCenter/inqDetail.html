@@ -17,7 +17,7 @@
             <div class="box">
                 <div>
                     <label for="">제목</label>
-                    <div class="">[[${}]]</div>
+                    <div class="">[[${inqDetail.title}]]</div>
                 </div>
                 <div>
                     <label for="">작성자</label>
@@ -25,7 +25,7 @@
                 </div>
                 <div>
                     <label for="">작성일</label>
-                    <div class=""></div>
+                    <div class="">[[${inqDetail.inqDate}]]</div>
                 </div>
                 <div>
                     <label for="">전화번호</label>
@@ -33,7 +33,7 @@
                 </div>
                 <div>
                     <label for="">질문유형</label>
-                    <div class=""></div>
+                    <div class="">[[${inqDetail.inqCateList.cateName}]]</div>
                 </div>
                 <div>
                     <label for="">예약코드</label>
@@ -41,15 +41,15 @@
                 </div>
                 <div>
                     <label for="">답변상태</label>
-                    <div class=""><a href=""></a></div>
+                    <div class=""><a href="">[[${inqDetail.isResponse}]]</a></div>
                 </div>
                 <div>
                     <label for="">문의내용</label>
-                    <div class=""></div>
+                    <div class="">[[${inqDetail.content}]]</div>
                 </div>
-                <div>
+                <div th:each="inqImg : ${inqImgList}">
                     <label for="">답변내용</label>
-                    <div class=""></div>
+                    <img th:src="${'/img/cs/'+ inqImg.attachedFileName}" alt="">
                 </div>
             </div>
         </div>
