@@ -3,26 +3,18 @@ let timerstop = null
 let settimerstop = null
 let reatimerstop = null
 
+$(function(){
+    $('.tabcontent > div').hide();
+    $('.tabnav a').click(function () {
+      $('.tabcontent > div').hide().filter(this.hash).fadeIn();
+      $('.tabnav a').removeClass('active');
+      $(this).addClass('active');
+      return false;
+    }).filter(':eq(0)').click();
+    });
+
 // 회원가입 시 데이터 유효성 검사
 function joinValidate() {
-    // 1. 데이터 유효성 검사
-    // ID 입력 여부 체크
-    const inputMemberId = document.querySelector('#memberId').value
-
-    // form태그 선택
-    // form 태그 안의 요소는 name 속성으로 접근 가능
-    const joinForm = document.querySelector('#joinForm');
-
-    if (joinForm.memberId.value == '') {
-        inputInvalidate('#id-error-div', 'ID는 필수입력!');
-        return;
-    } else if (joinForm.memberId.value.length < 4) {
-        inputInvalidate('#id-error-div', 'ID는 4글자 이상!');
-        return;
-    }
-
-
-
     //휴대폰 정규식표현식
     var telRegex = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
     //console.log(joinForm.memberTels[0].value);
@@ -33,7 +25,7 @@ function joinValidate() {
 
     // 2. submit 실행
     // form 태그 선택 --> submit() 함수 실행
-    document.querySelector('#joinForm').submit();
+    document.querySelector('#editMember1').submit();
 }
 
 
@@ -73,59 +65,7 @@ $('.join_input.five').click(function(){
     document.querySelector('.join_input.five').style.borderColor = "#03c75a";
     document.querySelector('.bi-calendar-check').setAttribute("fill", "#03c75a");
 })
-// 화원가입 시 아이디 중복 체크
-function checkId() {
 
-    let memberIdvalue = document.querySelector('#memberId').value;
-    let memberIdInput = document.querySelector('#memberId');
-    let memberIdBoarder = document.querySelector('.inputMem.memberId');
-    let memberIdBtn = document.querySelector('.double_check');
-    let idSvg = document.querySelector('.bi-person-circle');
-    if(memberIdvalue == ""){
-        memberIdInput.classList.toggle('no');
-        idSvg.setAttribute("fill", "#ff3f3f");
-        memberIdBoarder.style.borderColor = "#ff3f3f";
-        memberIdInput.placeholder = "아이디를 입력해주세요";
-        memberIdBtn.style = "background-color : #dadada";
-        memberIdBtn.addEventListener('mouseover', (event) => {
-            memberIdBtn.style = "background-color : #1ab752"});
-        memberIdBtn.addEventListener('mouseout', (event) => {
-            memberIdBtn.style = "background-color : #dadada"});
-        return;
-
-    }else {
-        fetch('/member/checkId', {
-        method: 'POST',
-        cache: 'no-cache',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        },
-        body: new URLSearchParams({
-            memberId: document.querySelector('#memberId').value
-        })
-    })
-        .then((response) => {
-            if (!response.ok) {
-                alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
-                return;
-            }
-            return response.json();
-        })
-        .then((data) => {
-            if (data) {
-                alert('사용가능한 ID입니다.');
-                document.querySelector('.join_btn').disabled = false;
-            } else {
-                alert('사용 불가능한 ID입니다.');
-            }
-        })
-        .catch((err) => {
-            alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
-            console.log(err);
-        });
-    }
-
-}
 //비밀번호 가리기, 보이기
 $(document).ready(function() {
     // '비밀번호 보이기' 버튼 클릭 시 동작
@@ -154,7 +94,7 @@ $(document).ready(function() {
 
 // 이메일인증전 회원가입 버튼 비활성화 함수
 function setDisabled() {
-    document.querySelector('.join_btn').disabled = true;
+    document.querySelector('#editMember_1').disabled = true;
 }
 
 
@@ -254,7 +194,7 @@ function checkCode() {
         let inputCode = document.querySelector('#verify_code').value
         if (inputCode == confirmCode) {
             alert("인증되었습니다! 가입절차를 진행해주세요!")
-            document.querySelector('.join_btn').disabled = false
+            document.querySelector('#editMember_1').disabled = false
             const additionalInputDiv = document.getElementById("additionalInput");
             additionalInputDiv.style.display = "none";
         } else {
@@ -266,6 +206,27 @@ function checkCode() {
 }
 let confirmCode = null
 
+function changePw(){
+    let pw = document.querySelector('#memberPw').value;
+    let pwCheck = document.querySelector('#memberPwCheck').value;
+    if(pw == ''){
+        // inputInvalidate('.err-div', '비밀번호를 입력해주세요!');
+        return;
+    } else{
+        if(pwCheck == ''){
+            // inputInvalidate('.err-div', '비밀번호를 확인해주세요!');
+            return;
+        } else{
+            if(pw == pwCheck){
+                document.querySelector('#editMember2').submit();
+                // alert('회원 정보가 변경되었습니다.\n다시 로그인 해주세요')
+            } else{
+                // inputInvalidate('.err-div', '비밀번호 다름!');
+                return ;
+            }
+        }
+    }
+}
 
 // Validate 실패시 메세지 설정
 function inputInvalidate(tagId, message){
@@ -273,36 +234,7 @@ function inputInvalidate(tagId, message){
     document.querySelector(tagId).textContent = message;
 }
 
-
-function loginGo(){
-    let pwBlock = document.querySelector('#memberPw');
-    let pwCheckBlock = document.querySelector('#memberPwch');
-    let pw = document.querySelector('#memberPw').value;
-    let pwCheck = document.querySelector('#memberPwch').value;
-    
-    if(pw === ''){
-        pwBlock.placeholder = "비밀번호를 입력해 주세요.";
-        pwBlock.style.borderColor = "#ff3f3f";
-        document.querySelector('.bi.bi-shield-lock-fill').setAttribute("fill", "#ff3f3f");
-        return;
-    } else if (pwCheck === ''){
-        pwCheckBlock.placeholder = "비밀번호를 확인 해 주세요.";
-        pwCheckBlock.style.borderColor = "#ff3f3f";
-        document.querySelector('.bi.bi-shield-lock').setAttribute("fill", "#ff3f3f");
-        return;
-    } else if (pw !== pwCheck) {
-        pwCheckBlock.type = "text";
-        pwCheckBlock.value = "비밀번호가 일치하지 않습니다.";
-        pwCheckBlock.style.borderColor = "#ff3f3f";
-        document.querySelector('.bi.bi-shield-lock').setAttribute("fill", "#ff3f3f");
-        return;
-    } else {
-        if (pw === pwCheck) {
-            document.querySelector('#teamleaderFuck').submit();
-            alert('회원가입 성공.\n로그인 해주세요');
-        } else {
-            inputInvalidate('.err-div', '비밀번호 다름!');
-            return;
-        }
-    }
-}
+// let svgIcon = document.querySelector
+// $('.join_input').click(function(){
+//     $(this).find('.bi').setAttribute("fill", "#03c75a");
+// });

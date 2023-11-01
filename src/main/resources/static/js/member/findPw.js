@@ -3,7 +3,11 @@ let timerstop = null
 let settimerstop = null
 let reatimerstop = null
 
-
+function closePopup(){
+    if(confirm('창을 닫으시겠습니까?')){
+        window.close();
+    }
+}
 
 function startTimer(duration) {
     const timerElement = document.getElementById("timer");
@@ -229,7 +233,8 @@ function inputInvalidate(tagId, message) {
 
 function goPw(){
     let memberId = document.querySelector('#memberId').value;
-    var popup = window.open(`/member/changePwForm?memberId=${memberId}`, '비밀번호 변경', 'width=700px,height=800px,scrollbars=yes');
+    var popup = window.open(`/member/changePwForm?memberId=${memberId}`, '비밀번호 변경', 'width=652px,height=600px,scrollbars=yes');
+    window.close();
 }
 
 $('#memberId').click(function(){

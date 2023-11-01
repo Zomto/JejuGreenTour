@@ -42,7 +42,6 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public int updateMember2(MemberVO memberVO) {
-        System.out.println(memberVO);
         return sqlSession.update("memberMapper.updateMember2", memberVO);
     }
 

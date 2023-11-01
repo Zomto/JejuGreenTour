@@ -238,8 +238,23 @@ public class BuyController {
         System.out.println(reviewAdminVO);
         return  buyService.insertAdminReview(reviewAdminVO);
     }
-
-
+    @ResponseBody
+    @PostMapping("/ReplyDelete")
+    public int ReplyDelete(ReviewAdminVO reviewAdminVO){
+        return  buyService.deleteAdminReview(reviewAdminVO);
+    }
+    @ResponseBody
+    @PostMapping("/deleteReview")
+    public int deleteReview(ReviewVO reviewVO){
+        ReservationStateVO stateVO=new ReservationStateVO();
+        stateVO.setReview("N");
+        stateVO.setRefund("N");
+        stateVO.setRefundPrice("0");
+        System.out.println(reviewVO);
+        stateVO.setReservationCode(reviewVO.getReservationCode());
+        buyService.updateReservationstate(stateVO);
+        return  buyService.deleteReview(reviewVO.getReviewCode());
+    }
     @GetMapping("/adminCalendar")
     public String adminCalendar() {
 
