@@ -65,7 +65,8 @@
         ,MEMBER_TEL = #{memberTel}
         WHERE MEMBER_ID = #{memberId}
     </update>
-    <update id = "updateMember2" parameterType="com.jejugreentour.jgt.member.vo.MemberVO">
+
+    <update id = "updateMember2">
         UPDATE JEJU_MEMBER
         SET
         MEMBER_PW = #{memberPw}
