@@ -46,6 +46,13 @@ public class CsController {
         return "redirect:/cs/qnaListForm";
     }
 
+    // qna 수정 후 목록 페이지 이동
+    @GetMapping("/updateQnaForm")
+    public String updateQna(){
+
+        return "redirect:/cs/updateQnaForm";
+    }
+
     ////////////////////////////////////////////////////////////
 
 
@@ -93,6 +100,28 @@ public class CsController {
     public String annDetailForm(AnnVO annVO, Model model){
         model.addAttribute("annDetail", csService.selectAnnDetail(annVO));
         return "content/csCenter/annDetail";
+    }
+    
+    // 공지 사항 수정 페이지 이동
+    @GetMapping("/updateAnnForm")
+    public String updateAnnForm(AnnVO annVO){
+
+        return "content/csCenter/updateAnn";
+    }
+
+    // 공지사항 수정하기
+    @PostMapping("/updateAnn")
+    public String updateAnn(AnnVO annVO){
+        csService.updateAnn(annVO);
+        System.out.println(csService.updateAnn(annVO));
+        return "redirect:/cs/annDetailForm?annNum=" + annVO.getAnnNum();
+    }
+    
+    // 공지사항 삭제하기
+    @GetMapping("/deleteAnn")
+    public String deleteNum(AnnVO annVO){
+        csService.deleteAnn(annVO);
+        return "redirect:/cs/annListForm";
     }
 
 

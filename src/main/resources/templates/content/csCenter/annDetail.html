@@ -34,6 +34,8 @@
                     </div> -->
                     <div class="inquireBtn">
                         <button onclick="location.href='/cs/annListForm';">목록</button>
+                        <button th:onclick="|location.href='@{/cs/updateAnnForm(annNum=${annDetail.annNum})}'|">글 수정</button>
+                        <button th:onclick="|location.href='@{/cs/deleteAnn(annNum=${annDetail.annNum})}'|">글 삭제</button>
                     </div>
                 </div>
             </div>

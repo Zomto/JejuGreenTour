@@ -50,6 +50,16 @@ public class CsServiceImpl implements CsService{
         return sqlSession.selectList("csMapper.annCateList", annCateVO);
     }
 
+    @Override
+    public int updateAnn(AnnVO annVO) {
+        return sqlSession.update("csMapper.updateAnn", annVO);
+    }
+
+    @Override
+    public int deleteAnn(AnnVO annVO) {
+        return sqlSession.delete("csMapper.deleteAnn", annVO);
+    }
+
     // -----------------------------------------------------------------------------------------
 
     // 고객센터 메인 페이지 QNA 목록 조회
@@ -76,7 +86,17 @@ public class CsServiceImpl implements CsService{
         return sqlSession.selectOne("csMapper.selectQnaCnt");
     }
 
-    
+    @Override
+    public int updateQna(QnaVO qnaVO) {
+        return sqlSession.update("csMapper.updateQna", qnaVO);
+    }
+
+    @Override
+    public int deleteQna(QnaVO qnaVO) {
+        return sqlSession.delete("csMapper.deleteQna", qnaVO);
+    }
+
+
     // ------------------------------------------------------------------------------------------------
     
     // 문의하기 목록 조회

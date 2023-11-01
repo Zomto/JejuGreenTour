@@ -14,7 +14,3 @@ $('.m2_qna').click(function(){
 
 
 
-$('.sideForm').click(function(){
-    $('sideForm').removeClass('active');
-    $(this).addClass('active');
-});

@@ -105,6 +105,21 @@
         AND ANN_NUM = #{annNum}
     </select>
 
+    <update id="updateAnn">
+        UPDATE ANNOUNCEMENT
+        SET
+            ANN_CATE = #{annCate}
+            , ANN_TITLE = #{annTitle}
+            , ANN_CONTENT = #{annContent}
+        WHERE ANN_NUM = #{annNum}
+    </update>
+    
+    <delete id="deleteAnn">
+        DELETE ANNOUNCEMENT
+        WHERE ANN_NUM = #{annNum}
+    </delete>
+
+
     <!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 
     <!--  자주 찾는 질문 (QNA)  -->
@@ -170,6 +185,20 @@
         SELECT COUNT(QNA_CODE)
         FROM QNA
     </select>
+
+    <update id="updateQna">
+        UPDATE INTO QNA
+        SET
+            CATE_CODE = #{cateCode}
+            , QNA_QUESTION = #{qnaQuestion}
+            , QNA_ANSWER = #{qnaAnswer}
+        WHERE QNA_CODE = #{qnaCode}
+    </update>
+
+    <delete id="deleteQna">
+        DELETE QNA
+        WHERE QNA_CODE = #{qnaCode}
+    </delete>
 
 
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->

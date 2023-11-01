@@ -24,6 +24,12 @@ public interface CsService {
 
     // 공지사항 메뉴 목록 조회
     public List<AnnCateVO> annCateList(AnnCateVO annCateVO);
+    
+    // 공지사항 수정
+    public int updateAnn(AnnVO annVO);
+
+    // 공지사항 삭제
+    public int deleteAnn(AnnVO annVO);
 
 
     // --------------------------------------------------------------------------------
@@ -39,6 +45,12 @@ public interface CsService {
     
     // 게시물 총 개수 조회
     public int selectQnaCnt();
+
+    // QNA 수정
+    public int updateQna(QnaVO qnaVO);
+
+    // QNA 삭제
+    public int deleteQna(QnaVO qnaVO);
 
     // ---------------------------------------------------
 
