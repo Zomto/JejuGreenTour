@@ -5,10 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-</head>
 
-<body>
-    <th:block layout:fragment="content">
+    <th:block layout:fragment="content_css">
         <style>
             .basketlist {
                 font-family: Arial, sans-serif;
@@ -61,6 +59,12 @@
                 cursor: pointer;
             }
         </style>
+    </th:block>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        
         <div class="basketlist">
             <div class="basket_container">
                 <h2>결제대기</h2>
@@ -107,26 +111,29 @@
                 </table>
             </div>
         </div>
-        <script>
-            function basketbuy(tag) {
-                if (confirm('해당 상품의 결제를 계속하시겠습니까?')) {
-                    tag.querySelector('form').submit();
-
-                } else {
-                    if (confirm('해당 상품의 삭제하시겠습니까?')) {
-                        location.href = `/buy/deleteBasketAccom?basketCode=${tag.querySelector('.basketCode').value}`
-                    }
-                }
-            }
-
-            let Price = document.querySelectorAll('.Price');
-            let stayTerm = document.querySelectorAll('.stayTerm');
-            for (let i = 0; i < Price.length; i++) {
-                Price[i].innerHTML = Number(Price[i].innerHTML) * Number(stayTerm[i].value)
-            }
-
-        </script>
+        
     </th:block>
 </body>
+<th:block layout:fragment="content_js">
+    <script>
+        function basketbuy(tag) {
+            if (confirm('해당 상품의 결제를 계속하시겠습니까?')) {
+                tag.querySelector('form').submit();
+
+            } else {
+                if (confirm('해당 상품의 삭제하시겠습니까?')) {
+                    location.href = `/buy/deleteBasketAccom?basketCode=${tag.querySelector('.basketCode').value}`
+                }
+            }
+        }
+
+        let Price = document.querySelectorAll('.Price');
+        let stayTerm = document.querySelectorAll('.stayTerm');
+        for (let i = 0; i < Price.length; i++) {
+            Price[i].innerHTML = Number(Price[i].innerHTML) * Number(stayTerm[i].value)
+        }
+
+    </script>
+</th:block>
 
 </html>

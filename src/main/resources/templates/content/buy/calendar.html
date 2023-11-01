@@ -5,10 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-</head>
-
-<body>
-    <th:block layout:fragment="content">
+    
+    <th:block layout:fragment="content_css">
         <style>
             .fc-daygrid-day {
                 cursor: pointer;
@@ -21,7 +19,11 @@
             .fc-day-sat {
                 color: blue;
             }
-        </style>
+        </style></th:block>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
         <div id="calendar"></div>
         <form action="/buy/buyBasket" method="post" id="calendarform">
 
@@ -65,9 +67,11 @@
             </div>
 
         </form>
-        <script src='/dist/index.global.js'></script>
-        <script src="/js/calendar.js"></script>
     </th:block>
 </body>
+<th:block layout:fragment="content_js">
+        <script src='/dist/index.global.js'></script>
+        <script src="/js/calendar.js"></script>
+</th:block>
 
 </html>

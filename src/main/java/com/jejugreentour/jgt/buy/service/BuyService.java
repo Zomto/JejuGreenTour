@@ -50,6 +50,18 @@ public interface BuyService {
     //회원이 쓴 리뷰조회
     public List<ReviewVO> memberReviewList(String memberId);
 
+    //리뷰 수정을 위한 조회
+    public ReviewVO selectReviewOne(String reservattonCode);
+
+    //리뷰 이미지 가져오기
+    public  List<ReviewImgVO> selectReviewImgList(String reviewCode);
+
+    public  void  deleteReviewImg(ReviewVO reviewVO);
+
+    public  void  ReInsertReviewImg(ReviewVO reviewVO);
+
+    public  void  updateReview(ReviewVO reviewVO);
+
     //숙박업소주인 답변달기
     public int insertAdminReview(ReviewAdminVO reviewAdminVO);
 

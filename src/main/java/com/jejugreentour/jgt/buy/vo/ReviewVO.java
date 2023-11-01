@@ -9,6 +9,7 @@ public class ReviewVO {
     private String reviewCode;
     private String accomCode;
     private String memberId;
+    private String reservationCode;
     private String score;
     private String content;
     private String writeDate;

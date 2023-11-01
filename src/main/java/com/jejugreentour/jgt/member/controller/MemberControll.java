@@ -51,13 +51,14 @@ public class MemberControll {
         if(loginInfo !=null){
             session.setAttribute("loginInfo",loginInfo);
         }
-        return "redirect:/";
+        return "/index";
     }
     @ResponseBody
     @PostMapping("/checkId")
     public boolean checkId(String memberId){
         return memberService.checkId(memberId);
     }
+
 
 
     @ResponseBody
@@ -121,6 +122,16 @@ public class MemberControll {
         // 리다이렉트 또는 다른 처리
         return "redirect:/member/logout";
     }
+
+    @PostMapping("/changePw")
+    public void changePw(String memberId, String memberPw, MemberVO memberVO) {
+        System.out.println(memberId);
+        System.out.println(memberPw);
+//        memberService.changePw(memberVO1);
+    }
+
+
+
     @GetMapping("/find_IdForm")
     public String findIdForm(){
         return "content/member/find_Id";
@@ -135,18 +146,45 @@ public class MemberControll {
 
         return members;
     }
+
+    @ResponseBody
+    @PostMapping("/checkInfo")
+    public String checkInfo(String memberId,String member_mail, MemberVO memberVO){
+        MemberVO memberVO1 = new MemberVO();
+        memberVO1.setMemberId(memberId);
+        memberVO1.setMember_mail(member_mail);
+
+        System.out.println(memberService.checkInfo(memberVO1));
+
+        return memberService.checkInfo(memberVO1) == null ? "false" :memberService.checkInfo(memberVO1);
+    }
+
+
     @GetMapping("/find_PwForm")
     public String findPwForm(){
         return "content/member/find_Pw";
     }
+
+
     @ResponseBody
+
     @PostMapping("/findPw")
     public void findPw(@RequestBody MemberVO memberVO) {
         String input = memberVO.getMember_mail();
         String member_mail = input.replace("%40", "@");
         // 이제 memberVO 객체에는 새로운 비밀번호 정보가 포함됩니다.
-        memberService.updatePw(memberVO);
+        memberService.changePw(memberVO);
     }
+
+
+
+    @GetMapping("/changePwForm")
+    public String changePwForm(String memberId, Model model){
+        model.addAttribute("memberId", memberId);
+        System.out.println(memberId);
+        return "content/member/changePw";
+    }
+
 
 
 }

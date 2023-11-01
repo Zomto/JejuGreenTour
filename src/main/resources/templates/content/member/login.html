@@ -9,7 +9,7 @@
 
 <body>
     <th:block layout:fragment="content">
-        <form action="/member/login" method="post">
+        <form action="/member/login" method="post" id="loginForm">
             <div id="wrap">
                 <div id="inner">
                     <div id="header">
@@ -68,10 +68,10 @@
 </body>
 <script>
 function openfindId(){
-    var popup = window.open('/member/find_IdForm', '아이디찾기', 'width=700px,height=800px,scrollbars=yes');
+    var popup = window.open('/member/find_IdForm', '아이디 찾기', 'width=652px,height=600px,scrollbars=yes');
   }
 function openfindPw(){
-    var popup = window.open('/member/find_PwForm', '아이디찾기', 'width=700px,height=800px,scrollbars=yes');
+    var popup = window.open('/member/find_PwForm', '비밀번호 찾기', 'width=652px,height=600px,scrollbars=yes');
   }
 </script>
 </html>

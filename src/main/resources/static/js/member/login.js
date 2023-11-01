@@ -23,4 +23,6 @@ function checkInput(){
         checkPw.placeholder = "비밀번호를 입력해주세요";
         return;
     }
+    
+    document.querySelector('#loginForm').submit();
 }

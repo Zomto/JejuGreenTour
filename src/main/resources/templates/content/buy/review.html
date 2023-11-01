@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/main_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <th:block layout:fragment="content_css">
+        <style>
+            .starbox {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                background-image: url(/img/emptystar.png);
+                background-size: cover;
+                /* background-image: linear-gradient(to right, red 50%, blue 50%); */
+            }
+
+            .reviewScore {
+                font-size: 25px;
+                width: 170px;
+                height: 40px;
+                margin-right: 20px;
+            }
+
+            .Score {
+                width: 100px;
+                height: 40px;
+                font-size: 25px;
+            }
+
+            .reviewin {
+                font-family: Arial, sans-serif;
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            .review_label {
+                display: block;
+                font-weight: bold;
+                margin-top: 10px;
+            }
+
+            .input_review {
+                width: 100%;
+                padding: 10px;
+                margin: 5px 0;
+                box-sizing: border-box;
+            }
+
+            .review_textarea {
+                height: 100px;
+                resize: none;
+            }
+
+            .review_file {
+                margin-top: 10px;
+            }
+
+            .submit_review {
+                background-color: #4CAF50;
+                color: white;
+                padding: 12px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .submit_review:hover {
+                background-color: #45a049;
+            }
+        </style>
+    </th:block>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+
+        <div class="reviewin">
+            <h1>숙소 리뷰 작성</h1>
+            <form action="/buy/insertReview" method="post" enctype="multipart/form-data">
+                <label for="accomName" class="review_label">숙소명:</label>
+                <input class="input_review" type="text" id="accomName" name="accomName" readonly
+                    th:value="${reservation.subAccom.sampleACCVO.accomName}">
+                <label for="memberName">아이디:</label>
+                <input class="input_review" type="text" id="memberName" name="memberId" readonly
+                    th:value="${reservation.memberId}">
+                <label for="rating" class="reviewScore">평가 점수:</label>
+                <div>
+                    <select name="score" class="reviewScore">
+                        <option value="2" class="Score">★ ☆ ☆ ☆ ☆
+                        </option>
+                        <option value="4" class="Score">★ ★ ☆ ☆ ☆
+                        </option>
+                        <option value="6" class="Score">★ ★ ★ ☆ ☆
+                        </option>
+                        <option value="8" class="Score">★ ★ ★ ★ ☆
+                        </option>
+                        <option value="10" class="Score" selected>★ ★ ★ ★ ★
+                        </option>
+                    </select>
+                </div>
+                <th:block th:if="${review ==null}">
+                    <label for="review" class="review_label">리뷰 내용:</label>
+                    <textarea class="input_review review_textarea" id="review" name="content"></textarea>
+                </th:block>
+                <th:block th:if="${review !=null}">
+                    <label for="review" class="review_label">리뷰 내용:</label>
+                    <textarea class="input_review review_textarea" id="review"
+                        name="content">[[${review.content}]]</textarea>
+                </th:block>
+
+                <label for="image" class="review_label">사진 업로드:</label>
+                <input class="input_review review_file" type="file" id="image" name="imgs" multiple
+                    onclick="imagecheck()" onchange="readURL(this);">
+                <img id="preview" style="width: auto; height: 100px; margin-right: 20px; margin-bottom: 20px;" />
+                <div class="reset_img">
+                    <th:block th:if="${review != null}">
+                        <th:block th:each="img : ${review.reviewImgList}">
+                            <img style="width: auto; height: 100px; margin-right: 20px; margin-bottom: 20px;"
+                                th:src="${'/img/review/'+ img.attachedFileName}" alt="">
+                        </th:block>
+                    </th:block>
+                </div>
+
+
+                <div>
+                    <input class="submit_review" type="submit" value="리뷰 제출">
+                </div>
+                <input type="hidden" name="accomCode" th:value="${reservation.subAccom.sampleACCVO.accomCode}">
+                <input type="hidden" name="reservationCode" th:value="${reservation.reservationCode}">
+
+                <th:block th:if="${review != null}">
+                    <input type="hidden" name="reviewCode" th:value="${review.reviewCode}">
+                    <th:block th:each="img : ${review.reviewImgList}">
+                        <input type="hidden" name="reviewImgCode" th:value="${img.reviewImgCode}">
+                    </th:block>
+
+                </th:block>
+            </form>
+
+        </div>
+        
+    </th:block>
+</body>
+<th:block layout:fragment="content_js">
+    <script>
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById('preview').src = e.target.result;
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                } else {
+                    document.getElementById('preview').src = "";
+                }
+            }
+            //이미지 수정여부를 확인
+            function imagecheck() {
+                document.querySelector('.reset_img').remove()
+            }
+        </script>
+</th:block>
+</html>

@@ -31,7 +31,10 @@ public class MemberServiceImpl implements MemberService{
         System.out.println(selectMemberID);
         return selectMemberID == null ? true : false;
     }
-
+    @Override
+    public String checkInfo(MemberVO memberVO) {
+        return sqlSession.selectOne("memberMapper.checkInfo",memberVO);
+    }
     @Override
     public int updateMember1(MemberVO memberVO) {
         return sqlSession.update("memberMapper.updateMember1", memberVO);
@@ -49,10 +52,13 @@ public class MemberServiceImpl implements MemberService{
         return sqlSession.selectList("memberMapper.findId", member_mail);
     }
 
+
+
     @Override
-    public void updatePw(MemberVO memberVO) {
-        sqlSession.update("memberMapper.updatePw", memberVO);
+    public void changePw(MemberVO memberVO) {
+        sqlSession.update("memberMapper.changePw", memberVO);
     }
+
 
 
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,7 +44,7 @@ public class BuyController {
         }
 
         model.addAttribute("Reservationlist",reservationVOList);
-        return "/buy/calendar";
+        return "/content/buy/calendar";
     }
     @ResponseBody
     @PostMapping("/setBasketCode")
@@ -66,7 +67,7 @@ public class BuyController {
             buyService.insertBasketAccom(basketAccomVO);
         }
 
-        return "/buy/buy_basket";
+        return "/content/buy/buy_basket";
     }
     @PostMapping("/accomReservation")
     public String accomReservation(BasketAccomVO basketAccomVO, Model model){
@@ -79,7 +80,7 @@ public class BuyController {
         buyService.insertReservation(basketAccomVO);
         ReservationVO reservationVO= buyService.selectReservationOne(randid);
         model.addAttribute("reservation",reservationVO);
-        return "buy/buy_reservation";
+        return "/content/buy/buy_reservation";
     }
 
     @GetMapping("/basketList")
@@ -87,7 +88,7 @@ public class BuyController {
         List<BasketAccomVO> list=buyService.selectBasketAccomList(((MemberVO)session.getAttribute("loginInfo")).getMemberId());
         System.out.println(list);
         model.addAttribute("basketList",list);
-        return "/buy/basket_list";
+        return "/content/buy/basket_list";
     }
 
     @GetMapping("/deleteBasketAccom")
@@ -101,13 +102,13 @@ public class BuyController {
     public List<ReservationVO> reservationList(String subAccomCode){
         return  buyService.selectReservation(subAccomCode);
     }
+
     @GetMapping("/reservList") // 결제리스트 조회
     public String reservList(HttpSession session, Model model){
         MemberVO memberVO=(MemberVO)session.getAttribute("loginInfo") ;
-        System.out.println(memberVO);
         List<ReservationVO> list= buyService.selectMemberReservationList(memberVO.getMemberId());
         model.addAttribute("Reservationlist",list);
-        return  "/buy/reservation_list";
+        return  "/content/buy/reservation_list";
     }
 
     @ResponseBody
@@ -117,8 +118,28 @@ public class BuyController {
         return  buyService.updateReservationstate(stateVO);
     }
 
+    @GetMapping("/reviewReset")
+    public String reviewReset( ReservationVO reservationVO, HttpSession session, Model model){
+
+        reservationVO= buyService.selectReservationOne(reservationVO.getReservationCode());
+        SampleSubVO subVO = buyService.selectSubAccom(reservationVO.getSubAccomCode());
+        subVO.setSampleACCVO(buyService.selectAccom(subVO.getAccomCode()));
+        ReviewVO reviewVO =buyService.selectReviewOne(reservationVO.getReservationCode());
+
+        reviewVO.setReviewImgList(buyService.selectReviewImgList(reviewVO.getReviewCode()));
+
+        System.out.println("333333333333333333333333333333333333333333333");
+        System.out.println(reviewVO.getReviewImgList().toString());
+        reservationVO.setSubAccom(subVO);
+        model.addAttribute("review",reviewVO);
+        model.addAttribute("reservation",reservationVO);
+
+        return"/content/buy/review";
+    }
+
     @GetMapping("/review")
     public  String reviewWrite(ReservationVO reservationVO, HttpSession session, Model model){
+
         reservationVO= buyService.selectReservationOne(reservationVO.getReservationCode());
 //        if(session.getAttribute("loginInfo")!=null&&reservationVO.getMemberId().equals(((MemberVO)session.getAttribute("loginInfo")).getMemberId())){
 //            return"/buy/review";
@@ -128,27 +149,65 @@ public class BuyController {
         SampleSubVO subVO = buyService.selectSubAccom(reservationVO.getSubAccomCode());
         subVO.setSampleACCVO(buyService.selectAccom(subVO.getAccomCode()));
         reservationVO.setSubAccom(subVO);
-        System.out.println(reservationVO);
         model.addAttribute("reservation",reservationVO);
 
-        return"/buy/review";
+        return"/content/buy/review";
     }
-    @PostMapping("/insertReview")
-    public String insertReview(ReviewVO reviewVO, MultipartFile[] imgs){
-        String reviewCode= buyService.selectReviewCode();
-        System.out.println(imgs);
-        List<ReviewImgVO> imgList = UploadReviewUtil.multiFileUpload(imgs);
-        if (!imgList.isEmpty()) {
-            for (ReviewImgVO imgVO : imgList) {
-                imgVO.setReviewCode(reviewCode);
-            }
-        }else {
-            imgList = new ArrayList<>();
-        }
-        reviewVO.setReviewImgList(imgList);
 
-        reviewVO.setReviewCode(reviewCode);
-        buyService.insertReview(reviewVO);
+
+
+    @PostMapping("/insertReview")
+    public String insertReview(ReviewVO reviewVO,String[] reviewImgCode, MultipartFile[] imgs){
+
+        if(reviewVO.getReviewCode()==null||reviewVO.getReviewCode().equals("")){
+            String reviewCode= buyService.selectReviewCode();
+            List<ReviewImgVO> imgList = UploadReviewUtil.multiFileUpload(imgs);
+            if (!imgList.isEmpty()) {
+                for (ReviewImgVO imgVO : imgList) {
+                    imgVO.setReviewCode(reviewCode);
+                }
+            }else {
+                imgList = new ArrayList<>();
+            }
+            reviewVO.setReviewImgList(imgList);
+            reviewVO.setReviewCode(reviewCode);
+            buyService.insertReview(reviewVO);
+
+            ReservationStateVO stateVO=new ReservationStateVO();
+            stateVO.setReview("Y");
+            stateVO.setRefund("N");
+            stateVO.setRefundPrice("0");
+            stateVO.setReservationCode(reviewVO.getReservationCode());
+            buyService.updateReservationstate(stateVO);
+        }else {
+
+           if (imgs[0].isEmpty()){
+               buyService.updateReview(reviewVO);
+           }else {
+            reviewVO.setReviewImgList(new ArrayList<>());
+               for (String ImgCode:reviewImgCode) {
+                   ReviewImgVO r=new ReviewImgVO();
+                   r.setReviewCode(ImgCode);
+                   reviewVO.getReviewImgList().add(r);
+               }
+               buyService.deleteReviewImg(reviewVO);
+               List<ReviewImgVO> imgList = UploadReviewUtil.multiFileUpload(imgs);
+               if (!imgList.isEmpty()) {
+                   for (ReviewImgVO imgVO : imgList) {
+                       imgVO.setReviewCode(reviewVO.getReviewCode());
+                   }
+               }else {
+                   imgList = new ArrayList<>();
+               }
+               reviewVO.setReviewImgList(imgList);
+               reviewVO.setReviewCode(reviewVO.getReviewCode());
+               buyService.ReInsertReviewImg(reviewVO);
+               buyService.updateReview(reviewVO);
+
+           }
+           System.out.println(Arrays.toString(reviewImgCode));
+           System.out.println(reviewVO);
+       }
         return "redirect:/buy/reservList";
     }
 
@@ -159,7 +218,7 @@ public class BuyController {
         System.out.println(buyService.memberReviewList(vo.getMemberId()));
         model.addAttribute("myReviewList",buyService.memberReviewList(vo.getMemberId()));
 
-        return"buy/review_list";
+        return"/content/buy/review_list";
     }
     
     //주인이 보는 리뷰리스트 답변추가
@@ -168,7 +227,7 @@ public class BuyController {
         System.out.println(buyService.accomReviewList(subAccomVO.getAccomCode()));
         model.addAttribute("myReviewList",buyService.accomReviewList(subAccomVO.getAccomCode()));
 
-        return"buy/accom_review_list";
+        return"/content/buy/accom_review_list";
     }
 
     @ResponseBody
@@ -184,7 +243,7 @@ public class BuyController {
     @GetMapping("/adminCalendar")
     public String adminCalendar() {
 
-        return"/buy/admin_calendar";
+        return"/content/buy/admin_calendar";
     }
 
 }
