@@ -112,6 +112,13 @@ public class BuyServiceImpl implements BuyService{
     }
 
     @Override
+    public int deleteReview(String reviewCode) {
+        sqlSession.delete("buyMapper.deleteReviewImg",reviewCode);
+        sqlSession.delete("buyMapper.deleteAdminReview",reviewCode);
+        return sqlSession.delete("buyMapper.deleteReview",reviewCode);
+    }
+
+    @Override
     public List<ReviewImgVO> selectReviewImgList(String reviewCode) {
         return sqlSession.selectList("buyMapper.selectReviewImgList",reviewCode);
     }
@@ -134,5 +141,10 @@ public class BuyServiceImpl implements BuyService{
     @Override
     public int insertAdminReview(ReviewAdminVO reviewAdminVO) {
         return sqlSession.insert("buyMapper.insertAdminReview",reviewAdminVO);
+    }
+
+    @Override
+    public int deleteAdminReview(ReviewAdminVO reviewAdminVO) {
+        return sqlSession.delete("buyMapper.deleteAdminReview",reviewAdminVO);
     }
 }

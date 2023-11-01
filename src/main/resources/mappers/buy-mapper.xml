@@ -341,6 +341,7 @@
         SELECT
         RE.REVIEW_CODE
         , ACCOM_CODE
+        , RESERVATION_CODE
         ,(SELECT ACCOM_NAME FROM MAIN_ACCOM
         WHERE MAIN_ACCOM.ACCOM_CODE= RE.ACCOM_CODE) AS ACCOM_NAME
         , RE.MEMBER_ID
@@ -374,6 +375,15 @@
     ,#{content}
     )
 </insert>
+    <delete id="deleteAdminReview">
+        DELETE REVIEW_ADMIN
+        WHERE  REVIEW_CODE=#{reviewCode}
+    </delete>
+
+    <delete id="deleteReview">
+        DELETE REVIEW
+        WHERE  REVIEW_CODE=#{reviewCode}
+    </delete>
     <update id="updateReview">
         UPDATE REVIEW
         SET

@@ -81,7 +81,7 @@
         </style>
     </th:block>
 </head>
-    
+
 <body>
 
     <th:block layout:fragment="content">
@@ -90,13 +90,14 @@
                 <div class="main">
                     <h3 class="m1_title">예약내역</h3>
                     <div class="tbl">
-                        <table class="board_type">
+                        <table class="board_type on">
                             <colgroup>
                                 <col width="20%" style=" border-radius: 0 0 0 50%;">
                                 <col width="10%">
                                 <col width="20%">
                                 <col width="10%">
-                                <col width="30%">
+                                <col width="20%">
+                                <col width="10%">
                                 <col width="10%">
                             </colgroup>
                             <thead>
@@ -104,15 +105,15 @@
                                 <th>작성자</th>
                                 <th>작성일자</th>
                                 <th>숙박업소명</th>
-                                <th>내용</th>
+                                <th colspan="2">내용</th>
                                 <th style="border-radius: 0 15px 0 0;">답변</th>
                             </thead>
                             <tbody>
-                                <tr th:if="${myReviewList == null}">
+                                <tr th:if="${#lists.size(myReviewList) == 0} ">
                                     <td colspan="6">
                                         <div class="data_no">
                                             <div class="cont">
-                                                <strong>"현재 예약 내역이 존재하지 않습니다."</strong><br>
+                                                <strong>"현재 작성한 리뷰가 존재하지 않습니다."</strong><br>
                                                 "즐거운 여행 계획을 준비해 보세요!"
                                             </div>
                                         </div>
@@ -129,7 +130,10 @@
                                     <td>[[${review.memberId}]]</td>
                                     <td>[[${review.writeDate}]]</td>
                                     <td>[[${review.sampleACCVO.accomName}]]</td>
-                                    <td>[[${review.content}]]</td>
+                                    <td style="text-overflow:ellipsis; overflow: hidden; white-space: nowrap;">[[${review.content}]]</td>
+                                    <td><input type="button" value="삭제" onclick="aplydelete(this)"
+                                            th:data-review-code="${review.reviewCode}"
+                                            th:data-reservation-code="${review.reservationCode}"></td>
                                     <td th:if="${review.reviewAdminVO.memberId == null}">X</td>
                                     <td th:if="${review.reviewAdminVO.memberId != null}">
                                         <input type="button" value="답변보기" onclick="openPopup(this)"
@@ -174,6 +178,57 @@
                 <textarea name="" id="" cols="100" rows="100" style="
                 resize: none;">${tag.dataset.replyContent}</textarea>
     `);
+        }
+
+        function aplydelete(tag) {
+            if (confirm('리뷰를 지우시겠습니까?')) {
+                fetch('/buy/deleteReview', { //요청경로
+                    method: 'POST',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                    },
+                    //컨트롤러로 전달할 데이터
+                    body: new URLSearchParams({
+                        reviewCode: tag.dataset.reviewCode,
+                        reservationCode: tag.dataset.reservationCode
+                    })
+                })
+                    .then((response) => {
+                        if (!response.ok) {
+                            alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+                            return;
+                        }
+
+                        return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
+                        //return response.json(); //나머지 경우에 사용
+                    })
+                    //fetch 통신 후 실행 영역
+                    .then((data) => {//data -> controller에서 리턴되는 데이터!
+                        let tbody=tag.parentNode.parentNode.parentNode;
+                        tag.parentNode.parentNode.remove();
+                        console.log(document.querySelectorAll('tr').length)
+                        console.log(tbody)
+                        if(document.querySelectorAll('tr').length==1){
+                            tbody.innerHTML=`<tr>
+                                    <td colspan="6">
+                                        <div class="data_no">
+                                            <div class="cont">
+                                                <strong>"현재 작성한 리뷰가 존재하지 않습니다."</strong><br>
+                                                "즐거운 여행 계획을 준비해 보세요!"
+                                            </div>
+                                        </div>
+                                    </td>
+                        </tr>
+                        `
+                        }
+                    })
+                    //fetch 통신 실패 시 실행 영역
+                    .catch(err => {
+                        alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+                        console.log(err);
+                    });
+            }
         }
     </script>
 </th:block>
