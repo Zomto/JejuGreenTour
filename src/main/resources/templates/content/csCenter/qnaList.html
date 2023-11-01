@@ -42,8 +42,8 @@
                                     [[${qna.qnaAnswer}]]
                                 </div>
                                 <div class="qna_btn">
-                                    <input type="button" th:onclick="|location.href='@{/cs/updateQnaForm(annNum=${annDetail.annNum})}'|" value="수정">
-                                    <input type="button" th:onclick="|location.href='@{/cs/delelteQna(annNum=${annDetail.annNum})}'|" value="삭제">
+                                    <input type="button" th:onclick="|location.href='@{/cs/updateQnaForm(qnaCode=${qna.qnaCode})}'|" value="수정">
+                                    <input type="button" th:onclick="|location.href='@{/cs/delelteQna(qnaCode=${qna.qnaCode})}'|" value="삭제">
                                 </div>
                             </li>
                         </ul>
