@@ -47,7 +47,7 @@
             , TO_CHAR(ANN_DATE,'YYYY-MM-DD') AS ANN_DATE
         FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LIST
         WHERE ANN.ANN_CATE = LIST.CATE_CODE
-        <if test="annCate != null">
+        <if test='annCate != null and !annCate.equals("")'>
             AND ANN_CATE = #{annCate}
         </if>
         ORDER BY ANN_NUM DESC
@@ -83,6 +83,11 @@
     <select id="selectAnnCnt" resultType="int">
         SELECT COUNT(ANN_NUM)
         FROM ANNOUNCEMENT
+        WHERE 1 = 1
+        <if test='annCate != null and !annCate.equals("")'>
+            AND ANN_CATE = #{annCate}
+        </if>
+
     </select>
 
     <!--  공지사항 세부 페이지  -->
@@ -145,7 +150,7 @@
     </select>
 
     <!--  QNA 목록 추가  -->
-    <insert id="inputQna">
+    <insert id="insertQna">
         INSERT INTO QNA (
         QNA_CODE
         , CATE_CODE
@@ -167,6 +172,8 @@
     </select>
 
 
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
     <!--  문의하기  -->
     <resultMap id="inquire" type="com.jejugreentour.jgt.csCenter.vo.InquireVO" >
         <id column="INQ_CODE" property="inqCode"/>
@@ -177,6 +184,7 @@
         <result column="IS_RESPONSE" property="isResponse"/>
         <result column="INQ_DATE" property="inqDate"/>
         <collection property="inqCateList" resultMap="inqCate"/>
+        <collection property="inqImgList" resultMap="inqImg"/>
     </resultMap>
 
     <resultMap id="inqCate" type="com.jejugreentour.jgt.csCenter.vo.InqCateVO">
@@ -205,18 +213,19 @@
         WHERE INQ.CATE_CODE = CATE.CATE_CODE
         OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
-    
-    <select id="InqDetail">
+
+    <!--  문의하기 세부 페이지  -->
+    <select id="inqDetail" resultMap="inquire">
         SELECT
-            , INQ_CODE
+             INQ_CODE
             , INQ.CATE_CODE
-            , CATE NAME
+            , CATE_NAME
             , MEMBER_ID
             , TITLE
             , CONTENT
             , TO_CHAR(INQ_DATE,'YYYY-MM-DD') AS INQ_DATE
             , IS_RESPONSE
-        FROM INQUIRE INQ, INQ_CATE CATE
+        FROM INQUIRE INQ, INQ_CATE_LIST CATE
         WHERE INQ.CATE_CODE = CATE.CATE_CODE
         AND INQ_CODE = #{inqCode}
     </select>
@@ -225,6 +234,55 @@
         SELECT COUNT(INQ_CODE)
         FROM INQUIRE
     </select>
+
+    <!--  문의하기 목록 추가  -->
+    <insert id="insertInq">
+        INSERT INTO INQUIRE (
+        INQ_CODE
+        , CATE_CODE
+        , TITLE
+        , CONTENT
+        )
+        VALUES (
+        (SELECT 'INQ_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(INQ_CODE, 5))),0) + 1, 3, '0')
+        FROM INQUIRE)
+        , #{cateCode}
+        , #{title}
+        , #{content}
+        )
+    </insert>
+
+    <!--  문의하기 사진 추가  -->
+    <insert id="insertInqImgs">
+        INSERT INTO INQ_IMG (
+            IMG_CODE
+            , ORIGIN_FILE_NAME
+            , ATTACHED_FILE_NAME
+            , INQ_CODE
+        )
+        <foreach collection="inqImgList" item="inqImg" separator="UNION ALL" index="idx">
+            SELECT (SELECT 'IMG_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(IMG_CODE, 5))),0) + 1 + #{idx}, 3, '0')
+            FROM INQ_IMG)
+            , #{inqImg.originFileName}
+            , #{inqImg.attachedFileName}
+            , #{inqImg.inqCode}
+            FROM DUAL
+        </foreach>
+    </insert>
+
+    <!--  문의하기 추가  -->
+    <!-- 아이템 코드 호출 -->
+    <select id="nextInqCode" resultType="String">
+        SELECT 'INQ_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(INQ_CODE, 5))),0) + 1, 3, '0')
+        FROM INQUIRE
+    </select>
+
+    <select id="inqImgList" resultMap="inqImg">
+        SELECT *
+        FROM INQ_IMG
+        WHERE INQ_CODE = #{inqCode}
+    </select>
+
 
 
 </mapper>

@@ -19,7 +19,6 @@
                     <div class="title_area"><span class="title_cate">[ [[${annDetail.annCateList.cateName}]] ]</span>[[${annDetail.annTitle}]]<span class="title_date">[[${annDetail.annDate}]]</span></div>
                 </div>
                 <div class="content_group" th:utext="${annDetail.annContent}">
-                    <div th:class="${숫자 +클래스 이름}">
                         내용 출력 
                     </div>
                 </div>
@@ -34,7 +33,7 @@
                         <a class="page_nextBtn" th:href="@{/cs/annDetailForm(nowPage=${annVO.endPage + 1})}"><span th:if="${annVO.next}">다음</span></a>
                     </div> -->
                     <div class="inquireBtn">
-                        <button onclick="location.href='/cs/annForm';">목록</button>
+                        <button onclick="location.href='/cs/annListForm';">목록</button>
                     </div>
                 </div>
             </div>
