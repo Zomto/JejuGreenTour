@@ -89,20 +89,35 @@
         )
     </insert>
     <insert id="addSubAccom">
-        INSERT INTO SUB_ACCOM(
-        SUB_ACCOM_NAME
-        ,SUB_ACCOM_INTRO
-        ,BASIC_MAN
-        ,MAX_MAN
-        ,ACCOM_START_TIME
-        ,ACCOM_END_TIME
-        ,RENT_TIME
-        ,SUB_ACCOM_CATE
-        ,
-        )VALUES(
-
-        )
+      INSERT INTO SUB_ACCOM(SUB_ACCOM_CODE
+    , ACCOM_CODE
+    , SUB_ACCOM_NAME
+    , SUB_ACCOM_INTRO
+    , SUB_ACCOM_CATE
+    , BASIC_MAN
+    , MAX_MAN
+    , ACCOM_START_TIME
+    , ACCOM_END_TIME
+    , RENT_TIME
+    , DAY_USE_PRICE
+    , RESERVATION_PRICE
+    , DAY_USE_CAN)
+    VALUES ((SELECT 'SUB_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(SUB_ACCOM_CODE,5))),0)+1,3,'0')FROM SUB_ACCOM)
+    , #{ACCOM_CODE}
+    , #{101호}
+    , #{설명}
+    , #{방사이즈}
+    , #{인원수}
+    , #{최대인원수}
+    ,'hh:00:00'  체크아웃 오전 9
+    ,'hh:00:00'  체크아웃 오후 15 16
+    ,#{대실시간}
+    ,#{대실가격}
+    ,#{1박 가격}
+    ,#{대실 가능 여부 Y});
     </insert>
+
+
 <!--
 <result column="SUB_ACCOM_CATE"    property="subAccomCate" />
         <result column="ACCOM_PRICE"    property="accomPrice" />
