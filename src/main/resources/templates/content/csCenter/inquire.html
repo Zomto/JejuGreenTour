@@ -12,7 +12,7 @@
 </head>
 <body>
     <th:block layout:fragment="content">
-        <form action="" method="post">
+        <form action="/cs/insertInq" method="post" enctype="multipart/form-data">
             <div class="wrap">
                 <div class="w_in">
                     <h3>1:1 문의하기</h3>
@@ -25,11 +25,16 @@
                     <div class="box">
                         <div>
                             <label for="">문의유형</label>
-                            <input type="text" name="cateName">
+                            <select name="cateCode" id="">
+                                <option value="CATE_001">숙박</option>
+                                <option value="CATE_002">결제</option>
+                                <option value="CATE_003">혜택</option>
+                                <option value="CATE_004">기타</option>
+                            </select>
                         </div>
                         <div>
                             <label for="">작성자</label>
-                            <input type="text" name="memberId">
+                            <input type="hidden" name="memberId">
                         </div>
                         <div>
                             <label for="">예약코드</label>
@@ -41,7 +46,7 @@
                         </div>
                         <div>
                             <label for="">내용</label>
-                            <input type="text" name="content">
+                            <textarea name="content" id="" cols="60" rows="10"></textarea>
                         </div>
                         <div>
                             <label for="">사진</label>
@@ -49,8 +54,8 @@
                         </div>
                     </div>
                     <div>
-                        <button onclick="">취소</button>
-                        <button onclick="">등록</button>
+                        <input type="button" value="취소">
+                        <input type="submit" value="등록">
                     </div>
                 </div>
             </div>
