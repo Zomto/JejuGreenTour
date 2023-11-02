@@ -2,6 +2,8 @@ package com.jejugreentour.jgt.buy.vo;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ReservationVO {
     private String reservationCode;
@@ -15,4 +17,5 @@ public class ReservationVO {
     private String dayuse;
     private ReservationStateVO stateVO;
     private SampleSubVO subAccom;
+    private List<PlanVO> planList;
 }

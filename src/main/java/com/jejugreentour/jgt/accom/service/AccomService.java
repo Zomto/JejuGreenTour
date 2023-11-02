@@ -2,6 +2,7 @@ package com.jejugreentour.jgt.accom.service;
 
 import com.jejugreentour.jgt.accom.vo.MainAccomImgVO;
 import com.jejugreentour.jgt.accom.vo.MainAccomVO;
+import com.jejugreentour.jgt.accom.vo.SubAccomImgVO;
 import com.jejugreentour.jgt.accom.vo.SubAccomVO;
 
 import java.util.List;
@@ -36,4 +37,9 @@ public interface AccomService {
     // 서브 업소 등록
     public void addSubAccom(SubAccomVO subAccomVO);
 
+    // 숙박 방 사진 불러오기
+    public List<SubAccomImgVO> selectSubAccomImg(String subAccomCode);
+
+    // 숙박 방 상세 조회
+    public SubAccomVO selectSubAccomDetail(String subAccomCode);
 }

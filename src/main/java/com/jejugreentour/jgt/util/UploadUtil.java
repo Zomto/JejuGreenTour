@@ -82,7 +82,7 @@ public class UploadUtil {
 
             // 파일 첨부
             try {
-                File file = new File(ConstantVariable.UPLOAD_PATH2 + attachedFileName);
+                File file = new File(ConstantVariable.UPLOAD_PATH3 + attachedFileName);
                 img.transferTo(file);
 
                 subAccomImgVO.setOriginFileName(originFileName);

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/main_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <th:block layout:fragment="content_css">
+
+    </th:block>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <div class="subAccom">
+            <!-- 메인이미지 -->
+            <div class="subAccomMainImg" th:each="img : ${imgList}">
+                <th:block th:if="${img.isMain == 'Y'}">
+                    <img width="100%" height="280px" th:src="${'/img/subaccom/'+ img.attachedFileName}"
+                        alt="">
+                </th:block>
+            </div>
+            <div class="subAccomDetail">
+                <div>name : [[${subAccom.subAccomName}]]</div>
+                <div>intro : [[${subAccom.subAccomIntro}]]</div>
+                <div>옵션 : [[${subAccom.subAccomCate}]]</div>
+                <div class="subAccomSubImg" th:each="img : ${subAccom}">
+                
+                </div>
+                <div>평균인원 : [[${subAccom.basicMan}]]</div>
+                <div>최대인원 : [[${subAccom.maxMan}]]</div>
+                <div>체크인시간 : [[${subAccom.accomStartTime}]]</div>
+                <div>체크아웃시간 : [[${subAccom.accomEndTime}]]</div>
+                <div>1박 가격 : [[${subAccom.reservationPrice}]]</div>
+                <!-- 대실 가능시 -->
+                <div>대실시간 : [[${subAccom.rentTime}]] </div>
+                <div>대실 가능 : [[${subAccom.dayuseCan}]]</div>
+                <div>대실 가격: [[${subAccom.dayusePrice}]]</div>
+            </div>
+            <div class="subAccomSubImg" th:each="img : ${imgList}">
+                <th:block th:if="${img.isMain == 'N'}">
+                    <img width="100%" height="280px" th:src="${'/img/subaccom/'+ img.attachedFileName}"
+                        alt="">
+                </th:block>
+            </div>
+        </div>
+    </th:block>
+</body>
+<th:block layout:fragment="content_js">
+
+</th:block>
+
+</html>

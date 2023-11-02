@@ -255,6 +255,19 @@ public class BuyController {
         buyService.updateReservationstate(stateVO);
         return  buyService.deleteReview(reviewVO.getReviewCode());
     }
+
+
+    @GetMapping("reservationPlan")
+    public String reservationPlan(ReservationVO reservationVO){
+
+        return "/content/buy/reservation_plan";
+    }
+
+
+
+
+
+
     @GetMapping("/adminCalendar")
     public String adminCalendar() {
 
