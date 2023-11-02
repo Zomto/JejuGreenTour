@@ -4,10 +4,42 @@ function checkcansle() {
     });
     document.querySelector('#noting').checked = true;
 }
-function notingcheck() {
-
+function notingcheck(tag) {
+    console.log(tag)
+    if(tag.value == document.querySelector('input[value="금연"]').value)
+    {
+        document.querySelector('input[value="흡연_O"]').checked = false;
+    }
+    if(tag.value == document.querySelector('input[value="흡연_O"]').value)
+    {
+        document.querySelector('input[value="금연"]').checked = false;
+    }
+    if(tag.value == document.querySelector('input[value="반려동물_O"]').value)
+    {
+        document.querySelector('input[value="반려동물_X"]').checked = false;
+    }
+    if(tag.value == document.querySelector('input[value="반려동물_X"]').value)
+    {
+        document.querySelector('input[value="반려동물_O"]').checked = false;
+    }
     document.querySelector('#noting').checked = false;
 }
+
+function candayuse(tag){
+    let rent = document.querySelector('select[name="accomStartTime"]').value - Number(document.querySelector('select[name="accomEndTime"]').value) - 2;
+    if (tag.checked && rent < 1) {
+        alert("체크인 체크아웃 가능 시간을 수정해 주세요")
+        tag.checked=false;
+    }
+}
+function dayusecheck(tag){
+    let dayusecan = document.querySelector('.rent')
+    if(!dayusecan.checked){
+        alert("대실을 체크해 주세요")
+        tag.value=0;
+    }
+}
+
 
 
 function insertsubaccom() {
@@ -39,6 +71,21 @@ function insertsubaccom() {
             alert('대실 요금을 입력해주세요')
         return;
     }
+    let rent = document.querySelector('select[name="accomStartTime"]').value - Number(document.querySelector('select[name="accomEndTime"]').value) - 2;
+    let dayusecan = document.querySelector('.rent')
+    if (dayusecan.checked && rent < 1) {
+        alert("체크인 체크아웃 가능 시간을 수정해 주세요")
+        return;
+    }
+
+    let files = document.querySelector('input[type="file"]')
+    let file = document.querySelector('input[name="files"]')
+    if (file.value == null || files.value == null) {
+        alert("이미지를 추가해 주세요")
+        return;
+    }
+
+
 
     document.querySelector('form[id="joinForm"]').submit()
 
