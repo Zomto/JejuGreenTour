@@ -35,7 +35,7 @@
     font-weight: 700;
 }
 .logoA{
-    margin-left: 206px;
+    margin-left: 257px;
     display: block;
     width: 200px;
     height: 160px;
@@ -128,7 +128,7 @@ svg{
 .changeBtn{
     width: 400px;
     height: 40px;
-    margin: 5px 113px;
+    margin: 5px 145px;
     border: 1px solid #dadada;
     border-radius: 5px;
     color: #fff;
