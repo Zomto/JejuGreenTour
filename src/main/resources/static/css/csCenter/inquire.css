@@ -1,10 +1,8 @@
 @charset "UTF-8";
 
-.box div{
-    border: 1px solid #999;
-    padding: 20px;
+.wrap{
+    margin: 0 100px;
 }
-
 .inquire a{
     color: #1db954;
 }
@@ -12,4 +10,63 @@
 
 textarea{
     resize: none;
+}
+.title{
+    width: 150px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #444;
+    border-bottom: 5px solid #dadada;
+    margin-bottom: 20px;
+}
+.textBox{
+    display: flex;
+}
+.wait{
+    font-size: 22px;
+    color: #1db954;
+    margin-top: -4px;
+    margin-right: 5px;
+}
+.textA{
+    font-size: 18px;
+    color: #1db954;
+    font-weight: 700;
+    margin-right: 5px;
+}
+.text{
+    font-size: 18px;
+    color: #888;
+    margin-right: 5px;
+}
+.textA:hover{
+    text-decoration: underline;
+    text-underline-position: under;
+    text-decoration-thickness: 0.1em;
+}
+.textBlock{
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+.box{
+    border: 1px solid #dadada;
+    border-radius: 7px;
+}
+.label{
+    width: 100px;
+    font-size: 20px;
+    margin-right: 30px;
+    color: #888;
+}
+.inputBox{
+    display: flex;
+    padding: 20px 30px;
+    border-bottom: 1px solid #dadada;
+}
+.inputBox.img{
+    border: 0;
+}
+input{
+    outline: none;
+    border: 0;
 }
