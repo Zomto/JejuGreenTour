@@ -259,13 +259,14 @@ public class BuyController {
 
     @GetMapping("reservationPlan")
     public String reservationPlan(ReservationVO reservationVO){
-
         return "/content/buy/reservation_plan";
     }
 
 
-
-
+    @GetMapping("/sample")
+    public String sample(){
+        return ("/content/buy/sample");
+    }
 
 
     @GetMapping("/adminCalendar")

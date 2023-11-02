@@ -86,7 +86,7 @@
                                 <div class="checkBoxRent">
                                     <span>대실 여부</span>
                                     <div class="rentDiv">
-                                        <input type="checkbox" class="rent" name="dayuseCan" value="Y">
+                                        <input type="checkbox" class="rent" name="dayuseCan" value="Y" onclick="candayuse(this)">
                                     </div>
                                 </div>
                             </div>
@@ -101,41 +101,41 @@
                                     <span>해당 없음</span>
                                 </div>
                                 <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="subAccomCates" value="풀빌라" onclick="notingcheck();">
+                                    <input type="checkbox" name="subAccomCates" value="풀빌라" onclick="notingcheck(this);">
                                     <span>풀빌라</span>
                                 </div>
                                 <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="subAccomCates" value="오션_뷰" onclick="notingcheck();">
+                                    <input type="checkbox" name="subAccomCates" value="오션_뷰" onclick="notingcheck(this);">
                                     <span>오션 뷰</span>
                                 </div>
                                 <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="subAccomCates" value="PC_룸" onclick="notingcheck();">
+                                    <input type="checkbox" name="subAccomCates" value="PC_룸" onclick="notingcheck(this);">
                                     <span>PC 룸</span>
                                 </div>
                                 <div class="checkBoxSubAccomCate last">
-                                    <input type="checkbox" name="subAccomCates" value="N플릭스" onclick="notingcheck();">
+                                    <input type="checkbox" name="subAccomCates" value="N플릭스" onclick="notingcheck(this);">
                                     <span>N플릭스</span>
                                 </div>
                             </div>
                             <div class="checkSubAccomCate2">
                                 <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="subAccomCates" value="금연"  onclick="notingcheck();">
+                                    <input type="checkbox" name="subAccomCates" value="금연"  onclick="notingcheck(this);">
                                     <span>금연</span>
                                 </div>
                                 <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="subAccomCates" value="흡연_O"  onclick="notingcheck();">
+                                    <input type="checkbox" name="subAccomCates" value="흡연_O"  onclick="notingcheck(this);">
                                     <span>흡연 O</span>
                                 </div>
                                 <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="subAccomCates" value="반려동물_O" onclick="notingcheck();">
+                                    <input type="checkbox" name="subAccomCates" value="반려동물_O" onclick="notingcheck(this);">
                                     <span>반려동물 O</span>
                                 </div>
                                 <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="subAccomCates" value="반려동물_X" onclick="notingcheck();">
+                                    <input type="checkbox" name="subAccomCates" value="반려동물_X" onclick="notingcheck(this);">
                                     <span>반려동물 X</span>
                                 </div>
                                 <div class="checkBoxSubAccomCate last">
-                                    <input type="checkbox" name="subAccomCates" value="노키즈_존" onclick="notingcheck();">
+                                    <input type="checkbox" name="subAccomCates" value="노키즈_존" onclick="notingcheck(this);">
                                     <span>노키즈 존</span>
                                 </div>
                             </div>
@@ -146,12 +146,13 @@
                         <div class="input_area">
                             <div class="input_inner">
                                 <span>숙박 : </span>
-                                <input type="number" id="reservationPrice" name="reservationPrice">
+                                <input type="number" id="reservationPrice" name="reservationPrice" value="0">
                                 <span>원</span>
                             </div>
                             <div class="input_inner">
                                 <span>대실 : </span>
-                                <input type="number" id="dayusePrice" name="dayusePrice">
+                                <input type="number" id="dayusePrice" name="dayusePrice" value="0"
+                                onchange="dayusecheck(this)">
                                 <span>원</span>
                             </div>
                         </div>
@@ -174,10 +175,13 @@
                 </div>
 
             </div>
-            <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-            <script src="/js/accom/addSubAccom.js"></script>
         </form>
     </th:block>
 </body>
+<th:block layout:fragment="content_js">
+    
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/js/accom/addSubAccom.js"></script>
+</th:block>
 
 </html>

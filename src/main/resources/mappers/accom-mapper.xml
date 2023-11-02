@@ -63,10 +63,9 @@
         <result column="CATE_NAME"      property="cateName" />
     </resultMap>
 
-    <resultMap id="accomLoc" type="com.jejugreentour.jgt.accom.vo.AccomLocVO">
-        <result column="ACCOM_LOC_CODE"      property="accomLocCode" />
-        <result column="LOC_NAME"      property="LOC_NAME" />
-    </resultMap>
+    <select id="">
+
+    </select>
 
     <insert id="addAccom">
         INSERT INTO MAIN_ACCOM (
@@ -235,7 +234,7 @@
         , RENT_TIME
         , DAYUSE_PRICE
         , RESERVATION_PRICE
-        <if test='dayuseCan != null and !dayuseCan.equals("")'>
+        <if test='dayuseCan.equals("Y")'>
             , DAY_USE_CAN
         </if>
         )
@@ -256,14 +255,14 @@
         , #{accomStartTime}||':00:00'
         , #{accomEndTime}||':00:00'
         , (TO_NUMBER(#{accomStartTime}) - TO_NUMBER(#{accomEndTime}) - 2)
-        <if test='dayusePrice != null and !dayusePrice.equals("")'>
+        <if test='dayusePrice != null and !dayusePrice.equals("") and dayuseCan.equals("Y")'>
             , #{dayusePrice}
         </if>
-        <if test='dayusePrice == null or dayusePrice.equals("")'>
+        <if test='dayusePrice == null or dayusePrice.equals("") or !dayuseCan.equals("Y")'>
             , '0'
         </if>
         ,#{reservationPrice}
-        <if test='dayuseCan != null and !dayuseCan.equals("")'>
+        <if test='dayuseCan.equals("Y")'>
             , #{dayuseCan}
         </if>
         )
@@ -317,6 +316,22 @@
         FROM SUB_ACCOM_IMG
         WHERE SUB_ACCOM_CODE = #{subAccomCode}
     </select>
-    
+
+
+    <select id="searchAccom" resultMap="mainAccom">
+        SELECT
+            ACCOM_CODE
+            , ACCOM_NAME
+            , ACCOM_ADDR
+            , ADDR_DETAIL
+            , ACCOM_INTRO
+            , ACCOM_CATE
+            , ACCOM_CEO
+            , ACCOM_LOC
+        FROM MAIN_ACCOM MAIN, ACCOM_CATEGORY CATE
+        WHERE MAIN.ACCOM_CATE = CATE.ACCOM_CATE
+        ORDER BY ACCOM_CODE DESC
+        OFFSET 0 ROWS FETCH FIRST 7 ROWS ONLY
+    </select>
     
 </mapper>
