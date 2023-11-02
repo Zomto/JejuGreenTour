@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/main_layout}">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .product-container {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .product-image {
+            width: 100%;
+            border-radius: 5px;
+        }
+    </style>
+    <div class="product-container">
+        <img class="product-image" src="제품이미지주소.jpg" alt="제품 이미지">
+        <h2>제품명: 제품 이름을 여기에 입력하세요</h2>
+        <p>가격: $100</p>
+        <p>제품 설명: 제품에 대한 자세한 설명을 여기에 입력하세요. 제품의 특징, 재료, 크기, 색상 등을 포함할 수 있습니다.</p>
+        <p>구매 링크: <a href="구매링크주소">여기를 클릭하세요</a></p>
+    </div>
+</th:block>
+</body>
+</html>

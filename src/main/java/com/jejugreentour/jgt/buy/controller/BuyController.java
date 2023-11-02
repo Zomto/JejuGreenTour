@@ -259,13 +259,19 @@ public class BuyController {
 
     @GetMapping("reservationPlan")
     public String reservationPlan(ReservationVO reservationVO){
+        String accomStartTime="";
+        String accomEndTime=" ";
+        if(Integer.parseInt(accomStartTime.split(":")[0])-Integer.parseInt(accomEndTime.split(":")[0]) >= 1){
 
+        }
         return "/content/buy/reservation_plan";
     }
 
 
-
-
+    @GetMapping("/sample")
+    public String sample(){
+        return ("/content/buy/sample");
+    }
 
 
     @GetMapping("/adminCalendar")
