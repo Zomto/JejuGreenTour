@@ -17,15 +17,28 @@ ul,
 li {
     list-style: none;
 }
-
+.category.change{
+    
+}
 /*tab css*/
 .tab {
-
     width: 600px;
     height: 290px;
     margin-left: 305px;
+    margin-top: 70px;
 }
-
+.h_title{
+    position: absolute;
+    top: 280px;
+    left: 666px;
+    width: 150px;
+    color: #444;
+    font-size: 22px;
+    font-weight: 700;
+    /* padding-bottom: 20px; */
+    margin-bottom: 20px;
+    border-bottom: 5px solid #dadada;
+}
 .tabnav {
     font-size: 0;
     width: 600px;
