@@ -30,14 +30,10 @@ function joinValidate() {
     if (!telRegex.test(tel)) {
         inputInvalidate('#tel-error-div', '연락처 이상!');
     }
-
     // 2. submit 실행
     // form 태그 선택 --> submit() 함수 실행
     document.querySelector('#editMember1').submit();
 }
-
-
-
 // Validate 실패시 메세지 설정
 function inputInvalidate(tagId, message) {
     document.querySelector(tagId).style.display = 'block';
@@ -194,24 +190,50 @@ function verifyCode() {
     }
 }
 
+// function checkCode() {
+//     let document.querySelector('#editMember_1') = edit
+//     if (confirmCode == null) {
+//         document.querySelector('.alertbox').innerHTML="유효하지 않은 코드 입니다."
+//         document.querySelector('.alertbox').style.color='red';
+//     } else {
+//         let inputCode = document.querySelector('#verify_code').value
+//         if (inputCode == confirmCode) {
+//             alert("인증되었습니다! 절차를 진행해주세요!")
+//             document.querySelector('#editMember_1').disabled = false
+//             const additionalInputDiv = document.getElementById("additionalInput");
+//             additionalInputDiv.style.display = "none";
+            
+//         } else {
+//             document.querySelector('.alertbox').innerHTML="인증번호를 정확하게 입력해주세요"
+//             document.querySelector('.alertbox').style.color='red';
+//         }
+//     }
+
+// }
 function checkCode() {
+    let edit = document.querySelector('#editMember_1');
     if (confirmCode == null) {
-        document.querySelector('.alertbox').innerHTML="유효하지 않은 코드 입니다."
-        document.querySelector('.alertbox').style.color='red';
+        document.querySelector('.alertbox').innerHTML = "유효하지 않은 코드 입니다.";
+        document.querySelector('.alertbox').style.color = 'red';
     } else {
-        let inputCode = document.querySelector('#verify_code').value
+        let inputCode = document.querySelector('#verify_code').value;
         if (inputCode == confirmCode) {
-            alert("인증되었습니다! 가입절차를 진행해주세요!")
-            document.querySelector('#editMember_1').disabled = false
+            alert("인증되었습니다! 절차를 진행해주세요!");
+            edit.disabled = false; // 버튼 활성화
             const additionalInputDiv = document.getElementById("additionalInput");
             additionalInputDiv.style.display = "none";
+
+            // 클릭 이벤트를 감지하여 알람 띄우기
+            edit.addEventListener('click', function okEdit() {
+                alert("수정이 완료되었습니다!");
+            });
         } else {
-            document.querySelector('.alertbox').innerHTML="인증번호를 정확하게 입력해주세요"
-            document.querySelector('.alertbox').style.color='red';
+            document.querySelector('.alertbox').innerHTML = "인증번호를 정확하게 입력해주세요";
+            document.querySelector('.alertbox').style.color = 'red';
         }
     }
-
 }
+
 let confirmCode = null
 
 function changePw() {

@@ -17,15 +17,28 @@ ul,
 li {
     list-style: none;
 }
-
+.category.change{
+    
+}
 /*tab css*/
 .tab {
-    
     width: 600px;
     height: 290px;
     margin-left: 305px;
+    margin-top: 70px;
 }
-
+.h_title{
+    position: absolute;
+    top: 280px;
+    left: 666px;
+    width: 150px;
+    color: #444;
+    font-size: 22px;
+    font-weight: 700;
+    /* padding-bottom: 20px; */
+    margin-bottom: 20px;
+    border-bottom: 5px solid #dadada;
+}
 .tabnav {
     font-size: 0;
     width: 600px;
@@ -98,6 +111,7 @@ li {
     font-size: 18px;
     font-weight: 700;
 }
+
 .contentBlock {
     padding: 15px 30px;
     margin: 10px auto;
@@ -146,7 +160,7 @@ svg {
 }
 
 .email_verify svg {
-    top: 8px;
+    top: 1px;
 }
 
 /* .mb-3{
@@ -154,7 +168,7 @@ svg {
 } */
 #memberEmail,
 #verify_code {
-    margin: 8px 0 0 40px;
+    margin: 1px 0 0 40px;
     height: 20px;
     outline: none;
     border: 1px solid #dadada;
@@ -299,7 +313,8 @@ svg {
 .changeBtn:hover {
     background-color: #1ab752;
 }
-#editMember_2{
+
+#editMember_2 {
     width: 400px;
     height: 53px;
     border-radius: 6px;
@@ -309,4 +324,68 @@ svg {
     font-weight: 700;
     cursor: pointer;
     margin-left: 87px;
+}
+
+.join_input.four {
+    position: relative;
+    width: 500px;
+    height: 50px;
+    border: 1px solid #dadada;
+    border-radius: 7px;
+    margin-bottom: 15px;
+}
+
+.join_input>svg {
+    position: absolute;
+    z-index: 500;
+    top: 12px;
+    left: 10px;
+}
+
+.tel1,
+.tel2,
+.tel3 {
+    border-radius: 7px;
+    border: 1px solid #dadada;
+    color: rgb(117, 117, 117);
+    font-weight: 100;
+    font-size: 15px;
+    width: 50px;
+    height: 20px;
+    outline: none;
+}
+
+.tel1:focus,
+.tel2:focus,
+.tel3:focus {
+    border: 1px solid #1ab752;
+}
+
+.input_tel {
+    margin-top: 15px;
+    margin-left: 48px;
+}
+
+.tel2,
+.tel3 {
+    width: 50px;
+    box-sizing: border-box;
+    padding: 0 0 0 5px;
+    letter-spacing: 3px;
+}
+
+#editMember_1 {
+    width: 400px;
+    height: 53px;
+    border-radius: 6px;
+    border: 1px solid #dadada;
+    background-color: #03c75a;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    margin-left: 87px;
+
+}
+.myPageSide2{
+    color: #1ab752;
 }
