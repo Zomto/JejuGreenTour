@@ -161,4 +161,19 @@ public class AccomController {
         return "/index";
     }
 
+
+    @GetMapping("/subAccomDetail")
+    public String subAccomDetail(Model model, String subAccomCode) {
+        SubAccomVO vo = accomService.selectSubAccomDetail(subAccomCode);
+        List<SubAccomImgVO> img = accomService.selectSubAccomImg(subAccomCode);
+        model.addAttribute("subAccom", vo);
+        System.out.println(vo);
+        System.out.println(img);
+        model.addAttribute("imgList", img);
+        return "content/accom/subAccom_detail";
+
+    }
+
+
+
 }

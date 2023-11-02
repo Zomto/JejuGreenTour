@@ -2,6 +2,7 @@ package com.jejugreentour.jgt.accom.service;
 
 import com.jejugreentour.jgt.accom.vo.MainAccomImgVO;
 import com.jejugreentour.jgt.accom.vo.MainAccomVO;
+import com.jejugreentour.jgt.accom.vo.SubAccomImgVO;
 import com.jejugreentour.jgt.accom.vo.SubAccomVO;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
@@ -37,7 +38,6 @@ public class AccomServiceImpl implements AccomService {
     // 업소 상세 정보
     @Override
     public MainAccomVO selectMainAccomDetail(String accomCode) {
-        sqlSession.selectList("accomMapper.selectSubImg", accomCode);
         return sqlSession.selectOne("accomMapper.selectMainAccomDetail", accomCode);
     }
 
@@ -74,6 +74,15 @@ public class AccomServiceImpl implements AccomService {
         sqlSession.insert("accomMapper.insertSubImgs", subAccomVO);
     }
 
+    @Override
+    public List<SubAccomImgVO> selectSubAccomImg(String subAccomCode) {
+        return  sqlSession.selectList("accomMapper.selectSubAccomImg", subAccomCode);
+    }
+
+    @Override
+    public SubAccomVO selectSubAccomDetail(String subAccomCode) {
+        return sqlSession.selectOne("accomMapper.selectSubAccomDetail", subAccomCode);
+    }
 
 
 }
