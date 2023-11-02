@@ -50,7 +50,7 @@ public interface CsService {
     public int updateQna(QnaVO qnaVO);
 
     // QNA 삭제
-    public int deleteQna(QnaVO qnaVO);
+    public int deleteQna(String qnaCode);
 
     // ---------------------------------------------------
 

@@ -26,17 +26,17 @@ function changePw() {
     let pw = document.querySelector('#InputchangePw').value;
     let pwCheck = document.querySelector('#InputchangePwCheck').value;
 
-    if (pw === '') {
+    if (pw == '') {
         pwBlock.placeholder = "비밀번호를 입력해 주세요."
         pwBlock.style.borderColor = "#ff3f3f";
         document.querySelector('.bi.bi-shield-lock-fill').setAttribute("fill", "#ff3f3f");
         return;
-    } else if (pwCheck === '') {
+    } else if (pwCheck == '') {
         pwCheckBlock.placeholder = "비밀번호를 확인 해 주세요."
         pwCheckBlock.style.borderColor = "#ff3f3f";
         document.querySelector('.bi.bi-shield-lock').setAttribute("fill", "#ff3f3f");
         return;
-    } else if (pw !== pwCheck) {
+    } else if (pw != pwCheck) {
         pwCheckBlock.type = "text"
         pwCheckBlock.value = "비밀번호가 일치하지 않습니다."
         pwCheckBlock.style.borderColor = "#ff3f3f";
