@@ -187,11 +187,11 @@ a{
     padding-right: 7px;
     padding-top: 1px;
     padding-bottom: 2px;
-    border: 1px solid #5e2bb8;
+    border: 1px solid #03c75a;
     border-radius: 4px 0 4px 4px;
     margin-top: 9px;
     margin-right: 4px;
-    color: #5e2bb8;
+    color: #03c75a;
     font-size: 12px;
     font-weight: 500;
 }
@@ -244,7 +244,7 @@ a{
     color: #454545;
 }
 .h_utill li a:hover{
-    color: #5e2bb8;
+    color: #03c75a;
 }
 .h_utill .hu01{
     margin-bottom: 15px;
@@ -320,7 +320,7 @@ a{
     background-color: #f3f3f3;
 }
 .mymenu .top span{
-    color: #5e2bb8;
+    color: #03c75a;
 }
 .mymenu .btn{
     padding: 14px 20px;
@@ -337,8 +337,8 @@ a{
     color: #777;
 }
 .mymenu .btn .join a{
-    border-color: #5e2bb8;
-    color: #5e2bb8;
+    border-color: #03c75a;
+    color: #03c75a;
 }
 #head2{
     width: 1200px;
@@ -453,7 +453,7 @@ a{
 }
 .gnb > ul > li:hover > a{
     position: relative;
-    color: #5e2bb8;
+    color: #03c75a;
 }
 .gnb > ul > li:hover > a::after{
     content: "";
@@ -462,7 +462,7 @@ a{
     left: 0;
     right: 0;
     height: 2px;
-    background-color: #5e2bb8;
+    background-color: #03c75a;
 }
 .gnb .depth2{
     display: none;
@@ -491,7 +491,7 @@ a{
     left: 0;
     right: 0;
     height: 2px;
-    background-color: #5e2bb8;
+    background-color: #03c75a;
 }
 .special_menu{
     float: right;
@@ -508,7 +508,7 @@ a{
     font-size: 15px;
 }
 .special_menu li a:hover{
-    color: #5e2bb8;
+    color: #03c75a;
 }
 .gnb_bg{
     display: none;

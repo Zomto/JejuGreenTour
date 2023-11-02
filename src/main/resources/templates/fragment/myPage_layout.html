@@ -13,11 +13,14 @@
     <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/slick.css">
     <link rel="stylesheet" href="/css/style.css">    
-    <link rel="stylesheet" href="/css/member/myPage.css">    
+    <link rel="stylesheet" href="/css/member/myPage.css">
+    <link rel="stylesheet" href="/css/member/myPage_side.css">    
 
     <!-- common.css 프로젝트 공통 css -->
     <link rel="stylesheet" href="/css/common.css">
 
+    <!-- css영역 -->
+    <th:block layout:fragment="content_css"></th:block> 
 
 </head>
 <body>
@@ -44,6 +47,10 @@
     <script src="/js/slick.min.js"></script>
     <script src="/js/commen.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/member/my_page_side.js"></script>
+
+    <!-- js영역 -->
+    <th:block layout:fragment="content_js"></th:block> 
     
 </body>
 </html>
