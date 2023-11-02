@@ -86,14 +86,16 @@ public class CsServiceImpl implements CsService{
         return sqlSession.selectOne("csMapper.selectQnaCnt");
     }
 
+    // QNA 수정
     @Override
     public int updateQna(QnaVO qnaVO) {
         return sqlSession.update("csMapper.updateQna", qnaVO);
     }
 
+    // QNA 삭제
     @Override
-    public int deleteQna(QnaVO qnaVO) {
-        return sqlSession.delete("csMapper.deleteQna", qnaVO);
+    public int deleteQna(String qnaCode) {
+        return sqlSession.delete("csMapper.deleteQna", qnaCode);
     }
 
 
