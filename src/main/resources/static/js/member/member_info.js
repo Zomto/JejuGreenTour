@@ -2,6 +2,14 @@
 let timerstop = null
 let settimerstop = null
 let reatimerstop = null
+$('#memberId').click(function(){
+    document.querySelector('.bi.bi-person-circle').setAttribute("fill", "#03c75a");
+})
+$('#memberEmail').click(function(){
+    document.querySelector('.bi.bi-envelope-at-fill').setAttribute("fill", "#03c75a");
+})
+
+
 
 $(function(){
     $('.tabcontent > div').hide();

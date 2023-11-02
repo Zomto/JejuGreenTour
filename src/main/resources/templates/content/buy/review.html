@@ -17,16 +17,19 @@
             }
 
             .reviewScore {
-                font-size: 25px;
-                width: 170px;
+                width: 180px;
                 height: 40px;
                 margin-right: 20px;
+                font-size: 25px;
+                vertical-align: middle;
             }
 
             .Score {
                 width: 100px;
                 height: 40px;
                 font-size: 25px;
+                line-height: 25px;
+                vertical-align: middle;
             }
 
             .reviewin {
@@ -118,7 +121,7 @@
                 <div class="reset_img">
                     <th:block th:if="${review != null}">
                         <th:block th:each="img : ${review.reviewImgList}">
-                            <img style="width: auto; height: 100px; margin-right: 20px; margin-bottom: 20px;"
+                            <img style="width: auto; height: 100p; margin-right: 20px; margin-bottom: 20px;"
                                 th:src="${'/img/review/'+ img.attachedFileName}" alt="">
                         </th:block>
                     </th:block>

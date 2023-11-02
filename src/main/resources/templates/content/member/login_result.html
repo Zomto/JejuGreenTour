@@ -17,7 +17,7 @@
 <!-- 로그인 실패 -->
 <th:block th:if="${session.loginInfo == null}">
     <script>
-        alert('ID 혹은 PW 확인');
+        alert('ID 혹은 PW 확인해 주세요!');
         location.href = '/member/loginForm';
     </script>
 </th:block>

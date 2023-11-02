@@ -31,26 +31,26 @@
                                 <div class="input_inner">
                                     <span>기준 : </span>
                                     <select name="basicMan" id="basicMan">
-                                        <option value="basicMan">01</option>
-                                        <option value="basicMan">02</option>
-                                        <option value="basicMan">03</option>
-                                        <option value="basicMan">04</option>
-                                        <option value="basicMan">05</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="04">05</option>
                                     </select>
                                     <span>명</span>
                                 </div>
                                 <div class="input_inner">
                                     <span>최대 : </span>
                                     <select class="maxManSelect" name="maxMan" id="maxMan">
-                                        <option value="maxMan">01</option>
-                                        <option value="maxMan">02</option>
-                                        <option value="maxMan">03</option>
-                                        <option value="maxMan">04</option>
-                                        <option value="maxMan">05</option>
-                                        <option value="maxMan">06</option>
-                                        <option value="maxMan">07</option>
-                                        <option value="maxMan">08</option>
-                                        <option value="maxMan">X</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="100" selected>없음</option>
                                     </select>
                                     <span>명</span>
                                 </div>
@@ -62,7 +62,7 @@
                                 <div class="input_inner fir">
                                     <span>입실 : </span>
                                     <select name="accomStartTime" id="accomStartTime">
-                                        <option value="14">14</option>
+                                        <option value="14" selected>14</option>
                                         <option value="15">15</option>
                                         <option value="16">16</option>
                                         <option value="17">17</option>
@@ -74,7 +74,7 @@
                                 <div class="input_inner sec">
                                     <span>퇴실 : </span>
                                     <select name="accomEndTime" id="accomEndTime">
-                                        <option value="09">09</option>
+                                        <option value="09" selected>09</option>
                                         <option value="10">10</option>
                                         <option value="11">11</option>
                                         <option value="12">12</option>
@@ -86,7 +86,7 @@
                                 <div class="checkBoxRent">
                                     <span>대실 여부</span>
                                     <div class="rentDiv">
-                                        <input type="radio" class="rent" name="rent" value="rent">
+                                        <input type="checkbox" class="rent" name="dayuseCan" value="Y">
                                     </div>
                                 </div>
                             </div>
@@ -97,45 +97,45 @@
                         <div class="input_area">
                             <div class="checkSubAccomCate1">
                                 <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="accomCate" value="CATE_001">
+                                    <input id="noting" type="checkbox" name="subAccomCates" value="" onclick="checkcansle(this)" checked>
                                     <span>해당 없음</span>
                                 </div>
                                 <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="accomCate" value="CATE_001">
+                                    <input type="checkbox" name="subAccomCates" value="풀빌라" onclick="notingcheck();">
                                     <span>풀빌라</span>
                                 </div>
                                 <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="accomCate" value="CATE_001">
+                                    <input type="checkbox" name="subAccomCates" value="오션_뷰" onclick="notingcheck();">
                                     <span>오션 뷰</span>
                                 </div>
                                 <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="accomCate" value="CATE_001">
+                                    <input type="checkbox" name="subAccomCates" value="PC_룸" onclick="notingcheck();">
                                     <span>PC 룸</span>
                                 </div>
                                 <div class="checkBoxSubAccomCate last">
-                                    <input type="checkbox" name="accomCate" value="CATE_001">
+                                    <input type="checkbox" name="subAccomCates" value="N플릭스" onclick="notingcheck();">
                                     <span>N플릭스</span>
                                 </div>
                             </div>
                             <div class="checkSubAccomCate2">
                                 <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="accomCate" value="CATE_001">
+                                    <input type="checkbox" name="subAccomCates" value="금연"  onclick="notingcheck();">
                                     <span>금연</span>
                                 </div>
                                 <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="accomCate" value="CATE_001">
+                                    <input type="checkbox" name="subAccomCates" value="흡연_O"  onclick="notingcheck();">
                                     <span>흡연 O</span>
                                 </div>
                                 <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="accomCate" value="CATE_001">
+                                    <input type="checkbox" name="subAccomCates" value="반려동물_O" onclick="notingcheck();">
                                     <span>반려동물 O</span>
                                 </div>
                                 <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="accomCate" value="CATE_001">
+                                    <input type="checkbox" name="subAccomCates" value="반려동물_X" onclick="notingcheck();">
                                     <span>반려동물 X</span>
                                 </div>
                                 <div class="checkBoxSubAccomCate last">
-                                    <input type="checkbox" name="accomCate" value="CATE_001">
+                                    <input type="checkbox" name="subAccomCates" value="노키즈_존" onclick="notingcheck();">
                                     <span>노키즈 존</span>
                                 </div>
                             </div>
@@ -146,24 +146,36 @@
                         <div class="input_area">
                             <div class="input_inner">
                                 <span>숙박 : </span>
-                                <input type="text" id="reservationPrice" name="reservationPrice">
+                                <input type="number" id="reservationPrice" name="reservationPrice">
                                 <span>원</span>
                             </div>
                             <div class="input_inner">
-                                <span>숙박 : </span>
-                                <input type="text" id="reservationPrice" name="reservationPrice">
+                                <span>대실 : </span>
+                                <input type="number" id="dayusePrice" name="dayusePrice">
                                 <span>원</span>
                             </div>
                         </div>
                     </div>
-                    <div class="subAccomAdd">
-                        <button class="subAccomAddBtn" type="button" onclick="joinValidate();">등록하기</button>
+                    <div class="subAccomimg">
+                        
+                        <span>메인 : </span><input type="file" name="mainImg"  onchange="">
                     </div>
+                    <div class="subAccomimg">
+                        <span>서브 : </span>
+                        <input type="file" name="files" multiple onchange="">
+                        <div id="imgs"  style="width: auto; height: 100px;">
+                        </div>
+                    </div>
+                    <div class="subAccomAdd">
+                        <input type="hidden" name="accomCode" th:value="${accomCode}">
+                        <input class="subAccomAddBtn" type="button" onclick="insertsubaccom()" value="등록하기">
+                    </div>
+                    
                 </div>
 
             </div>
             <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-            <script src="/js/accom/addAccom.js"></script>
+            <script src="/js/accom/addSubAccom.js"></script>
         </form>
     </th:block>
 </body>
