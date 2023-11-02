@@ -61,8 +61,11 @@
     <update id = "updateMember1" parameterType="com.jejugreentour.jgt.member.vo.MemberVO">
         UPDATE JEJU_MEMBER
         SET
-        MEMBER_MAIL = #{memberMail}
-        ,MEMBER_TEL = #{memberTel}
+        MEMBER_MAIL = #{member_mail}
+        ,MEMBER_TEL =
+        <foreach collection="memberTels" item="tel" separator="||'-'||">
+        #{tel}
+        </foreach>
         WHERE MEMBER_ID = #{memberId}
     </update>
 

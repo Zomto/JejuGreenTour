@@ -14,7 +14,7 @@
 //     }
 
 // });
-$('.myPageSide').click(function(){
+$('.myPageSide').click(function () {
     // 선택한 a 태그의 색상을 가져옵니다.
     let clickSideColor = $(this).css('color');
     let targetColor = 'rgb(29, 185, 84)';
@@ -28,3 +28,11 @@ $('.myPageSide').click(function(){
         $(this).addClass('on');
     }
 });
+
+function clickTab() {
+
+    let tab3 = document.querySelector('.tab3');
+    tab3.addEventListener('click', function (e) {
+        e.target.style = "color = #03c75a";
+    })
+}

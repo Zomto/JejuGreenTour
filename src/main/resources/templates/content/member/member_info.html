@@ -11,7 +11,7 @@
 <body>
     <th:block layout:fragment="content">
         <h2>회원정보 수정</h2>
-        <form action="/member/editMember" method="POST" class="category change">
+        <div class="category change">
             <div class="tab">
                 <ul class="tabnav">
                   <li><a href="#tab01">이메일/전화번호 변경</a></li>
@@ -76,11 +76,10 @@
                                 </div>
                             </div>
                             <div class="result"></div>
-                            
-                            <button id="editMember_1" name="editMember_1">수정하기</button>
-                            
                         </div>
+                        <button id="editMember_1" onclick="okEdit()">수정하기</button>
                     </form>
+                    
                   </div>
                   <div id="tab02">
                         <form action="/member/editMember2" method="POST" id="editMember2" >
@@ -107,12 +106,7 @@
                   </div>
                 </div>
               </div>
-                    
-               
-            
-                
-
-        </form>
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="/js/member/member_info.js"></script>
     </th:block>
