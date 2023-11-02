@@ -1,3 +1,8 @@
+$('#memberEmail').click(function(){
+    document.querySelector('.bi.bi-envelope-at-fill').setAttribute("fill", "#03c75a");
+})
+
+
 //전역변수
 let timerstop = null
 let settimerstop = null

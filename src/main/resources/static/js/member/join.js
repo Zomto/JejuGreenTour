@@ -45,33 +45,41 @@ function inputInvalidate(tagId, message) {
 }
 let tags = document.querySelectorAll('.inputInfo');
 tags.forEach((element, idx) => {
-    element.addEventListener('click', e=> {
-        element.querySelector('.bi').setAttribute("fill", "#03c75a");
+    element.addEventListener('click', e => {
+        // element.querySelector('.bi').setAttribute("fill", "#03c75a");
     });
 });
 
 let tags2 = document.querySelectorAll('.join_input');
 tags2.forEach((element, idx) => {
-    element.addEventListener('click', e=> {
+    element.addEventListener('click', e => {
         element.querySelector('.bi').setAttribute("fill", "#03c75a");
     });
 });
 
 let tagss = document.querySelector('.inputMem.memberId');
-$('.inputMemberId').click(function(){
+$('.inputMemberId').click(function () {
     tagss.style.borderColor = "#03c75a";
     document.querySelector('.bi-person-circle').setAttribute("fill", "#03c75a");
 })
-$('.join_input.four').click(function(){
+$('.join_input.four').click(function () {
     document.querySelector('.join_input.four').style.borderTop = "1px solid #03c75a";
     document.querySelector('.join_input.four').style.borderColor = "#03c75a";
     document.querySelector('.bi-telephone-fill').setAttribute("fill", "#03c75a");
 })
-$('.join_input.five').click(function(){
+$('.join_input.five').click(function () {
     document.querySelector('.join_input.five').style.borderTop = "1px solid #03c75a";
     document.querySelector('.join_input.five').style.borderLeft = "1px solid #03c75a";
     document.querySelector('.join_input.five').style.borderColor = "#03c75a";
     document.querySelector('.bi-calendar-check').setAttribute("fill", "#03c75a");
+})
+// $('#memberName').click(function () {
+//     $(this).style.borderColor = "#03c75a";
+//     document.querySelector('.bi.bi-person-fill').setAttribute("fill", "#03c75a");
+// })
+document.querySelector('#memberName').addEventListener('click', function () {
+    document.querySelector('#memberName').style.borderColor = "#03c75a";
+    document.querySelector('.bi.bi-person-fill').setAttribute("fill", "#03c75a");
 })
 // 화원가입 시 아이디 중복 체크
 function checkId() {
@@ -81,55 +89,58 @@ function checkId() {
     let memberIdBoarder = document.querySelector('.inputMem.memberId');
     let memberIdBtn = document.querySelector('.double_check');
     let idSvg = document.querySelector('.bi-person-circle');
-    if(memberIdvalue == ""){
+    if (memberIdvalue == "") {
         memberIdInput.classList.toggle('no');
         idSvg.setAttribute("fill", "#ff3f3f");
         memberIdBoarder.style.borderColor = "#ff3f3f";
         memberIdInput.placeholder = "아이디를 입력해주세요";
         memberIdBtn.style = "background-color : #dadada";
         memberIdBtn.addEventListener('mouseover', (event) => {
-            memberIdBtn.style = "background-color : #1ab752"});
+            memberIdBtn.style = "background-color : #1ab752"
+        });
         memberIdBtn.addEventListener('mouseout', (event) => {
-            memberIdBtn.style = "background-color : #dadada"});
+            memberIdBtn.style = "background-color : #dadada"
+        });
         return;
 
-    }else {
+    } else {
         fetch('/member/checkId', {
-        method: 'POST',
-        cache: 'no-cache',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        },
-        body: new URLSearchParams({
-            memberId: document.querySelector('#memberId').value
+            method: 'POST',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            },
+            body: new URLSearchParams({
+                memberId: document.querySelector('#memberId').value
+            })
         })
-    })
-        .then((response) => {
-            if (!response.ok) {
-                alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
-                return;
-            }
-            return response.json();
-        })
-        .then((data) => {
-            if (data) {
-                alert('사용가능한 ID입니다.');
-                document.querySelector('.join_btn').disabled = false;
-            } else {
-                alert('사용 불가능한 ID입니다.');
-            }
-        })
-        .catch((err) => {
-            alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
-            console.log(err);
-        });
+            .then((response) => {
+                if (!response.ok) {
+                    alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+                    return;
+                }
+                return response.json();
+            })
+            .then((data) => {
+                if (data) {
+                    alert('사용가능한 ID입니다.');
+                    document.querySelector('.join_btn').value = "이메일 인증 필요";
+                } else {
+                    alert('사용 불가능한 ID입니다.');
+                    document.querySelector('.join_btn').value = "아이디 확인 필요";
+                }
+            })
+            .catch((err) => {
+                alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+                console.log(err);
+            });
     }
 
 }
 //비밀번호 가리기, 보이기
-$(document).ready(function() {
+$(document).ready(function () {
     // '비밀번호 보이기' 버튼 클릭 시 동작
-    $('#pw_off').click(function(e) {
+    $('#pw_off').click(function (e) {
         e.preventDefault(); // 링크 클릭 시 기본 동작 방지
         // 비밀번호 입력 필드의 type 속성을 'text'로 변경하여 비밀번호를 보여줌
         $('#memberPw').attr('type', 'text');
@@ -140,7 +151,7 @@ $(document).ready(function() {
     });
 
     // '비밀번호 가리기' 버튼 클릭 시 동작
-    $('#pw_on').click(function(e) {
+    $('#pw_on').click(function (e) {
         e.preventDefault(); // 링크 클릭 시 기본 동작 방지
         // 비밀번호 입력 필드의 type 속성을 'password'로 변경하여 비밀번호를 가림
         $('#memberPw').attr('type', 'password');
@@ -154,7 +165,7 @@ $(document).ready(function() {
 
 // 이메일인증전 회원가입 버튼 비활성화 함수
 function setDisabled() {
-    document.querySelector('.join_btn').disabled = true;
+    document.querySelector('.join_btn').value = "가입못함";
 }
 
 
@@ -183,7 +194,7 @@ function startTimer(duration) {
     const timerInterval = setInterval(updateTimer, 1000);
     timerstop = timerInterval;
     // 타이머가 종료되면 interval 정지
-    settimerstop= setTimeout(() => {
+    settimerstop = setTimeout(() => {
         clearInterval(timerInterval);
     }, duration);
 
@@ -194,7 +205,7 @@ function verifyCode() {
 
     if (emailRegex.test(document.querySelector('#memberEmail').value + document.querySelector('#email_host').value)) {
 
-        if(timerstop != null){
+        if (timerstop != null) {
             console.log('이전 타이머 있음');
             clearTimeout(timerstop);
             console.log(timerstop);
@@ -218,7 +229,7 @@ function verifyCode() {
             },
             //컨트롤러로 전달할 데이터
             body: new URLSearchParams({
-                email: document.querySelector('#memberEmail').value+document.querySelector('#email_host').value
+                email: document.querySelector('#memberEmail').value + document.querySelector('#email_host').value
             })
         })
             .then((response) => {
@@ -234,7 +245,7 @@ function verifyCode() {
             .then((data) => {//data -> controller에서 리턴되는 데이터!
                 alert("인증메일이 발송 되었습니다! 메일함을 확인해주세요!")
                 confirmCode = data;
-                reatimerstop= setTimeout(() => {
+                reatimerstop = setTimeout(() => {
                     confirmCode = null
                 }, 180000)
 
@@ -242,24 +253,24 @@ function verifyCode() {
     } else {
         alert("이메일을 다시 확인 해주세요!")
         const additionalInputDiv = document.getElementById("additionalInput");
-            additionalInputDiv.style.display = "none";
+        additionalInputDiv.style.display = "none";
     }
 }
 
 function checkCode() {
     if (confirmCode == null) {
-        document.querySelector('.alertbox').innerHTML="유효하지 않은 코드 입니다."
-        document.querySelector('.alertbox').style.color='red';
+        document.querySelector('.alertbox').innerHTML = "유효하지 않은 코드 입니다."
+        document.querySelector('.alertbox').style.color = 'red';
     } else {
         let inputCode = document.querySelector('#verify_code').value
         if (inputCode == confirmCode) {
             alert("인증되었습니다! 가입절차를 진행해주세요!")
-            document.querySelector('.join_btn').disabled = false
+            document.querySelector('.join_btn').value = "가입하기";
             const additionalInputDiv = document.getElementById("additionalInput");
             additionalInputDiv.style.display = "none";
         } else {
-            document.querySelector('.alertbox').innerHTML="인증번호를 정확하게 입력해주세요"
-            document.querySelector('.alertbox').style.color='red';
+            document.querySelector('.alertbox').innerHTML = "인증번호를 정확하게 입력해주세요"
+            document.querySelector('.alertbox').style.color = 'red';
         }
     }
 
@@ -268,41 +279,58 @@ let confirmCode = null
 
 
 // Validate 실패시 메세지 설정
-function inputInvalidate(tagId, message){
+function inputInvalidate(tagId, message) {
     document.querySelector(tagId).style.display = 'block';
     document.querySelector(tagId).textContent = message;
 }
 
+document.querySelector('#memberPw').addEventListener('click', function () {
+    document.querySelector('#memberPw').value = '';
+})
+document.querySelector('#memberPwch').addEventListener('click', function () {
+    document.querySelector('#memberPwch').value = '';
+})
 
-function loginGo(){
+function loginGo() {
     let pwBlock = document.querySelector('#memberPw');
     let pwCheckBlock = document.querySelector('#memberPwch');
     let pw = document.querySelector('#memberPw').value;
     let pwCheck = document.querySelector('#memberPwch').value;
-    
-    if(pw === ''){
+    if (document.querySelector('.join_btn').value == "아이디 확인 필요") {
+        alert('아이디 중복 확인이 필요합니다')
+    } else if (document.querySelector('.join_btn').value == "이메일 인증 필요") {
+        alert('이메일 인증이 필요합니다')
+    } else if (pw == '') {
+        document.querySelector('.inputMem.memberId').style.borderBottom = "0"
         pwBlock.placeholder = "비밀번호를 입력해 주세요.";
         pwBlock.style.borderColor = "#ff3f3f";
+        pwBlock.style.borderTop = "1px solid #ff3f3f";
         document.querySelector('.bi.bi-shield-lock-fill').setAttribute("fill", "#ff3f3f");
         return;
-    } else if (pwCheck === ''){
+    } else if (pwCheck == '') {
         pwCheckBlock.placeholder = "비밀번호를 확인 해 주세요.";
+        pwBlock.style.borderBottom = "0";
         pwCheckBlock.style.borderColor = "#ff3f3f";
+        pwCheckBlock.style.borderTop = "1px solid #ff3f3f";
         document.querySelector('.bi.bi-shield-lock').setAttribute("fill", "#ff3f3f");
         return;
     } else if (pw !== pwCheck) {
         pwCheckBlock.type = "text";
         pwCheckBlock.value = "비밀번호가 일치하지 않습니다.";
         pwCheckBlock.style.borderColor = "#ff3f3f";
+        pwCheckBlock.style.borderTop = "1px solid #ff3f3f";
         document.querySelector('.bi.bi-shield-lock').setAttribute("fill", "#ff3f3f");
         return;
+    } else if (document.querySelector('#memberName').value == "") {
+        document.querySelector('#memberName').placeholder = "이름을 입력해 주세요";
+        document.querySelector('#memberName').style.border = "1px solid #ff3f3f";
+    } else if (document.querySelector('.tel2').value == "") {
+        document.querySelector('.join_input.four').style.borderTop = "1px solid #ff3f3f";
+        document.querySelector('.join_input.four').style.borderLeft = "1px solid #ff3f3f";
+        document.querySelector('.join_input.four').style.borderRight = "1px solid #ff3f3f";
+        document.querySelector('.join_input.four').style.borderBottom = "1px solid #ff3f3f";
     } else {
-        if (pw === pwCheck) {
-            document.querySelector('#teamleaderFuck').submit();
-            alert('회원가입 성공.\n로그인 해주세요');
-        } else {
-            inputInvalidate('.err-div', '비밀번호 다름!');
-            return;
-        }
+        document.querySelector('#teamleaderFuck').submit();
     }
 }
+

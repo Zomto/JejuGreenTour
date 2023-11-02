@@ -51,7 +51,7 @@ public class MemberControll {
         if(loginInfo !=null){
             session.setAttribute("loginInfo",loginInfo);
         }
-        return "/index";
+        return "content/member/login_result";
     }
     @ResponseBody
     @PostMapping("/checkId")
