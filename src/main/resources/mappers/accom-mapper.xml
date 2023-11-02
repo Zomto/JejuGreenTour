@@ -63,10 +63,9 @@
         <result column="CATE_NAME"      property="cateName" />
     </resultMap>
 
-    <resultMap id="accomLoc" type="com.jejugreentour.jgt.accom.vo.AccomLocVO">
-        <result column="ACCOM_LOC_CODE"      property="accomLocCode" />
-        <result column="LOC_NAME"      property="LOC_NAME" />
-    </resultMap>
+    <select id="">
+
+    </select>
 
     <insert id="addAccom">
         INSERT INTO MAIN_ACCOM (
@@ -317,6 +316,22 @@
         FROM SUB_ACCOM_IMG
         WHERE SUB_ACCOM_CODE = #{subAccomCode}
     </select>
-    
+
+
+    <select id="searchAccom" resultMap="mainAccom">
+        SELECT
+            ACCOM_CODE
+            , ACCOM_NAME
+            , ACCOM_ADDR
+            , ADDR_DETAIL
+            , ACCOM_INTRO
+            , ACCOM_CATE
+            , ACCOM_CEO
+            , ACCOM_LOC
+        FROM MAIN_ACCOM MAIN, ACCOM_CATEGORY CATE
+        WHERE MAIN.ACCOM_CATE = CATE.ACCOM_CATE
+        ORDER BY ACCOM_CODE DESC
+        OFFSET 0 ROWS FETCH FIRST 7 ROWS ONLY
+    </select>
     
 </mapper>
