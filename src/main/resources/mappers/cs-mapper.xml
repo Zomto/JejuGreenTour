@@ -187,7 +187,7 @@
     </select>
 
     <update id="updateQna">
-        UPDATE INTO QNA
+        UPDATE QNA
         SET
             CATE_CODE = #{cateCode}
             , QNA_QUESTION = #{qnaQuestion}

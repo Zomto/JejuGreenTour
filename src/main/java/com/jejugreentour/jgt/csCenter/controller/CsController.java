@@ -32,7 +32,6 @@ public class CsController {
         return "/content/csCenter/qnaList";
     }
 
-
     // QNA 작성 페이지 이동
     @GetMapping("/qnaForm")
     public String qnaForm(){
@@ -46,11 +45,25 @@ public class CsController {
         return "redirect:/cs/qnaListForm";
     }
 
-    // qna 수정 후 목록 페이지 이동
+    // qna 수정 페이지 이동
     @GetMapping("/updateQnaForm")
-    public String updateQna(){
+    public String updateQnaForm(QnaVO qnaVO){
 
-        return "redirect:/cs/updateQnaForm";
+        return "content/csCenter/updateQna";
+    }
+
+    // QNA 수정후 목록 페이지 이동
+    @PostMapping("/updateQna")
+    public String updateQna(QnaVO qnaVO){
+        csService.updateQna(qnaVO);
+        return "redirect:/cs/qnaListForm?qnaCode=" + qnaVO.getQnaCode();
+    }
+
+    // QNA 삭제
+    @GetMapping("/deleteQna")
+    public String deleteQna(String qnaCode){
+        csService.deleteQna(qnaCode);
+        return "redirect:/cs/qnaListForm";
     }
 
     ////////////////////////////////////////////////////////////
@@ -113,7 +126,6 @@ public class CsController {
     @PostMapping("/updateAnn")
     public String updateAnn(AnnVO annVO){
         csService.updateAnn(annVO);
-        System.out.println(csService.updateAnn(annVO));
         return "redirect:/cs/annDetailForm?annNum=" + annVO.getAnnNum();
     }
     
