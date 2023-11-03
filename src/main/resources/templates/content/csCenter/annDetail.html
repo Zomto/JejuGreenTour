@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{fragment/main_layout}">
+
 <head>
     <meta charset="UTF-8">
     <title></title>
@@ -10,33 +10,30 @@
         <link rel="stylesheet" href="/css/csCenter/annDetail.css">
     </th:block>
 </head>
+
 <body>
     <th:block layout:fragment="content">
         <div class="wrap">
             <div class="w_in">
                 <div class="title_group">
-                    <h3>공지사항</h3>
-                    <div class="title_area"><span class="title_cate">[ [[${annDetail.annCateList.cateName}]] ]</span>[[${annDetail.annTitle}]]<span class="title_date">[[${annDetail.annDate}]]</span></div>
+                    <div class="title">공지사항</div>
                 </div>
-                <div class="content_group" th:utext="${annDetail.annContent}">
-                        내용 출력 
+                <div class="content">
+                    <div class="title_area"><span class="title_cate">[ [[${annDetail.annCateList.cateName}]]
+                            ]</span>[[${annDetail.annTitle}]]<span class="title_date">[[${annDetail.annDate}]]</span>
+                    </div>
+                    <div class="content_group" th:utext="${annDetail.annContent}">
+                        내용 출력
                     </div>
                 </div>
-                <div class="page_group">
-                    <!-- <div class="pageBtn">
-                        <a class="page_prevBtn" th:href="@{/cs/annDetailForm(nowPage=${annVO.beginPage - 1})}"><span th:if="${annVO.prev}">이전</span></a>
-    
-                        <th:block th:each="pageNum : ${#numbers.sequence(annVO.beginPage, annVO.endPage)}">
-                            <a class="page_numBtn" th:href="@{/cs/annDetailForm(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
-                        </th:block>
-    
-                        <a class="page_nextBtn" th:href="@{/cs/annDetailForm(nowPage=${annVO.endPage + 1})}"><span th:if="${annVO.next}">다음</span></a>
-                    </div> -->
-                    <div class="inquireBtn">
-                        <button onclick="location.href='/cs/annListForm';">목록</button>
-                        <button th:onclick="|location.href='@{/cs/updateAnnForm(annNum=${annDetail.annNum})}'|">글 수정</button>
-                        <button th:onclick="|location.href='@{/cs/deleteAnn(annNum=${annDetail.annNum})}'|">글 삭제</button>
-                    </div>
+            </div>
+            <div class="page_group">
+                <div class="inquireBtn">
+                    <button class="annList" onclick="location.href='/cs/annListForm';">목록</button>
+                    <button class="annUpdate"
+                        th:onclick="|location.href='@{/cs/updateAnnForm(annNum=${annDetail.annNum})}'|">글 수정</button>
+                    <button class="annDelete"
+                        th:onclick="|location.href='@{/cs/deleteAnn(annNum=${annDetail.annNum})}'|">글 삭제</button>
                 </div>
             </div>
         </div>
@@ -45,4 +42,5 @@
     <!-- js 영역 -->
     <th:block layout:fragment="content_js"></th:block>
 </body>
+
 </html>

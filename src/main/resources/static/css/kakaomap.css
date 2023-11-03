@@ -1,11 +1,15 @@
 @charset "utf-8";
-
+.dldld{
+    width: 300px;
+    height: 100px;
+    background-color: #009900;
+}
 .map_wrap,
 .map_wrap * {
     margin: 0;
     padding: 0;
     font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 .map_wrap a,
@@ -68,6 +72,7 @@
 
 #menu_wrap .option {
     text-align: center;
+
 }
 
 #menu_wrap .option p {
@@ -75,6 +80,7 @@
 }
 
 #menu_wrap .option button {
+    font-size: 12px;
     margin-left: 5px;
 }
 .result{

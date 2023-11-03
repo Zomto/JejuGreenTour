@@ -105,7 +105,7 @@ public class CsController {
     public String inputAnn(AnnVO annVO, HttpSession httpSession){
 
         csService.insertAnn(annVO);
-        return "redirect:/cs/annForm";
+        return "redirect:/cs/annListForm";
     }
 
     // 공지 사항 세부 페이지 이동
@@ -117,8 +117,8 @@ public class CsController {
     
     // 공지 사항 수정 페이지 이동
     @GetMapping("/updateAnnForm")
-    public String updateAnnForm(AnnVO annVO){
-
+    public String updateAnnForm(AnnVO annVO, Model model){
+        model.addAttribute("annDetail", csService.selectAnnDetail(annVO));
         return "content/csCenter/updateAnn";
     }
 

@@ -95,5 +95,8 @@ public class AccomServiceImpl implements AccomService {
     public void updateSubAccomState(SubAccomVO subAccomVO){
         sqlSession.update("accomMapper.updateSubAccomState", subAccomVO);
     }
+    public MainAccomVO test(MainAccomVO mainAccomVO) {
+        return sqlSession.selectOne("accomMapper.test", mainAccomVO);
+    }
 
 }

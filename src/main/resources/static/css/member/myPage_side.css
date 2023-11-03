@@ -42,12 +42,12 @@ a{
     margin: 50px auto;
 }
 
-.cs_side{
+.my_side{
     float: left;
     width: 13%;
 }
 
-.cs_content{
+.my_content{
     float: right;
     width: 83%;
 }
@@ -65,11 +65,9 @@ a{
     font-weight: 700;
 }
 
-
-.side_inner p{
-    font-size: 20px;
-    padding: 15px 0;
-    border-bottom: 1px solid #999;
+.side_inner > p > span{
+    font-size: 19px;
+    font-weight: 500;
 }
 
 .side_inner .menu_last{
@@ -85,6 +83,8 @@ a{
 .myPageSide4:hover{
     color:#1db954;
 }
+
+
 
 /* 푸터 영역 */
 

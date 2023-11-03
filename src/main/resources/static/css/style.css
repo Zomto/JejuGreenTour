@@ -328,6 +328,10 @@ a{
 .mymenu .btn .login{
     margin-bottom: 8px;
 }
+.mymenu .btn p a:hover{
+    color: #03c75a;
+    border: 1px solid #03c75a;
+}
 .mymenu .btn p a{
     display: block;
     border: 1px solid #c2c2c2;
@@ -336,10 +340,10 @@ a{
     line-height: 30px;
     color: #777;
 }
-.mymenu .btn .join a{
+/* .mymenu .btn .join a{
     border-color: #03c75a;
     color: #03c75a;
-}
+} */
 #head2{
     width: 1200px;
     height: 55px;

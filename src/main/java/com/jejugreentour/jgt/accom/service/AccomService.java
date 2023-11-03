@@ -48,4 +48,7 @@ public interface AccomService {
 
     // 숙소 방 상태 변환
     public void updateSubAccomState(SubAccomVO subAccomVO);
+    // 테스트
+    public MainAccomVO test(MainAccomVO mainAccomVO);
+
 }

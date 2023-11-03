@@ -12,6 +12,13 @@
 .title_group{
     margin-bottom: 50px;
 }
+.title{
+    width: 150px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #444;
+    border-bottom: 5px solid #dadada;
+}
 
 .title_group h3{
     font-size: 22px;
@@ -21,10 +28,11 @@
 
 
 .title_area{
+    border-radius: 7px 7px 0 0;
     position: relative;
     padding: 20px 20px;
-    border-top: 1px solid #222;
-    border-bottom: 1px solid #999;
+    border-top: 1px solid #dadada;
+    border-bottom: 1px solid #dadada;
     font-size: 17px;
 }
 
@@ -39,13 +47,18 @@
     right: 20px;
 }
 
-
+.content{
+    border-radius: 7px;
+    border-left: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+}
 
 .content_group{
-    padding-bottom: 50px;
-    border-bottom: 1px solid #999;
+    border-radius: 0 0 7px 7px;
+    padding: 50px;
+    border-bottom: 1px solid #dadada;
     font-size: 17px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 
@@ -76,13 +89,17 @@ td{
 }
 
 .inquireBtn button{
-    width: 200px;
+    width: 230px;
     height: 40px;
     border-radius: 5px;
-    background-color: #1db954;
+    background-color: #03c75a;
     border: 0;
     cursor: pointer;
     color: white;
+    border: 1px solid #dadada;
+}
+.inquireBtn button:hover{
+    background-color: #1db954;
 }
 
 

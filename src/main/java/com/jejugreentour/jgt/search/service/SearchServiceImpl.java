@@ -1,0 +1,20 @@
+package com.jejugreentour.jgt.search.service;
+
+import com.jejugreentour.jgt.csCenter.vo.AnnVO;
+import com.jejugreentour.jgt.search.vo.SearchVO;
+import lombok.RequiredArgsConstructor;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class SearchServiceImpl implements SearchService {
+    private final SqlSessionTemplate sqlSession;
+
+    @Override
+    public List<AnnVO> searchAnn(SearchVO searchVO) {
+        return sqlSession.selectList("csMapper.searchAnn", searchVO);
+    }
+}
