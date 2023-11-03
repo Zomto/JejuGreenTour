@@ -34,7 +34,7 @@
                         <div class="box">
                             <div class="inputBox">
                                 <div class="label">문의유형</div>
-                                <select name="cateCode" id="">
+                                <select class="cateCode" name="cateCode" id="">
                                     <option value="CATE_001">숙박</option>
                                     <option value="CATE_002">결제</option>
                                     <option value="CATE_003">혜택</option>
@@ -59,19 +59,26 @@
                             </div>
                             <div class="inputBox img">
                                 <div class="label">사진</div>
-                                <input type="file" name="inqImg" multiple>
+                                <input class="upload-name" value="첨부파일" placeholder="첨부파일">
+                                <label for="file">파일찾기</label> 
+                                <input type="file" id="file" onchange="readURL(this);" multiple>
+                            </div>
+                            <div class="inputBox imgLook">
+                                <div class="label imgLook">사진<br>미리보기</div>
+                                <div class="imgLookBox"></div>
                             </div>
                         </div>
                         <div>
-                            <input type="button" value="취소">
-                            <input type="submit" value="등록">
+                            <input class="subBtn" type="submit" value="등록">
                         </div>
                     </div>
                 </div>
         </form>
     </th:block>
     <!-- js영역 -->
-    <th:block layout:fragment="content_js"></th:block>
+    <th:block layout:fragment="content_js">
+        <script src="/js/csCenter/inquire.js"></script>
+    </th:block>
 </body>
 
 </html>

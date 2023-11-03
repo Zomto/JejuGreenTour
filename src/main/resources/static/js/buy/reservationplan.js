@@ -221,3 +221,28 @@ function removeAllChildNods(el) {
         el.removeChild(el.lastChild);
     }
 }
+
+
+// const urlParams = new URL("http://place.map.kakao.com/1378746048").searchParams;
+// const nam = urlParams.get('name');
+// console.log(nam)
+
+
+const request = new XMLHttpRequest();
+const url = 'https://place.map.kakao.com/1378746048'; // 소스 가져올 페이지 
+
+// let htmlText
+// request.open('GET', url, true);
+// request.onload = function () {
+// htmlText = request.responseText;
+// }
+
+// console.log(htmlText);
+loadURL();
+function loadURL()
+{
+ var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+ xmlhttp.open("GET", 'https://place.map.kakao.com/1378746048', "false");
+ xmlhttp.send();
+ console.log(xmlhttp.responseText);
+}

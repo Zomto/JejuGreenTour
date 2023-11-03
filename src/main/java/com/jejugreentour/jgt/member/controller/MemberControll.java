@@ -98,9 +98,9 @@ public class MemberControll {
 
     @PostMapping("/editMember1")
     public String updateMember1(MemberVO memberVO, HttpSession session) {
-        System.out.println(memberVO);
         MemberVO vo =(MemberVO)session.getAttribute("loginInfo");
         memberVO.setMemberId(vo.getMemberId());
+        System.out.println(memberVO);
         // MemberService를 사용하여 비밀번호 업데이트를 처리
         int updatedRows = memberService.updateMember1(memberVO);
 
@@ -109,7 +109,7 @@ public class MemberControll {
         }
 
         // 리다이렉트 또는 다른 처리
-        return "content/member/member_info";
+        return "redirect:/";
     }
 
     @PostMapping("/editMember2")

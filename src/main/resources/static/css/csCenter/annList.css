@@ -49,29 +49,125 @@
 
 
 /* 테이블 영역 */
+.title{
+    width: 150px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #444;
+    border-bottom: 5px solid #dadada;
+    margin-bottom: 20px;
+}
+.cateMenuBox{
+    width: 998px;
+    border-radius: 7px 7px 0 0;
 
-table{
+    border-bottom: 0;
+    display: flex;
+}
+.cateTab{
+    color: #666;
+    font-size: 17px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid #dadada;
+    border-radius: 7px 0 0 0;
+    border-bottom: 0;
+    width: 200px;
+    height: 40px;
+}
+.cateTab.CATE_001, .cateTab.CATE_002, .cateTab.CATE_003, .cateTab.CATE_004{
+    border-radius: 0;
+}
+.cateTab.CATE_004{
+    border-radius: 0 7px 0 0;
+}
+.cateTab:hover{
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #1db954;
+    border-bottom: 0;
+}
+.cateTab.on{
+    border: 1px solid #1db954;
+    border-bottom: 0;
+    border-radius: 7px 7px 0 0;
+    color: #fff;
+    color: #03c75a;
+}
+
+
+.table{
+    border-radius: 0 0 7px 7px;
+    width: 998px;
+    border: 1px solid #dadada;
     text-align: center;
     margin-bottom: 50px;
 }
-
-td{
-    border: 1px solid #999;
-    padding: 15px 10px;
-    white-space: nowrap;
-}
-
 .column{
-    background-color:lightgreen;
-    color: #222;
+    border-bottom: 1px solid #dadada;
+    color: #888;
     font-size: 17px;
-    font-weight: 500;
+    font-weight: 700;
+    padding: 13px;
+    height: 50px;
+    box-sizing: border-box;
 }
-
+.column.num{
+    width: 15%;
+    border-right: 1px solid #dadada;
+}
+.column.cate{
+    width: 20%;
+    border-right: 1px solid #dadada;
+}
+.column.title{
+    width: 50%;
+    border-right: 1px solid #dadada;
+}
+.column.date{
+    width: 15%;
+}
+.tableHeader{
+    display: flex;
+    height: 50px;
+}
+.tr{
+    display: flex;
+    border-bottom: 1px solid #dadada;
+}
+.tr:last-child{
+    border: 0;
+}
+.value{
+    color: #888;
+}
+.value.num{
+    box-sizing: border-box;
+    height: 41px;
+    padding:  10px 0;
+    width: 15%;
+    border-right: 1px solid #dadada;
+}
+.value.cate{
+    padding:  10px 0;
+    width: 199px;
+    border-right: 1px solid #dadada;
+}
+.valuetitle{
+    color: #888;
+    padding:  10px 0;
+    width: 50%;
+    border-right: 1px solid #dadada;
+}
+.value.date{
+    padding:  10px 0;
+    width: 15%;
+}
 .annTitle{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #222;
+    color: #888;
+}
+.annTitle:hover{
+    color: #1db954;
 }
 
 
@@ -105,4 +201,7 @@ td{
     position: absolute;
     top: 0;
     right: 0;
+}
+.pageBtn{
+    width: 400px;
 }

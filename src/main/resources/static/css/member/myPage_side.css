@@ -1,0 +1,98 @@
+@charset "utf-8";
+/* 기본셋팅, 공통값 */
+body, input{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+img, input, button{
+    vertical-align: top;
+}
+input, button{
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+.hide{
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+#wrap{
+    min-width: 920px;
+}
+
+#inner{
+    width: 500px;
+    margin: 0 auto;
+    padding: 15px 30px;
+    background-color: white;
+}
+
+
+.cs_inner{
+    width: 1200px;
+    margin: 50px auto;
+}
+
+.cs_side{
+    float: left;
+    width: 13%;
+}
+
+.cs_content{
+    float: right;
+    width: 83%;
+}
+
+/* 사이드 영역 */
+
+.side_inner h3{
+    padding-bottom: 20px;
+    border-bottom: 2px solid #222;
+}
+
+.side_inner h3 .title_a{
+    color: #222;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+
+.side_inner p{
+    font-size: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid #999;
+}
+
+.side_inner .menu_last{
+    border-bottom: 1px solid #222;
+}
+
+.tab{
+    color: #1db954;
+}
+.myPageSide1:hover,
+.myPageSide2:hover,
+.myPageSide3:hover,
+.myPageSide4:hover{
+    color:#1db954;
+}
+
+/* 푸터 영역 */
+
+
+.main_footer{
+    width: 1200px;
+    margin: 0 auto;
+    clear: both;
+    padding-top: 100px;
+    border-top: 1px solid #999;
+}
