@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{fragment/csCenter_layout}">
+
 <head>
     <meta charset="UTF-8">
     <title></title>
@@ -10,41 +10,38 @@
         <link rel="stylesheet" href="/css/csCenter/inquireList.css">
     </th:block>
 </head>
+
 <body>
     <th:block layout:fragment="content">
-        <div>
-            <div>
-                <h3>문의 내역</h3>
+        <div class="wrap">
+            <div class="title_group">
+                <div class="title">문의 내역</div>
             </div>
-            <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>유형</td>
-                            <td>제목</td>
-                            <td>작성일</td>
-                            <td>답변상태</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:if="${inqList != null}" th:each="inq, state : ${inqList}">
-                            <td>[[${inq.inqCateList.cateName}]]</td>
-                            <td><a th:href="@{/cs/inqDetailForm(inqCode=${inq.inqCode})}">[[${inq.title}]]</a></td>
-                            <td>[[${inq.inqDate}]]</td>
-                            <td>[[${inq.isResponse}]]</td>
-                        </tr>
-                        <tr th:if="${inqList == null}">
-                            <td>
-                                <div>icon</div>
-                                <div>상담 문의내역이 없습니다.</div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="table">
+                <div class="tableHeader">
+                    <div class="column cate">유형</div>
+                    <div class="column name">제목</div>
+                    <div class="column date">작성일</div>
+                    <div class="column answer">답변상태</div>
+                </div>
+                <div class="tbody">
+                    <div class="tr" th:if="${inqList != null}" th:each="inq, state : ${inqList}">
+                        <div class="value cate">[[${inq.inqCateList.cateName}]]</div>
+                        <div class="value name"><a
+                                th:href="@{/cs/inqDetailForm(inqCode=${inq.inqCode})}">[[${inq.title}]]</a></div>
+                        <div class="value date">[[${inq.inqDate}]]</div>
+                        <div class="value answer">[[${inq.isResponse}]]</div>
+                    </div>
+                    <div class="tr" th:if="${inqList == null}">
+                        <div class="icon">icon</div>
+                        <div class="zeroText">상담 문의내역이 없습니다.</div>
+                    </div>
+                </div>
             </div>
         </div>
     </th:block>
     <!-- js영역 -->
     <th:block layout:fragment="content_js"></th:block>
 </body>
+
 </html>

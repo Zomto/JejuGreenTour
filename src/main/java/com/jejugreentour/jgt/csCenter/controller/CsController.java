@@ -117,8 +117,8 @@ public class CsController {
     
     // 공지 사항 수정 페이지 이동
     @GetMapping("/updateAnnForm")
-    public String updateAnnForm(AnnVO annVO){
-
+    public String updateAnnForm(AnnVO annVO, Model model){
+        model.addAttribute("annDetail", csService.selectAnnDetail(annVO));
         return "content/csCenter/updateAnn";
     }
 

@@ -1,50 +1,87 @@
-<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
-    layout:decorate="~{fragment/csCenter_layout}">
-<head>
-<meta charset="UTF-8">
-<title></title>
-<!-- css 영역 -->
-<th:block layout:fragment="content_css">
 
-</th:block>
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/csCenter_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항 작성</title>
+
+    <!-- css영역 -->
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/csCenter/ann.css">
+    </th:block>
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
+
 <body>
-<th:block layout:fragment="content">
-    <form action="/cs/updateAnn" method="post">
-        <div class="wrap">
-            <div class="w_in">
-                <div>
-                    <div>
-                        <label for="">카테고리</label>
-                        <select name="annCate" id="">
-                            <option value="CATE_001">일반</option>
-                            <option value="CATE_002">오픈소식</option>
-                            <option value="CATE_003">서비스</option>
-                            <option value="CATE_004">당첨자발표</option>
-                        </select>
+    <th:block layout:fragment="content">
+        <form action="/cs/updateAnn" method="post">
+            <div class="wrap">
+                <div class="w_in">
+                    <div class="title">공지사항 수정</div>
+                    <div class="textBlock">
+                        <div class="inputBox">
+                            <div class="label">제목</div>
+                            <input type="text" name="annTitle" th:value="${annDetail.annTitle}">
+                        </div>
+                        <div class="inputBox">
+                            <div class="label">카테고리</div>
+                            <select class="cateCode" name="annCate">
+                                <option value="CATE_001">일반</option>
+                                <option value="CATE_002">오픈소식</option>
+                                <option value="CATE_003">서비스정보</option>
+                                <option value="CATE_004">당첨자발표</option>
+                            </select>
+                        </div>
+                        <div class="inputBox">
+                            <div class="label">작성자</div>
+                            <span class="input">loginInfo</span>
+                        </div>
+                        <div class="inputBoxContent">
+                            <div class="label content" >내용</div>
+                            <textarea id="summernote" name="annContent">[[${annDetail.annContent}]]</textarea>
+                        </div>
                     </div>
-                    <div>
-                        <label for="">제목</label>
-                        <input type="text" name="annTitle" id="">
-                    </div>
-                    <div>
-                        <label for="">내용</label>
-                        <textarea name="annContent" cols="60" rows="10"></textarea>
-                    </div>
-                    <div>
-                        <input type="hidden" name="annNum" th:value="${annVO.annNum}">
-                        <input type="submit" value="수정완료">
-                    </div>
+                    <input type="hidden" name="annNum" th:value="${annVO.annNum}">
+                    <input class="subBtn" type="submit" value="작성완료">
                 </div>
             </div>
-        </div>
-    </form>
-</th:block>
-</body>
-<!-- js 영역 -->
-<th:block layout:fragment="content_js">
 
-</th:block>
+
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+                integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js" defer></script>
+
+            <!-- 썸머노트 적용 -->
+            <script>
+                $(document).ready(function () {
+                    $('#summernote').summernote({
+                        placeholder: '내용을 작성해주세요.',
+                        tabsize: 2,
+                        height: 500,
+                        toolbar: [
+                            ['style', ['style']],
+                            ['font', ['bold', 'underline', 'clear']],
+                            ['fontname', ['fontname']],
+                            ['fontsize', ['fontsize']],
+                            ['color', ['color']],
+                            ['para', ['ul', 'ol', 'paragraph']],
+                            ['table', ['table']],
+                            ['insert', ['link', 'picture', 'video']],
+                            ['view', ['fullscreen', 'codeview', 'help']]
+                        ],
+                        fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', '맑은 고딕', '궁서', '굴림체', '굴림', '돋움체', '바탕체'],
+                        fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '30', '36', '50', '72']
+                    });
+                });
+            </script>
+        </form>
+    </th:block>
+    <th:block layout:fragment="content_js">
+    </th:block>
+</body>
+
 </html>
