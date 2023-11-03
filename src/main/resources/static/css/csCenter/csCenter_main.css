@@ -24,17 +24,26 @@
 }
 
 .m_search input{
-    width: 87%;
+    width: 80%;
     padding: 15px;
-    border: 2px solid #222;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 2px solid #dadada;
+}
+.m_search input:focus{
+    border: 2px solid #03c75a;
 }
 
 .m_search button{
+    border-radius: 5px;
     width: 13%;
-    background-color: #222;
+    background-color: #03c75a;
     color: white;
-    border: 0;
+    border: 1px solid #dadada;
     cursor: pointer;
+}
+.m_search button:hover{
+    background-color: #1ab754;
 }
 
 .m_keyword{
@@ -44,8 +53,9 @@
 
 .k_icon{
     position: relative;
-    border: 1px solid #999;
-    background-color: #999;
+    border: 1px solid #dadada;
+    border-right: 0;
+    background-color: #03c75a;
     padding: 3px 12px;
     color: white;
     margin-right: 30px;
@@ -54,12 +64,12 @@
 .k_icon .triangle{
     position: absolute;
     top: 6px;
-    right: -21px;
+    right: -20px;
     display: inline-block;
     border-top: 8px solid transparent;
     border-right: 10px solid transparent;
     border-bottom: 8px solid transparent;
-    border-left: 10px solid #999;
+    border-left: 10px solid #03c75a;
 }
 
 .m_keyword a{
@@ -193,18 +203,24 @@
 }
 
 .s1{
+    border-radius: 5px;
     padding: 15px;
-    border: 2px solid #1db954;
+    border: 2px solid #79c099;
     margin-bottom: 42px;
 }
 
 .s1_ment1{
+    width: 80px;
     font-size: 17px;
-    color: #999;
+    font-weight: 700;
+    color: #1ab954;
+    border-bottom: 2px solid #dadada;
+    margin-bottom: 10px;
 }
 
 .s1_ment2{
     margin-bottom: 10px;
+    color: #666;
 }
 
 .s1_btn button{
