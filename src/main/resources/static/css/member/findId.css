@@ -1,0 +1,359 @@
+@charset "utf-8";
+/* 기본셋팅, 공통값 */
+body, input{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #121212;
+}
+img, input, button{
+    vertical-align: top;
+}
+input, button{
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+.hide{
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+#wrap{
+    min-width: 600px;
+}
+
+#inner{
+    width: 500px;
+    margin: 0;
+    padding: 15px 30px;
+    background-color: white;
+}
+.h_in{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 30%;
+}
+.h_icon{
+    margin-bottom: 30px;
+}
+
+.h_logo{
+    width: 200px;
+    height: 160px;
+    background-image: url(/img/logo.png);
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-indent: -99999%;
+    margin: 30px auto 30px 92px;
+}
+
+.bi.bi-arrow-left-square-fill:hover{
+    fill: rgb(22, 161, 22);
+}
+
+.h_icon > .textLogin{
+
+    margin: -36px 0 0 50px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.h_icon a{
+    
+    content: "";
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.h_left span{
+    font-size: 20px;
+}
+
+.h_left a{
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(/img/ico_back_24.png);
+    background-size: 100% auto;
+    background-position: center;
+    text-indent: -99999%;
+    margin-right: 10px;
+}
+
+.h_right a{
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(/img/ico_home_24.png);
+    background-size: 100% auto;
+    background-position: center;
+    text-indent: -99999%;
+}
+
+
+/* .join_input_1{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #999;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    padding: 5px 20px 0 20px;
+} */
+
+.double_check button{
+    width: 80px;
+    height: 30px;
+    border-radius: 8px;
+}
+
+
+.join_input_2{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #999;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    padding: 5px 20px 0 20px;
+}
+.join_input_2 > .pw_display a{
+    display: block;
+    width: 24px;
+    height: 24px;
+    text-indent: -99999px;
+    top: 45%;
+    right : 5%;
+}
+
+.pw_display > a#pw_on{
+    width: 24px;
+    height: 24px;
+    background: url(/img/pw_on.png) no-repeat center;
+    background-size: 100%;
+}
+.pw_display > a#pw_off{
+    width: 24px;
+    height: 24px;
+    background: url(/img/pw_hidden.png) no-repeat center;
+    background-size: 100%;
+}
+
+.join_input_3{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.join_input_3_left{
+    width: 65%;
+    border: 1px solid #999;
+    border-radius: 8px;
+    padding: 5px 0 0 20px;
+}
+
+.join_input_3_right{
+    width: 25%;
+    border: 1px solid #999;
+    border-radius: 8px;
+    padding: 5px 0 0 20px;
+}
+
+.join_input_4{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.join_input_4_left{
+    width: 50%;
+    border: 1px solid #999;
+    border-radius: 8px;
+}
+
+.input_tel{
+    padding-left: 15px;
+}
+
+.join_input_4_left .tel1{
+    width: 20%;
+}
+
+.join_input_4_left .tel2{
+    width: 30%;
+}
+
+.join_input_4_left .tel3{
+    width: 30%;
+}
+
+.join_input_4_right{
+    width: 48%;
+    border: 1px solid #999;
+    border-radius: 8px;
+}
+
+.input_memberBirth{
+    padding-left: 20px;
+}
+
+.input_memberBirth span{
+    margin-right: 15px;
+}
+
+.join_btn{
+    width: 80px;
+    height: 30px;
+}
+/* .email_verify{
+    border: 1px solid #999;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    padding: 5px 20px 0 20px;
+} */
+.email_verify >.mb-3,
+.email_verify >.verify_box{
+    display: flex;
+    /* justify-content: space-between; */
+}
+.email_verify >.mb-3 > .verify,
+.email_verify >.verify_box > .verify{
+    margin-top: 11px;
+    margin-bottom: 18px;
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+    max-height: 0;
+    transition: all 0.3s ease;
+}
+  
+.visible {
+    display: block;
+    opacity: 1;
+    max-height: 100px; /* 원하는 높이로 조정 */
+    transition: all 0.3s ease;
+}
+.result{
+    display: none;
+    width: 300px;
+    height: 50px;
+    font-size: 13px;
+}
+.resultEmail{
+    width: 300px;
+    height: 50px;
+}
+.login_input{
+    width: 550px;
+    position: relative;
+    border: 1px solid #dadada;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
+    padding: 20px 20px 0 20px;
+}
+#memberEmail, #verify_code{
+    padding: 0 10px;
+    outline: none;
+    border: 1px solid #dadada;
+    color: #888;
+    border-radius: 5px;
+    width: 175px;
+    height: 30px;
+    margin-left: 10px;
+    margin-top: -2px;
+    font-size: 20px;
+}
+#memberEmail:focus, #verify_code:focus{
+    border: 1px solid #1ab752;
+}
+#email_host{
+    margin-left: 10px;
+    margin-top: -1px;
+    height: 30px;
+    color: #888;
+    font-size: 20px;
+    outline: none;
+    border: 1px solid #dadada;
+}
+#verifyButton, #findIdButton, .verify{
+    margin-left: 20px;
+    margin-top: -3px;
+    width: 100px;
+    height: 35px;
+    border: 1px solid #dadada;
+    background-color: #03c75a;
+    border-radius: 5px;
+    color: #fff;
+    letter-spacing: -0.1em;
+}
+#verifyButton:hover{
+    background-color: #1ab752;
+}
+.inputKey{
+    display: flex;
+}
+#timer{
+    margin-left: 10px;
+    color: #888;
+    font-size: 20px;
+}
+.verify{
+    margin-left: 127px;
+}
+.alertbox{
+    color: #888;
+    font-size: 16px;
+    margin-left: 34px;
+    margin-top: 10px;
+}
+.result{
+    height: auto;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-left: 62px;
+}
+.result_textBox{
+    color: #888;
+    font-size: 16px;
+    margin-left: 100px;
+    margin-bottom: 10px;
+}
+.resultId{
+    width: 400px;
+    padding: 10px;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+}
+.resultEmail{
+    height: 25px;
+    color: #888;
+    font-size: 16px;
+    margin-top: -4px;
+}
+.resultIdText{
+    display: flex;
+    border-bottom: 1px solid #dadada;
+    padding: 0 10px;
+    margin-top: 10px;
+}
+.resultIdText:hover{
+    border-bottom: 1px solid #1ab752;
+}
+.resultA{
+    color: #888;
+    width: 90px;
+}
+.resultA:hover{
+    color: #03c75a;
+}

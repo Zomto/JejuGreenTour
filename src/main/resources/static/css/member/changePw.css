@@ -1,0 +1,140 @@
+.hide{
+    position: fixed;
+    top: -99999px;
+    left: -99999px;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+#wrap{
+    min-width: 600px;
+}
+
+#inner{
+    width: 500px;
+    margin: 0;
+    padding: 15px 30px;
+    background-color: white;
+}
+.h_in{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 30%;
+}
+.h_icon{
+    margin-bottom: 30px;
+}
+.title{
+    position: absolute;
+    top: 10px;
+    left: 41%;
+    color: #999;
+    font-size: 18px;
+    font-weight: 700;
+}
+.logoA{
+    margin-left: 257px;
+    display: block;
+    width: 200px;
+    height: 160px;
+}
+
+.h_logo{
+    width: 200px;
+    height: 160px;
+    background-image: url(/img/logo.png);
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-indent: -99999%;
+}
+
+.bi.bi-arrow-left-square-fill:hover{
+    fill: rgb(22, 161, 22);
+}
+
+.h_icon > .textLogin{
+
+    margin: -19px 0 0 50px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.h_icon a{
+    
+    content: "";
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+.idBlock{
+    display: flex;
+}
+.block{
+    padding: 15px 30px;
+    margin:10px auto;
+    width: 500px;
+    height: auto;
+    border-radius: 7px;
+    border: 1px solid #dadada; 
+}
+.block1.id > svg{
+    top:8px;
+}
+svg{
+    position: absolute;
+    z-index: 500;
+    top: 10px;
+    left: 10px;
+}
+.block1{
+    position: relative;
+    padding: 15px 30px;
+    margin:10px auto;
+    height: auto;
+
+}
+.block1.id{
+    width: 120px;
+    height: 11px;
+    text-align: center;
+    border-radius: 7px;
+    border: 1px solid #dadada; 
+}
+.memberId{
+    margin-top : -7px
+}
+.changePw{
+    position: relative;
+    margin-left: 69px;
+}
+.InputchangePw{
+    outline: none;
+    border: 1px solid #dadada;
+    border-radius: 7px;
+    width: 300px;
+    height: 35px;
+    margin: 5px 0px;
+    color: #888;
+    box-sizing: border-box;
+    padding: auto;
+    padding: 0 40px;
+}
+.InputchangePw:focus{
+    border: 1px solid #1ab752;
+}
+.changeBtn{
+    width: 400px;
+    height: 40px;
+    margin: 5px 145px;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #03c75a;
+    letter-spacing: -0.1em;
+}
+.changeBtn:hover{
+    background-color: #1ab752;
+}

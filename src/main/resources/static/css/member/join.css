@@ -84,7 +84,7 @@ a {
 .inputMem.memberId {
     border: 1px solid #dadada;
     border-radius: 7px 7px 0 0;
-    width: 499px;
+    width: 498px;
 }
 
 .inputMem>svg {
@@ -152,19 +152,28 @@ a {
 .inputMem>#memberPw {
     position: relative;
     border-top: 0;
+    border-radius: 0;
+}
+.inputMem>#memberPwch {
+    position: relative;
+    border-top: 0;
     border-radius: 0 0 7px 7px;
 }
 
 .inputMem>#memberPw:focus {
     border-top: 1px solid #1ab752;
 }
-
+.inputMem>#memberPwch:focus {
+    border-top: 1px solid #1ab752;
+}
 .pw_display {
     z-index: 500;
     margin-top: 14px;
     margin-left: -40px;
 }
-
+.inputMem.memberName{
+    border-radius: 7px 0 0 0;
+}
 .inputMem>#memberName {
     position: relative;
     border-radius: 7px 0 0 0;
@@ -373,7 +382,7 @@ a {
 }
 .verify_box{
     width: 499px;
-    height: 50px;
+    height: auto;
     border-radius: 0 0 7px 7px;
     border: 1px solid #dadada;
     border-top: 0;
@@ -417,4 +426,7 @@ a {
 }
 .join_btn:hover{
     background-color: #1ab752;
+}
+.alertbox{
+    margin: 10px 0 20px 48px;
 }

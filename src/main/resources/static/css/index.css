@@ -1,16 +1,15 @@
 @charset "UTF-8";
 #Visual_Main{
     width: 1920px;
-    height: 610px;
+    height: 541px;
     margin: 0 auto;
     position: relative;
     transition: background-color 0.1s;
 }
 .slide_section{
     position: absolute;
-    left: 25%;
     margin: 0 auto;
-    width: 740px;
+    width: 1920px;
     height: 610px;;
 }
 
@@ -19,25 +18,64 @@
     position: relative;
     width: 1920px;
 }
+.slide_in.vm1{
+    background-color: rgba(74, 147, 216, 1);
+}
+.slide_in.vm2{
+    background-color: rgba(33, 84, 202, 1);
+}
+.slide_in.vm3{
+    background-color: rgba(124, 194, 254, 1);
+}
+.slide_in.vm4{
+    background-color: #106292; 
+}
+.slide_in.vm5{
+    background-color: #a15805;
+}
+.slide_in.vm6{
+    background-color: #0ab427; 
+}
+
 .slide_1 .vm_1{
     width: 740px;
-    height: 610px;
+    height: 540px;
     background: url(/img/mainBn_01.jpg) center no-repeat;
+    margin-left: 28%;
 }
 .slide_2 .vm_2{
     width: 740px;
-    height: 610px;
+    height: 540px;
     background: url(/img/bluedragon.JPG);
+    margin-left: 28%;
 }
 .slide_3 .vm_3{
     width: 740px;
-    height: 610px;
+    height: 540px;
     background: url(/img/02.jpg);
+    margin-left: 28%;
 }
 .slide_4 .vm_4{
-    width: 740px;
-    height: 610px;
-    background: url(/img/747-green.JPG);
+    width: 1200px;
+    height: 541px;
+    background: url(/img/koreanair.png) center no-repeat;
+    background-size: 100% auto;
+    margin-left: 18%;
+}
+.slide_5 .vm_5{
+    width: 1479px;
+    height: 526px;
+    background: url(/img/fastbig.jpg) center no-repeat;
+    background-size: auto 541px;
+    padding-bottom: 14px;
+    margin-left: 12%;
+}
+.slide_6 .vm_6{
+    width: 1200px;
+    height: 541px;
+    background: url(/img/gogo.png) center no-repeat;
+    background-size: 100%;
+    margin-left: 20%;
 }
 .m_remote{
     position: absolute;
@@ -69,22 +107,6 @@
     display: none;
 }
 
-
-.slide_1.active #Visual_Main {
-    background-color: rgba(74, 147, 216, 1) /* 1번 슬라이드가 활성화될 때 배경색을 bisque로 설정 */
-}
-
-.slide_2.active #Visual_Main {
-    background-color: rgba(33, 84, 202, 1); /* 2번 슬라이드가 활성화될 때 배경색을 aqua로 설정 */
-}
-
-.slide_3.active #Visual_Main {
-    background-color: rgba(124, 194, 254, 1); /* 3번 슬라이드가 활성화될 때 배경색을 green으로 설정 */
-}
-
-.slide_4.active #Visual_Main {
-    background-color: rgba(0, 144, 230, 1); /* 4번 슬라이드가 활성화될 때 배경색을 blue로 설정 */
-}
 .inner{
     box-sizing: border-box;
     background: none;
@@ -97,7 +119,9 @@ margin-bottom: 30px;
 
 }
 .category{
-    width: 100%;
+    width: 1159px;
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,0.3);
 }
 /* @font-face {
     font-family: 'Pretendard-Regular';
@@ -165,3 +189,62 @@ margin-bottom: 30px;
     border-bottom: 2px solid #dadada;
     margin-bottom: 20px;
 }   
+
+.items{
+    display: flex;
+    padding: 10px 5px;
+}
+.itemdetail{
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,0.8);
+    position: relative;
+    width: 215px;
+    height: 300px;
+    margin: 0 5px;
+    /* border: 1px solid #dadada; */
+    border-radius: 5px;
+    padding: 2px;
+}
+.itemdetail:hover{
+    border: 1px solid #1ab752;
+}
+.photo{
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #dadada;
+    width: 213px;
+    height: 180px;
+}
+.text{
+    padding: 10px;
+}
+.itemName{
+    color: #888;
+    margin-bottom: 10px;
+}
+.itemStar{
+    display: flex;
+}
+.star{
+    margin-right: 10px;
+}
+.itemReview{
+    display: flex;
+}
+.price{
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+.love{
+    position: absolute;
+    left: 13px;
+    bottom: 8px;
+}
+
+span{
+    color: #888;
+}
+.priceNum{
+    color: #444;
+    font-size: 20px;
+    font-weight: 700;
+}

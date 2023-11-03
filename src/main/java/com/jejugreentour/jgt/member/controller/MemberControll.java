@@ -51,13 +51,14 @@ public class MemberControll {
         if(loginInfo !=null){
             session.setAttribute("loginInfo",loginInfo);
         }
-        return "redirect:/";
+        return "content/member/login_result";
     }
     @ResponseBody
     @PostMapping("/checkId")
     public boolean checkId(String memberId){
         return memberService.checkId(memberId);
     }
+
 
 
     @ResponseBody
@@ -84,6 +85,10 @@ public class MemberControll {
     public String myPageForm(){
         return "content/member/myPage_main";
     }
+    @GetMapping("/infoForm")
+    public String infoForm(){
+        return "content/member/member_info";
+    }
 
     @GetMapping("/logout")
     public String logout(HttpSession session){
@@ -106,21 +111,33 @@ public class MemberControll {
         // 리다이렉트 또는 다른 처리
         return "content/member/member_info";
     }
-    @PostMapping("/editMember2")
-    public String updateMember2(MemberVO memberVO, HttpSession session) {
-        System.out.println(memberVO);
-        MemberVO vo =(MemberVO)session.getAttribute("loginInfo");
-        memberVO.setMemberId(vo.getMemberId());
-        // MemberService를 사용하여 비밀번호 업데이트를 처리
-        int updatedRows = memberService.updateMember2(memberVO);
 
-        if (updatedRows > 0) {
-            // 업데이트 성공 시 어떤 처리를 하거나 리다이렉트할 수 있음
-        }
+    @PostMapping("/editMember2")
+    public String updateMember2(HttpSession session, MemberVO memberVO) {
+
+        memberVO.setMemberId(((MemberVO)session.getAttribute("loginInfo")).getMemberId());
+        System.out.println(memberVO);
+        // MemberService를 사용하여 비밀번호 업데이트를 처리
+        memberService.updateMember2(memberVO);
+
 
         // 리다이렉트 또는 다른 처리
         return "redirect:/member/logout";
+
     }
+
+    @ResponseBody
+    @PostMapping("/changePw")
+    public void changePw(String memberId, String memberPw, MemberVO memberVO) {
+        System.out.println(memberId);
+        System.out.println(memberPw);
+        memberVO.setMemberId(memberId);
+        memberVO.setMemberPw(memberPw);
+        memberService.changePw(memberVO);
+    }
+
+
+
     @GetMapping("/find_IdForm")
     public String findIdForm(){
         return "content/member/find_Id";
@@ -135,18 +152,45 @@ public class MemberControll {
 
         return members;
     }
+
+    @ResponseBody
+    @PostMapping("/checkInfo")
+    public String checkInfo(String memberId,String member_mail, MemberVO memberVO){
+        MemberVO memberVO1 = new MemberVO();
+        memberVO1.setMemberId(memberId);
+        memberVO1.setMember_mail(member_mail);
+
+        System.out.println(memberService.checkInfo(memberVO1));
+
+        return memberService.checkInfo(memberVO1) == null ? "false" :memberService.checkInfo(memberVO1);
+    }
+
+
     @GetMapping("/find_PwForm")
     public String findPwForm(){
         return "content/member/find_Pw";
     }
+
+
     @ResponseBody
+
     @PostMapping("/findPw")
     public void findPw(@RequestBody MemberVO memberVO) {
         String input = memberVO.getMember_mail();
         String member_mail = input.replace("%40", "@");
         // 이제 memberVO 객체에는 새로운 비밀번호 정보가 포함됩니다.
-        memberService.updatePw(memberVO);
+        memberService.changePw(memberVO);
     }
+
+
+
+    @GetMapping("/changePwForm")
+    public String changePwForm(String memberId, Model model){
+        model.addAttribute("memberId", memberId);
+        System.out.println(memberId);
+        return "content/member/changePw";
+    }
+
 
 
 }

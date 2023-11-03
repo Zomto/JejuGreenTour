@@ -39,7 +39,7 @@
     <select id="annList" resultMap="announcement">
         SELECT
             ANN_NUM
-            , CATE_CODE
+            , ANN_CATE
             , CATE_NAME
             , ANN_WRITER
             , ANN_TITLE
@@ -47,8 +47,20 @@
             , TO_CHAR(ANN_DATE,'YYYY-MM-DD') AS ANN_DATE
         FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LIST
         WHERE ANN.ANN_CATE = LIST.CATE_CODE
+        <if test='annCate != null and !annCate.equals("")'>
+            AND ANN_CATE = #{annCate}
+        </if>
         ORDER BY ANN_NUM DESC
         OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+    </select>
+
+    <!--  카테고리 목록 조회  -->
+    <select id="annCateList" resultMap="annCate">
+        SELECT
+            CATE_CODE
+            , CATE_NAME
+        FROM ANN_CATE_LIST
+        ORDER BY CATE_CODE
     </select>
 
     <!--  공지사항 목록 추가  -->
@@ -71,6 +83,11 @@
     <select id="selectAnnCnt" resultType="int">
         SELECT COUNT(ANN_NUM)
         FROM ANNOUNCEMENT
+        WHERE 1 = 1
+        <if test='annCate != null and !annCate.equals("")'>
+            AND ANN_CATE = #{annCate}
+        </if>
+
     </select>
 
     <!--  공지사항 세부 페이지  -->
@@ -87,6 +104,21 @@
         WHERE ANN.ANN_CATE = LIST.CATE_CODE
         AND ANN_NUM = #{annNum}
     </select>
+
+    <update id="updateAnn">
+        UPDATE ANNOUNCEMENT
+        SET
+            ANN_CATE = #{annCate}
+            , ANN_TITLE = #{annTitle}
+            , ANN_CONTENT = #{annContent}
+        WHERE ANN_NUM = #{annNum}
+    </update>
+    
+    <delete id="deleteAnn">
+        DELETE ANNOUNCEMENT
+        WHERE ANN_NUM = #{annNum}
+    </delete>
+
 
     <!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 
@@ -133,7 +165,7 @@
     </select>
 
     <!--  QNA 목록 추가  -->
-    <insert id="inputQna">
+    <insert id="insertQna">
         INSERT INTO QNA (
         QNA_CODE
         , CATE_CODE
@@ -153,6 +185,133 @@
         SELECT COUNT(QNA_CODE)
         FROM QNA
     </select>
+
+    <update id="updateQna">
+        UPDATE QNA
+        SET
+            CATE_CODE = #{cateCode}
+            , QNA_QUESTION = #{qnaQuestion}
+            , QNA_ANSWER = #{qnaAnswer}
+        WHERE QNA_CODE = #{qnaCode}
+    </update>
+
+    <delete id="deleteQna">
+        DELETE QNA
+        WHERE QNA_CODE = #{qnaCode}
+    </delete>
+
+
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+    <!--  문의하기  -->
+    <resultMap id="inquire" type="com.jejugreentour.jgt.csCenter.vo.InquireVO" >
+        <id column="INQ_CODE" property="inqCode"/>
+        <result column="CATE_CODE" property="cateCode"/>
+        <result column="MEMBER_ID" property="memberId"/>
+        <result column="TITLE" property="title"/>
+        <result column="CONTENT" property="content"/>
+        <result column="IS_RESPONSE" property="isResponse"/>
+        <result column="INQ_DATE" property="inqDate"/>
+        <collection property="inqCateList" resultMap="inqCate"/>
+        <collection property="inqImgList" resultMap="inqImg"/>
+    </resultMap>
+
+    <resultMap id="inqCate" type="com.jejugreentour.jgt.csCenter.vo.InqCateVO">
+        <id column="CATE_CODE" property="cateCode"/>
+        <result column="CATE_NAME" property="cateName"/>
+    </resultMap>
+
+    <resultMap id="inqImg" type="com.jejugreentour.jgt.csCenter.vo.InqImgVO">
+        <id column="IMG_CODE" property="imgCode"/>
+        <result column="ORIGIN_FILE_NAME" property="originFileName"/>
+        <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
+        <result column="INQ_CODE" property="inqCode"/>
+    </resultMap>
+
+
+    <select id="inqList" resultMap="inquire">
+        SELECT
+            INQ_CODE
+            , INQ.CATE_CODE
+            , CATE_NAME
+            , MEMBER_ID
+            , TITLE
+            , IS_RESPONSE
+            , TO_CHAR(INQ_DATE,'YYYY-MM-DD') AS INQ_DATE
+        FROM INQUIRE INQ, INQ_CATE_LIST CATE
+        WHERE INQ.CATE_CODE = CATE.CATE_CODE
+        OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+    </select>
+
+    <!--  문의하기 세부 페이지  -->
+    <select id="inqDetail" resultMap="inquire">
+        SELECT
+             INQ_CODE
+            , INQ.CATE_CODE
+            , CATE_NAME
+            , MEMBER_ID
+            , TITLE
+            , CONTENT
+            , TO_CHAR(INQ_DATE,'YYYY-MM-DD') AS INQ_DATE
+            , IS_RESPONSE
+        FROM INQUIRE INQ, INQ_CATE_LIST CATE
+        WHERE INQ.CATE_CODE = CATE.CATE_CODE
+        AND INQ_CODE = #{inqCode}
+    </select>
+
+    <select id="selectInqCnt" resultType="int">
+        SELECT COUNT(INQ_CODE)
+        FROM INQUIRE
+    </select>
+
+    <!--  문의하기 목록 추가  -->
+    <insert id="insertInq">
+        INSERT INTO INQUIRE (
+        INQ_CODE
+        , CATE_CODE
+        , TITLE
+        , CONTENT
+        )
+        VALUES (
+        (SELECT 'INQ_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(INQ_CODE, 5))),0) + 1, 3, '0')
+        FROM INQUIRE)
+        , #{cateCode}
+        , #{title}
+        , #{content}
+        )
+    </insert>
+
+    <!--  문의하기 사진 추가  -->
+    <insert id="insertInqImgs">
+        INSERT INTO INQ_IMG (
+            IMG_CODE
+            , ORIGIN_FILE_NAME
+            , ATTACHED_FILE_NAME
+            , INQ_CODE
+        )
+        <foreach collection="inqImgList" item="inqImg" separator="UNION ALL" index="idx">
+            SELECT (SELECT 'IMG_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(IMG_CODE, 5))),0) + 1 + #{idx}, 3, '0')
+            FROM INQ_IMG)
+            , #{inqImg.originFileName}
+            , #{inqImg.attachedFileName}
+            , #{inqImg.inqCode}
+            FROM DUAL
+        </foreach>
+    </insert>
+
+    <!--  문의하기 추가  -->
+    <!-- 아이템 코드 호출 -->
+    <select id="nextInqCode" resultType="String">
+        SELECT 'INQ_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(INQ_CODE, 5))),0) + 1, 3, '0')
+        FROM INQUIRE
+    </select>
+
+    <select id="inqImgList" resultMap="inqImg">
+        SELECT *
+        FROM INQ_IMG
+        WHERE INQ_CODE = #{inqCode}
+    </select>
+
 
 
 </mapper>

@@ -2,6 +2,8 @@ package com.jejugreentour.jgt.accom.service;
 
 import com.jejugreentour.jgt.accom.vo.MainAccomImgVO;
 import com.jejugreentour.jgt.accom.vo.MainAccomVO;
+import com.jejugreentour.jgt.accom.vo.SubAccomImgVO;
+import com.jejugreentour.jgt.accom.vo.SubAccomVO;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -27,11 +29,15 @@ public class AccomServiceImpl implements AccomService {
         sqlSession.insert("accomMapper.addAccom", mainAccomVO);
         sqlSession.insert("accomMapper.insertImgs", mainAccomVO);
     }
-    
+
+    @Override
+    public String selectNextsubAccomCode()  {
+        return sqlSession.selectOne("accomMapper.selectNextsubAccomCode");
+    }
+
     // 업소 상세 정보
     @Override
     public MainAccomVO selectMainAccomDetail(String accomCode) {
-        sqlSession.selectList("accomMapper.selectSubImg", accomCode);
         return sqlSession.selectOne("accomMapper.selectMainAccomDetail", accomCode);
     }
 
@@ -58,6 +64,24 @@ public class AccomServiceImpl implements AccomService {
     @Override
     public List<MainAccomImgVO> selectSubImg(String accomCode) {
         return  sqlSession.selectList("accomMapper.selectSubImg", accomCode);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void addSubAccom(SubAccomVO subAccomVO) {
+
+        sqlSession.insert("accomMapper.insertSubaccom", subAccomVO);
+        sqlSession.insert("accomMapper.insertSubImgs", subAccomVO);
+    }
+
+    @Override
+    public List<SubAccomImgVO> selectSubAccomImg(String subAccomCode) {
+        return  sqlSession.selectList("accomMapper.selectSubAccomImg", subAccomCode);
+    }
+
+    @Override
+    public SubAccomVO selectSubAccomDetail(String subAccomCode) {
+        return sqlSession.selectOne("accomMapper.selectSubAccomDetail", subAccomCode);
     }
 
 

@@ -4,6 +4,8 @@ package com.jejugreentour.jgt.accom.controller;
 import com.jejugreentour.jgt.accom.service.AccomService;
 import com.jejugreentour.jgt.accom.vo.MainAccomImgVO;
 import com.jejugreentour.jgt.accom.vo.MainAccomVO;
+import com.jejugreentour.jgt.accom.vo.SubAccomImgVO;
+import com.jejugreentour.jgt.accom.vo.SubAccomVO;
 import com.jejugreentour.jgt.member.vo.MemberVO;
 import com.jejugreentour.jgt.util.UploadUtil;
 import jakarta.servlet.ServletOutputStream;
@@ -94,6 +96,7 @@ public class AccomController {
     @GetMapping("/subAccomAddForm")
     public String subAccomAddForm(String accomCode, Model model){
 
+        model.addAttribute("accomCode",accomCode);
         return "content/accom/subAccom_add";
     }
 
@@ -128,5 +131,49 @@ public class AccomController {
         List<MainAccomImgVO> mainAccomImgList = accomService.selectSubImg(accomCode);
         return mainAccomImgList;
     }
+    @PostMapping("/addSubAccom")
+    public  String addSubAccom(SubAccomVO subAccomVO, MultipartFile mainImg,  MultipartFile[] files){
+
+
+        // 0. 다음에 들어 가야 할 ITEM_CODE 조회
+        String subAccomCode = accomService.selectNextsubAccomCode();
+
+        // 2. 이미지 정보 하나가 들어갈 수 있는 통!
+        // 첨부파일 기능
+        SubAccomImgVO vo = UploadUtil.uploadSubFile(mainImg);
+
+        // 첨부파일 기능 다중업로드
+        List<SubAccomImgVO> mainAccomImgList = UploadUtil.multiSubFileUpload(files);
+        mainAccomImgList.add(vo);
+
+        for(SubAccomImgVO subAccomImgVO : mainAccomImgList) {
+            subAccomImgVO.setSubAccomCode(subAccomCode);
+        }
+
+        subAccomVO.setSubAccomImgList(mainAccomImgList);
+
+        // 상품 등록 + 이미지 등록 쿼리
+        subAccomVO.setSubAccomCode(subAccomCode);
+        System.out.println(subAccomVO);
+        accomService.addSubAccom(subAccomVO);
+        // 상품 이미지 정보 등록 쿼리
+
+        return "/index";
+    }
+
+
+    @GetMapping("/subAccomDetail")
+    public String subAccomDetail(Model model, String subAccomCode) {
+        SubAccomVO vo = accomService.selectSubAccomDetail(subAccomCode);
+        List<SubAccomImgVO> img = accomService.selectSubAccomImg(subAccomCode);
+        model.addAttribute("subAccom", vo);
+        System.out.println(vo);
+        System.out.println(img);
+        model.addAttribute("imgList", img);
+        return "content/accom/subAccom_detail";
+
+    }
+
+
 
 }

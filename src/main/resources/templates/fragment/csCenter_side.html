@@ -4,18 +4,28 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<!-- css 영역 -->
+<th:block layout:fragment="content_css">
+    <link rel="stylesheet" href="/css/csCenter/csCenter_side.css">
+</th:block>
 </head>
 <body>
 <th:block th:fragment="csCenterSideFragment">
     <div class="side_menu">
         <div class="side_inner">
             <h3><a class="title_a" href="/cs/csForm">고객센터</a></h3>
-            <p><a href="/cs/annForm">공지사항</a></p>
-            <p><a href="/cs/inquireForm">문의하기</a></p>
-            <p><a href="/cs/inquireListForm">문의내역</a></p>
-            <p class="menu_last"><a href="/cs/qnaListForm">자주 찾는 질문</a></p>
+            <div class="csCenter_side">
+                <p class="sideForm ann"><a href="/cs/annListForm">공지사항</a></p>
+                <p class="sideForm inquire"><a href="/cs/inquireForm">문의하기</a></p>
+                <p class="sideForm inquireList"><a href="/cs/inquireListForm">문의내역</a></p>
+                <p class="sideForm qnaList menu_last"><a href="/cs/qnaListForm">자주 찾는 질문</a></p>
+            </div>
         </div>
     </div>
 </th:block>
 </body>
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+    <link rel="stylesheet" href="/js/csCenter/csCenter_side.js">
+</th:block>
 </html>

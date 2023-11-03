@@ -28,11 +28,12 @@
                 </div>
                 <div class="cate_menu">
                     <ul>
-                        <li>전체</li>
-                        <li>일반</li>
-                        <li>오픈소식</li>
-                        <li>서비스</li>
-                        <li class="cate_last">당첨자발표</li>
+                        <li>
+                            <a href="/cs/annListForm">전체</a>
+                        </li>
+                        <li th:each="cate : ${cateList}">
+                            <a th:href="@{/cs/annListForm(annCate=${cate.cateCode})}">[[${cate.cateName}]]</a>
+                        </li>
                     </ul>
                 </div>
                 <table width="1000px">
@@ -55,16 +56,16 @@
                 </table>
                 <div class="btn_group">
                     <div class="pageBtn">
-                        <a class="page_prevBtn" th:href="@{/cs/annForm(nowPage=${annVO.beginPage - 1})}"><span th:if="${annVO.prev}">이전</span></a>
+                        <a class="page_prevBtn" th:href="@{/cs/annListForm(nowPage=${annVO.beginPage - 1},annCate=${annCate} )}"><span th:if="${annVO.prev}">이전</span></a>
     
                         <th:block th:each="pageNum : ${#numbers.sequence(annVO.beginPage, annVO.endPage)}">
-                            <a class="page_numBtn" th:href="@{/cs/annForm(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
+                            <a class="page_numBtn" th:href="@{/cs/annListForm(nowPage=${pageNum}, annCate=${annCate})}"><span th:text="${pageNum}"></span></a>
                         </th:block>
     
-                        <a class="page_nextBtn" th:href="@{/cs/annForm(nowPage=${annVO.endPage + 1})}"><span th:if="${annVO.next}">다음</span></a>
+                        <a class="page_nextBtn" th:href="@{/cs/annListForm(nowPage=${annVO.endPage + 1}, annCate=${annCate})}"><span th:if="${annVO.next}">다음</span></a>
                     </div>
                     <div class="annBtn">
-                        <button onclick="location.href='/cs/snForm';">글 작성</button>
+                        <button onclick="location.href='/cs/annForm';">글 작성</button>
                     </div>
                 </div>
             </div>

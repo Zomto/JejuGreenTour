@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title></title>
     <!-- css영역 -->
-    <th:block th:fragment="content_css">
+    <th:block layout:fragment="content_css">
         <link rel="stylesheet" href="/css/csCenter/qnaList.css">
     </th:block>
 </head>
@@ -41,19 +41,23 @@
                                     <span class="qna_span_a">A</span>
                                     [[${qna.qnaAnswer}]]
                                 </div>
+                                <div class="qna_btn">
+                                    <input type="button" th:onclick="|location.href='@{/cs/updateQnaForm(qnaCode=${qna.qnaCode})}'|" value="수정">
+                                    <input type="button" th:onclick="|location.href='@{/cs/deleteQna(qnaCode=${qna.qnaCode})}'|" value="삭제">
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="btn_group">
                     <div class="pageBtn">
-                        <a class="page_prevBtn" th:href="@{/cs/qnaForm(nowPage=${qnaVO.beginPage - 1})}"><span th:if="${qnaVO.prev}">이전</span></a>
+                        <a class="page_prevBtn" th:href="@{/cs/qnaListForm(nowPage=${qnaVO.beginPage - 1})}"><span th:if="${qnaVO.prev}">이전</span></a>
     
                         <th:block th:each="pageNum : ${#numbers.sequence(qnaVO.beginPage, qnaVO.endPage)}">
-                            <a class="page_numBtn" th:href="@{/cs/qnaForm(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
+                            <a class="page_numBtn" th:href="@{/cs/qnaListForm(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
                         </th:block>
     
-                        <a class="page_nextBtn" th:href="@{/cs/qnaForm(nowPage=${qnaVO.endPage + 1})}"><span th:if="${qnaVO.next}">다음</span></a>
+                        <a class="page_nextBtn" th:href="@{/cs/qnaListForm(nowPage=${qnaVO.endPage + 1})}"><span th:if="${qnaVO.next}">다음</span></a>
                     </div>
                     <div class="inquireBtn">
                         <button class="qnaFormBtn" onclick="location.href='/cs/qnaForm';">글 추가</button>

@@ -50,9 +50,29 @@ public interface BuyService {
     //회원이 쓴 리뷰조회
     public List<ReviewVO> memberReviewList(String memberId);
 
+    //리뷰 수정을 위한 조회
+    public ReviewVO selectReviewOne(String reservattonCode);
+
+    public int deleteReview(String reviewCode);
+
+    //리뷰 이미지 가져오기
+    public  List<ReviewImgVO> selectReviewImgList(String reviewCode);
+
+
+    //리뷰이미지 지우기
+    public  void  deleteReviewImg(ReviewVO reviewVO);
+
+    //리뷰이미지 다시 넣기
+    public  void  ReInsertReviewImg(ReviewVO reviewVO);
+
+    //리뷰업데이트
+    public  void  updateReview(ReviewVO reviewVO);
+
     //숙박업소주인 답변달기
     public int insertAdminReview(ReviewAdminVO reviewAdminVO);
 
+    //숙박업소주인 답볍삭제
+    public int deleteAdminReview(ReviewAdminVO reviewAdminVO);
 
 
     //결제 취소 admin 시점 user 시점 (환불금액 차이)

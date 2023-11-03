@@ -24,18 +24,21 @@
     </resultMap>
 
     <resultMap id="subAccom" type="com.jejugreentour.jgt.accom.vo.SubAccomVO">
-        <result column="SUB_ACCOM_CODE"      property="subAccomCode" />
+        <id column="SUB_ACCOM_CODE"      property="subAccomCode" />
         <result column="ACCOM_CODE"      property="accomCode" />
         <result column="SUB_ACCOM_NAME"    property="subAccomName" />
         <result column="SUB_ACCOM_INTRO"    property="subAccomIntro" />
         <result column="SUB_ACCOM_CATE"    property="subAccomCate" />
-        <result column="ACCOM_PRICE"    property="accomPrice" />
+        <result column="DAYUSE_PRICE"    property="dayusePrice" />
+        <result column="RESERVATION_PRICE"    property="reservationPrice" />
         <result column="BASIC_MAN"    property="basicMan" />
         <result column="MAX_MAN"    property="maxMan" />
         <result column="ACCOM_START_TIME"    property="accomStartTime" />
         <result column="ACCOM_END_TIME"    property="accomEndTime" />
         <result column="RENT_TIME"    property="rentTime" />
         <result column="SOLD_OUT"    property="soldOut" />
+        <result column="DAY_USE_CAN"    property="dayuseCan" />
+        <collection property="subAccomImgList" resultMap="subAccomImg" />
     </resultMap>
 
     <resultMap id="subAccomImg" type="com.jejugreentour.jgt.accom.vo.SubAccomImgVO">
@@ -60,10 +63,9 @@
         <result column="CATE_NAME"      property="cateName" />
     </resultMap>
 
-    <resultMap id="accomLoc" type="com.jejugreentour.jgt.accom.vo.AccomLocVO">
-        <result column="ACCOM_LOC_CODE"      property="accomLocCode" />
-        <result column="LOC_NAME"      property="LOC_NAME" />
-    </resultMap>
+    <select id="">
+
+    </select>
 
     <insert id="addAccom">
         INSERT INTO MAIN_ACCOM (
@@ -88,7 +90,46 @@
         , #{accomLoc}
         )
     </insert>
+    <insert id="addSubAccom">
+      INSERT INTO SUB_ACCOM(SUB_ACCOM_CODE
+    , ACCOM_CODE
+    , SUB_ACCOM_NAME
+    , SUB_ACCOM_INTRO
+    , SUB_ACCOM_CATE
+    , BASIC_MAN
+    , MAX_MAN
+    , ACCOM_START_TIME
+    , ACCOM_END_TIME
+    , RENT_TIME
+    , DAY_USE_PRICE
+    , RESERVATION_PRICE
+    , DAY_USE_CAN)
+    VALUES ((SELECT 'SUB_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(SUB_ACCOM_CODE,5))),0)+1,3,'0')FROM SUB_ACCOM)
+    , #{ACCOM_CODE}
+    , #{101호}
+    , #{설명}
+    , #{방사이즈}
+    , #{인원수}
+    , #{최대인원수}
+    ,'hh:00:00'  체크아웃 오전 9
+    ,'hh:00:00'  체크아웃 오후 15 16
+    ,#{대실시간}
+    ,#{대실가격}
+    ,#{1박 가격}
+    ,#{대실 가능 여부 Y});
+    </insert>
 
+
+<!--
+<result column="SUB_ACCOM_CATE"    property="subAccomCate" />
+        <result column="ACCOM_PRICE"    property="accomPrice" />
+        <result column="BASIC_MAN"    property="basicMan" />
+        <result column="MAX_MAN"    property="maxMan" />
+        <result column="ACCOM_START_TIME"    property="accomStartTime" />
+        <result column="ACCOM_END_TIME"    property="accomEndTime" />
+        <result column="RENT_TIME"    property="rentTime" />
+        <result column="SOLD_OUT"    property="soldOut" />
+-->
     <!-- 아이템 코드 호출 -->
     <select id="selectNextAccomCode" resultType="String">
         SELECT 'ACCOM_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ACCOM_CODE, 7))),0) + 1, 3, '0')
@@ -179,4 +220,118 @@
         DELETE FROM MAIN_ACCOM_IMG
         WHERE MAIN_IMG_CODE = #{mainImgCode}
     </delete>
+
+    <insert id="insertSubaccom">
+        INSERT INTO SUB_ACCOM(SUB_ACCOM_CODE
+        , ACCOM_CODE
+        , SUB_ACCOM_NAME
+        , SUB_ACCOM_INTRO
+        , SUB_ACCOM_CATE
+        , BASIC_MAN
+        , MAX_MAN
+        , ACCOM_START_TIME
+        , ACCOM_END_TIME
+        , RENT_TIME
+        , DAYUSE_PRICE
+        , RESERVATION_PRICE
+        <if test='dayuseCan != null and !dayuseCan.equals("")'>
+            , DAY_USE_CAN
+        </if>
+        )
+        VALUES ((SELECT 'SUB_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(SUB_ACCOM_CODE,5))),0)+1,3,'0') FROM SUB_ACCOM)
+        , #{accomCode}
+        , #{subAccomName}
+        , #{subAccomIntro},
+        <if test='subAccomCates.size()!=0'>
+            <foreach collection="subAccomCates" item="cate" separator="||','||" open="(" close=")">
+                #{cate}
+            </foreach>
+        </if>
+        <if test='subAccomCates.size() == 0'>
+            null
+        </if>
+        , #{basicMan}
+        , #{maxMan}
+        , #{accomStartTime}||':00:00'
+        , #{accomEndTime}||':00:00'
+        , (TO_NUMBER(#{accomStartTime}) - TO_NUMBER(#{accomEndTime}) - 2)
+        <if test='dayusePrice != null and !dayusePrice.equals("")'>
+            , #{dayusePrice}
+        </if>
+        <if test='dayusePrice == null or dayusePrice.equals("")'>
+            , '0'
+        </if>
+        ,#{reservationPrice}
+        <if test='dayuseCan != null and !dayuseCan.equals("")'>
+            , #{dayuseCan}
+        </if>
+        )
+    </insert>
+
+    <insert id="insertSubImgs">
+        INSERT INTO SUB_ACCOM_IMG (
+        SUB_IMG_CODE
+        , ORIGIN_FILE_NAME
+        , ATTACHED_FILE_NAME
+        , SUB_ACCOM_CODE
+        , IS_MAIN
+        )
+        <foreach collection="subAccomImgList" item="subAccomImg" separator="UNION ALL" index="idx">
+            SELECT (SELECT 'SUB_IMG_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(SUB_IMG_CODE, 9))),0) + 1 + #{idx}, 3, '0')
+            FROM SUB_ACCOM_IMG)
+            , #{subAccomImg.originFileName}
+            , #{subAccomImg.attachedFileName}
+            , #{subAccomImg.subAccomCode}
+            , #{subAccomImg.isMain}
+            FROM DUAL
+        </foreach>
+    </insert>
+    <select id="selectNextsubAccomCode" resultType="String">
+        SELECT 'SUB_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(SUB_ACCOM_CODE,5))),0)+1,3,'0') FROM SUB_ACCOM
+    </select>
+
+
+    <select id="selectSubAccomDetail" resultMap="subAccom">
+        SELECT *
+<!--        SUB_ACCOM_CODE-->
+<!--        , ACCOM_CODE-->
+<!--        , SUB_ACCOM_NAME-->
+<!--        , SUB_ACCOM_INTRO-->
+<!--        , SUB_ACCOM_CATE-->
+<!--        , BASIC_MAN-->
+<!--        , MAX_MAN-->
+<!--        , ACCOM_START_TIME-->
+<!--        , ACCOM_END_TIME-->
+<!--        , RENT_TIME-->
+<!--        , DAYUSE_PRICE-->
+<!--        , RESERVATION_PRICE-->
+<!--        , SOLD_OUT-->
+<!--        , DAY_USE_CAN-->
+        FROM SUB_ACCOM
+        WHERE SUB_ACCOM_CODE = #{subAccomCode}
+    </select>
+    
+    <select id="selectSubAccomImg" resultMap="subAccomImg">
+        SELECT *
+        FROM SUB_ACCOM_IMG
+        WHERE SUB_ACCOM_CODE = #{subAccomCode}
+    </select>
+
+
+    <select id="searchAccom" resultMap="mainAccom">
+        SELECT
+            ACCOM_CODE
+            , ACCOM_NAME
+            , ACCOM_ADDR
+            , ADDR_DETAIL
+            , ACCOM_INTRO
+            , ACCOM_CATE
+            , ACCOM_CEO
+            , ACCOM_LOC
+        FROM MAIN_ACCOM MAIN, ACCOM_CATEGORY CATE
+        WHERE MAIN.ACCOM_CATE = CATE.ACCOM_CATE
+        ORDER BY ACCOM_CODE DESC
+        OFFSET 0 ROWS FETCH FIRST 7 ROWS ONLY
+    </select>
+    
 </mapper>

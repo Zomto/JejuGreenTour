@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+table, tr, td{
+    border: 1px solid #999;
+    width: 500px;
+    height: 30px;
+}
+
+.inquireList a{
+    color: #1db954;
+}
+
+
+
+a{
+    color: #1db954;
+}
