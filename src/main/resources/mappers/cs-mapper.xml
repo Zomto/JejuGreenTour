@@ -314,5 +314,32 @@
     </select>
 
 
+    <select id="searchAnn" resultMap="announcement">
+        SELECT
+            ANN_CATE
+            , CATE_NAME
+            , ANN_WRITER
+            , ANN_TITLE
+            , ANN_CONTENT
+        FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LIST
+        WHERE ANN_CATE = CATE_CODE
+        <if test='searchData != null and !searchData.equals("")'>
+            AND UPPER(ANN_CATE) LIKE '%'||UPPER(#{searchData})||'%'
+        </if>
+        <if test='searchData != null and !searchData.equals("")'>
+            AND UPPER(CATE_NAME) LIKE '%'||UPPER(#{searchData})||'%'
+        </if>
+        <if test='searchData != null and !searchData.equals("")'>
+            AND UPPER(ANN_WRITER) LIKE '%'||UPPER(#{searchData})||'%'
+        </if>
+        <if test='searchData != null and !searchData.equals("")'>
+            AND UPPER(ANN_TITLE) LIKE '%'||UPPER(#{searchData})||'%'
+        </if>
+        <if test='searchData != null and !searchData.equals("")'>
+            AND UPPER(ANN_CONTENT) LIKE '%'||UPPER(#{searchData})||'%'
+        </if>
+    </select>
+
+
 
 </mapper>
