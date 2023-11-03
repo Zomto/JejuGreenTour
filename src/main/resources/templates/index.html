@@ -314,20 +314,16 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
-            <div>
+            <div class="map_info">
                 <p style="margin-top:-12px">
                     <em class="link">
                         <a href="javascript:void(0);"
                             onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
-                            혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
                         </a>
                     </em>
                 </p>
-                <div id="map" style="width:100%;height:350px;"></div>
-
+                <div id="map"></div>
                 <script>
                     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                         mapOption = {
@@ -367,12 +363,34 @@
                     });    
                 </script>
             </div>
-            <script type="text/javascript"
-                src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	1faecd944d1bb1ff9e6939d4b20a8146&libraries=services"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-            <script src="/js/kakaomap.js"></script>
-            <script src="/js/slick.min.js"></script>
-
+            <div class="m_foot">
+                <h3 class="mf_title">자주 찾는 질문</h3>
+                <div class="mf_more_btn"><a href="/cs/qnaListForm">더보기</a></div>
+                <div class="mf_in">
+                    <ul>
+                        <!-- ------------------------------------------------ -->
+                        <li class="mf_qna" th:each="qna, state : ${qnaList}">
+                            <div class="mf_qna_question"> <!-- 질문 -->
+                                <span class="mf_cateName m2_box">[ [[${qna.qnaCateList.cateName}]] ]</span>
+                                <span class="mf_qna_span_q">Q</span>
+                                [[${qna.qnaQuestion}]]
+                            </div>
+                            <div class="mf_qna_answer"> <!-- 대답 -->
+                                <span class="mf_box"></span>
+                                <span class="mf_qna_span_a">A</span>
+                                [[${qna.qnaAnswer}]]
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>    
+        <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	1faecd944d1bb1ff9e6939d4b20a8146&libraries=services"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="/js/kakaomap.js"></script>
+        <script src="/js/slick.min.js"></script>
     </th:block>
 </body>
 

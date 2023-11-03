@@ -87,14 +87,21 @@ function displayPlaces(places) {
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
         (function (marker, title) {
-            kakao.maps.event.addListener(marker, 'mouseover', function () {
+            kakao.maps.event.addListener(marker, 'click', function () {
                 displayInfowindow(marker, title);
+                
+                // 클릭한 마커 위치로 지도를 확대합니다
+                map.setLevel(2); // 원하는 확대 레벨로 조정할 수 있습니다
+                map.setCenter(marker.getPosition());
             });
-
-            itemEl.onmouseover = function () {
+            itemEl.addEventListener('click', function(){
                 displayInfowindow(marker, title);
-            };
+            })
+            // itemEl.onmouseover = function () {                                       // 마우스 오버시 사용할 코드
+            //     displayInfowindow(marker, title);
+            // };
         })(marker, places[i].place_name);
+        
 
         fragment.appendChild(itemEl);
     }
@@ -202,18 +209,50 @@ function displayPagination(pagination) {
 
 // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 // 인포윈도우에 장소명을 표시합니다
-function displayInfowindow(marker, title) {
+// function displayInfowindow(marker, title) {
 
-    var content = null// '<div style="padding:5px;z-index:1;">' + title + `<a href="https://map.kakao.com/link/to/${title}" style="color:blue" target="_blank">길찾기</a></div>`;
+//     var content = null// '<div style="padding:5px;z-index:1;">' + title + `<a href="https://map.kakao.com/link/to/${title}" style="color:blue" target="_blank">길찾기</a></div>`;
+
+//     arr.forEach(element => {
+//         if (title == element.title) {
+//             content = element.content;
+//         }
+//     });
+//     infowindow.setContent(content);
+//     infowindow.open(map, marker);
+    
+// }
+// 인포윈도우에 장소명을 표시하고 지도를 클릭한 지점으로 확대합니다
+kakao.maps.event.addListener(marker, 'click', function() {
+    displayInfowindow(marker, title);
+    // 클릭한 마커 위치로 지도를 확대합니다
+    map.setLevel(4); // 원하는 확대 레벨로 조정할 수 있습니다
+    map.setCenter(position);
+});
+function displayInfowindow(marker, title) {
+    var content = null;
 
     arr.forEach(element => {
         if (title == element.title) {
             content = element.content;
         }
     });
+
+    if (content) {
+        content += `<br><a href="https://map.kakao.com/link/to/${title}" style="color:blue" target="_blank">길찾기</a>`;
+    }
+
     infowindow.setContent(content);
     infowindow.open(map, marker);
+
+    // 마커의 위치를 가져옵니다
+    var position = marker.getPosition();
+
+    // 클릭한 마커 위치로 지도를 확대합니다
+    map.setLevel(2); // 원하는 확대 레벨로 조정할 수 있습니다
+    map.setCenter(position);
 }
+
 
 // 검색결과 목록의 자식 Element를 제거하는 함수입니다
 function removeAllChildNods(el) {
