@@ -1,43 +1,92 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{fragment/main_layout}">
+
 <head>
-<meta charset="UTF-8">
-<title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
+
 <body>
-<th:block layout:fragment="content">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+    <th:block layout:fragment="content">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
 
-        .product-container {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 20px;
-            width: 300px;
-            text-align: center;
-        }
+            .product-container {
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                padding: 20px;
+                width: 300px;
+                text-align: center;
+            }
 
-        .product-image {
-            width: 100%;
-            border-radius: 5px;
-        }
-    </style>
-    <div class="product-container">
-        <img class="product-image" src="제품이미지주소.jpg" alt="제품 이미지">
-        <h2>제품명: 제품 이름을 여기에 입력하세요</h2>
-        <p>가격: $100</p>
-        <p>제품 설명: 제품에 대한 자세한 설명을 여기에 입력하세요. 제품의 특징, 재료, 크기, 색상 등을 포함할 수 있습니다.</p>
-        <p>구매 링크: <a href="구매링크주소">여기를 클릭하세요</a></p>
-    </div>
-</th:block>
+            .product-image {
+                width: 100%;
+                border-radius: 5px;
+            }
+        </style>
+        <div class="product-container">
+            <img class="product-image" src="제품이미지주소.jpg" alt="제품 이미지">
+            <h2>제품명: 제품 이름을 여기에 입력하세요</h2>
+            <p>가격: $100</p>
+            <p>제품 설명: 제품에 대한 자세한 설명을 여기에 입력하세요. 제품의 특징, 재료, 크기, 색상 등을 포함할 수 있습니다.</p>
+            <p>구매 링크: <a href="구매링크주소">여기를 클릭하세요</a></p>
+        </div>
+
+        <table>
+            <table class="board_type">
+                <colgroup>
+                    <col width="*">
+                </colgroup>
+                <thead>
+                    <th>호실명</th>
+                    <th>사진(메인)</th>
+                    <th>옵션</th>
+                    <th>최대인원</th>
+                    <th>대실 여부</th>
+                    <th>체크인/체크아웃시간 <br> 대실 시간</th>
+                    <th>숙박비용 <br> 대실비용</th>
+                    <th>현재 상태</th>
+                    <!-- 비동기 상태 변경 -->
+                </thead>
+                <tr th:each="sub, state : ${subList}">
+                    <td>[[${sub.subAccomName}]]</td>
+                    <td><img class="imgSlideList" th:src="${'/img/subaccom/'+ sub.subAccomImgList[0].attachedFileName}"
+                            alt=""></td>
+                    <td>[[${sub.subAccomCate}]]</td>
+                    <td>[[${sub.maxMan}]]</td>
+                    <td>[[${sub.dayuseCan}]]</td>
+                    <td>체크인 : [[${sub.accomStartTime}]] <br>
+                        체크아웃 :[[${sub.accomEndTime}]]/
+                        [[${sub.rentTime}]] 시간
+                    </td>
+                    <td>[[${sub.reservationPrice}]] 원/ <br>
+                        [[${sub.dayusePrice}]]
+                    </td>
+                    <td>
+                        <th:block th:if="${sub.delete != 'Y'}">
+                            삭제되었습니다.
+                        </th:block>
+                        <th:block th:if="${sub.delete != 'N'}">
+                            <th:block th:if="${sub.soldOut != 'Y'}">
+                            <!-- 판매시작 추가 하기 -->
+                            </th:block>
+                            <th:block th:if="${sub.soldOut != 'N'}">
+                            판매중입니다.
+                            <!-- 판매취소 추가 하기 -->
+                            </th:block>
+                        </th:block>
+                    </td>
+                </tr>
+            </table>
+    </th:block>
 </body>
+
 </html>

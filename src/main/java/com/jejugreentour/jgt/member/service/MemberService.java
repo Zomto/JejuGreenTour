@@ -27,5 +27,8 @@ public interface MemberService {
 
     public void changePw(MemberVO memberVO);
 
+
+    // 메인 검색 조회
+
     
 }

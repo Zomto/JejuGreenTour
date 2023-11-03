@@ -10,8 +10,98 @@ table, tr, td{
     color: #1db954;
 }
 
-
-
-a{
+.title_group{
+    display: flex;
+    justify-content: space-between;
+}
+.title{
+    font-size: 22px;
+    font-weight: 700;
+}
+.title{
+    width: 150px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #444;
+    border-bottom: 5px solid #dadada;
+    margin-bottom: 20px;
+}
+.table{
+    border-radius: 7px;
+    width: 998px;
+    border: 1px solid #dadada;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.column{
+    border-bottom: 1px solid #dadada;
+    color: #444;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 13px;
+    height: 50px;
+    box-sizing: border-box;
+}
+.column.cate{
+    width: 167px;
+    border-radius: 7px 0 0 0;
+    border-right: 1px solid #dadada;
+}
+.column.date{
+    width: 167px;
+    border-right: 1px solid #dadada;
+}
+.column.name{
+    width: 500px;
+    border-right: 1px solid #dadada;
+}
+.column.answer{
+    width: 164px;
+    border-radius: 0 7px 0 0;
+}
+.tableHeader{
+    display: flex;
+    height: 50px;
+}
+.tr{
+    display: flex;
+    border-bottom: 1px solid #dadada;
+}
+.tr:last-child{
+    border: 0;
+}
+.tr div{
+    font-size: 17px;
+}
+.value{
+    color: #888;
+}
+.value.cate{
+    box-sizing: border-box;
+    height: 46px;
+    padding:  10px 0;
+    width: 167px;
+    border-right: 1px solid #dadada;
+}
+.value.date{
+    padding:  10px 0;
+    width: 167px;
+    border-right: 1px solid #dadada;
+}
+.value.name{
+    color: #888;
+    padding:  10px 0;
+    width: 500px;
+    border-right: 1px solid #dadada;
+}
+.value.answer{
+    padding:  10px 0;
+    width: 164px;
+}
+.value.name a:hover{
     color: #1db954;
 }
+.value.name a{
+    color: #888;
+}
+

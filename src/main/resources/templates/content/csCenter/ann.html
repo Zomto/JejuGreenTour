@@ -1,91 +1,105 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{fragment/csCenter_layout}">
+
 <head>
     <meta charset="UTF-8">
     <title>공지사항 작성</title>
-    
+
     <!-- css영역 -->
     <th:block layout:fragment="content_css">
+<<<<<<< HEAD
+        <link rel="stylesheet" href="/css/csCenter/ann.css">
+    </th:block>
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+=======
         <link rel="stylesheet" href="/css/csCenter/ann.css">  
     </th:block> 
-    
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">  
+>>>>>>> 733ad9f33b99605cd57dc3a2357b6a9f6c15ac02
 </head>
+
 <body>
     <th:block layout:fragment="content">
         <form action="/cs/inputAnn" method="post">
             <div class="wrap">
                 <div class="w_in">
-                    <div>
-                        <label for="">제목</label>
-                        <input type="text" name="annTitle">
+                    <div class="title">1:1 문의하기</div>
+                    <div class="textBlock">
+                        <div class="inputBox">
+                            <div class="label">제목</div>
+                            <input type="text" name="annTitle">
+                        </div>
+                        <div class="inputBox">
+                            <div class="label">카테고리</div>
+                            <select class="cateCode" name="annCate">
+                                <option value="CATE_001">일반</option>
+                                <option value="CATE_002">오픈소식</option>
+                                <option value="CATE_003">서비스정보</option>
+                                <option value="CATE_004">당첨자발표</option>
+                            </select>
+                        </div>
+                        <div class="inputBox">
+                            <div class="label">작성자</div>
+                            <span class="input">loginInfo</span>
+                        </div>
+                        <div class="inputBoxContent">
+                            <div class="label content">[[$]]</div>
+                            <textarea id="summernote" name="annContent"></textarea>
+                        </div>
                     </div>
-                    <div>
-                        <label for="">카테고리</label>
-                        <select name="annCate">
-                            <option value="CATE_001">일반</option>
-                            <option value="CATE_002">오픈소식</option>
-                            <option value="CATE_003">서비스정보</option>
-                            <option value="CATE_004">당첨자발표</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="">작성자</label>
-                        <span></span>
-                    </div>
-                    <div>
-                        <label for="">내용</label>
-                        <textarea id="summernote" name="annContent"></textarea>
-                    </div>
-
-                    <input type="submit" value="작성완료">
+                    <input class="subBtn" type="submit" value="작성완료">
                 </div>
             </div>
 
 
-            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+                integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+                crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js" defer></script>
-
+    
             <!-- 썸머노트 적용 -->
             <script>
-                $(document).ready(function() {
+                $(document).ready(function () {
                     $('#summernote').summernote({
                         placeholder: '내용을 작성해주세요.',
                         tabsize: 2,
                         height: 500,
                         toolbar: [
-                        ['style', ['style']],
-                        ['font', ['bold', 'underline', 'clear']],
-                        ['fontname', ['fontname']],
-                        ['fontsize', ['fontsize']],
-                        ['color', ['color']],
-                        ['para', ['ul', 'ol', 'paragraph']],
-                        ['table', ['table']],
-                        ['insert', ['link', 'picture', 'video']],
-                        ['view', ['fullscreen', 'codeview', 'help']]
+                            ['style', ['style']],
+                            ['font', ['bold', 'underline', 'clear']],
+                            ['fontname', ['fontname']],
+                            ['fontsize', ['fontsize']],
+                            ['color', ['color']],
+                            ['para', ['ul', 'ol', 'paragraph']],
+                            ['table', ['table']],
+                            ['insert', ['link', 'picture', 'video']],
+                            ['view', ['fullscreen', 'codeview', 'help']]
                         ],
-                        fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
-                        fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+                        fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', '맑은 고딕', '궁서', '굴림체', '굴림', '돋움체', '바탕체'],
+                        fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '30', '36', '50', '72']
                     });
                 });
             </script>
-
-            
-
-
-            
-            
+<<<<<<< HEAD
 
 
 
+
+
+
+
+
+
+=======
+        
+>>>>>>> 733ad9f33b99605cd57dc3a2357b6a9f6c15ac02
         </form>
     </th:block>
     <th:block layout:fragment="content_js">
 
-
-
     </th:block>
 </body>
+
 </html>
