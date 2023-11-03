@@ -101,7 +101,6 @@ function displayPlaces(places) {
             //     displayInfowindow(marker, title);
             // };
         })(marker, places[i].place_name);
-        
 
         fragment.appendChild(itemEl);
     }
@@ -136,7 +135,7 @@ function getListItem(index, place) {
         '</div>';
 
     // 경로를 포함한 content 문자열 생성
-    var content = '<div style="padding:5px;z-index:1;">' + title + '<a href="https://map.kakao.com/link/to/' + title + ',' + lat + ',' + lng + '" style="color:blue" target="_blank">길찾기</a></div>';
+    var content = '<div style="padding:13px 50px 9px 10px; z-index:1; width:200px; height:30px;">' + title + '<a href="https://map.kakao.com/link/to/' + title + ',' + lat + ',' + lng + '"style="color:#1ab754; position:absolute; top:11px; right:18px; border:1px solid #dadada; border-radius:5px; background-color:#03c75a; color:#fff" target="_blank" >길찾기</a></div>';
 
     arr.push({
         title: title,
@@ -182,6 +181,7 @@ function displayPagination(pagination) {
         fragment = document.createDocumentFragment(),
         i;
 
+
     // 기존에 추가된 페이지번호를 삭제합니다
     while (paginationEl.hasChildNodes()) {
         paginationEl.removeChild(paginationEl.lastChild);
@@ -205,23 +205,9 @@ function displayPagination(pagination) {
         fragment.appendChild(el);
     }
     paginationEl.appendChild(fragment);
+
 }
 
-// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
-// 인포윈도우에 장소명을 표시합니다
-// function displayInfowindow(marker, title) {
-
-//     var content = null// '<div style="padding:5px;z-index:1;">' + title + `<a href="https://map.kakao.com/link/to/${title}" style="color:blue" target="_blank">길찾기</a></div>`;
-
-//     arr.forEach(element => {
-//         if (title == element.title) {
-//             content = element.content;
-//         }
-//     });
-//     infowindow.setContent(content);
-//     infowindow.open(map, marker);
-    
-// }
 // 인포윈도우에 장소명을 표시하고 지도를 클릭한 지점으로 확대합니다
 kakao.maps.event.addListener(marker, 'click', function() {
     displayInfowindow(marker, title);
@@ -237,9 +223,11 @@ function displayInfowindow(marker, title) {
             content = element.content;
         }
     });
+    
+
 
     if (content) {
-        content += `<br><a href="https://map.kakao.com/link/to/${title}" style="color:blue" target="_blank">길찾기</a>`;
+        // content += `<br><a href="https://map.kakao.com/link/to/${title}" style="color:blue" target="_blank">길찾기</a>`;
     }
 
     infowindow.setContent(content);
