@@ -21,5 +21,6 @@ public class SubAccomVO {
     private String rentTime;
     private String soldOut;
     private String dayuseCan;//mapper 수정
+    private String delete;
     private List<SubAccomImgVO> subAccomImgList;
 }

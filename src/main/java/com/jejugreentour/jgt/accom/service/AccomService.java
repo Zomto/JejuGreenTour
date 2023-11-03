@@ -42,4 +42,10 @@ public interface AccomService {
 
     // 숙박 방 상세 조회
     public SubAccomVO selectSubAccomDetail(String subAccomCode);
+
+    // 숙소 방 목록 조회
+    public List<SubAccomVO> selectSubAccomlist(String accomCode);
+
+    // 숙소 방 상태 변환
+    public void updateSubAccomState(SubAccomVO subAccomVO);
 }

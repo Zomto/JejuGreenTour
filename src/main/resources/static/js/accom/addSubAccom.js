@@ -67,7 +67,6 @@ function insertsubaccom() {
     let candayuse = document.querySelector('.rent');
     let dayuse = document.querySelector('#dayusePrice').value;
     if (candayuse.checked && (dayuse == null || dayuse == 0)) {
-        candayuse.parentNode.innerHTML +=
             alert('대실 요금을 입력해주세요')
         return;
     }
@@ -80,7 +79,7 @@ function insertsubaccom() {
 
     let files = document.querySelector('input[type="file"]')
     let file = document.querySelector('input[name="files"]')
-    if (file.value == null || files.value == null) {
+    if (file.value == "" || files.value == "") {
         alert("이미지를 추가해 주세요")
         return;
     }
@@ -90,7 +89,6 @@ function insertsubaccom() {
     document.querySelector('form[id="joinForm"]').submit()
 
 }
-
 
 function readURL(input) {
     if (input.files && input.files[0]) {

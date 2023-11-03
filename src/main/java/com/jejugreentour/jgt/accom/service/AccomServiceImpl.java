@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -84,5 +86,14 @@ public class AccomServiceImpl implements AccomService {
         return sqlSession.selectOne("accomMapper.selectSubAccomDetail", subAccomCode);
     }
 
+    @Override
+    public List<SubAccomVO> selectSubAccomlist(String accomCode){
+        return sqlSession.selectList("accomMapper.selectSubAccomlist", accomCode);
+    }
+
+    @Override
+    public void updateSubAccomState(SubAccomVO subAccomVO){
+        sqlSession.update("accomMapper.updateSubAccomState", subAccomVO);
+    }
 
 }

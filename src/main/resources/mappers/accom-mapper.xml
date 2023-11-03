@@ -38,6 +38,7 @@
         <result column="RENT_TIME"    property="rentTime" />
         <result column="SOLD_OUT"    property="soldOut" />
         <result column="DAY_USE_CAN"    property="dayuseCan" />
+        <result column="SUB_DELETE"    property="delete" />
         <collection property="subAccomImgList" resultMap="subAccomImg" />
     </resultMap>
 
@@ -185,6 +186,7 @@
         , ACCOM_NAME
         , ACCOM_ADDR
         , ACCOM_INTRO
+        , ACCOM_CEO
         , CATE.CATE_NAME
         , ACCOM_LOC
         , ADDR_DETAIL
@@ -234,7 +236,7 @@
         , RENT_TIME
         , DAYUSE_PRICE
         , RESERVATION_PRICE
-        <if test='dayuseCan.equals("Y")'>
+        <if test='dayuseCan != null  and dayuseCan.equals("Y")'>
             , DAY_USE_CAN
         </if>
         )
@@ -255,14 +257,14 @@
         , #{accomStartTime}||':00:00'
         , #{accomEndTime}||':00:00'
         , (TO_NUMBER(#{accomStartTime}) - TO_NUMBER(#{accomEndTime}) - 2)
-        <if test='dayusePrice != null and !dayusePrice.equals("") and dayuseCan.equals("Y")'>
+        <if test='(dayusePrice != null and !dayusePrice.equals("")) and dayuseCan != null  and dayuseCan.equals("Y")'>
             , #{dayusePrice}
         </if>
-        <if test='dayusePrice == null or dayusePrice.equals("") or !dayuseCan.equals("Y")'>
+        <if test='dayusePrice == null or dayusePrice.equals("") or dayuseCan == null'>
             , '0'
         </if>
         ,#{reservationPrice}
-        <if test='dayuseCan.equals("Y")'>
+        <if test='dayuseCan != null and dayuseCan.equals("Y")'>
             , #{dayuseCan}
         </if>
         )
@@ -333,5 +335,50 @@
         ORDER BY ACCOM_CODE DESC
         OFFSET 0 ROWS FETCH FIRST 7 ROWS ONLY
     </select>
-    
+
+    <select id="selectSubAccomlist" resultMap="subAccom">
+        SELECT
+        SA.SUB_ACCOM_CODE
+        , ACCOM_CODE
+        , SUB_ACCOM_NAME
+        , SUB_ACCOM_INTRO
+        , SUB_ACCOM_CATE
+        , BASIC_MAN
+        , MAX_MAN
+        , ACCOM_START_TIME
+        , ACCOM_END_TIME
+        , RENT_TIME
+        , DAYUSE_PRICE
+        , RESERVATION_PRICE
+        , SOLD_OUT
+        , DAY_USE_CAN
+        , SUB_DELETE
+        , ATTACHED_FILE_NAME
+        , ORIGIN_FILE_NAME
+        FROM SUB_ACCOM SA, SUB_ACCOM_IMG IMG
+        WHERE ACCOM_CODE = #{accomCode}
+        AND SA.SUB_ACCOM_CODE = IMG.SUB_ACCOM_CODE
+        AND IS_MAIN ='Y'
+        AND SUB_DELETE='N'
+    </select>
+
+    <update id="updateSubAccomState">
+        UPDATE SUB_ACCOM
+        SET
+
+        <if test='reservationPrice != null and !reservationPrice.equals("")'>
+            RESERVATION_PRICE=#{reservationPrice}
+        </if>
+        <if test='dayusePrice != null and !dayusePrice.equals("")'>
+            DAYUSE_PRICE=#{dayusePrice}
+        </if>
+        <if test='soldOut != null and !soldOut.equals("")'>
+            SOLD_OUT=#{soldOut}
+        </if>
+        <if test='soldOut == null and dayusePrice == null and reservationPrice == null'>
+            SUB_DELETE = 'Y'
+        </if>
+        WHERE SUB_ACCOM_CODE = #{subAccomCode}
+    </update>
+
 </mapper>
