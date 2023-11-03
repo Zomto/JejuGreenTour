@@ -240,6 +240,7 @@
             , TO_CHAR(INQ_DATE,'YYYY-MM-DD') AS INQ_DATE
         FROM INQUIRE INQ, INQ_CATE_LIST CATE
         WHERE INQ.CATE_CODE = CATE.CATE_CODE
+        ORDER BY INQ_CODE DESC
         OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
 
