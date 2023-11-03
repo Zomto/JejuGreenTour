@@ -17,20 +17,20 @@ ul,
 li {
     list-style: none;
 }
-.category.change{
-    
+.wrapInfo{
+    position: relative;
 }
 /*tab css*/
 .tab {
     width: 600px;
-    height: 290px;
-    margin-left: 305px;
+    height: 150px;
+    margin-left: 120px;
     margin-top: 70px;
 }
 .h_title{
     position: absolute;
-    top: 280px;
-    left: 666px;
+    top: -56px;
+    left: 120px;
     width: 150px;
     color: #444;
     font-size: 22px;
@@ -90,6 +90,7 @@ li {
     padding: 20px;
     height: 244px;
     border: 1px solid #ddd;
+    margin-right: -1.5px;
     border-top: none;
 }
 
