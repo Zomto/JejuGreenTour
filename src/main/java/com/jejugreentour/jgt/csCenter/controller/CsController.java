@@ -105,7 +105,7 @@ public class CsController {
     public String inputAnn(AnnVO annVO, HttpSession httpSession){
 
         csService.insertAnn(annVO);
-        return "redirect:/cs/annForm";
+        return "redirect:/cs/annListForm";
     }
 
     // 공지 사항 세부 페이지 이동
