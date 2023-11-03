@@ -318,20 +318,11 @@
     </select>
 
 
-    <select id="searchAccom" resultMap="mainAccom">
-        SELECT
-            ACCOM_CODE
-            , ACCOM_NAME
-            , ACCOM_ADDR
-            , ADDR_DETAIL
-            , ACCOM_INTRO
-            , ACCOM_CATE
-            , ACCOM_CEO
-            , ACCOM_LOC
-        FROM MAIN_ACCOM MAIN, ACCOM_CATEGORY CATE
-        WHERE MAIN.ACCOM_CATE = CATE.ACCOM_CATE
-        ORDER BY ACCOM_CODE DESC
-        OFFSET 0 ROWS FETCH FIRST 7 ROWS ONLY
-    </select>
+
+
+
+
+
+
     
 </mapper>

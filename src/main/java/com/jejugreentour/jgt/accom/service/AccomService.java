@@ -42,4 +42,8 @@ public interface AccomService {
 
     // 숙박 방 상세 조회
     public SubAccomVO selectSubAccomDetail(String subAccomCode);
+
+    // 테스트
+    public MainAccomVO test(MainAccomVO mainAccomVO);
+
 }

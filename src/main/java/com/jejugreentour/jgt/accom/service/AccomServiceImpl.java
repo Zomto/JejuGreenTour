@@ -84,5 +84,10 @@ public class AccomServiceImpl implements AccomService {
         return sqlSession.selectOne("accomMapper.selectSubAccomDetail", subAccomCode);
     }
 
+    @Override
+    public MainAccomVO test(MainAccomVO mainAccomVO) {
+        return sqlSession.selectOne("accomMapper.test", mainAccomVO);
+    }
+
 
 }
