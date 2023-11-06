@@ -65,7 +65,7 @@
 
 }
 .tbl th {
-    background-color: #1ab752;
+    background-color: rgb(30, 218, 96);
     font-size: 15px;
     font-weight: 600;
     color: #111;
@@ -117,10 +117,6 @@
     margin-top: 20px;
     border-bottom: 5px solid #dadada;
 }
-.m2> .tb1> .board_type{
-    margin-top: 5%;
-
-}
 .m2> .tb1 table{
     width: 100%;
     border-bottom: 1px solid #ddd;
@@ -129,7 +125,7 @@
     font-size: 15px;
 }
 .tb1 th{
-    background-color: #1ab752;
+    background-color: rgb(30, 218, 96);
     font-size: 15px;
     text-align: center;
     border-bottom: 1px solid #ddd;
@@ -143,23 +139,30 @@
     color: #ffffff;
 
 }
+.m2_header{
+    justify-content: space-between;
+    display: flex;
+}
 .cont{
     color: #000;
 }
 .myPageSide1{
-    color: #1db954;
-    border-bottom: 1px solid #1db954;
+    color: #1db954 !important;
+    border-bottom: 2px solid #1db954 !important;
 }
 .m2_delete_all{
-    width: 95px;
+    width:75px;
     height: 25px;
-    border-radius: 6px;
+    border-radius: 5px;
     border: 1px solid #dadada;
     background-color: #03c75a;
     color: #fff;
-    font-weight: 700;
     cursor: pointer;
-    margin-left: 586px;
+    font-size: 13px;
+    margin-top: 40px;
+}
+.m2_delete_all:hover{
+    background-color: #1ab752;
 }
 .wish_list{
     color: #000;
@@ -182,21 +185,31 @@
 
 
 .side{
+    margin-top: 50px;
     width: 30%;
 }
 
 .s1{
+    border-radius: 5px;
     padding: 15px;
-    border: 2px solid green;
+    border: 2px solid #79c099;
     margin-bottom: 42px;
 }
-
+.data_no{
+    width: 642px;
+}
 .s1_ment1{
+    width: 80px;
     font-size: 17px;
     color: #999;
+    font-weight: 700;
+    color: #1ab752;
+    border-bottom: 2px solid #dadada;
+    margin-bottom: 10px;
 }
 
 .s1_ment2{
+    color: #666;
     margin-bottom: 10px;
 }
 
