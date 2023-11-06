@@ -38,11 +38,11 @@
 <!--MemberVO(memberId=java, memberPw=1111, memberName=김자바, memberTel=null, memberTels=[1111, 1111], gender=남, birthDate=null, memberRoll=null, member_mail=null)-->
     <select id="login" resultMap="member">
         SELECT MEMBER_ID
-        , MEMBER_NAME
+        , MEMBER_PW
         , MEMBER_ROLL
         FROM JEJU_MEMBER
         WHERE MEMBER_ID = #{memberId}
-        AND MEMBER_PW = #{memberPw}
+
     </select>
 
     <select id="checkId" resultType="String">

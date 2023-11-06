@@ -2,13 +2,10 @@ package com.jejugreentour.jgt.member.service;
 
 import com.jejugreentour.jgt.member.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
-import org.apache.ibatis.binding.MapperMethod;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -21,8 +18,8 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public MemberVO login(MemberVO memberVO) {
-        return sqlSession.selectOne("memberMapper.login", memberVO);
+    public MemberVO login(String memberId) {
+        return sqlSession.selectOne("memberMapper.login", memberId);
     }
 
     @Override

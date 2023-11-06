@@ -50,18 +50,7 @@ public class MemberControll {
         return "content/member/login";
     }
 
-    @PostMapping("/login")
-    public String login(MemberVO memberVO, Authentication authentication, HttpSession session) {
-        // 사용자 인증 여부를 확인
-        if (authentication != null && authentication.isAuthenticated()) {
-            // 로그인 성공한 경우
-            // Authentication 객체를 통해 사용자 정보를 가져올 수 있음
-            MemberVO loginInfo = memberService.login(memberVO);
-            session.setAttribute("loginInfo", loginInfo);
-        }
 
-        return "content/member/login_result";
-    }
 
 
     @ResponseBody
@@ -92,18 +81,9 @@ public class MemberControll {
         return "content/member/member_info";
     }
 
-    @GetMapping("/logout")
-    public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-        // Spring Security를 사용한 로그아웃
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
-            new SecurityContextLogoutHandler().logout(request, response, authentication);
-        }
-
-        // 세션에서 로그인 정보 제거
-        session.removeAttribute("loginInfo");
-
-        return "redirect:/";
+    @GetMapping("/loginResult")
+    public String loginResult(){
+        return "content/member/login_result";
     }
 
     @PostMapping("/editMember1")
