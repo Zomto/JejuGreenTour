@@ -264,8 +264,8 @@ public class BuyController {
 
 
     @GetMapping("/sample")
-    public String sample(){
-        return ("/content/buy/sample");
+    public String sample(Model model, String accomCode){
+        return "/content/buy/sample";
     }
 
 

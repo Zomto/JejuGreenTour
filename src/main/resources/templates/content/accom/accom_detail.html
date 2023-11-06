@@ -28,11 +28,14 @@
                         <div class="accomName" id="accomName">[[${mAccom.accomName}]] </div>
                         <input type="text" class="input_textarea" id="inputAccomName" name="inputAccomName"
                             style="display : none">
-                        <button id="updateButton" type="button" class="btn btn-primary"
-                            onclick="updateAccomForm()">변경</button>
-                        <button id="updateButton" type="button" class="btn btn-primary"
-                            th:onclick="updateMainAccomName([[${mAccom.accomCode}]],[[${mAccom.accomName}]],[[${mAccom.accomIntro}]]),returnUpdateForm()"
-                            style="display : none">변경완료</button>
+                        <th:block
+                            th:if="${(session.loginInfo != null )&&(mAccom.accomCeo == session.loginInfo.memberId)}">
+                            <button id="updateButton" type="button" class="btn btn-primary"
+                                onclick="updateAccomForm()">변경</button>
+                            <button id="updateButton" type="button" class="btn btn-primary"
+                                th:onclick="updateMainAccomName([[${mAccom.accomCode}]],[[${mAccom.accomName}]],[[${mAccom.accomIntro}]]),returnUpdateForm()"
+                                style="display : none">변경완료</button>
+                        </th:block>
                     </div>
 
                 </div>
@@ -97,11 +100,14 @@
                                     <div class="addrDetail" id="addrDetail">[[${mAccom.addrDetail}]]</div>
                                     <input type="text" class="form-control" id="inputAddrDetail" name="inputAddrDetail"
                                         style="display : none">
-                                    <button id="updateButton1" type="button" class="btn btn-primary"
-                                        onclick="updateAccomForm1()">변경</button>
-                                    <button id="updateButton1" type="button" class="btn btn-primary"
-                                        th:onclick="updateMainAccomAddr([[${mAccom.accomCode}]] ,returnUpdateForm1())"
-                                        style="display : none">변경완료</button>
+                                    <th:block
+                                        th:if="${(session.loginInfo != null )&&(mAccom.accomCeo == session.loginInfo.memberId)}">
+                                        <button id="updateButton1" type="button" class="btn btn-primary"
+                                            onclick="updateAccomForm1()">변경</button>
+                                        <button id="updateButton1" type="button" class="btn btn-primary"
+                                            th:onclick="updateMainAccomAddr([[${mAccom.accomCode}]] ,returnUpdateForm1())"
+                                            style="display : none">변경완료</button>
+                                    </th:block>
                                     <div class="error-div" id="id-error-div2"></div>
                                 </div>
                             </div>
@@ -110,36 +116,45 @@
                                 <div class="col">[[${mAccom.accomIntro}]]</div>
                                 <textarea type="text" class="form-control" id="inputAccomIntro" name="inputAccomIntro"
                                     style="display : none"></textarea>
-                                <button id="updateButton2" type="button" class="btn btn-primary"
-                                    onclick="updateAccomForm2()">변경</button>
-                                <button id="updateButton2" type="button" class="btn btn-primary"
-                                    th:onclick="updateMainAccomName([[${mAccom.accomCode}]],[[${mAccom.accomName}]],[[${mAccom.accomIntro}]]), returnUpdateForm2()"
-                                    style="display : none">변경완료</button>
+                                <th:block
+                                    th:if="${(session.loginInfo != null )&&(mAccom.accomCeo == session.loginInfo.memberId)}">
+                                    <button id="updateButton2" type="button" class="btn btn-primary"
+                                        onclick="updateAccomForm2()">변경</button>
+                                    <button id="updateButton2" type="button" class="btn btn-primary"
+                                        th:onclick="updateMainAccomName([[${mAccom.accomCode}]],[[${mAccom.accomName}]],[[${mAccom.accomIntro}]]), returnUpdateForm2()"
+                                        style="display : none">변경완료</button>
+                                </th:block>
                             </div>
                         </div>
                     </div>
                     <div class="mainImgSlide-inner">
                         <div class="mainAccomSubImg">
-                            <div class="addSubImg">
-                                <div class="plus">
-                                    <span>+</span>
-                                    <form action="" id="mainAccomSubImgs" enctype="multipart/form-data">
-                                        <input class="plusbutton" type="file" name="subImg" multiple
-                                            th:onchange="addsubImg(this, [[${mAccom.accomCode}]])">
-                                    </form>
+                            <th:block
+                                th:if="${(session.loginInfo != null )&&(mAccom.accomCeo == session.loginInfo.memberId)}">
+                                <div class="addSubImg">
+                                    <div class="plus">
+                                        <span>+</span>
+                                        <form action="" id="mainAccomSubImgs" enctype="multipart/form-data">
+                                            <input class="plusbutton" type="file" name="subImg" multiple
+                                                th:onchange="addsubImg(this, [[${mAccom.accomCode}]])">
+                                        </form>
+                                    </div>
+                                    <div class="plusText">
+                                        사진 추가
+                                    </div>
                                 </div>
-                                <div class="plusText">
-                                    사진 추가
-                                </div>
-                            </div>
+                            </th:block>
                             <th:block th:if="${#lists.size(imgList) != 0}">
                                 <div class="imgListSlide" th:each="img : ${imgList}">
                                     <img class="imgSlideList" th:src="${'/img/accom/'+ img.attachedFileName}" alt="">
                                     <input type="hidden" name="mainAccomImgCode" th:value="${img.mainImgCode}">
-                                    <div class="deletebutton"
-                                        th:onclick="deleteSubImg([[${img.mainImgCode}]], [[${mAccom.accomCode}]])">
-                                        <span>X</span>
-                                    </div>
+                                    <th:block
+                                        th:if="${(session.loginInfo != null )&&(mAccom.accomCeo == session.loginInfo.memberId)}">
+                                        <div class="deletebutton"
+                                            th:onclick="deleteSubImg([[${img.mainImgCode}]], [[${mAccom.accomCode}]])">
+                                            <span>X</span>
+                                        </div>
+                                    </th:block>
                                 </div>
                             </th:block>
                             <th:block th:if="${#lists.size(imgList) == 0}">
@@ -151,26 +166,125 @@
                 <h3>서브 숙소 추가</h3>
                 <div class="subAccomWrap">
                     <div class="subAccomInner">
-                        <a th:href="@{/accom/subAccomAddForm(accomCode=ACCOM_005)}">
-                            <div class="addSubAccomBox">
-                                <div class="plus">
-                                    <span>+</span>
-                                    <div class="plusText">
-                                        서브 추가
+                        <th:block
+                            th:if="${(session.loginInfo != null )&&(mAccom.accomCeo == session.loginInfo.memberId)}">
+                            <a th:href="@{/accom/subAccomAddForm(accomCode=${mAccom.accomCode})}">
+                                <div class="addSubAccomBox">
+                                    <div class="plus">
+                                        <span>+</span>
+                                        <div class="plusText">
+                                            서브 추가
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </th:block>
+                        <table style="width: 100%;">
+                            <thead>
+                                <th>호실명</th>
+                                <th>사진(메인)</th>
+                                <th>옵션</th>
+                                <th>최대인원</th>
+                                <th>대실 여부</th>
+                                <th>체크인/체크아웃시간 <br> 대실 시간</th>
+                                <th>숙박비용 <br> 대실비용</th>
+                                <th>현재 상태</th>
+                                <!-- 비동기 상태 변경 -->
+                            </thead>
+                            <tr th:each="sub, state : ${subList}">
+                                <th:block th:if="${sub.delete == 'N'}">
+                                    <td>[[${sub.subAccomName}]]</td>
+                                    <td><img class="imgSlideList"
+                                            th:src="${'/img/subaccom/'+ sub.subAccomImgList[0].attachedFileName}"
+                                            th:alt="sub.subAccomImgList[0].originFileName"></td>
+                                    <td>[[${sub.subAccomCate}]]</td>
+
+                                    <th:block th:if="${sub.maxMan == '100'}">
+                                        <td>제한없음</td>
+                                    </th:block>
+                                    <th:block th:if="${sub.maxMan != '100'}">
+                                        <td>[[${sub.maxMan}]]</td>
+                                    </th:block>
+                                    <td>[[${sub.dayuseCan}]]</td>
+                                    <td>체크인 : [[${sub.accomStartTime}]] <br>
+                                        체크아웃 :[[${sub.accomEndTime}]]
+                                        <th:block th:if="${sub.dayuseCan == 'Y'}">
+                                            <br>/
+                                            [[${sub.rentTime}]] 시간
+                                        </th:block>
+                                    </td>
+                                    <th:block
+                                        th:if="${(session.loginInfo != null )&&(mAccom.accomCeo == session.loginInfo.memberId)}">
+                                        <td>
+                                            <div>
+                                                <input type="number" name="reservationPrice" th:value="${sub.reservationPrice}">
+                                                <input type="button" value="수정" onclick="changePrice(this)"
+                                                data-price-name="reservationPrice"
+                                                th:data-sub-accom-Code="${sub.subAccomCode}">
+                                            </div>
+                                            <div th:if="${sub.dayuseCan == 'Y'}">
+                                                <input type="number" name="dayusePrice" th:value="${sub.dayusePrice}">
+                                                <input type="button" value="수정" onclick="changePrice(this)"
+                                                data-price-name="dayusePrice"
+                                                th:data-sub-accom-Code="${sub.subAccomCode}">
+                                            </div>
+                                        </td>
+                                    </th:block>
+                                    <th:block
+                                        th:if="${((session.loginInfo != null )&&(mAccom.accomCeo != session.loginInfo.memberId))||(session.loginInfo == null )}">
+                                        <td>[[${sub.reservationPrice}]] 원
+                                            <th:block th:if="${sub.dayuseCan == 'Y'}">
+                                                <br>/
+                                                [[${sub.dayusePrice}]]
+                                            </th:block>
+                                        </td>
+                                    </th:block>
+                                    <td>
+                                        <th:block th:if="${sub.soldOut == 'Y'}">
+                                            예약 종료
+                                            <th:block
+                                                th:if="${(session.loginInfo != null )&&(mAccom.accomCeo == session.loginInfo.memberId)}">
+                                                <div>
+                                                    <label for="sold">판매하기</label>
+                                                    <input id="sold" type="checkbox" onclick="changesoldOut(this)"
+                                                        th:data-sub-accom-Code="${sub.subAccomCode}" data-sold-out="N">
+                                                </div>
+                                            </th:block>
+                                        </th:block>
+                                        <!-- 판매시작 추가 하기 -->
+                                        <th:block th:if="${sub.soldOut != 'Y'}">
+                                            판매중입니다.
+                                            <th:block
+                                                th:if="${(session.loginInfo != null )&&(mAccom.accomCeo == session.loginInfo.memberId)}">
+                                                <div>
+                                                    <label for="sold">판매취소</label>
+                                                    <input id="sold" type="checkbox" onclick="changesoldOut(this)"
+                                                        th:data-sub-accom-Code="${sub.subAccomCode}" data-sold-out="Y">
+                                                </div>
+                                            </th:block>
+                                            <!-- 판매취소 추가 하기 -->
+                                        </th:block>
+                                        <th:block
+                                            th:if="${(session.loginInfo != null )&&(mAccom.accomCeo == session.loginInfo.memberId)}">
+                                            <input type="button" value="삭제하기"
+                                                th:data-sub-accom-Code="${sub.subAccomCode}"
+                                                onclick="subaccomdelete(this)">
+                                        </th:block>
+                                    </td>
+                                </th:block>
+                            </tr>
+                        </table>
                     </div>
                 </div>
                 <div class="mapbox">
                     <h2>숙소 위치</h2>
                     <div class="mapIn">
                         <div id="map" style="width:100%;height:600px;"></div><br>
-                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTggMS4zMzNBNC42NjMgNC42NjMgMCAwMTEyLjY2NyA2QzEyLjY2NyA5LjUgOCAxNC42NjcgOCAxNC42NjdsLS4yNzUtLjMxNmMtMS0xLjE3My00LjM5Mi01LjM2Ny00LjM5Mi04LjM1MUE0LjY2MyA0LjY2MyAwIDAxOCAxLjMzM3ptLjIxMiAxMi4wNTJjLjUzNS0uNjYgMS4wNy0xLjM3MyAxLjU2OS0yLjExMi42NTMtLjk2OSAxLjE5My0xLjkwNyAxLjU3OC0yLjc4M0MxMS43OCA3LjUzOCAxMiA2LjY5NiAxMiA2YzAtMi4yMTItMS43ODgtNC00LTQtMi4yMTIgMC00IDEuNzg4LTQgNCAwIC42OTYuMjIxIDEuNTM4LjY0IDIuNDkuMzg2Ljg3Ni45MjYgMS44MTQgMS41OCAyLjc4My4zOTguNTkxLjgyIDEuMTY2IDEuMjQ4IDEuNzFsLjMyLjQwMi4yMTIuMjU3LjIxMi0uMjU3ek04IDcuNjY3YTEuNjY3IDEuNjY3IDAgMTAwLTMuMzM0IDEuNjY3IDEuNjY3IDAgMDAwIDMuMzM0eiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+">
+                        <img
+                            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTggMS4zMzNBNC42NjMgNC42NjMgMCAwMTEyLjY2NyA2QzEyLjY2NyA5LjUgOCAxNC42NjcgOCAxNC42NjdsLS4yNzUtLjMxNmMtMS0xLjE3My00LjM5Mi01LjM2Ny00LjM5Mi04LjM1MUE0LjY2MyA0LjY2MyAwIDAxOCAxLjMzM3ptLjIxMiAxMi4wNTJjLjUzNS0uNjYgMS4wNy0xLjM3MyAxLjU2OS0yLjExMi42NTMtLjk2OSAxLjE5My0xLjkwNyAxLjU3OC0yLjc4M0MxMS43OCA3LjUzOCAxMiA2LjY5NiAxMiA2YzAtMi4yMTItMS43ODgtNC00LTQtMi4yMTIgMC00IDEuNzg4LTQgNCAwIC42OTYuMjIxIDEuNTM4LjY0IDIuNDkuMzg2Ljg3Ni45MjYgMS44MTQgMS41OCAyLjc4My4zOTguNTkxLjgyIDEuMTY2IDEuMjQ4IDEuNzFsLjMyLjQwMi4yMTIuMjU3LjIxMi0uMjU3ek04IDcuNjY3YTEuNjY3IDEuNjY3IDAgMTAwLTMuMzM0IDEuNjY3IDEuNjY3IDAgMDAwIDMuMzM0eiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+">
                         <span>[[${mAccom.accomAddr}]]</span>
                         <div class="parking">
-                            <p class="p1"><img width="43" height="31"src="/img/parking.png"></p>
+                            <p class="p1"><img width="43" height="31" src="/img/parking.png"></p>
                             <p>유형 : 숙소 내 주차장</p>
                             <p>안내 : 사전문의 필수</p>
                         </div>
@@ -185,6 +299,7 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
             <script src="/js/slick.min.js"></script>
             <script src="/js/accom/updateAccom.js"></script>
+            <script src="/js/accom/updateSubAccom.js"></script>
         </th:block>
     </th:block>
 </body>

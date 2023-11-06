@@ -69,14 +69,15 @@ public class AccomController {
 
     // 숙박 정보 수정페이지로 이동
     @GetMapping("/mainAccomDetail")
-    public String mainAccomDetail(String accomCode, Model model){
+    public String mainAccomDetail(String accomCode, Model model, HttpSession session){
         MainAccomVO vo = accomService.selectMainAccomDetail(accomCode);
         List<MainAccomImgVO> img = accomService.selectSubImg(accomCode);
         model.addAttribute("mAccom", vo);
         System.out.println(vo);
         System.out.println(img);
         model.addAttribute("imgList", img);
-
+        List<SubAccomVO> subList=accomService.selectSubAccomlist(accomCode);
+        model.addAttribute("subList", subList);
         return "content/accom/accom_detail";
     }
     // 업소 이름 변경
@@ -174,6 +175,12 @@ public class AccomController {
 
     }
 
+    @ResponseBody
+    @PostMapping("/subAccomUpdate")
+    public void subAccomDelete(SubAccomVO subAccomVO){
+        System.out.println(subAccomVO);
+        accomService.updateSubAccomState(subAccomVO);
+    }
 
 
 }
