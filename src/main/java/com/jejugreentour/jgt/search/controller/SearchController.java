@@ -24,8 +24,8 @@ public class SearchController {
 
     @PostMapping("/searchResultForm")
     public String searchResult(Model model, SearchVO searchVO){
-        model.addAttribute("AnnList", searchService.searchAnn(searchVO));
-        System.out.println(searchService.searchAnn(searchVO));
+        model.addAttribute("searchAnnList", searchService.searchAnn(searchVO));
+        model.addAttribute("searchQnaList", searchService.searchQna(searchVO));
         return "/content/search/search_result";
     }
 

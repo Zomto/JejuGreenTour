@@ -314,29 +314,60 @@
     </select>
 
 
+    <!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+
+    <!--  공지사항 검색  -->
     <select id="searchAnn" resultMap="announcement">
         SELECT
-            ANN_CATE
-            , CATE_NAME
-            , ANN_WRITER
-            , ANN_TITLE
-            , ANN_CONTENT
+        CATE_NAME
+        , ANN_TITLE
+        , ANN_CONTENT
         FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LIST
         WHERE ANN_CATE = CATE_CODE
         <if test='searchData != null and !searchData.equals("")'>
-            AND UPPER(ANN_CATE) LIKE '%'||UPPER(#{searchData})||'%'
+            AND (
         </if>
         <if test='searchData != null and !searchData.equals("")'>
-            AND UPPER(CATE_NAME) LIKE '%'||UPPER(#{searchData})||'%'
+            OR UPPER(CATE_NAME) LIKE '%'||UPPER(#{searchData})||'%'
         </if>
         <if test='searchData != null and !searchData.equals("")'>
-            AND UPPER(ANN_WRITER) LIKE '%'||UPPER(#{searchData})||'%'
+            OR UPPER(ANN_TITLE) LIKE '%'||UPPER(#{searchData})||'%'
         </if>
         <if test='searchData != null and !searchData.equals("")'>
-            AND UPPER(ANN_TITLE) LIKE '%'||UPPER(#{searchData})||'%'
+            OR UPPER(ANN_CONTENT) LIKE '%'||UPPER(#{searchData})||'%'
         </if>
         <if test='searchData != null and !searchData.equals("")'>
-            AND UPPER(ANN_CONTENT) LIKE '%'||UPPER(#{searchData})||'%'
+            )
+            ORDER BY ANN_NUM DESC
+            OFFSET 0 ROWS FETCH FIRST 5 ROWS ONLY
+        </if>
+    </select>
+
+    <!--  QNA 검색  -->
+    <select id="searchQna" resultMap="qna">
+        SELECT
+        QNA_CODE
+        , CATE_NAME
+        , QNA_QUESTION
+        , QNA_ANSWER
+        FROM QNA QNA, QNA_CATE_LIST LIST
+        WHERE QNA.CATE_CODE = LIST.CATE_CODE
+        <if test='searchData != null and !searchData.equals("")'>
+            AND (
+        </if>
+        <if test='searchData != null and !searchData.equals("")'>
+            OR UPPER(CATE_NAME) LIKE '%'||UPPER(#{searchData})||'%'
+        </if>
+        <if test='searchData != null and !searchData.equals("")'>
+            OR UPPER(QNA_QUESTION) LIKE '%'||UPPER(#{searchData})||'%'
+        </if>
+        <if test='searchData != null and !searchData.equals("")'>
+            OR UPPER(QNA_ANSWER) LIKE '%'||UPPER(#{searchData})||'%'
+        </if>
+        <if test='searchData != null and !searchData.equals("")'>
+            )
+            ORDER BY QNA_CODE DESC
+            OFFSET 0 ROWS FETCH FIRST 5 ROWS ONLY
         </if>
     </select>
 
