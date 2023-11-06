@@ -37,6 +37,11 @@ dependencies {
 	 //e-mail인증
 	implementation group: 'javax.activation', name: 'activation', version: '1.1.1'
 	implementation group: 'javax.mail', name: 'mail', version: '1.4.7'
+
+	//security
+	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {

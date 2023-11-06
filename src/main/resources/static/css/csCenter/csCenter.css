@@ -83,6 +83,7 @@ a{
 
 .sideForm.active a{
     color: #1db954;
+    border-bottom: 2px solid #1ab954;
 }
 
 
@@ -95,4 +96,11 @@ a{
     clear: both;
     padding-top: 100px;
     border-top: 1px solid #999;
+}
+
+.sideForm:hover{
+    border-bottom: 2px solid #1ab954;
+}
+.sideForm a:hover{
+    color: #1ab954;
 }

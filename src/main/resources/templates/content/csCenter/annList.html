@@ -27,60 +27,63 @@
                         <button class="search_btn">검색</button>
                     </div>
                 </div>
-                <div class="cateMenuHeader">
-                    <div class="cateMenuBox">
-                        <input type="hidden" id="annCate" th:value="${annCate}">
-                        <div>
-                            <div class="cateTab all" onclick="location.href='/cs/annListForm'">전체</div>
-                        </div>
-                        <div th:each="cate , state : ${cateList}">
-                            <div th:class="${'cateTab '+cate.cateCode}"
-                                th:onclick="|location.href='@{/cs/annListForm(annCate=${cate.cateCode})}'|">
-                                [[${cate.cateName}]]</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="table">
-                    <div class="tableHeader">
-                        <div class="column num">번호</div>
-                        <div class="column cate">구분</div>
-                        <div class="column title">제목</div>
-                        <div class="column date">등록일</div>
-                    </div>
-
-                    <div class="tbody">
-                        <div class="tr" width="100%" th:each="ann, state : ${annList}">
-                            <div class="value num">[[${annVO.totalDataCnt - state.index - (annVO.displayDataCnt * (annVO.nowPage - 1))}]]
+                <div class="contentBox">
+                    <div class="cateMenuHeader">
+                        <div class="cateMenuBox">
+                            <input type="hidden" id="annCate" th:value="${annCate}">
+                            <div>
+                                <div class="cateTab all" onclick="location.href='/cs/annListForm'">전체</div>
                             </div>
-                            <div class="value cate">[[${ann.annCateList.cateName}]]</div>
-                            <div class="valuetitle"><a class="annTitle"
-                                    th:href="@{/cs/annDetailForm(annNum=${ann.annNum})}">[[${ann.annTitle}]]</a></div>
-                            <div class="value date">[[${ann.annDate}]]</div>
+                            <div th:each="cate , state : ${cateList}">
+                                <div th:class="${'cateTab '+cate.cateCode}"
+                                    th:onclick="|location.href='@{/cs/annListForm(annCate=${cate.cateCode})}'|">
+                                    [[${cate.cateName}]]</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table">
+                        <div class="tableHeader">
+                            <div class="column num">번호</div>
+                            <div class="column cate">구분</div>
+                            <div class="column title">제목</div>
+                            <div class="column date">등록일</div>
+                        </div>
+
+                        <div class="tbody">
+                            <div class="tr" width="100%" th:each="ann, state : ${annList}">
+                                <div class="value num">[[${annVO.totalDataCnt - state.index - (annVO.displayDataCnt *
+                                    (annVO.nowPage - 1))}]]
+                                </div>
+                                <div class="value cate">[[${ann.annCateList.cateName}]]</div>
+                                <div class="valuetitle"><a class="annTitle"
+                                        th:href="@{/cs/annDetailForm(annNum=${ann.annNum})}">[[${ann.annTitle}]]</a>
+                                </div>
+                                <div class="value date">[[${ann.annDate}]]</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="btn_group">
-                <div class="pageBtn">
-                    <a class="page_prevBtn"
-                        th:href="@{/cs/annListForm(nowPage=${annVO.beginPage - 1},annCate=${annCate} )}"><span
-                            th:if="${annVO.prev}">이전</span></a>
+                <div class="btn_group">
+                    <div class="pageBtn">
+                        <a class="page_prevBtn"
+                            th:href="@{/cs/annListForm(nowPage=${annVO.beginPage - 1},annCate=${annCate} )}"><span
+                                th:if="${annVO.prev}">이전</span></a>
 
-                    <th:block th:each="pageNum : ${#numbers.sequence(annVO.beginPage, annVO.endPage)}">
-                        <a class="page_numBtn"
-                            th:href="@{/cs/annListForm(nowPage=${pageNum}, annCate=${annCate})}"><span
-                                th:text="${pageNum}"></span></a>
-                    </th:block>
+                        <th:block th:each="pageNum : ${#numbers.sequence(annVO.beginPage, annVO.endPage)}">
+                            <a class="page_numBtn"
+                                th:href="@{/cs/annListForm(nowPage=${pageNum}, annCate=${annCate})}"><span
+                                    th:text="${pageNum}"></span></a>
+                        </th:block>
 
-                    <a class="page_nextBtn"
-                        th:href="@{/cs/annListForm(nowPage=${annVO.endPage + 1}, annCate=${annCate})}"><span
-                            th:if="${annVO.next}">다음</span></a>
-                </div>
-                <div class="annBtn">
-                    <button onclick="location.href='/cs/annForm';">글 작성</button>
+                        <a class="page_nextBtn"
+                            th:href="@{/cs/annListForm(nowPage=${annVO.endPage + 1}, annCate=${annCate})}"><span
+                                th:if="${annVO.next}">다음</span></a>
+                    </div>
+                    <div class="annBtn">
+                        <button onclick="location.href='/cs/annForm';">글 작성</button>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </th:block>
 
