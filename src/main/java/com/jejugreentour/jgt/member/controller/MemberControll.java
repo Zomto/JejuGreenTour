@@ -4,9 +4,15 @@ import com.jejugreentour.jgt.member.mail.SendMail;
 import com.jejugreentour.jgt.member.service.MemberService;
 import com.jejugreentour.jgt.member.vo.MemberVO;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -45,14 +51,19 @@ public class MemberControll {
     }
 
     @PostMapping("/login")
-    public String login(MemberVO memberVO, HttpSession session){
-        MemberVO loginInfo = memberService.login(memberVO);
-
-        if(loginInfo !=null){
-            session.setAttribute("loginInfo",loginInfo);
+    public String login(MemberVO memberVO, Authentication authentication, HttpSession session) {
+        // 사용자 인증 여부를 확인
+        if (authentication != null && authentication.isAuthenticated()) {
+            // 로그인 성공한 경우
+            // Authentication 객체를 통해 사용자 정보를 가져올 수 있음
+            MemberVO loginInfo = memberService.login(memberVO);
+            session.setAttribute("loginInfo", loginInfo);
         }
+
         return "content/member/login_result";
     }
+
+
     @ResponseBody
     @PostMapping("/checkId")
     public boolean checkId(String memberId){
@@ -72,15 +83,6 @@ public class MemberControll {
         return Integer.parseInt(MailSender);
     }
 
-    @ResponseBody
-    @PostMapping("/modifyPw")
-    public int modifyPw(String email){
-        String MailSender= SendMail.generateRandomCode(6);
-        SendMail.setAndsend("제주그린투어 비밀번호 변경 메일 입니다", "변경된 비밀 번호:"+MailSender +"입니다. 로그인후 마이페이지에서 비밀번호를 변경해주세요","jejugreentour" ,"jejugreen123!" ,email);
-        return Integer.parseInt(MailSender);
-    }
-
-
     @GetMapping("/myPageForm")
     public String myPageForm(){
         return "content/member/myPage_main";
@@ -91,8 +93,16 @@ public class MemberControll {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session){
+    public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+        // Spring Security를 사용한 로그아웃
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            new SecurityContextLogoutHandler().logout(request, response, authentication);
+        }
+
+        // 세션에서 로그인 정보 제거
         session.removeAttribute("loginInfo");
+
         return "redirect:/";
     }
 

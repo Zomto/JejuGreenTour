@@ -30,7 +30,17 @@ public class SecurityConfig {
                                     ,"/member/join"
                                     ,"/member/joinMember"
                                     ,"/member/checkId"
-                                    ,"/member/verifyCode").permitAll()
+                                    ,"/member/verifyCode"
+                                    ,"/member/editMember1"
+                                    ,"/member/editMember2"
+                                    ,"/member/changePw"
+                                    ,"/member/changePwForm"
+                                    ,"/member/find_idForm"
+                                    ,"/member/findId"
+                                    ,"/member/checkInfo"
+                                    ,"/member/find_PwForm"
+                                    ,"/member/findPw"
+                                    ,"/**/**").permitAll()
                                     .anyRequest().authenticated()
                 )
                 //로그인 실행 방법
