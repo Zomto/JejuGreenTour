@@ -7,7 +7,7 @@
 <title></title>
 <!-- css 영역 -->
 <th:block layout:fragment="content_css">
-
+    <link rel="stylesheet" href="/css/csCenter/updateQna.css">
 </th:block>
 </head>
 <body>
@@ -15,31 +15,34 @@
     <form action="/cs/updateQna" method="post">
         <div class="wrap">
             <div class="w_in">
-                <div>
-                    <div>
-                        <label for="">유형</label>
-                        <select name="cateCode" id="">
+                <div class="title">자주 찾는 질문 수정</div>
+                <div class="inputBlock">
+                    <div class="inputBox">
+                        <div class="label">카테고리</div>
+                        <select class="cateCode" name="cateCode" id="">
+                            <option th:value=${qna.qnaCateList.cateCode}>[[${qna.qnaCateList.cateName}]]</option>
                             <option value="CATE_001">숙박</option>
                             <option value="CATE_002">결제</option>
                             <option value="CATE_003">혜택</option>
                             <option value="CATE_004">기타</option>
+                            <option value="CATE_005">이벤트</option>
                         </select>
                     </div>
-                    <div>
-                        <label for="">질문</label>
-                        <input type="text" name="qnaQuestion">
+                    <div class="inputBox">
+                        <div class="label">제목</div>
+                        <input type="text" name="qnaQuestion" th:value="${qna.qnaQuestion}">
+                    </div>
+                    <div class="inputBox textArea">
+                        <div class="label">내용</div>
+                        <textarea name="qnaAnswer" id="" cols="60" rows="10" th:text="${qna.qnaAnswer}"></textarea>
+                    </div>
                     </div>
                     <div>
-                        <label for="">답변</label>
-                        <textarea name="qnaAnswer" id="" cols="30" rows="10"></textarea>
-                    </div>
-                    <div>
-                        <input type="hidden" name="qnaCode" th:value="${qnaVO.qnaCode}">
-                        <input type="submit" value="수정완료">
+                        <input type="hidden" name="qnaCode" th:value="${qna.qnaCode}">
+                        <input class="subBtn" type="submit" value="수정완료">
                     </div>
                 </div>
             </div>
-        </div>
     </form>
 </th:block>
 </body>

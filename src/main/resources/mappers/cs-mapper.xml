@@ -163,6 +163,17 @@
         ORDER BY QNA_CODE DESC
         OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
+    <select id="selectQnaOne" resultMap="qna">
+        SELECT
+        QNA_CODE
+        , QNA.CATE_CODE
+        , CATE_NAME
+        , QNA_QUESTION
+        , QNA_ANSWER
+        FROM QNA QNA, QNA_CATE_LIST LIST
+        WHERE QNA.CATE_CODE = LIST.CATE_CODE
+        AND QNA_CODE = #{qnaCode}
+    </select>
 
     <!--  QNA 목록 추가  -->
     <insert id="insertQna">

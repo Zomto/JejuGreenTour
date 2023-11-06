@@ -80,6 +80,11 @@ public class CsServiceImpl implements CsService{
         return sqlSession.insert("csMapper.insertQna", qnaVO);
     }
 
+    @Override
+    public QnaVO selectQnaOne(String qnaCode) {
+        return sqlSession.selectOne("csMapper.selectQnaOne", qnaCode);
+    }
+
     // QNA 게시물 카운트
     @Override
     public int selectQnaCnt() {

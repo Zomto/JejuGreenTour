@@ -3,6 +3,9 @@
 .w_in {
     display: flex;
 }
+.wrap{
+    height: 820px;
+}
 
 .main {
     width: 70%;

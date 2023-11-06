@@ -3,7 +3,9 @@
 .inquireList a{
     color: #1db954;
 }
-
+.wrap{
+    margin-left: 50px;
+}
 .title{
     width: 150px;
     font-size: 22px;
@@ -59,4 +61,22 @@
 .inqImgBlock img{
     width: 100%;
     height: 100%;
+}
+.btnBox{
+    width: 800px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.subBtn{
+    cursor: pointer;
+    margin: 0 5px;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #03c75a;
+    width: 200px;
+    height: 50px;
+}
+.subBtn:hover{
+    background-color: #1ab752;
 }

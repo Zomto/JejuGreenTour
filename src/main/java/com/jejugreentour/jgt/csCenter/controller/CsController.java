@@ -47,7 +47,11 @@ public class CsController {
 
     // qna 수정 페이지 이동
     @GetMapping("/updateQnaForm")
-    public String updateQnaForm(QnaVO qnaVO){
+    public String updateQnaForm(Model model, String qnaCode){
+//        model.addAttribute("qnaList", csService.selectQnaCnt(qnaVO));
+        System.out.println(csService.selectQnaOne(qnaCode));
+       QnaVO vo = csService.selectQnaOne(qnaCode);
+       model.addAttribute("qna", vo);
 
         return "content/csCenter/updateQna";
     }

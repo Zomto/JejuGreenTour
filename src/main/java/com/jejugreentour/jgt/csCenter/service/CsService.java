@@ -42,7 +42,10 @@ public interface CsService {
 
     // QNA 목록 추가
     public int insertQna(QnaVO qnaVO);
-    
+
+    // QNA 하나 불러오기
+    public QnaVO selectQnaOne(String qnaCode);
+
     // 게시물 총 개수 조회
     public int selectQnaCnt();
 
