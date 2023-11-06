@@ -29,7 +29,7 @@
                                 <legend class="hide">통합 검색어 입력폼</legend>
                                 <div>
                                     <input type="text" placeholder="검색어를 입력해 주세요" name="searchData" style="outline: 0;">
-                                    <input class="h_search_btn" type="button" th:onclick="|location.href='@{/search/searchResultForm(searchData=${searchVO.searchData})}'|"></input>
+                                    <input class="h_search_btn" type="button" th:onclick="location.href='/search/searchResultForm';"></input>
                                 </div>
                             </fieldset>
                         </form>
