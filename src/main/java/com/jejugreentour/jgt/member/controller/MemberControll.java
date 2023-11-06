@@ -21,10 +21,7 @@ import java.util.List;
 public class MemberControll {
     @Resource
     private MemberService memberService;
-    @PostMapping("/mapTest")
-    public String mapTest(){
-        return "test/map";
-    }
+
     @PostMapping("/joinMember")
     public String joinMember(MemberVO memberVO){
         System.out.println(memberVO);

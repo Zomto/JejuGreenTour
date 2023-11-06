@@ -122,6 +122,7 @@ function checkId() {
                 return response.json();
             })
             .then((data) => {
+                console.log(data)
                 if (data) {
                     alert('사용가능한 ID입니다.');
                     document.querySelector('.join_btn').value = "이메일 인증 필요";

@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -21,9 +22,10 @@ public class SearchController {
     private AccomService accomService;
 
 
-    @GetMapping("/searchResultForm")
+    @PostMapping("/searchResultForm")
     public String searchResult(Model model, SearchVO searchVO){
         model.addAttribute("AnnList", searchService.searchAnn(searchVO));
+        System.out.println(searchService.searchAnn(searchVO));
         return "/content/search/search_result";
     }
 
