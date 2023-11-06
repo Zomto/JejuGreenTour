@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 .wrap{
-    margin: 0 100px;
+    margin: 0 50px;
 }
 .title_group{
     display: flex;
@@ -130,6 +130,7 @@
 }
 
 .btn_group{
+    width: 800px;
     text-align: center;
     position: relative;
     margin-bottom: 50px;
