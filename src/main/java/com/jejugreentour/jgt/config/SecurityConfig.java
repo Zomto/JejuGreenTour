@@ -24,6 +24,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize ->
                             authorize.requestMatchers(
                                     "/"
+                                    ,"/**"
                                     ,"/member/joinForm"
                                     ,"/member/loginForm"
                                     ,"/member/login"
@@ -40,7 +41,7 @@ public class SecurityConfig {
                                     ,"/member/checkInfo"
                                     ,"/member/find_PwForm"
                                     ,"/member/findPw"
-                                    ,"/**/**").permitAll()
+                                    ).permitAll()
                                     .anyRequest().authenticated()
                 )
                 //로그인 실행 방법
