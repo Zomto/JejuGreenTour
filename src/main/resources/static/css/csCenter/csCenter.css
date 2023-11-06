@@ -91,11 +91,14 @@ a{
 
 
 .main_footer{
-    width: 1200px;
     margin: 0 auto;
     clear: both;
     padding-top: 100px;
     border-top: 1px solid #999;
+}
+#footer{
+    width: 1200px;
+    margin: 0 auto;
 }
 
 .sideForm:hover{

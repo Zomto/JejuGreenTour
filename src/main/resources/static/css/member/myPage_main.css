@@ -51,19 +51,24 @@
     border-bottom: 5px solid #dadada;
 }
 .tbl table {
+    border-radius: 16px 16px 7px 7px;
     width: 100%;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #dadada;
     border-collapse: separate;
     table-layout: fixed;
     font-size: 15px;
 }
+.board_type{
+    border-radius: 16px 16px 7px 7px;
+    border: 1px solid #dadada;
+}
 .tbl table.board_type th, .tbl table.board_type td {
     padding: 15px;
     text-align: center;
-    border-top: 1px solid #ddd;
     color: #ffffff;
 
 }
+
 .tbl th {
     background-color: rgb(30, 218, 96);
     font-size: 15px;
@@ -135,9 +140,11 @@
 .m2> .tb1> .board_type td{
     padding : 15px;
     text-align: center;
-    border-bottom: 1px solid #ddd;
     color: #ffffff;
 
+}
+td:last-child{
+    border: 0;
 }
 .m2_header{
     justify-content: space-between;
