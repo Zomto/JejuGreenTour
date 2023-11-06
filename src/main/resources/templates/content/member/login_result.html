@@ -5,9 +5,9 @@
 <title></title>
 </head>
 <body>
-    <input th:if="${session.loginInfo != null}" type="hidden" id="loginId" th:value="${session.loginInfo.memberName}">
+    <input sec:authorize="isAuthenticated()" type="hidden" id="loginId" th:value="${#authentication.name}">
 <!-- 로그인 성공 -->
-<th:block th:if="${session.loginInfo != null}">
+<th:block sec:authorize="isAuthenticated()">
     <script>
         const loginName = document.querySelector('#loginId').value;
         alert(`${loginName}님 반갑습니다!`);
@@ -15,7 +15,7 @@
     </script>
 </th:block>
 <!-- 로그인 실패 -->
-<th:block th:if="${session.loginInfo == null}">
+<th:block sec:authorize="isAnonymous()">
     <script>
         alert('ID 혹은 PW 확인해 주세요!');
         location.href = '/member/loginForm';

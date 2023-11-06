@@ -16,20 +16,21 @@
         <div class="s_in">
             <div class="sEvent">
                 <h3>이벤트s</h3>
-                <div class="table">
-                    <div class="tableHeader">
-                        <div class="column num">카테고리</div>
-                        <div class="column title">제목</div>
-                    </div>
-                    <div class="tbody">
-                        <div class="tr" width="100%" th:each="searchAnn, state : ${searchAnnList}">
-                            <div class="value num">[[${searchAnn.annCateList.cateName}]]</div>
-                            <div class="valuetitle">[[${searchAnn.annTitle}]]</div>
+                <div class="sEvent_in">
+                    <div th:if="${variable}">
+                        <div class="table">
+                            <div class="tableHeader">
+                                <div class="column num">카테고리</div>
+                                <div class="column title">제목</div>
+                            </div>
+                            <div class="tbody">
+                                <div class="tr" width="100%" th:each="searchAnn, state : ${searchAnnList}">
+                                    <div class="value num">[[${searchAnn.annCateList.cateName}]]</div>
+                                    <div class="valuetitle">[[${searchAnn.annTitle}]]</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="sEvent_in">
-                    <div></div>
                 </div>
             </div>
             <div class="sMainAcc">
@@ -52,7 +53,18 @@
                 <h3>공지</h3>
                 <div class="sAnn_in">
                     <div th:if="${variable}">
-
+                        <div class="table">
+                            <div class="tableHeader">
+                                <div class="column num">카테고리</div>
+                                <div class="column title">제목</div>
+                            </div>
+                            <div class="tbody">
+                                <div class="tr" width="100%" th:each="searchAnn, state : ${searchAnnList}">
+                                    <div class="value num">[[${searchAnn.annCateList.cateName}]]</div>
+                                    <div class="valuetitle">[[${searchAnn.annTitle}]]</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
