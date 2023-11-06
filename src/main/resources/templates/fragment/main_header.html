@@ -99,16 +99,16 @@
                         </div>
                     </div>
                     <div class="h_utill">
-                        <th:block th:if="${session.loginInfo == null}">
+                        <th:block sec:authorize="isAnonymous()">
                         <ul class="hu01">
                             <li><a href="/member/loginForm">로그인</a></li>
                             <li><a href="/member/joinForm">회원가입</a></li>
                             <li><a href="/cs/csForm">고객센터</a></li>
                         </ul>
                         </th:block>
-                        <th:block th:if="${session.loginInfo != null}">
+                        <th:block sec:authorize="isAuthenticated()">
                             <ul class="hu01">
-                                <li><span>[[${session.loginInfo.memberId}]]님 반갑습니다.&nbsp;</span></li>
+                                <li><span th:text="${#authentication.name}">님 반갑습니다.&nbsp;</span></li>
                                 <li><a href="/member/myPageForm">&nbsp;내정보관리&nbsp;</span></a></li>
                                 <li><a href="/member/logout">&nbsp;LOGOUT</span></a></li>
                                 <li><a href="/cs/csForm">고객센터</a></li>
@@ -119,7 +119,7 @@
                                 <a href="">마이메뉴</a>
                                 <div class="mymenu">
                                     <div class="mymenu_in">
-                                        <th:block th:if="${session.loginInfo == null}">
+                                        <th:block sec:authorize="isAnonymous()">
                                             <p class="top">
                                                 마이메뉴는<br>
                                                 <span>회원 전용</span> 메뉴 입니다.
@@ -129,9 +129,9 @@
                                                 <p class="join"><a href="/member/joinForm">회원가입</a></p>
                                             </div>
                                         </th:block>
-                                        <th:block th:if="${session.loginInfo != null}">
+                                        <th:block sec:authorize="isAuthenticated()">
                                             <p class="top">
-                                                <span>[[${session.loginInfo.memberId}]]&nbsp;</span>님 반갑습니다.
+                                                <span th:text="${#authentication.name}">&nbsp;</span>님 반갑습니다.
                                             </p>
                                             <div class="btn">
                                                 <p class="login"><a href="/member/myPageForm">예약내역 & 찜목록</a></p>

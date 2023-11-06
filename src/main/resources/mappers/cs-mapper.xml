@@ -328,7 +328,7 @@
             AND (
         </if>
         <if test='searchData != null and !searchData.equals("")'>
-            OR UPPER(CATE_NAME) LIKE '%'||UPPER(#{searchData})||'%'
+             UPPER(CATE_NAME) LIKE '%'||UPPER(#{searchData})||'%'
         </if>
         <if test='searchData != null and !searchData.equals("")'>
             OR UPPER(ANN_TITLE) LIKE '%'||UPPER(#{searchData})||'%'
@@ -347,6 +347,7 @@
     <select id="searchQna" resultMap="qna">
         SELECT
         QNA_CODE
+        , QNA.CATE_CODE
         , CATE_NAME
         , QNA_QUESTION
         , QNA_ANSWER
@@ -356,7 +357,7 @@
             AND (
         </if>
         <if test='searchData != null and !searchData.equals("")'>
-            OR UPPER(CATE_NAME) LIKE '%'||UPPER(#{searchData})||'%'
+             UPPER(CATE_NAME) LIKE '%'||UPPER(#{searchData})||'%'
         </if>
         <if test='searchData != null and !searchData.equals("")'>
             OR UPPER(QNA_QUESTION) LIKE '%'||UPPER(#{searchData})||'%'
