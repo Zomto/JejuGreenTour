@@ -17,8 +17,14 @@
             <div class="sEvent">
                 <h3>이벤트s</h3>
                 <div class="sEvent_in">
-                    <div th:if="${variable}">
-                        
+                    <div>
+                        <div th:each="ann : ${annList}">
+                            <div>[[${ann.annCate}]]</div>
+                            <div>[[${ann.cateName}]]</div>
+                            <div>[[${ann.annWriter}]]</div>
+                            <div>[[${ann.annTitle}]]</div>
+                            <div>[[${ann.annContent}]]</div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -24,12 +24,12 @@
                 <div id="head1">
                     <h1 class="logo"><a href="/">하나투어</a></h1>
                     <div class="h_search">
-                        <form action="">
+                        <form action="/search/searchResultForm" method="post">
                             <fieldset>
                                 <legend class="hide">통합 검색어 입력폼</legend>
                                 <div>
                                     <input type="text" placeholder="검색어를 입력해 주세요" name="searchData" style="outline: 0;">
-                                    <input class="h_search_btn" type="button" th:onclick="location.href='/search/searchResultForm';"></input>
+                                    <input class="h_search_btn" type="submit" value="검색"/>
                                 </div>
                             </fieldset>
                         </form>
