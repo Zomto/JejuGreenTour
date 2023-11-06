@@ -74,6 +74,7 @@
     border-left: 10px solid #03c75a;
 }
 .m2_in{
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
     border-radius: 7px;
     border: 1px solid #dadada;
 }
@@ -191,33 +192,12 @@
 .m2_in .list_last {
     border-bottom: 1px solid #222;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .side {
     width: 30%;
 }
 
 .s1 {
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
     border-radius: 5px;
     padding: 15px;
     border: 2px solid #79c099;
@@ -307,6 +287,7 @@
 }
 
 .s2_annList{
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
     border-radius: 7px;
     border: 1px solid #dadada;
 }

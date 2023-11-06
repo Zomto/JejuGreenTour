@@ -68,6 +68,7 @@ a{
 .side_inner > p > span{
     font-size: 19px;
     font-weight: 500;
+    /* color: #999; */
 }
 
 .side_inner .menu_last{
@@ -82,6 +83,7 @@ a{
 .myPageSide3:hover,
 .myPageSide4:hover{
     color:#1db954;
+    border-bottom: 2px solid #1db954;
 }
 
 

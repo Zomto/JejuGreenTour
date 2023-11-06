@@ -48,6 +48,7 @@
 }
 
 .content{
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
     border-radius: 7px;
     border-left: 1px solid #dadada;
     border-right: 1px solid #dadada;
