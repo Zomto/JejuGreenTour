@@ -77,8 +77,10 @@ public class AccomController {
         model.addAttribute("mAccom", vo);
         System.out.println(vo);
         System.out.println(img);
-        User user = (User)authentication.getPrincipal();
-        model.addAttribute("userName" ,user.getUsername());
+        if(authentication !=null){
+            User user = (User)authentication.getPrincipal();
+            model.addAttribute("userName" ,user.getUsername());
+        }
         model.addAttribute("imgList", img);
         List<SubAccomVO> subList=accomService.selectSubAccomlist(accomCode);
         model.addAttribute("subList", subList);
