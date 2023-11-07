@@ -50,9 +50,6 @@ public class MemberControll {
         return "content/member/login";
     }
 
-
-
-
     @ResponseBody
     @PostMapping("/checkId")
     public boolean checkId(String memberId){
