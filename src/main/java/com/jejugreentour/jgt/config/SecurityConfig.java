@@ -55,10 +55,10 @@ public class SecurityConfig {
                                 .failureUrl("/member/loginResult") //로그인 실패시 이동 url
                 ).logout(logout ->
                         // /logout 요청이 발생하면 logout을 시켜준다
-                        logout.logoutUrl("/logout")
+                        logout.logoutUrl("/member/logout")
                                 //로그아웃시 세션 정보를 초기화
                                 .invalidateHttpSession(true)
-                                .logoutSuccessUrl("/loginForm")
+                                .logoutSuccessUrl("/")
                 );
                     return security.build();
     }
