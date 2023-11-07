@@ -142,5 +142,11 @@ public class CsServiceImpl implements CsService{
         return sqlSession.selectList("csMapper.inqImgList", inqCode);
     }
 
+    // 문의 내역 삭제
+    @Override
+    public int deleteInq(String inqCode) {
+        return sqlSession.delete("csMapper.deleteInq", inqCode);
+    }
+
 
 }

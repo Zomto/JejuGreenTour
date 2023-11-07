@@ -69,8 +69,8 @@
                     </div>
                 </div>
                 <div class="btnBox">
-                    <input class="subBtn" type="button" value="삭제">
-                    <input class="subBtn" type="button" value="목록">
+                    <input class="subBtn" type="button" value="삭제" th:onclick="|location.href='@{/cs/deleteInq(inqCode=inqDetail.inqCode)}'|">
+                    <input class="subBtn" type="button" value="목록" onclick="location.href='/cs/inquireListForm';">
                 </div>
             </div>
         </div>

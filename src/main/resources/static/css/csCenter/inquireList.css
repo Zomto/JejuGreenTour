@@ -106,3 +106,48 @@ table, tr, td{
     color: #888;
 }
 
+/* 페이징 */
+
+.page_prevBtn{
+    font-size: 20px;
+}
+
+.page_nextBtn{
+    font-size: 20px;
+}
+
+.page_numBtn{
+    font-size: 20px;
+
+}
+
+.pageBtn > a{
+    color: #222;
+    margin-right: 10px;
+}
+
+.btn_group{
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.annBtn button{
+    margin-left: 285px;
+    border-radius: 5px;
+    width: 400px;
+    height: 40px;
+    background-color: #03c75a;
+    border: 1px solid #dadada;
+    color: #fff;
+}
+.annBtn button:hover{
+    background-color: #1db954;
+}
+.pageBtn{
+    margin: 0 auto 30px auto;
+    width: 230px;
+}
+.pageBtn span{
+    color: #888;
+}
+

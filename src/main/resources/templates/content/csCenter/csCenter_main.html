@@ -18,10 +18,12 @@
             <div class="w_in">
                 <div class="main">
                     <div class="m1">
-                        <div class="m_search">
-                            <input type="text" placeholder="지주 찾는 질문 검색창" style="outline: 0;">
-                            <button>검색</button>
-                        </div>
+                        <form action="/cs/qnaListForm" method="post">
+                            <div class="m_search">
+                                <input type="text" name="searchData" placeholder="지주 찾는 질문 검색창" style="outline: 0;" required>
+                                <input class="search_btn" type="submit" value="검색"></input>
+                            </div>
+                        </form>
                         <div class="m_keyword">
                             <div class="k_icon">키워드<span class="triangle"></span></div>
                             <a href="">#키워드</a>

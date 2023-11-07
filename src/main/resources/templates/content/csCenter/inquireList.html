@@ -38,6 +38,15 @@
                     </div>
                 </div>
             </div>
+            <div class="pageBtn">
+                <a class="page_prevBtn" th:href="@{/cs/inquireListForm(nowPage=${inquireVO.beginPage - 1})}"><span th:if="${inquireVO.prev}">이전</span></a>
+
+                <th:block th:each="pageNum : ${#numbers.sequence(inquireVO.beginPage, inquireVO.endPage)}">
+                    <a class="page_numBtn" th:href="@{/cs/inquireListForm(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
+                </th:block>
+
+                <a class="page_nextBtn" th:href="@{/cs/inquireListForm(nowPage=${inquireVO.endPage + 1})}"><span th:if="${inquireVO.next}">다음</span></a>
+            </div>
         </div>
     </th:block>
     <!-- js영역 -->

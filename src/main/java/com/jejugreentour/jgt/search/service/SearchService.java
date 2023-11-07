@@ -9,7 +9,15 @@ import java.util.List;
 
 public interface SearchService {
 
+    // 검색 페이지 공지 사항
     public List<AnnVO> searchAnn(SearchVO searchVO);
 
+    // 검색 페이지 QNA
     public List<QnaVO> searchQna(SearchVO searchVO);
+
+    // 고객 센터 QNA 검색
+    public List<QnaVO> searchQnaPaging(SearchVO searchVO);
+
+    // 고객 센터 QNA 게시물 카운트
+    public int searchQnaCnt(SearchVO searchVO);
 }

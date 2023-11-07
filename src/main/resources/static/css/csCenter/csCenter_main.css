@@ -38,7 +38,7 @@
     border: 2px solid #03c75a;
 }
 
-.m_search button {
+.m_search .search_btn{
     border-radius: 5px;
     width: 13%;
     background-color: #03c75a;

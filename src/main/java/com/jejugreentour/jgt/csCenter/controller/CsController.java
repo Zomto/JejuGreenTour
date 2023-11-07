@@ -3,6 +3,8 @@ package com.jejugreentour.jgt.csCenter.controller;
 
 import com.jejugreentour.jgt.csCenter.service.CsService;
 import com.jejugreentour.jgt.csCenter.vo.*;
+import com.jejugreentour.jgt.search.service.SearchService;
+import com.jejugreentour.jgt.search.vo.SearchVO;
 import com.jejugreentour.jgt.util.UploadUtillCs;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
@@ -18,17 +20,22 @@ import java.util.List;
 @RequestMapping("/cs")
 @RequiredArgsConstructor
 public class CsController {
-    @Resource
-    private CsService csService;
+
+    private final CsService csService;
+    private final SearchService searchService;
+
+
 
 
     // QNA 목록 페이지 이동
-    @GetMapping("/qnaListForm")
-    public String qnaListForm(Model model, QnaVO qnaVO){
+    @RequestMapping("/qnaListForm")
+    public String qnaListForm(Model model, SearchVO searchVO){
         // 페이지 정보 세팅
-        qnaVO.setTotalDataCnt(csService.selectQnaCnt());
-        qnaVO.setPageInfo();
-        model.addAttribute("qnaList", csService.qnaList(qnaVO));
+        searchVO.setTotalDataCnt(searchService.searchQnaCnt(searchVO));
+        searchVO.setPageInfo();
+        //model.addAttribute("qnaList", csService.qnaList(qnaVO));
+        model.addAttribute("qnaList", searchService.searchQnaPaging(searchVO));
+
         return "/content/csCenter/qnaList";
     }
 
@@ -193,6 +200,12 @@ public class CsController {
         //상품 등록  + 이미지 등록 쿼리
         inquireVO.setInqCode(inqCode);
         csService.insertInq(inquireVO);
+        return "redirect:/cs/inquireListForm";
+    }
+
+    @GetMapping("deleteInq")
+    public String deleteInq(String inqCode){
+        csService.deleteInq(inqCode);
         return "redirect:/cs/inquireListForm";
     }
 
