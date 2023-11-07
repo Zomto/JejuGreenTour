@@ -11,6 +11,8 @@ import com.jejugreentour.jgt.util.UploadUtil;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,12 +71,14 @@ public class AccomController {
 
     // 숙박 정보 수정페이지로 이동
     @GetMapping("/mainAccomDetail")
-    public String mainAccomDetail(String accomCode, Model model, HttpSession session){
+    public String mainAccomDetail(String accomCode, Model model, Authentication authentication){
         MainAccomVO vo = accomService.selectMainAccomDetail(accomCode);
         List<MainAccomImgVO> img = accomService.selectSubImg(accomCode);
         model.addAttribute("mAccom", vo);
         System.out.println(vo);
         System.out.println(img);
+        User user = (User)authentication.getPrincipal();
+        model.addAttribute("userName" ,user.getUsername());
         model.addAttribute("imgList", img);
         List<SubAccomVO> subList=accomService.selectSubAccomlist(accomCode);
         model.addAttribute("subList", subList);

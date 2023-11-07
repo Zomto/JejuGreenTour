@@ -204,11 +204,13 @@ function displayPagination(pagination) {
 // 인포윈도우에 장소명을 표시합니다
 function displayInfowindow(marker, title) {
 
+
     var content = null// '<div style="padding:5px;z-index:1;">' + title + `<a href="https://map.kakao.com/link/to/${title}" style="color:blue" target="_blank">길찾기</a></div>`;
 
     arr.forEach(element => {
         if (title == element.title) {
             content = element.content;
+            console.log(element)
         }
     });
     infowindow.setContent(content);
