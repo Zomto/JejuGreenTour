@@ -1,3 +1,79 @@
+console.log(3323)
+let itemdetail = document.querySelectorAll('.itemdetail');
+let select = 0;
+console.log(itemdetail)
+itemdetail.forEach(element => {
+    element.addEventListener('click', function (e) {
+        for (let i = 0; i < itemdetail.length; i++) {
+            if (i == 1 || i == 3) {
+                itemdetail[i].className = 'itemdetail Tourist'
+            } else {
+                itemdetail[i].className = 'itemdetail food'
+            }
+        }
+        select = this.dataset.idex
+        itemdetail[select].className += ' on'
+    })
+});
+function insertplan(name,addr){
+    if (name != null && addr != null) {
+        console.log(itemdetail[select])
+        itemdetail[select].querySelector('.name').innerHTML = name
+        itemdetail[select].querySelector('.addr').innerHTML = addr
+        itemdetail[select].dataset.name = name;
+        itemdetail[select].dataset.addr = addr;
+        itemdetail[select].dataset.check = 'Y';
+
+        
+        for (let i = 0; i < itemdetail.length; i++) {
+            if (i == 1 || i == 3) {
+                itemdetail[i].className = 'itemdetail Tourist'
+            } else {
+                itemdetail[i].className = 'itemdetail food'
+            }
+        }
+
+        itemdetail[select].className += ' on'
+
+        if (select < 4) {
+            select++
+        }
+    }
+}
+
+function setting(name, addr, cate) {
+
+    if (cate.split(' > ')[0] == '음식점') {
+
+        if (select == 1 || select == 3) {
+            itemdetail[select].className = 'itemdetail Tourist'
+            select = 0;
+            if (itemdetail[select].dataset.check == 'Y') {
+                select = 2;
+            }
+            if (itemdetail[select].dataset.check == 'Y') {
+                select = 4;
+            }
+            insertplan(name,addr);
+        } else {
+            insertplan(name,addr);
+        }
+    } else {
+        if (select == 0 || select == 2|| select == 4) {
+            itemdetail[select].className = 'itemdetail food'
+            select = 1;
+            if (itemdetail[select].dataset.check == 'Y') {
+                select = 3;
+            }
+            insertplan(name,addr);
+        } else {
+            insertplan(name,addr);
+        }
+
+    }
+}
+
+
 // 마커를 담을 배열입니다
 var markers = [];
 
@@ -33,6 +109,7 @@ function searchPlaces() {
     ps.keywordSearch(keyword, placesSearchCB);
 }
 
+let arr2 = []
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 function placesSearchCB(data, status, pagination) {
     if (status === kakao.maps.services.Status.OK) {
@@ -40,7 +117,8 @@ function placesSearchCB(data, status, pagination) {
         // 정상적으로 검색이 완료됐으면
         // 검색 목록과 마커를 표출합니다
         displayPlaces(data);
-        console.log(data);
+        arr2 = data;
+
         // 페이지 번호를 표출합니다
         displayPagination(pagination);
 
@@ -87,13 +165,19 @@ function displayPlaces(places) {
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
         (function (marker, title) {
-            kakao.maps.event.addListener(marker, 'mouseover', function () {
+            kakao.maps.event.addListener(marker, 'click', function () {
                 displayInfowindow(marker, title);
-            });
 
-            itemEl.onmouseover = function () {
+                // 클릭한 마커 위치로 지도를 확대합니다
+                map.setLevel(2); // 원하는 확대 레벨로 조정할 수 있습니다
+                map.setCenter(marker.getPosition());
+            });
+            itemEl.addEventListener('click', function () {
                 displayInfowindow(marker, title);
-            };
+            })
+            // itemEl.onmouseover = function () {                                       // 마우스 오버시 사용할 코드
+            //     displayInfowindow(marker, title);
+            // };
         })(marker, places[i].place_name);
 
         fragment.appendChild(itemEl);
@@ -129,7 +213,7 @@ function getListItem(index, place) {
         '</div>';
 
     // 경로를 포함한 content 문자열 생성
-    var content = '<div style="padding:5px;z-index:1;">' + title + '<a href="https://map.kakao.com/link/to/' + title + ',' + lat + ',' + lng + '" style="color:blue" target="_blank">길찾기</a></div>';
+    var content = '<div style="padding:13px 50px 9px 10px; z-index:1; width:200px; height:30px;">' + title + '<a href="https://map.kakao.com/link/to/' + title + ',' + lat + ',' + lng + '"style="color:#1ab754; position:absolute; top:11px; right:18px; border:1px solid #dadada; border-radius:5px; background-color:#03c75a; color:#fff" target="_blank" >길찾기</a></div>';
 
     arr.push({
         title: title,
@@ -175,6 +259,7 @@ function displayPagination(pagination) {
         fragment = document.createDocumentFragment(),
         i;
 
+
     // 기존에 추가된 페이지번호를 삭제합니다
     while (paginationEl.hasChildNodes()) {
         paginationEl.removeChild(paginationEl.lastChild);
@@ -198,53 +283,49 @@ function displayPagination(pagination) {
         fragment.appendChild(el);
     }
     paginationEl.appendChild(fragment);
+
 }
 
-// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
-// 인포윈도우에 장소명을 표시합니다
+// 인포윈도우에 장소명을 표시하고 지도를 클릭한 지점으로 확대합니다
+kakao.maps.event.addListener(marker, 'click', function () {
+    displayInfowindow(marker, title);
+    // 클릭한 마커 위치로 지도를 확대합니다
+    map.setLevel(4); // 원하는 확대 레벨로 조정할 수 있습니다
+    map.setCenter(position);
+});
 function displayInfowindow(marker, title) {
-
-
-    var content = null// '<div style="padding:5px;z-index:1;">' + title + `<a href="https://map.kakao.com/link/to/${title}" style="color:blue" target="_blank">길찾기</a></div>`;
+    var content = null;
 
     arr.forEach(element => {
         if (title == element.title) {
             content = element.content;
-            console.log(element)
         }
     });
+    arr2.forEach(element => {
+        if (title == element.place_name) {
+            console.log(element)
+            setting(element.place_name, element.address_name, element.category_name)
+        }
+    });
+
+
+    if (content) {
+        // content += `<br><a href="https://map.kakao.com/link/to/${title}" style="color:blue" target="_blank">길찾기</a>`;
+    }
+
     infowindow.setContent(content);
     infowindow.open(map, marker);
-}
 
+    // 마커의 위치를 가져옵니다
+    var position = marker.getPosition();
+
+    // 클릭한 마커 위치로 지도를 확대합니다
+    map.setLevel(2); // 원하는 확대 레벨로 조정할 수 있습니다
+    map.setCenter(position);
+}
 // 검색결과 목록의 자식 Element를 제거하는 함수입니다
 function removeAllChildNods(el) {
     while (el.hasChildNodes()) {
         el.removeChild(el.lastChild);
     }
-}
-
-
-// const urlParams = new URL("http://place.map.kakao.com/1378746048").searchParams;
-// const nam = urlParams.get('name');
-// console.log(nam)
-
-
-const request = new XMLHttpRequest();
-const url = 'https://place.map.kakao.com/1378746048'; // 소스 가져올 페이지 
-
-// let htmlText
-// request.open('GET', url, true);
-// request.onload = function () {
-// htmlText = request.responseText;
-// }
-
-// console.log(htmlText);
-loadURL();
-function loadURL()
-{
- var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
- xmlhttp.open("GET", 'https://place.map.kakao.com/1378746048', "false");
- xmlhttp.send();
- console.log(xmlhttp.responseText);
 }
