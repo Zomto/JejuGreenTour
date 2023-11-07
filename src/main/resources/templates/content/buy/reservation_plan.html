@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="/css/kakaomap.css">
     <link rel="stylesheet" href="/css/slick.css">
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/buy/plan.css">
 
 </head>
 
@@ -25,353 +25,210 @@
                 <a th:href="@{/accom/mainAccomDetail(accomCode=ACCOM_008)}">상세보기</a>
             </div>
         </th:block>
-        <div id="container">
-            <div id="Visual_Main">
-                <div class="slide_section">
-                    <div class="m_slide_list">
-                        <div class="slide_1">
-                            <div class="slide_in vm1">
-                                <div class="vm_1"></div>
-                            </div>
-                        </div>
-                        <div class="slide_2">
-                            <div class="slide_in vm2">
-                                <div class="vm_2"></div>
-                            </div>
-                        </div>
-                        <div class="slide_3">
-                            <div class="slide_in vm3">
-                                <div class="vm_3"></div>
-                            </div>
-                        </div>
-                        <div class="slide_4">
-                            <div class="slide_in vm4">
-                                <div class="vm_4"></div>
-                            </div>
-                        </div>
-                        <div class="slide_5">
-                            <div class="slide_in vm5">
-                                <div class="vm_5"></div>
-                            </div>
-                        </div>
-                        <div class="slide_6">
-                            <div class="slide_in vm6">
-                                <div class="vm_6"></div>
+        </div>
+        <div class="main two">
+            <div class="inner accom">
+                <div class="category">
+
+                    <div id="tab-1" class="tab-content current">
+                        <div class="accomItem">
+                            <div class="items">
+                                <div class="itemdetail food on" data-idex="0"
+                                data-check="N" 
+                                data-name=" " 
+                                data-addr=" ">
+                                    <div class="photo">
+                                        아침 식사 사진
+                                    </div>
+                                    <div class="text">
+                                        <div class="itemName">이름
+                                            <span class="name"></span>
+                                        </div>
+                                        <div class="itemReview">
+                                            <div class="itemStar">
+                                                <div class="star">주소 :</div>
+                                                <span class="addr"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="itemdetail Tourist" data-idex="1"
+                                data-check="N" 
+                                data-name=" " 
+                                data-addr=" ">
+                                    <div class="photo">
+                                        사진~~
+                                    </div>
+                                    <div class="text">
+                                        <div class="itemName">이름
+                                            <span class="name"></span>
+                                        </div>
+                                        <div class="itemReview">
+                                            <div class="itemStar">
+                                                <div class="star">주소 :</div>
+                                                <span class="addr"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="itemdetail food" data-idex="2"
+                                data-check="N" 
+                                data-name=" " 
+                                data-addr=" ">
+                                    <div class="photo">
+                                        점심 식사 사진
+                                    </div>
+                                    <div class="text">
+                                        <div class="itemName">이름
+                                            <span class="name"></span>
+                                        </div>
+                                        <div class="itemReview">
+                                            <div class="itemStar">
+                                                <div class="star">주소 :</div>
+                                                <span class="addr"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="itemdetail Tourist" data-idex="3"
+                                data-check="N" 
+                                data-name=" " 
+                                data-addr=" ">
+                                    <div class="photo">
+                                        사진~~
+                                    </div>
+                                    <div class="text">
+                                        <div class="itemName">이름
+                                            <span class="name"></span>
+                                        </div>
+                                        <div class="itemReview">
+                                            <div class="itemStar">
+                                                <div class="star">주소 :</div>
+                                                <span class="addr"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="itemdetail food" data-idex="4"
+                                data-check="N" 
+                                data-name=" " 
+                                data-addr=" ">
+                                    <div class="photo">
+                                        저녁 식사 사진
+                                    </div>
+                                    <div class="text">
+                                        <div class="itemName">이름
+                                            <span class="name"></span>
+                                        </div>
+                                        <div class="itemReview">
+                                            <div class="itemStar">
+                                                <div class="star">주소 :</div>
+                                                <span class="addr"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="m_remote">
-                    <p class="slide_prev"><span>이전으로</span></p>
-                    <p class="slide_next"><span>다음으로</span></p>
-                    <p class="m_pause"><span class="hide">일시정지</span></p>
-                    <p class="m_play"><span class="hide">재생</span></p>
-                </div>
             </div>
-            <div class="main two">
-                <div class="inner accom">
-                    <div class="category">
-                        <div class="tabs">
-                            <div class="tab-link current" id="first" data-tab="tab-1">전체</div>
-                            <div class="tab-link" data-tab="tab-2">호텔</div>
-                            <div class="tab-link" data-tab="tab-3">모텔</div>
-                            <div class="tab-link" data-tab="tab-4">팬션</div>
-                            <div class="tab-link" data-tab="tab-5">글램핑</div>
-                            <div class="tab-link" data-tab="tab-6">PC ROOM</div>
-                            <div class="tab-link" data-tab="tab-7">반려견 동반</div>
-                            <div class="tab-link" data-tab="tab-8">풀빌라</div>
-                            <div class="tab-link" id="nine" data-tab="tab-9">OCEAN VIEW</div>
-                            <div class="tab-link" id="ten" data-tab="tab-10">리조트</div>
-                        </div>
-                        <div class="accomItems">
-                            <div id="tab-1" class="tab-content current">
-                                <div class="accomItem">
-                                    <!-- <th:block th:each="data, state : ${dataList}">
-                                        <th:block>
-                                        <div>
-                                        </th:block>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <th:block>
-                                        </div>
-                                    </th:block>
-                                    </th:block> -->
+            <div class="main three">
+                <div class="inner">
+                    <div class="headerText">
+                        지도 내 검색
+                    </div>
+                    <div class="m1_right">
+                        <div class="map_wrap">
+                            <div id="map"></div>
+                            <div id="menu_wrap" class="bg_white">
+                                <div class="option">
+                                    <div>
+                                        <form onsubmit="searchPlaces(); return false;">
+                                            <input type="text" value="제주 맛집" id="keyword" size="15">
+                                            <button type="submit">검색하기</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="result">
+                                    <ul id="placesList"></ul>
 
+                                </div>
+                                <div id="pagination"></div>
 
-
-
-                                    <div class="items">
-                                        <div class="itemdetail">
-                                            <div class="photo">
-                                                사진~~
-                                            </div>
-                                            <div class="text">
-                                                <div class="itemName">올렐라레시랑옹</div>
-                                                <div class="itemReview">
-                                                    <div class="itemStar">
-                                                        <div class="star">★★★★★</div>
-                                                        <span>(</span>
-                                                        <span class="point">4.8</span>
-                                                        <span>)</span>
-                                                    </div>
-
-                                                    <div class="reviewCnt">
-                                                        <span>(</span>
-                                                        <span class="cnt">147</span>
-                                                        <span>)</span>
-                                                    </div>
-                                                </div>
-                                                <div class="price">
-                                                    <span class="priceNum">
-                                                        78000
-                                                    </span>
-                                                    <span class="won">원</span>
-                                                </div>
-                                            </div>
-                                            <div class="love">
-                                                하트
-                                            </div>
-                                        </div>
-                                        <div class="itemdetail">
-                                            <div class="photo">
-                                                사진~~
-                                            </div>
-                                            <div class="text">
-                                                <div class="itemName">올렐라레시랑옹</div>
-                                                <div class="itemLoc"></div>
-                                                <div class="price">
-                                                    <span class="priceNum">
-                                                        78000
-                                                    </span>
-                                                    <span class="won">원</span>
-                                                </div>
-                                            </div>
-                                            <div class="love">
-                                                하트
-                                            </div>
-                                        </div>
-                                        <div class="itemdetail">
-                                            <div class="photo">
-                                                사진~~
-                                            </div>
-                                            <div class="text">
-                                                <div class="itemName">올렐라레시랑옹</div>
-                                                <div class="itemLoc"></div>
-                                                <div class="price">
-                                                    <span class="priceNum">
-                                                        78000
-                                                    </span>
-                                                    <span class="won">원</span>
-                                                </div>
-                                            </div>
-                                            <div class="love">
-                                                하트
-                                            </div>
-                                        </div>
-                                        <div class="itemdetail">
-                                            <div class="photo">
-                                                사진~~
-                                            </div>
-                                            <div class="text">
-                                                <div class="itemName">이름입니당</div>
-                                                <div class="itemReview">
-                                                    <div class="itemStar">★★★★★</div>
-                                                    <div class="reviewCnt">
-                                                        <span>(</span>
-                                                        <span class="cnt">147</span>
-                                                        <span>)</span>
-                                                    </div>
-                                                </div>
-                                                <div class="price">
-                                                    <span class="priceNum">
-                                                        78000
-                                                    </span>
-                                                    <span class="won">원</span>
-                                                </div>
-                                            </div>
-                                            <div class="love">
-                                                하트
-                                            </div>
-                                        </div>
-                                        <div class="itemdetail">
-                                            <div class="photo">
-                                                사진~~
-                                            </div>
-                                            <div class="text">
-                                                <div class="itemName">올렐라레시랑옹</div>
-                                                <div class="itemLoc"></div>
-                                                <div class="price">
-                                                    <span class="priceNum">
-                                                        78000
-                                                    </span>
-                                                    <span class="won">원</span>
-                                                </div>
-                                            </div>
-                                            <div class="love">
-                                                하트
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-2" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-3" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-4" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-5" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-6" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-7" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-8" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-9" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-10" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="main three">
-                    <div class="inner">
-                        <div class="headerText">
-                            지도 내 검색
-                        </div>
-                        <div class="m1_right">
-                            <div class="map_wrap">
-                                <div id="map"></div>
-                                <div id="menu_wrap" class="bg_white">
-                                    <div class="option">
-                                        <div>
-                                            <form onsubmit="searchPlaces(); return false;">
-                                                <input type="text" value="제주 맛집" id="keyword" size="15">
-                                                <button type="submit">검색하기</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="result">
-                                        <ul id="placesList"></ul>
-
-                                    </div>
-                                    <div id="pagination"></div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
-            <div>
-                <p style="margin-top:-12px">
-                    <em class="link">
-                        <a href="javascript:void(0);"
-                            onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
-                            혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
-                        </a>
-                    </em>
-                </p>
-                <div id="map" style="width:100%;height:350px;"></div>
 
-                <script>
-                    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-                        mapOption = {
-                            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                            level: 3 // 지도의 확대 레벨
-                        };
 
-                    // 지도를 생성합니다    
-                    var map = new kakao.maps.Map(mapContainer, mapOption);
+        </div>
+        <div>
+            <p style="margin-top:-12px">
+                <em class="link">
+                    <a href="javascript:void(0);"
+                        onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
+                        혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
+                    </a>
+                </em>
+            </p>
+            <div id="map" style="width:100%;height:350px;"></div>
 
-                    // 주소-좌표 변환 객체를 생성합니다
-                    var geocoder = new kakao.maps.services.Geocoder();
 
-                    // 주소로 좌표를 검색합니다
-                    geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function (result, status) {
+            
+            <script>
+                var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                    mapOption = {
+                        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                        level: 3 // 지도의 확대 레벨
+                    };
 
-                        // 정상적으로 검색이 완료됐으면 
-                        if (status === kakao.maps.services.Status.OK) {
+                // 지도를 생성합니다    
+                var map = new kakao.maps.Map(mapContainer, mapOption);
 
-                            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                // 주소-좌표 변환 객체를 생성합니다
+                var geocoder = new kakao.maps.services.Geocoder();
 
-                            // 결과값으로 받은 위치를 마커로 표시합니다
-                            var marker = new kakao.maps.Marker({
-                                map: map,
-                                position: coords
-                            });
+                // 주소로 좌표를 검색합니다
+                geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function (result, status) {
 
-                            // 인포윈도우로 장소에 대한 설명을 표시합니다
-                            var infowindow = new kakao.maps.InfoWindow({
-                                content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-                            });
-                            infowindow.open(map, marker);
+                    // 정상적으로 검색이 완료됐으면 
+                    if (status === kakao.maps.services.Status.OK) {
 
-                            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                            map.setCenter(coords);
-                        }
-                    });    
-                </script>
-            </div>
-            <script type="text/javascript"
-                src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	1faecd944d1bb1ff9e6939d4b20a8146&libraries=services"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-            <script src="/js/buy/reservationplan.js"></script>
-            <script src="/js/slick.min.js"></script>
+                        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                        // 결과값으로 받은 위치를 마커로 표시합니다
+                        var marker = new kakao.maps.Marker({
+                            map: map,
+                            position: coords
+                        });
+
+                        // 인포윈도우로 장소에 대한 설명을 표시합니다
+                        var infowindow = new kakao.maps.InfoWindow({
+                            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+                        });
+                        infowindow.open(map, marker);
+
+                        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                        map.setCenter(coords);
+                    }
+                });    
+            </script>
+
+        </div>
+        <div >
+            <div id="calendar"></div>
+        </div>
+        <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	1faecd944d1bb1ff9e6939d4b20a8146&libraries=services"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src='/dist/index.global.js'></script>
+        <script src="/js/buy/reserv_plan.js"></script>
+        <script src="/js/buy/reservationplan.js"></script>
+        <script src="/js/slick.min.js"></script>
 
     </th:block>
 </body>
