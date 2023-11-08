@@ -38,6 +38,9 @@ function insertplan(name,addr){
         if (select < 4) {
             select++
         }
+        else if(select ==4){
+            select=3;
+        }
     }
 }
 
