@@ -6,4 +6,5 @@ import lombok.Data;
 @Data
 public class SearchVO extends PageVO {
     private String searchData;
+    private String annCate;
 }

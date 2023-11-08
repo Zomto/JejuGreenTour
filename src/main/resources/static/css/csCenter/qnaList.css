@@ -70,14 +70,20 @@
 }
 
 
+.qna_d1 .qna_cateName{
+    color: #03c75a;
+    font-size: 17px;
+    width: 50px;
+}
+
 .qna_d1 span{
     display: inline-block;
     text-align: center;
     width: 30px;
     height: 30px;
     border: 1px solid transparent;
-    border-radius: 50%;
     color: white;
+    border-radius: 50%;
     font-size: 20px;
     margin-right: 30px;
 }
@@ -98,6 +104,7 @@
 
 .qna_answer{
     display: block;
+    margin-left: 87px;
     margin-top: 15px;
     padding-bottom: 15px;
 }

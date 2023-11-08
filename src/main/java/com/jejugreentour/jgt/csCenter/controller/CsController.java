@@ -91,12 +91,12 @@ public class CsController {
 
 
     // 공지 사항 목록 페이지
-    @GetMapping("/annListForm")
-    public String annForm(Model model, HttpSession session, AnnVO annVO, AnnCateVO annCateVO, String annCate){
+    @RequestMapping("/annListForm")
+    public String annForm(Model model, AnnCateVO annCateVO, String annCate, SearchVO searchVO){
         // 페이지 정보 세팅
-        annVO.setTotalDataCnt(csService.selectAnnCnt(annCate));
-        annVO.setPageInfo();
-        model.addAttribute("annList", csService.annList(annVO));
+        searchVO.setTotalDataCnt(searchService.searchAnnCnt(searchVO));
+        searchVO.setPageInfo();
+        model.addAttribute("annList", searchService.searchAnnPaging(searchVO));
         model.addAttribute("cateList", csService.annCateList(annCateVO));
         if (annCate != null){
             model.addAttribute("annCate", annCate);
@@ -205,6 +205,7 @@ public class CsController {
 
     @GetMapping("deleteInq")
     public String deleteInq(String inqCode){
+        csService.deleteInqImg(inqCode);
         csService.deleteInq(inqCode);
         return "redirect:/cs/inquireListForm";
     }

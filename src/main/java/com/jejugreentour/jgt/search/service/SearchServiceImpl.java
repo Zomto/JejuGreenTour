@@ -20,6 +20,16 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
+    public List<AnnVO> searchAnnPaging(SearchVO searchVO) {
+        return sqlSession.selectList("csMapper.searchAnnPaging", searchVO);
+    }
+
+    @Override
+    public int searchAnnCnt(SearchVO searchVO) {
+        return sqlSession.selectOne("csMapper.searchAnnCnt", searchVO);
+    }
+
+    @Override
     public List<QnaVO> searchQna(SearchVO searchVO) {
         return sqlSession.selectList("csMapper.searchQna", searchVO);
     }

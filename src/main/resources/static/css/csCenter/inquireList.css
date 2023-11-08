@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+.myPageSide5{
+    color: #1ab752 !important;
+    border-bottom: 2px solid #1ab752 !important;
+}
+
+
+
 table, tr, td{
     border: 1px solid #999;
     width: 500px;
@@ -106,6 +113,9 @@ table, tr, td{
     color: #888;
 }
 
+
+
+
 /* 페이징 */
 
 .page_prevBtn{
@@ -150,4 +160,5 @@ table, tr, td{
 .pageBtn span{
     color: #888;
 }
+
 

@@ -192,6 +192,10 @@
     background-position: center;
 }
 
+.m2_qna.active::after{
+    transform: rotate(180deg);
+}
+
 .m2_in .list_last {
     border-bottom: 1px solid #222;
 }

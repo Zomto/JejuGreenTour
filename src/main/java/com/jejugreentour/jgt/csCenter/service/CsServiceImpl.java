@@ -116,7 +116,9 @@ public class CsServiceImpl implements CsService{
     @Transactional(rollbackFor = Exception.class)
     public void insertInq(InquireVO inquireVO) {
         sqlSession.insert("csMapper.insertInq", inquireVO);
-        sqlSession.insert("csMapper.insertInqImgs", inquireVO);
+        if (!inquireVO.getInqImgList().isEmpty()){
+            sqlSession.insert("csMapper.insertInqImgs", inquireVO);
+        }
 
     }
 
@@ -146,6 +148,11 @@ public class CsServiceImpl implements CsService{
     @Override
     public int deleteInq(String inqCode) {
         return sqlSession.delete("csMapper.deleteInq", inqCode);
+    }
+
+    @Override
+    public int deleteInqImg(String inqCode) {
+        return sqlSession.delete("csMapper.deleteInqImg", inqCode);
     }
 
 
