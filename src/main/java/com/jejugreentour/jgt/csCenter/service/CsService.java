@@ -75,6 +75,12 @@ public interface CsService {
     // 문의 내역 사진 조회
     public List<InqImgVO> inqImgList(String inqCode);
 
+    // 문의 내역 삭제
+    public int deleteInq(String inqCode);
+
+    // 문의 내역 사진 삭제
+    public int deleteInqImg(String inqCode);
+
 
 
 }

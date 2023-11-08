@@ -1,6 +1,38 @@
 @charset "UTF-8";
 
-.wrap{
-    width: 1200px;
+h3{
+    font-size: 22px;
+    font-weight: 700;
+    color: #1db;
 }
 
+.search{
+
+}
+
+.s_in{
+    width: 1200px;
+    margin: 0 auto;
+    background-color: aliceblue;
+    border: 2px solid red;
+}
+
+.sEvent{
+    border: 5px solid #222;
+}
+
+.sMainAcc{
+    border: 5px solid #222;
+}
+
+.sSubAcc{
+    border: 5px solid #222;
+}
+
+.sAnn{
+    border: 5px solid #222;
+}
+
+.sQna{
+    border: 5px solid #222;
+}

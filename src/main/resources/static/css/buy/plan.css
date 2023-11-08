@@ -1,0 +1,252 @@
+@charset "UTF-8";
+#Visual_Main{
+    width: 1920px;
+    height: 541px;
+    margin: 0 auto;
+    position: relative;
+    transition: background-color 0.1s;
+}
+
+.inner{
+    box-sizing: border-box;
+    background: none;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+.main{
+position: relative;
+margin-bottom: 30px;
+
+}
+.category{
+    width: 1159px;
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,0.3);
+}
+.container{
+    font-family: 'Pretendard-Regular';
+
+}
+
+
+.error-div{
+    color: red;
+    font-size: 0.8rem;
+    display: none;
+}
+
+.tabs{
+    display: flex;
+}
+.tab-link{
+    padding: 1% 1%;
+    text-align: center;
+    width: 114px;
+    border: 1px solid #dadada;;
+    color: #888;
+}
+.tab-link.current{
+    background-color: #03c75a;
+    border: 1px solid #03c75a;
+    border-bottom: 0;
+    color: #fff;
+}
+#first{
+    border-radius: 7px 0 0 0;
+}
+#ten{
+    border-radius: 0 7px 0 0;
+}
+#nine{
+    letter-spacing: -1px;
+}
+.map_info > #map{
+    width: 100%;
+}
+.tab-content{
+    display: none;
+}
+.tab-content.current{
+    display: block;
+}
+.accomItems{
+    width: 1158px;
+    height: 700px;
+    border: 1px solid #dadada;
+    border-top: 0;
+    border-radius: 0 0 7px 7px;
+    background-color: #fff;
+}
+.headerText{
+    width: 800px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #444;
+    border-bottom: 2px solid #dadada;
+    margin-bottom: 20px;
+}   
+
+.items{
+    display: flex;
+    padding: 10px 5px;
+}
+.itemdetail{
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,0.8);
+    position: relative;
+    width: 215px;
+    height: 300px;
+    margin: 0 5px;
+    /* border: 1px solid #dadada; */
+    border-radius: 5px;
+    padding: 2px;
+}
+.itemdetail:hover{
+    border: 1px solid #1ab752;
+}
+.itemdetail.on{
+    border: 1px solid #1ab752;
+}
+
+
+.photo{
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #dadada;
+    width: 213px;
+    height: 180px;
+}
+.text{
+    padding: 10px;
+}
+.itemName{
+    color: #888;
+    margin-bottom: 10px;
+}
+.itemStar{
+    display: flex;
+}
+.star{
+    margin-right: 10px;
+}
+.itemReview{
+    display: flex;
+}
+.price{
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+.love{
+    position: absolute;
+    left: 13px;
+    bottom: 8px;
+}
+
+span{
+    color: #888;
+}
+.priceNum{
+    color: #444;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.m_foot{
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.mf_title{
+    font-size: 22px;
+    font-weight: 700;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #222;
+}
+
+.mf_more_btn{
+    display: flex;
+    position: absolute;
+    top: 4px;
+    right: 30px;
+    height: 20px;
+}
+
+.mf_more_btn a{
+    text-align: center;
+    font-size: 17px;
+    color: #222;
+}
+
+.mf_more_btn a::after{
+    position: absolute;
+    top: 2px;
+    right: -25px;
+    width: 22px;
+    height: 20px;
+    display: inline-block;
+    content: "";
+    background-image: url(/img/ico-arrow-right.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+}
+
+.mf_in li{
+    position: relative;
+    padding: 15px 10px 0 20px;
+    border-bottom: 1px solid #999;
+    cursor: pointer;
+}
+
+.mf_qna_question{
+    display: block;
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+.mf_qna_answer{
+    display: none;
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+
+.mf_qna_question .m2_cateName{
+    color: #1db954; 
+}
+
+.mf_qna_span_a, .m2_qna_span_q{
+    display: inline-block;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #1db954;
+    background-color: #1db954;
+    border-radius: 50%;
+    margin-right: 15px;
+    color: white;
+}
+
+.mf_box{
+    display: inline-block;
+    content: "";
+    width: 100px;
+}
+
+.mf_in li::after{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+    content: "";
+    width: 17px;
+    height: 17px;
+    background-image: url(/img/mball_arrow.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+}
+
+.mf_in .list_last{
+    border-bottom: 1px solid #222;
+}

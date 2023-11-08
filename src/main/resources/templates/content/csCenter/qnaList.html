@@ -17,24 +17,18 @@
                 <div class="title_group">
                     <h3 class="title">자주 찾는 질문</h3>
                     <div class="search_group">
-                        <div class="search_cate">
-                            <select>
-                                <option value="CATE_001">숙박 등록</option>
-                                <option value="CATE_002">결제</option>
-                                <option value="CATE_003">혜택</option>
-                                <option value="CATE_004">기타</option>
-                                <option value="CATE_005">이벤트</option>
-                            </select>
-                        </div>
-                        <div class="search_input"><input type="text" name=""></div>
-                        <div class="search_btn"><button>검색</button></div>
+                        <form action="/cs/qnaListForm" method="post">
+                            <div class="search_input"><input type="text" name="searchData" required></div>
+                            <div class="search_btn"><input type="submit" value="검색"></input></div>
+                        </form>
                     </div>
                 </div>
                 <div class="list_group">
                     <div class="l_in">
-                        <ul class="contentBox">
+                        <ul class="contentBox"  th:if="${#lists.size(qnaList) != 0}">
                             <li class="qna_d1" th:each="qna, state : ${qnaList}">
                                 <div class="qna_question"> <!-- 질문 -->
+                                    <span class="qna_cateName">[ [[${qna.qnaCateList.cateName}]] ]</span>
                                     <span class="qna_span_q">Q</span>
                                     [[${qna.qnaQuestion}]]
                                     <div class="qna_btn">
@@ -42,26 +36,27 @@
                                         <input type="button" th:onclick="|location.href='@{/cs/deleteQna(qnaCode=${qna.qnaCode})}'|" value="삭제">
                                     </div>
                                 </div>
-                                
                                 <div class="qna_answer active"> <!-- 대답 -->
                                     <span class="qna_span_a">A</span>
                                     [[${qna.qnaAnswer}]]
-                                    
                                 </div>
-                               
                             </li>
                         </ul>
+                        <!-- 내용이 없는경우! 디자인 부탁드려요 우량씨 ^^ -->
+                        <div class="" th:if="${#lists.size(qnaList) == 0}">
+                            내용이 없습니다!
+                        </div>
                     </div>
                 </div>
                 <div class="btn_group">
-                    <div class="pageBtn">
-                        <a class="page_prevBtn" th:href="@{/cs/qnaListForm(nowPage=${qnaVO.beginPage - 1})}"><span th:if="${qnaVO.prev}">이전</span></a>
+                    <div class="pageBtn" th:if="${#lists.size(qnaList) != 0}">
+                        <a class="page_prevBtn" th:href="@{/cs/qnaListForm(nowPage=${searchVO.beginPage - 1})}"><span th:if="${searchVO.prev}">이전</span></a>
     
-                        <th:block th:each="pageNum : ${#numbers.sequence(qnaVO.beginPage, qnaVO.endPage)}">
+                        <th:block th:each="pageNum : ${#numbers.sequence(searchVO.beginPage, searchVO.endPage)}">
                             <a class="page_numBtn" th:href="@{/cs/qnaListForm(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
                         </th:block>
     
-                        <a class="page_nextBtn" th:href="@{/cs/qnaListForm(nowPage=${qnaVO.endPage + 1})}"><span th:if="${qnaVO.next}">다음</span></a>
+                        <a class="page_nextBtn" th:href="@{/cs/qnaListForm(nowPage=${searchVO.endPage + 1})}"><span th:if="${searchVO.next}">다음</span></a>
                     </div>
                     <div class="inquireBtn">
                         <button class="qnaFormBtn" onclick="location.href='/cs/qnaForm';">글 추가</button>

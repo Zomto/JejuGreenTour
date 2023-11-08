@@ -163,6 +163,8 @@
         ORDER BY QNA_CODE DESC
         OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
+
+    <!--  QNA 수정 데이터 불러오기  -->
     <select id="selectQnaOne" resultMap="qna">
         SELECT
         QNA_CODE
@@ -324,6 +326,15 @@
         WHERE INQ_CODE = #{inqCode}
     </select>
 
+    <delete id="deleteInq">
+        DELETE INQUIRE
+        WHERE INQ_CODE = #{inqCode}
+    </delete>
+
+    <delete id="deleteInqImg">
+        DELETE INQ_IMG
+        WHERE INQ_CODE = #{inqCode}
+    </delete>
 
     <!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 
@@ -337,17 +348,13 @@
         WHERE ANN_CATE = CATE_CODE
         <if test='searchData != null and !searchData.equals("")'>
             AND (
-        </if>
-        <if test='searchData != null and !searchData.equals("")'>
+
              UPPER(CATE_NAME) LIKE '%'||UPPER(#{searchData})||'%'
-        </if>
-        <if test='searchData != null and !searchData.equals("")'>
+
             OR UPPER(ANN_TITLE) LIKE '%'||UPPER(#{searchData})||'%'
-        </if>
-        <if test='searchData != null and !searchData.equals("")'>
+
             OR UPPER(ANN_CONTENT) LIKE '%'||UPPER(#{searchData})||'%'
-        </if>
-        <if test='searchData != null and !searchData.equals("")'>
+
             )
             ORDER BY ANN_NUM DESC
             OFFSET 0 ROWS FETCH FIRST 5 ROWS ONLY
@@ -356,6 +363,7 @@
 
     <!--  QNA 검색  -->
     <select id="searchQna" resultMap="qna">
+
         SELECT
         QNA_CODE
         , QNA.CATE_CODE
@@ -366,20 +374,91 @@
         WHERE QNA.CATE_CODE = LIST.CATE_CODE
         <if test='searchData != null and !searchData.equals("")'>
             AND (
-        </if>
-        <if test='searchData != null and !searchData.equals("")'>
+
              UPPER(CATE_NAME) LIKE '%'||UPPER(#{searchData})||'%'
-        </if>
-        <if test='searchData != null and !searchData.equals("")'>
+
             OR UPPER(QNA_QUESTION) LIKE '%'||UPPER(#{searchData})||'%'
-        </if>
-        <if test='searchData != null and !searchData.equals("")'>
+
             OR UPPER(QNA_ANSWER) LIKE '%'||UPPER(#{searchData})||'%'
-        </if>
-        <if test='searchData != null and !searchData.equals("")'>
+
             )
             ORDER BY QNA_CODE DESC
             OFFSET 0 ROWS FETCH FIRST 5 ROWS ONLY
+        </if>
+    </select>
+
+    <!--  QNA 검색 페이징  -->
+    <select id="searchQnaPaging" resultMap="qna">
+        SELECT
+        QNA_CODE
+        , QNA.CATE_CODE
+        , CATE_NAME
+        , QNA_QUESTION
+        , QNA_ANSWER
+        FROM QNA QNA, QNA_CATE_LIST LIST
+        WHERE QNA.CATE_CODE = LIST.CATE_CODE
+        <if test='searchData != null and !searchData.equals("")'>
+            AND (
+            UPPER(CATE_NAME) LIKE '%'||UPPER(#{searchData})||'%'
+            OR UPPER(QNA_QUESTION) LIKE '%'||UPPER(#{searchData})||'%'
+            OR UPPER(QNA_ANSWER) LIKE '%'||UPPER(#{searchData})||'%'
+            )
+        </if>
+        ORDER BY QNA_CODE DESC
+        OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+    </select>
+
+    <select id="searchQnaCnt" resultType="int">
+            SELECT
+               count(QNA_CODE)
+            FROM QNA QNA
+            WHERE 1 = 1
+        <if test='searchData != null and !searchData.equals("")'>
+            AND (
+            UPPER(QNA_QUESTION) LIKE '%'||UPPER(#{searchData})||'%'
+            OR UPPER(QNA_ANSWER) LIKE '%'||UPPER(#{searchData})||'%'
+            )
+        </if>
+    </select>
+
+    <!--  공지사항  검색 페이징  -->
+    <select id="searchAnnPaging" resultMap="announcement">
+        SELECT
+        ANN_NUM
+        , ANN_CATE
+        , CATE_NAME
+        , ANN_WRITER
+        , ANN_TITLE
+        , ANN_CONTENT
+        , TO_CHAR(ANN_DATE,'YYYY-MM-DD') AS ANN_DATE
+        FROM ANNOUNCEMENT ANN, ANN_CATE_LIST LIST
+        WHERE ANN.ANN_CATE = LIST.CATE_CODE
+        <if test='annCate != null and !annCate.equals("")'>
+            AND ANN_CATE = #{annCate}
+        </if>
+        <if test='searchData != null and !searchData.equals("")'>
+            AND (
+            UPPER(CATE_NAME) LIKE '%'||UPPER(#{searchData})||'%'
+            OR UPPER(ANN_TITLE) LIKE '%'||UPPER(#{searchData})||'%'
+            OR UPPER(ANN_CONTENT) LIKE '%'||UPPER(#{searchData})||'%'
+            )
+        </if>
+        ORDER BY ANN_NUM DESC
+        OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+    </select>
+
+    <select id="searchAnnCnt" resultType="int">
+        SELECT COUNT(ANN_NUM)
+        FROM ANNOUNCEMENT
+        WHERE 1 = 1
+        <if test='annCate != null and !annCate.equals("")'>
+            AND ANN_CATE = #{annCate}
+        </if>
+        <if test='searchData != null and !searchData.equals("")'>
+            AND (
+            UPPER(ANN_TITLE) LIKE '%'||UPPER(#{searchData})||'%'
+            OR UPPER(ANN_CONTENT) LIKE '%'||UPPER(#{searchData})||'%'
+            )
         </if>
     </select>
 

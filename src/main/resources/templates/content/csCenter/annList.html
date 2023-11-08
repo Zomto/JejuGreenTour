@@ -18,13 +18,11 @@
                 <div class="title_group">
                     <h3 class="title">공지사항</h3>
                     <div class="search_group">
-                        <select name="" id="searchSelect">
-                            <option value="제목">제목</option>
-                            <option value="내용">내용</option>
-                            <option value="제목 + 내용">제목 + 내용</option>
-                        </select>
-                        <div class="search_input"><input type="text" placeholder="검색어를 입력해 주세요."></div>
-                        <button class="search_btn">검색</button>
+                        <form action="/cs/annListForm" method="post" id="searchForm">
+                            <div class="search_input"><input type="text" placeholder="검색어를 입력해 주세요." name="searchData" th:value="${searchVO.searchData}"></div>
+                            <input type="hidden" name="annCate" id="annCate11" value="">
+                            <input class="search_btn" type="submit" value="검색" ></input>
+                        </form>
                     </div>
                 </div>
                 <div class="contentBox">
@@ -36,7 +34,7 @@
                             </div>
                             <div th:each="cate , state : ${cateList}">
                                 <div th:class="${'cateTab '+cate.cateCode}"
-                                    th:onclick="|location.href='@{/cs/annListForm(annCate=${cate.cateCode})}'|">
+                                    th:onclick="goAnnListPerCate([[${cate.cateCode}]]);">
                                     [[${cate.cateName}]]</div>
                             </div>
                         </div>
@@ -51,8 +49,8 @@
 
                         <div class="tbody">
                             <div class="tr" width="100%" th:each="ann, state : ${annList}">
-                                <div class="value num">[[${annVO.totalDataCnt - state.index - (annVO.displayDataCnt *
-                                    (annVO.nowPage - 1))}]]
+                                <div class="value num">[[${searchVO.totalDataCnt - state.index - (searchVO.displayDataCnt *
+                                    (searchVO.nowPage - 1))}]]
                                 </div>
                                 <div class="value cate">[[${ann.annCateList.cateName}]]</div>
                                 <div class="valuetitle"><a class="annTitle"
@@ -60,25 +58,32 @@
                                 </div>
                                 <div class="value date">[[${ann.annDate}]]</div>
                             </div>
+                            <!-- 내용이 없는경우! 디자인 부탁드려요 우량씨 ^^ -->
+                            <div class="" th:if="${#lists.size(annList) == 0}">
+                                내용이 없습니다!
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="btn_group">
-                    <div class="pageBtn">
-                        <a class="page_prevBtn"
-                            th:href="@{/cs/annListForm(nowPage=${annVO.beginPage - 1},annCate=${annCate} )}"><span
-                                th:if="${annVO.prev}">이전</span></a>
 
-                        <th:block th:each="pageNum : ${#numbers.sequence(annVO.beginPage, annVO.endPage)}">
+                    <div class="pageBtn" th:if="${#lists.size(annList) != 0}">
+                        <a class="page_prevBtn"
+                            th:href="@{/cs/annListForm(nowPage=${searchVO.beginPage - 1},annCate=${annCate} )}"><span
+                                th:if="${searchVO.prev}">이전</span></a>
+
+                        <th:block th:each="pageNum : ${#numbers.sequence(searchVO.beginPage, searchVO.endPage)}">
                             <a class="page_numBtn"
                                 th:href="@{/cs/annListForm(nowPage=${pageNum}, annCate=${annCate})}"><span
                                     th:text="${pageNum}"></span></a>
                         </th:block>
 
                         <a class="page_nextBtn"
-                            th:href="@{/cs/annListForm(nowPage=${annVO.endPage + 1}, annCate=${annCate})}"><span
-                                th:if="${annVO.next}">다음</span></a>
+                            th:href="@{/cs/annListForm(nowPage=${searchVO.endPage + 1}, annCate=${annCate})}"><span
+                                th:if="${searchVO.next}">다음</span></a>
                     </div>
+
+
                     <div class="annBtn">
                         <button onclick="location.href='/cs/annForm';">글 작성</button>
                     </div>

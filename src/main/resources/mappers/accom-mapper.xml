@@ -206,13 +206,13 @@
     <update id="updateMainAccomName">
         UPDATE MAIN_ACCOM
         SET
-        <if test='inputMainAccomName != null and !inputMainAccomName.equals(accomName) and !inputMainAccomName.equals("")' >
+        <if test='inputMainAccomName != null and !inputMainAccomName.equals("")' >
             ACCOM_NAME = #{inputMainAccomName}
-            <if test='inputMainAccomIntro != null and !inputMainAccomIntro.equals(accomName) and !inputMainAccomIntro.equals("")' >
+            <if test='inputMainAccomIntro != null and !inputMainAccomIntro.equals("")' >
                 ,
             </if>
         </if>
-        <if test='inputMainAccomIntro != null and !inputMainAccomIntro.equals(accomIntro) and !inputMainAccomIntro.equals("")'>
+        <if test='inputMainAccomIntro != null and !inputMainAccomIntro.equals("")'>
             ACCOM_INTRO = #{inputMainAccomIntro}
         </if>
         WHERE ACCOM_CODE = #{accomCode}

@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SearchController {
     @Resource
     private SearchService searchService;
-    private CsService csService;
-    private AccomService accomService;
 
 
     @PostMapping("/searchResultForm")
@@ -28,5 +26,6 @@ public class SearchController {
         model.addAttribute("searchQnaList", searchService.searchQna(searchVO));
         return "/content/search/search_result";
     }
+
 
 }
