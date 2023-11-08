@@ -8,3 +8,11 @@ console.log(annCate)
     document.querySelector('.'+annCate).className+=" on"
     console.log(annCate)
 }
+
+//공지사항 탭별 목록 검색
+function goAnnListPerCate(cateCode){
+    const formTag = document.querySelector('#searchForm');
+    formTag.querySelector('#annCate11').value = cateCode;
+    formTag.submit();
+
+}

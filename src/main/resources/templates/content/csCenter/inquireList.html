@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{fragment/csCenter_layout}">
+    layout:decorate="~{fragment/myPage_layout}">
 
 <head>
     <meta charset="UTF-8">
@@ -32,11 +32,23 @@
                         <div class="value date">[[${inq.inqDate}]]</div>
                         <div class="value answer">[[${inq.isResponse}]]</div>
                     </div>
-                    <div class="tr" th:if="${inqList == null}">
-                        <div class="icon">icon</div>
-                        <div class="zeroText">상담 문의내역이 없습니다.</div>
+                    <!-- 내용이 없는경우! 디자인 부탁드려요 우량씨 ^^ -->
+                    <div class="tr" th:if="${#lists.size(inqList) == 0}">
+                        내용이 없습니다!
                     </div>
                 </div>
+            </div>
+            <div>
+                <input type="button" onclick="location.href='/cs/inquireForm';" value="문의하기">
+            </div>
+            <div class="pageBtn" th:if="${#lists.size(inqList) != 0}">
+                <a class="page_prevBtn" th:href="@{/cs/inquireListForm(nowPage=${inquireVO.beginPage - 1})}"><span th:if="${inquireVO.prev}">이전</span></a>
+
+                <th:block th:each="pageNum : ${#numbers.sequence(inquireVO.beginPage, inquireVO.endPage)}">
+                    <a class="page_numBtn" th:href="@{/cs/inquireListForm(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
+                </th:block>
+
+                <a class="page_nextBtn" th:href="@{/cs/inquireListForm(nowPage=${inquireVO.endPage + 1})}"><span th:if="${inquireVO.next}">다음</span></a>
             </div>
         </div>
     </th:block>

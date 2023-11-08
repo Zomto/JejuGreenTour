@@ -81,7 +81,8 @@ a{
 .myPageSide1:hover,
 .myPageSide2:hover,
 .myPageSide3:hover,
-.myPageSide4:hover{
+.myPageSide4:hover,
+.myPageSide5:hover{
     color:#1db954;
     border-bottom: 2px solid #1db954;
 }

@@ -14,25 +14,6 @@
 <th:block layout:fragment="content">
     <div class="search">
         <div class="s_in">
-            <div class="sEvent">
-                <h3>이벤트s</h3>
-                <div class="sEvent_in">
-                    <div th:if="${variable}">
-                        <div class="table">
-                            <div class="tableHeader">
-                                <div class="column num">카테고리</div>
-                                <div class="column title">제목</div>
-                            </div>
-                            <div class="tbody">
-                                <div class="tr" width="100%" th:each="searchAnn, state : ${searchAnnList}">
-                                    <div class="value num">[[${searchAnn.annCateList.cateName}]]</div>
-                                    <div class="valuetitle">[[${searchAnn.annTitle}]]</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="sMainAcc">
                 <h3>메인</h3>
                 <div class="sMainAcc_in">
@@ -52,7 +33,7 @@
             <div class="sAnn">
                 <h3>공지</h3>
                 <div class="sAnn_in">
-                    <div th:if="${variable}">
+                    <div>
                         <div class="table">
                             <div class="tableHeader">
                                 <div class="column num">카테고리</div>
@@ -71,8 +52,19 @@
             <div class="sQna">
                 <h3>QNA</h3>
                 <div class="sQna_in">
-                    <div th:if="${variable}">
-
+                    <div>
+                        <ul class="contentBox">
+                            <li class="qna_d1" th:each="searchQna, state : ${searchQnaList}">
+                                <div class="qna_question"> <!-- 질문 -->
+                                    <span class="qna_span_q">Q</span>
+                                    [[${searchQna.qnaQuestion}]]
+                                </div>
+                                <div class="qna_answer active"> <!-- 대답 -->
+                                    <span class="qna_span_a">A</span>
+                                    [[${searchQna.qnaAnswer}]]
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

@@ -72,7 +72,7 @@ function inputAddr(tagId) {
     element.previousElementSibling.style.display = 'block';
     parent.children[1].style.display = 'none';
     parent.children[2].style.display = 'block';
-    parent.children[3].style.display = 'block';
+    // parent.children[3].style.display = 'block';
     parent.children[2].value = parent.children[1].textContent;
     parent.children[4].style.display = 'none';
     parent.children[5].style.display = 'block';
@@ -194,9 +194,9 @@ function inputInvalidate3(tagId, message) {
 $('.mainAccomSubImg').slick({
     arrows: false,
     variableWidth: true,
-    infinite: false
-    // centerMode : true,
-    // focusOnSelect: true,
+    infinite: false,
+    centerMode : true,
+    focusOnSelect: true
 });
 
 function addsubImg(tag, accomCode) {
