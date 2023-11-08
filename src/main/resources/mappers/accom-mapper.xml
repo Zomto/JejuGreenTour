@@ -66,11 +66,28 @@
     </resultMap>
 
     <select id="showMain" resultMap="subAccom">
-        SELECT *
-        FROM SUB_ACCOM
-        ,MAIN_ACCOM
-        ,SUB_ACCOM_IMG
-        WHERE SUB_ACCOM.ACCOM_CODE=MAIN_ACCOM.ACCOM_CODE
+        SELECT
+        SA.SUB_ACCOM_CODE
+        , SUB_ACCOM_NAME
+        , SUB_ACCOM_INTRO
+        , SUB_ACCOM_CATE
+        , BASIC_MAN
+        , MAX_MAN
+        , ACCOM_START_TIME
+        , ACCOM_END_TIME
+        , RENT_TIME
+        , DAYUSE_PRICE
+        , RESERVATION_PRICE
+        , SOLD_OUT
+        , DAY_USE_CAN
+        , SUB_DELETE
+        , ATTACHED_FILE_NAME
+        , ORIGIN_FILE_NAME
+        , ACCOM_LOC
+        , IS_MAIN
+        FROM SUB_ACCOM SA, SUB_ACCOM_IMG IMG, MAIN_ACCOM MA
+        WHERE SA.ACCOM_CODE = MA.ACCOM_CODE
+        AND SA.SUB_ACCOM_CODE = IMG.SUB_ACCOM_CODE
 
     </select>
 

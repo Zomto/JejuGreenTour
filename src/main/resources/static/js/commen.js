@@ -43,3 +43,12 @@ $(document).ready(function(){
     })
 
 })
+$(document).ready(function(){
+    $('.loc-link').click(function(){
+       var loc_id = $(this).attr('data-tab');
+       $('.loc-link').removeClass('current');
+       $('.loc-content').removeClass('current');
+       $(this).addClass('current');
+       $("#"+loc_id).addClass('current');
+    })
+})

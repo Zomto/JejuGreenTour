@@ -23,10 +23,8 @@ public class indexController {
     @GetMapping("/")
     public  String main(Model model){
         List<SubAccomVO> vo = accomService.showMain();
-//        List<SubAccomImgVO> img = accomService.showMain();
         model.addAttribute("subAccom", vo);
         System.out.println(vo);
-        model.addAttribute("imgList", vo);
         return "index";
     }
 
