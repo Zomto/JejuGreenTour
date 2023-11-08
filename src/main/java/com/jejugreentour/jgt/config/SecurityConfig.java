@@ -15,10 +15,10 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-//@Bean
-//    public PasswordEncoder getPasswordEncoder(){
-//        return new BCryptPasswordEncoder();    //인증과 인가에 대해 설정 메소드
-//    }
+@Bean
+    public PasswordEncoder getPasswordEncoder(){
+        return new BCryptPasswordEncoder();    //인증과 인가에 대해 설정 메소드
+    }
 @Bean
     public SecurityFilterChain filterChain(HttpSecurity security) throws Exception{
         security.csrf(csrf -> csrf.disable()) //csrf 공격에 대한 보안해지

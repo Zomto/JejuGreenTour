@@ -23,4 +23,5 @@ public class SubAccomVO {
     private String dayuseCan;//mapper 수정
     private String delete;
     private List<SubAccomImgVO> subAccomImgList;
+    private String accomLoc;
 }

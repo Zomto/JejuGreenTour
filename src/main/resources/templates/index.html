@@ -74,57 +74,54 @@
                     <div class="category">
                         <div class="tabs">
                             <div class="tab-link current" id="first" data-tab="tab-1">전체</div>
-                            <div class="tab-link" data-tab="tab-2">호텔</div>
-                            <div class="tab-link" data-tab="tab-3">모텔</div>
-                            <div class="tab-link" data-tab="tab-4">팬션</div>
-                            <div class="tab-link" data-tab="tab-5">글램핑</div>
-                            <div class="tab-link" data-tab="tab-6">PC ROOM</div>
-                            <div class="tab-link" data-tab="tab-7">반려견 동반</div>
-                            <div class="tab-link" data-tab="tab-8">풀빌라</div>
-                            <div class="tab-link" id="nine" data-tab="tab-9">OCEAN VIEW</div>
-                            <div class="tab-link" id="ten" data-tab="tab-10">리조트</div>
+                            <div class="tab-link" data-tab="tab-2">풀빌라</div>
+                            <div class="tab-link" data-tab="tab-3">오션뷰</div>
+                            <div class="tab-link" data-tab="tab-4">PC룸</div>
+                            <div class="tab-link" data-tab="tab-5">N플릭스</div>
+                            <div class="tab-link" data-tab="tab-6">흡연가능</div>
+                            <div class="tab-link" data-tab="tab-7">금연</div>
+                            <div class="tab-link" data-tab="tab-8">반려동물 O</div>
+                            <div class="tab-link" id="nine" data-tab="tab-9">반려동물 X</div>
+                            <div class="tab-link" id="ten" data-tab="tab-10">노키즈존</div>
                         </div>
                         <div class="accomItems">
                             <div id="tab-1" class="tab-content current">
-                                <div class="accomItem">
-                                    <!-- <th:block th:each="data, state : ${dataList}">
-                                        <th:block>
-                                        <div>
-                                        </th:block>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <th:block>
+                                <div class="accomItem row-col-5"   >
+                                    <th:block th:each="data, state : ${subAccom}">
+                                        <div class="itemdetail">
+                                            <div class="photo">
+                                                사진~~
+                                            </div>
+                                            <div class="text">
+                                                <div class="itemName">[[${data.subAccomName}]]</div>
+                                                <div class="itemLoc">[[${data.accomLoc}]]</div>
+                                                <div class="price">
+                                                    <span class="priceNum">
+                                                        [[${data.reservationPrice}]]
+                                                    <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                        [[${data.dayusePrice}]]
+                                                    </th:block>
+                                                    </span>
+                                                    <span class="won">원</span>
+                                                </div>
+                                            </div>
+                                            <div class="love">
+                                                하트[[${(state.index % 5 == 4 and state.index != 0)}]]
+                                            </div>
                                         </div>
                                     </th:block>
-                                    </th:block> -->
 
-
-
-
-                                    <div class="items">
+                                </div>
+                            </div>
+                        <div id="tab-2" class="tab-content current">
+                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'풀빌라')}">
                                         <div class="itemdetail">
                                             <div class="photo">
                                                 사진~~
                                             </div>
                                             <div class="text">
-                                                <div class="itemName">올렐라레시랑옹</div>
-                                                <div class="itemReview">
-                                                    <div class="itemStar">
-                                                        <div class="star">★★★★★</div>
-                                                        <span>(</span>
-                                                        <span class="point">4.8</span>
-                                                        <span>)</span>
-                                                    </div>
-
-                                                    <div class="reviewCnt">
-                                                        <span>(</span>
-                                                        <span class="cnt">147</span>
-                                                        <span>)</span>
-                                                    </div>
-                                                </div>
+                                                <div class="itemName">[[${data.subAccomName}]]</div>
+                                                <div class="itemLoc">대정읍</div>
                                                 <div class="price">
                                                     <span class="priceNum">
                                                         78000
@@ -133,221 +130,251 @@
                                                 </div>
                                             </div>
                                             <div class="love">
-                                                하트
+                                                하트[[${(state.index % 5 == 4 and state.index != 0)}]]
                                             </div>
                                         </div>
-                                        <div class="itemdetail">
-                                            <div class="photo">
-                                                사진~~
-                                            </div>
-                                            <div class="text">
-                                                <div class="itemName">올렐라레시랑옹</div>
-                                                <div class="itemLoc"></div>
-                                                <div class="price">
-                                                    <span class="priceNum">
-                                                        78000
-                                                    </span>
-                                                    <span class="won">원</span>
-                                                </div>
-                                            </div>
-                                            <div class="love">
-                                                하트
-                                            </div>
-                                        </div>
-                                        <div class="itemdetail">
-                                            <div class="photo">
-                                                사진~~
-                                            </div>
-                                            <div class="text">
-                                                <div class="itemName">올렐라레시랑옹</div>
-                                                <div class="itemLoc"></div>
-                                                <div class="price">
-                                                    <span class="priceNum">
-                                                        78000
-                                                    </span>
-                                                    <span class="won">원</span>
-                                                </div>
-                                            </div>
-                                            <div class="love">
-                                                하트
-                                            </div>
-                                        </div>
-                                        <div class="itemdetail">
-                                            <div class="photo">
-                                                사진~~
-                                            </div>
-                                            <div class="text">
-                                                <div class="itemName">이름입니당</div>
-                                                <div class="itemReview">
-                                                    <div class="itemStar">★★★★★</div>
-                                                    <div class="reviewCnt">
-                                                        <span>(</span>
-                                                        <span class="cnt">147</span>
-                                                        <span>)</span>
-                                                    </div>
-                                                </div>
-                                                <div class="price">
-                                                    <span class="priceNum">
-                                                        78000
-                                                    </span>
-                                                    <span class="won">원</span>
-                                                </div>
-                                            </div>
-                                            <div class="love">
-                                                하트
-                                            </div>
-                                        </div>
-                                        <div class="itemdetail">
-                                            <div class="photo">
-                                                사진~~
-                                            </div>
-                                            <div class="text">
-                                                <div class="itemName">올렐라레시랑옹</div>
-                                                <div class="itemLoc"></div>
-                                                <div class="price">
-                                                    <span class="priceNum">
-                                                        78000
-                                                    </span>
-                                                    <span class="won">원</span>
-                                                </div>
-                                            </div>
-                                            <div class="love">
-                                                하트
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-2" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-3" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-4" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-5" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-6" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-7" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-8" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-9" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="tab-10" class="tab-content current">
-                                <div class="accomItem">
-                                    <div class="items">
-                                        <div class="item"></div>
-                                    </div>
-                                </div>
-                            </div>
+                            </th:block>
                         </div>
-                    </div>
-                </div>
-                <div class="main three">
-                    <div class="inner">
-                        <div class="headerText">
-                            지도 내 검색
-                        </div>
-                        <div class="m1_right">
-                            <div class="map_wrap">
-                                <div id="map"></div>
-                                <div id="menu_wrap" class="bg_white">
-                                    <div class="option">
-                                        <div>
-                                            <form onsubmit="searchPlaces(); return false;">
-                                                <input type="text" value="제주 맛집" id="keyword" size="15">
-                                                <button type="submit">검색하기</button>
-                                            </form>
+                        <div id="tab-3" class="tab-content current">
+                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'오션_뷰')}" >
+                                        <div class="itemdetail">
+                                            <div class="photo">
+                                                사진~~
+                                            </div>
+                                            <div class="text">
+                                                <div class="itemName">[[${data.subAccomName}]]</div>
+                                                <div class="itemLoc">대정읍</div>
+                                                <div class="price">
+                                                    <span class="priceNum">
+                                                        78000
+                                                    </span>
+                                                    <span class="won">원</span>
+                                                </div>
+                                            </div>
+                                            <div class="love">
+                                                하트[[${(state.index % 5 == 4 and state.index != 0)}]]
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="result">
-                                        <ul id="placesList"></ul>
-
-                                    </div>
-                                    <div id="pagination"></div>
-
-                                </div>
-                            </div>
+                            </th:block>
+                        </div>
+                        <div id="tab-4" class="tab-content current">
+                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'PC_룸')}">
+                                        <div class="itemdetail">
+                                            <div class="photo">
+                                                사진~~
+                                            </div>
+                                            <div class="text">
+                                                <div class="itemName">[[${data.subAccomName}]]</div>
+                                                <div class="itemLoc">대정읍</div>
+                                                <div class="price">
+                                                    <span class="priceNum">
+                                                        78000
+                                                    </span>
+                                                    <span class="won">원</span>
+                                                </div>
+                                            </div>
+                                            <div class="love">
+                                                하트[[${(state.index % 5 == 4 and state.index != 0)}]]
+                                            </div>
+                                        </div>
+                            </th:block>
+                        </div>
+                        <div id="tab-5" class="tab-content current">
+                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'N플릭스')}" >
+                                        <div class="itemdetail">
+                                            <div class="photo">
+                                                사진~~
+                                            </div>
+                                            <div class="text">
+                                                <div class="itemName">[[${data.subAccomName}]]</div>
+                                                <div class="itemLoc">대정읍</div>
+                                                <div class="price">
+                                                    <span class="priceNum">
+                                                        78000
+                                                    </span>
+                                                    <span class="won">원</span>
+                                                </div>
+                                            </div>
+                                            <div class="love">
+                                                하트[[${(state.index % 5 == 4 and state.index != 0)}]]
+                                            </div>
+                                        </div>
+                            </th:block>
+                        </div>
+                        <div id="tab-6" class="tab-content current">
+                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'흡연_O')}" >
+                                        <div class="itemdetail">
+                                            <div class="photo">
+                                                사진~~
+                                            </div>
+                                            <div class="text">
+                                                <div class="itemName">[[${data.subAccomName}]]</div>
+                                                <div class="itemLoc">대정읍</div>
+                                                <div class="price">
+                                                    <span class="priceNum">
+                                                        78000
+                                                    </span>
+                                                    <span class="won">원</span>
+                                                </div>
+                                            </div>
+                                            <div class="love">
+                                                하트[[${(state.index % 5 == 4 and state.index != 0)}]]
+                                            </div>
+                                        </div>
+                            </th:block>
+                        </div>
+                        <div id="tab-7" class="tab-content current">
+                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'금연')}">
+                                        <div class="itemdetail">
+                                            <div class="photo">
+                                                사진~~
+                                            </div>
+                                            <div class="text">
+                                                <div class="itemName">[[${data.subAccomName}]]</div>
+                                                <div class="itemLoc">대정읍</div>
+                                                <div class="price">
+                                                    <span class="priceNum">
+                                                        78000
+                                                    </span>
+                                                    <span class="won">원</span>
+                                                </div>
+                                            </div>
+                                            <div class="love">
+                                                하트[[${(state.index % 5 == 4 and state.index != 0)}]]
+                                            </div>
+                                        </div>
+                            </th:block>
+                        </div>
+                        <div id="tab-8" class="tab-content current">
+                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'반려동물_O')}">
+                                        <div class="itemdetail">
+                                            <div class="photo">
+                                                사진~~
+                                            </div>
+                                            <div class="text">
+                                                <div class="itemName">[[${data.subAccomName}]]</div>
+                                                <div class="itemLoc">대정읍</div>
+                                                <div class="price">
+                                                    <span class="priceNum">
+                                                        78000
+                                                    </span>
+                                                    <span class="won">원</span>
+                                                </div>
+                                            </div>
+                                            <div class="love">
+                                                하트[[${(state.index % 5 == 4 and state.index != 0)}]]
+                                            </div>
+                                        </div>
+                            </th:block>
+                        </div>
+                        <div id="tab-9" class="tab-content current">
+                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'반려동물_X')}">
+                                        <div class="itemdetail">
+                                            <div class="photo">
+                                                사진~~
+                                            </div>
+                                            <div class="text">
+                                                <div class="itemName">[[${data.subAccomName}]]</div>
+                                                <div class="itemLoc">대정읍</div>
+                                                <div class="price">
+                                                    <span class="priceNum">
+                                                        78000
+                                                    </span>
+                                                    <span class="won">원</span>
+                                                </div>
+                                            </div>
+                                            <div class="love">
+                                                하트[[${(state.index % 5 == 4 and state.index != 0)}]]
+                                            </div>
+                                        </div>
+                            </th:block>
+                        </div>
+                        <div id="tab-10" class="tab-content current">
+                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'노키즈_존')}">
+                                        <div class="itemdetail">
+                                            <div class="photo">
+                                                사진~~
+                                            </div>
+                                            <div class="text">
+                                                <div class="itemName">[[${data.subAccomName}]]</div>
+                                                <div class="itemLoc">대정읍</div>
+                                                <div class="price">
+                                                    <span class="priceNum">
+                                                        78000
+                                                    </span>
+                                                    <span class="won">원</span>
+                                                </div>
+                                            </div>
+                                            <div class="love">
+                                                하트[[${(state.index % 5 == 4 and state.index != 0)}]]
+                                            </div>
+                                        </div>
+                            </th:block>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="map_info">
-                <p style="margin-top:-12px">
-                    <em class="link">
-                        <a href="javascript:void(0);"
-                            onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
-                        </a>
-                    </em>
-                </p>
-                <div id="map"></div>
-            </div>
-            <div class="m_foot">
-                <h3 class="mf_title">자주 찾는 질문</h3>
-                <div class="mf_more_btn"><a href="/cs/qnaListForm">더보기</a></div>
-                <div class="mf_in">
-                    <ul>
-                        <!-- ------------------------------------------------ -->
-                        <li class="mf_qna" th:each="qna, state : ${qnaList}">
-                            <div class="mf_qna_question"> <!-- 질문 -->
-                                <span class="mf_cateName m2_box">[ [[${qna.qnaCateList.cateName}]] ]</span>
-                                <span class="mf_qna_span_q">Q</span>
-                                [[${qna.qnaQuestion}]]
+            <div class="main three">
+                <div class="inner">
+                    <div class="headerText">
+                        지도 내 검색
+                    </div>
+                    <div class="m1_right">
+                        <div class="map_wrap">
+                            <div id="map"></div>
+                            <div id="menu_wrap" class="bg_white">
+                                <div class="option">
+                                    <div>
+                                        <form onsubmit="searchPlaces(); return false;">
+                                            <input type="text" value="제주 맛집" id="keyword" size="15">
+                                            <button type="submit">검색하기</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="result">
+                                    <ul id="placesList"></ul>
+
+                                </div>
+                                <div id="pagination"></div>
                             </div>
-                            <div class="mf_qna_answer"> <!-- 대답 -->
-                                <span class="mf_box"></span>
-                                <span class="mf_qna_span_a">A</span>
-                                [[${qna.qnaAnswer}]]
-                            </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>    
+        <div class="map_info">
+            <p style="margin-top:-12px">
+                <em class="link">
+                    <a href="javascript:void(0);"
+                        onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
+                    </a>
+                </em>
+            </p>
+            <div id="map"></div>
+        </div>
+        <div class="m_foot">
+            <h3 class="mf_title">자주 찾는 질문</h3>
+            <div class="mf_more_btn"><a href="/cs/qnaListForm">더보기</a></div>
+            <div class="mf_in">
+                <ul>
+                    <!-- ------------------------------------------------ -->
+                    <li class="mf_qna" th:each="qna, state : ${qnaList}">
+                        <div class="mf_qna_question"> <!-- 질문 -->
+                            <span class="mf_cateName m2_box">[ [[${qna.qnaCateList.cateName}]] ]</span>
+                            <span class="mf_qna_span_q">Q</span>
+                            [[${qna.qnaQuestion}]]
+                        </div>
+                        <div class="mf_qna_answer"> <!-- 대답 -->
+                            <span class="mf_box"></span>
+                            <span class="mf_qna_span_a">A</span>
+                            [[${qna.qnaAnswer}]]
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </div>
+        </div>
         <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	1faecd944d1bb1ff9e6939d4b20a8146&libraries=services"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

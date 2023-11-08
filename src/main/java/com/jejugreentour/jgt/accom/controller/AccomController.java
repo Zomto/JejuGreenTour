@@ -11,6 +11,8 @@ import com.jejugreentour.jgt.util.UploadUtil;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,10 +38,10 @@ public class AccomController {
 
     // 숙박업소 등록
     @PostMapping("/addAccom")
-    public String addAccom(MainAccomVO mainAccomVO, MultipartFile mainImg, MultipartFile[] subImg, HttpSession httpSession){
+    public String addAccom(MainAccomVO mainAccomVO, MultipartFile mainImg, MultipartFile[] subImg, Authentication authentication){
 
-        MemberVO loginInfo = (MemberVO)httpSession.getAttribute("loginInfo");
-        mainAccomVO.setAccomCeo(loginInfo.getMemberId());
+        User user = (User)authentication.getPrincipal();
+        mainAccomVO.setAccomCeo(user.getUsername());
 
         // 0. 다음에 들어 가야 할 ITEM_CODE 조회
         String accomCode = accomService.selectNextAccomCode();
@@ -172,8 +174,9 @@ public class AccomController {
         System.out.println(img);
         model.addAttribute("imgList", img);
         return "content/accom/subAccom_detail";
-
     }
+
+
 
     @ResponseBody
     @PostMapping("/subAccomUpdate")

@@ -13,5 +13,7 @@ public class MemberVO {
     private String birthDate;
     private String memberRoll;
     private String member_mail;
+
+
 }
 

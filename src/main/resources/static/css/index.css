@@ -161,6 +161,7 @@ margin-bottom: 30px;
 #first{
     border-radius: 7px 0 0 0;
 }
+
 #ten{
     border-radius: 0 7px 0 0;
 }
@@ -192,15 +193,18 @@ margin-bottom: 30px;
     border-bottom: 2px solid #dadada;
     margin-bottom: 20px;
 }   
-
+.accomItems{
+    display: table;
+}
 .items{
     display: flex;
     padding: 10px 5px;
 }
 .itemdetail{
+    display: inline-block;
     box-shadow: 0 2px 6px 0 rgba(68,68,68,0.8);
     position: relative;
-    width: 215px;
+    width: 214px;
     height: 300px;
     margin: 0 5px;
     /* border: 1px solid #dadada; */
