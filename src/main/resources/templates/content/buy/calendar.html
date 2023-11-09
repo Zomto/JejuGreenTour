@@ -56,12 +56,11 @@
                 <input type="text" id="setEndDay" name="stayEndDate" required readonly>
                 <input type="number" id="stayDay" name="stayTerm" readonly>
                 <input type="text" id="setdayuse" name="dayuse" readonly>
-                <input type="hidden" id="memberId" th:if="${session.loginInfo != null}"
-                    th:value="${session.loginInfo.memberId}">
+                <input type="hidden" id="memberId" th:if="${userName != null}"
+                    th:value="${userName}">
             </div>
             <div>
-                <input type="button" value="장바구니에 추가">
-                <input type="button" value="대실" onclick="turndayuse(this)"><!-- <th:block th:if>로 유무 확인-->
+                <input th:if="${SampleSubVO.dayuseCan == 'Y'}" type="button" value="대실" onclick="turndayuse(this)"><!-- <th:block th:if>로 유무 확인-->
                 <input type="button" value="숙박" onclick="turnreserv(this)">
                 <input type="button" value="추가" onclick="checksubmit()">
             </div>

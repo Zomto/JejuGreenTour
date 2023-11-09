@@ -297,7 +297,7 @@
                                             </div>
                                         </th:block>
                                         <th:block th:if="${sub.soldOut == 'N'}">
-                                            <div class="dayuseCan">예약가능</div>
+                                            <div class="dayuseCan" th:onclick="|location.href='@{/buy/calendar(subAccomCode=${sub.subAccomCode})}'|">예약가능</div>
                                         </th:block>
                                         <th:block th:if="${sub.soldOut == 'Y'}">
                                             <div class="dayuseCan Not">마감</div>

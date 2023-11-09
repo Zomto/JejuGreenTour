@@ -33,14 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         {
             id: 'notevent',
-            groupId: 'aaaa',
-            start: '2023-11-11',
-            end: '2023-11-13',
-            display: 'background',
-            backgroundColor: "yellow"
-        },
-        {
-            id: 'notevent',
             groupId: 'Breakfast',
             startTime: '06:00:00', // a start time (10am in this example)
             endTime: '09:00:00', // an end time (6pm in this example)
@@ -100,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             // console.log(document.querySelector(`a[class="${info.event.id} ${info.event.constraint}]"`))//.className.replace(info.event.startday,startday)
 
-
             info.event.setProp('id', setday + '/' + info.event.id.split('/')[1]);
             console.log(info.event)
 
@@ -109,12 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // eventResize: function (info) {
         // },
         select: function (arg) {
-            console.log(arg.start)
-            console.log(cantstr.value)
-           if(arg.start< Date(cantstr.value) &&arg.start>Date(cantend.value)){
-            if (confirm(arg.start.getFullYear() + ':' + arg.start.getMonth() + ':' + arg.start.getDate() + ' 에 일정을 추가 하시겠습니까?')) {
-
-                let startday = arg.start.getFullYear();
+            let startday = arg.start.getFullYear();
                 if (Number(arg.start.getMonth()) / 10 < 1) {
                     startday += "-0"
                     startday += (arg.start.getMonth() + 1)
@@ -128,6 +114,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     startday += '-' + Number(arg.start.getDate())
                 }
+           if(startday+'T00:00:00' >= cantstr.value+'T00:00:00' &&startday+'T00:00:00' < cantend.value+'T00:00:00'){
+
+
+
+            if (confirm(arg.start.getFullYear() + ':' + arg.start.getMonth() + ':' + arg.start.getDate() + ' 에 일정을 추가 하시겠습니까?')) {
+
+                
 
                 let events = calendar.getEvents().forEach(element => {
                     if (element.id == startday) {
