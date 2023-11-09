@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/csCenter_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+<!-- css영역 -->
+<th:block layout:fragment="contnet_css">
+    <link rel="stylesheet" href="/css/csCenter/inquire.css">
+</th:block>
+</head>
+<body>
+    <th:block layout:fragment="content">
+        <form action="/cs/insertInq" method="post" enctype="multipart/form-data">
+            <div class="wrap">
+                <div class="w_in">
+                    <div class="title">1:1 문의하기</div>
+                    <div>
+                        <div class="textBlock">
+                            <div class="textBox">
+                                <div class="wait">잠깐!</div>
+                                <p class="text">icon 문의하시기 전 확인해 주세요.</p>
+                            </div>
+                            <p class="text">고객님의 소중한 의견을 빠르고 정확하게 해결하기 위해 최선을 다하겠습니다.</p>
+                            <div class="textBox">
+                                <div class="text">문의에 대한 답변은</div>
+                                <a class="textA" href>[마이메뉴 > 마이페이지 > 문의내역]</a>
+                                <div class="text">에서 확인할 수 있습니다.</div>
+                            </div>
+                        </div>
+
+                        <div class="box">
+                            <div class="inputBox">
+                                <div class="label">문의유형</div>
+                                <select class="cateCode" name="cateCode" id="">
+                                    <option value="CATE_001">숙박</option>
+                                    <option value="CATE_002">결제</option>
+                                    <option value="CATE_003">혜택</option>
+                                    <option value="CATE_004">기타</option>
+                                    <option value="CATE_005">이벤트</option>
+                                </select>
+                            </div>
+                            <div class="inputBox">
+                                <div class="label">작성자</div>
+                                <div class="memeberName">loginInfo.memberName</div>
+                            </div>
+                            <div class="inputBox">
+                                <div class="label">예약코드</div>
+                                <input type="text" name="resCode">
+                            </div>
+                            <div class="inputBox">
+                                <div class="label">제목</div>
+                                <input type="text" name="title">
+                            </div>
+                            <div class="inputBox">
+                                <div class="label">내용</div>
+                                <textarea name="content" id="" cols="60" rows="10"></textarea>
+                            </div>
+                            <div class="inputBox img">
+                                <div class="label">사진</div>
+                                <input class="upload-name" value="첨부파일" placeholder="첨부파일">
+                                <label for="file">파일찾기</label> 
+                                <input type="file" id="file" name="inqImg" onchange="readURL(this);" multiple>
+                            </div>
+                            <div class="inputBox imgLook">
+                                <div class="label imgLook">사진<br>미리보기</div>
+                                <div class="imgLookBox"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <input class="subBtn" type="submit" value="등록">
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </th:block>
+<!-- js영역 -->
+<th:block layout:fragment="contnet_js">
+    <script src="/js/csCenter/inquire.js"></script>
+</th:block>
+</body>
+</html>

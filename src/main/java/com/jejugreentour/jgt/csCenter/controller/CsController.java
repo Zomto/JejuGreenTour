@@ -203,11 +203,17 @@ public class CsController {
         return "redirect:/cs/inquireListForm";
     }
 
-    @GetMapping("deleteInq")
+    @GetMapping("/deleteInq")
     public String deleteInq(String inqCode){
         csService.deleteInqImg(inqCode);
         csService.deleteInq(inqCode);
         return "redirect:/cs/inquireListForm";
+    }
+
+    @GetMapping("/responseForm")
+    public String insertResponse(){
+
+        return "content/csCenter/response";
     }
 
 

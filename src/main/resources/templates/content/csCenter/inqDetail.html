@@ -69,6 +69,7 @@
                     </div>
                 </div>
                 <div class="btnBox">
+                    <input class="subBtn" type="button" value="답변하기" th:onclick="|location.href='@{/cs/responseForm(inqCode=${inqDetail.inqCode})}'|">
                     <input class="subBtn" type="button" value="삭제" th:onclick="|location.href='@{/cs/deleteInq(inqCode=${inqDetail.inqCode})}'|">
                     <input class="subBtn" type="button" value="목록" onclick="location.href='/cs/inquireListForm';">
                 </div>

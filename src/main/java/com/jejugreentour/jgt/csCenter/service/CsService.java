@@ -82,5 +82,15 @@ public interface CsService {
     public int deleteInqImg(String inqCode);
 
 
+    // 답변 내용 추가
+    public int insertResponse(ResponseVO responseVO);
+
+    // 답변 사진 추가
+    public int insertResImg(ResImgVO resImgVO);
+
+    // 답변 조회
+    public ResponseVO selectResponse(String resCode);
+
+
 
 }
