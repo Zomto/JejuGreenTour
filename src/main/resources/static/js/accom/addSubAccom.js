@@ -77,9 +77,8 @@ function insertsubaccom() {
         return;
     }
 
-    let files = document.querySelector('input[type="file"]')
-    let file = document.querySelector('input[name="files"]')
-    if (file.value == "" || files.value == "") {
+    let file = document.querySelector('input[type="file"]')
+    if (file.value == "") {
         alert("이미지를 추가해 주세요")
         return;
     }

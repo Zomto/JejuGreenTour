@@ -139,7 +139,7 @@ public class AccomController {
         return mainAccomImgList;
     }
     @PostMapping("/addSubAccom")
-    public  String addSubAccom(SubAccomVO subAccomVO, MultipartFile mainImg,  MultipartFile[] files){
+    public  String addSubAccom(SubAccomVO subAccomVO, MultipartFile mainImg){
 
 
         // 0. 다음에 들어 가야 할 ITEM_CODE 조회
@@ -150,7 +150,7 @@ public class AccomController {
         SubAccomImgVO vo = UploadUtil.uploadSubFile(mainImg);
 
         // 첨부파일 기능 다중업로드
-        List<SubAccomImgVO> mainAccomImgList = UploadUtil.multiSubFileUpload(files);
+        List<SubAccomImgVO> mainAccomImgList = new ArrayList<>();
         mainAccomImgList.add(vo);
 
         for(SubAccomImgVO subAccomImgVO : mainAccomImgList) {
