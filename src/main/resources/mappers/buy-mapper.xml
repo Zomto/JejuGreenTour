@@ -32,6 +32,7 @@
     <resultMap id="Accom" type="com.jejugreentour.jgt.buy.vo.SampleACCVO">
     <id column="ACCOM_CODE" property="accomCode" />
     <result column="ACCOM_NAME" property="accomName"/>
+        <result column="ACCOM_CEO" property="ceoName"/>
     </resultMap>
 
     <resultMap id="subAccom" type="com.jejugreentour.jgt.buy.vo.SampleSubVO">
@@ -185,6 +186,8 @@
         WHERE ba.MEMBER_ID = #{memberId}
         AND ba.SUB_ACCOM_CODE =su.SUB_ACCOM_CODE
         AND su.ACCOM_CODE= ma.ACCOM_CODE
+        AND su.SOLD_OUT = 'N'
+        AND su.SUB_DELETE = 'N'
     </select>
 
     <select id="selectReservationOne" resultMap="reservation">

@@ -7,6 +7,8 @@ import com.jejugreentour.jgt.member.vo.MemberVO;
 import com.jejugreentour.jgt.util.UploadReviewUtil;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,19 +31,15 @@ public class BuyController {
     private final BuyService buyService;
 
     @GetMapping("/calendar")
-    public String calendar(Model model ,String subAccomCode){
-
-
-        List<ReservationVO> reservationVOList ;
-        if(subAccomCode==null||subAccomCode.equals(""))
-        {
-            model.addAttribute("SampleSubVO",buyService.selectSubAccom("SUB_001"));
-            reservationVOList = buyService.selectReservation("SUB_001");
-        }else
-        {
-            model.addAttribute("SampleSubVO",buyService.selectSubAccom(subAccomCode));
-            reservationVOList = buyService.selectReservation(subAccomCode);
+    public String calendar(Model model ,String subAccomCode ,Authentication authentication){
+        if(authentication !=null){
+            User user = (User)authentication.getPrincipal();
+            model.addAttribute("userName" ,user.getUsername());
         }
+        List<ReservationVO> reservationVOList ;
+
+        model.addAttribute("SampleSubVO",buyService.selectSubAccom(subAccomCode));
+        reservationVOList = buyService.selectReservation(subAccomCode);
 
         model.addAttribute("Reservationlist",reservationVOList);
         return "/content/buy/calendar";
@@ -53,14 +51,17 @@ public class BuyController {
     }
 
     @PostMapping("/buyBasket")
-    public String addBaske(BasketAccomVO basketAccomVO, HttpSession session, Model model){
+    public String addBaske(BasketAccomVO basketAccomVO, Authentication authentication, Model model){
 
         SampleSubVO subVO=buyService.selectSubAccom(basketAccomVO.getSubAccomCode());
         model.addAttribute("subAccomCode",subVO);
         model.addAttribute("AccomCode",buyService.selectAccom(subVO.getAccomCode()));
 
-        basketAccomVO.setMemberId( ((MemberVO)session.getAttribute("loginInfo")).getMemberId());
-
+        if(authentication !=null){
+            User user = (User)authentication.getPrincipal();
+            model.addAttribute("userName" ,user.getUsername());
+            basketAccomVO.setMemberId( user.getUsername());
+        }
         System.out.println("ddddddddddddddddddddddddddddddddddddddddddd");
         System.out.println(basketAccomVO.getBasketCode());
         if(basketAccomVO.getBasketCode().equals(buyService.selectNewbasketNum())){
@@ -70,8 +71,11 @@ public class BuyController {
         return "/content/buy/buy_basket";
     }
     @PostMapping("/accomReservation")
-    public String accomReservation(BasketAccomVO basketAccomVO, Model model){
-
+    public String accomReservation(BasketAccomVO basketAccomVO, Model model ,Authentication authentication){
+        if(authentication !=null){
+            User user = (User)authentication.getPrincipal();
+            model.addAttribute("userName" ,user.getUsername());
+        }
         if(buyService.selectbasketAccom(basketAccomVO.getBasketCode())){ //다른 체크 함수 제작시 옮김
             return "redirect:/buy/calendar";
         }
@@ -84,9 +88,13 @@ public class BuyController {
     }
 
     @GetMapping("/basketList")
-    public String basketList(Model model,HttpSession session){
-        List<BasketAccomVO> list=buyService.selectBasketAccomList(((MemberVO)session.getAttribute("loginInfo")).getMemberId());
-        System.out.println(list);
+    public String basketList(Model model,Authentication authentication){
+        List<BasketAccomVO> list= new ArrayList<>();
+        if(authentication !=null){
+            User user = (User)authentication.getPrincipal();
+         list=buyService.selectBasketAccomList(user.getUsername());
+            model.addAttribute("userName" ,user.getUsername());
+        }
         model.addAttribute("basketList",list);
         return "/content/buy/basket_list";
     }
@@ -104,9 +112,13 @@ public class BuyController {
     }
 
     @GetMapping("/reservList") // 결제리스트 조회
-    public String reservList(HttpSession session, Model model){
-        MemberVO memberVO=(MemberVO)session.getAttribute("loginInfo") ;
-        List<ReservationVO> list= buyService.selectMemberReservationList(memberVO.getMemberId());
+    public String reservList(Authentication authentication, Model model){
+        List<ReservationVO> list=new ArrayList<>();
+        if(authentication !=null){
+            User user = (User)authentication.getPrincipal();
+             list= buyService.selectMemberReservationList(user.getUsername());
+            model.addAttribute("userName" ,user.getUsername());
+        }
         model.addAttribute("Reservationlist",list);
         return  "/content/buy/reservation_list";
     }
@@ -119,8 +131,11 @@ public class BuyController {
     }
 
     @GetMapping("/reviewReset")
-    public String reviewReset( ReservationVO reservationVO, HttpSession session, Model model){
-
+    public String reviewReset( ReservationVO reservationVO, Model model,Authentication authentication){
+        if(authentication !=null){
+            User user = (User)authentication.getPrincipal();
+            model.addAttribute("userName" ,user.getUsername());
+        }
         reservationVO= buyService.selectReservationOne(reservationVO.getReservationCode());
         SampleSubVO subVO = buyService.selectSubAccom(reservationVO.getSubAccomCode());
         subVO.setSampleACCVO(buyService.selectAccom(subVO.getAccomCode()));
@@ -138,8 +153,11 @@ public class BuyController {
     }
 
     @GetMapping("/review")
-    public  String reviewWrite(ReservationVO reservationVO, HttpSession session, Model model){
-
+    public  String reviewWrite(ReservationVO reservationVO, Model model ,Authentication authentication){
+        if(authentication !=null){
+            User user = (User)authentication.getPrincipal();
+            model.addAttribute("userName" ,user.getUsername());
+        }
         reservationVO= buyService.selectReservationOne(reservationVO.getReservationCode());
 //        if(session.getAttribute("loginInfo")!=null&&reservationVO.getMemberId().equals(((MemberVO)session.getAttribute("loginInfo")).getMemberId())){
 //            return"/buy/review";
@@ -157,7 +175,7 @@ public class BuyController {
 
 
     @PostMapping("/insertReview")
-    public String insertReview(ReviewVO reviewVO,String[] reviewImgCode, MultipartFile[] imgs){
+    public String insertReview(ReviewVO reviewVO,String[] reviewImgCode, MultipartFile[] imgs ,Authentication authentication){
 
         if(reviewVO.getReviewCode()==null||reviewVO.getReviewCode().equals("")){
             String reviewCode= buyService.selectReviewCode();
@@ -213,28 +231,46 @@ public class BuyController {
 
     //손님이 작성한 리뷰리스트
     @GetMapping("/reviewList")
-    public  String reviewList(HttpSession session ,Model model){
-        MemberVO vo =(MemberVO)session.getAttribute("loginInfo");
-        System.out.println(buyService.memberReviewList(vo.getMemberId()));
-        model.addAttribute("myReviewList",buyService.memberReviewList(vo.getMemberId()));
+    public  String reviewList(Authentication authentication ,Model model){
+        String Id="";
+        if(authentication !=null){
+            User user = (User)authentication.getPrincipal();
+            model.addAttribute("userName" ,user.getUsername());
+            Id= user.getUsername();
+        }
+        System.out.println(buyService.memberReviewList(Id));
+        model.addAttribute("myReviewList",buyService.memberReviewList(Id));
 
         return"/content/buy/review_list";
     }
     
     //주인이 보는 리뷰리스트 답변추가
     @GetMapping("/accomReviewList")
-    public  String reviewList(SubAccomVO subAccomVO,Model model){
-        System.out.println(buyService.accomReviewList(subAccomVO.getAccomCode()));
-        model.addAttribute("myReviewList",buyService.accomReviewList(subAccomVO.getAccomCode()));
+    public  String reviewList(SubAccomVO subAccomVO,Model model,Authentication authentication){
 
+        model.addAttribute("myReviewList",buyService.accomReviewList(subAccomVO.getAccomCode()));
+        if(authentication !=null){
+        User user = (User)authentication.getPrincipal();
+        model.addAttribute("userName" ,user.getUsername());
+        if (!user.getUsername().equals(buyService.selectAccom(subAccomVO.getAccomCode()).getCeoName())){
+            System.out.println(3233);
+            return"redirect:/";
+        }
+        }
         return"/content/buy/accom_review_list";
     }
 
     @ResponseBody
     @PostMapping("/adminReply")
-    public int adminReply(ReviewAdminVO reviewAdminVO, HttpSession session){
-        MemberVO vo =(MemberVO)session.getAttribute("loginInfo");
-        reviewAdminVO.setMemberId(vo.getMemberId());
+    public int adminReply(ReviewAdminVO reviewAdminVO, Authentication authentication,Model model){
+
+        String Id="";
+        if(authentication !=null){
+            User user = (User)authentication.getPrincipal();
+            Id= user.getUsername();
+            model.addAttribute("userName" ,user.getUsername());
+        }
+        reviewAdminVO.setMemberId(Id);
         System.out.println(reviewAdminVO);
         return  buyService.insertAdminReview(reviewAdminVO);
     }
@@ -258,7 +294,11 @@ public class BuyController {
 
 
     @GetMapping("reservationPlan")
-    public String reservationPlan(ReservationVO reservationVO){
+    public String reservationPlan(ReservationVO reservationVO ,Authentication authentication, Model model){
+        if(authentication !=null){
+            User user = (User)authentication.getPrincipal();
+            model.addAttribute("userName" ,user.getUsername());
+        }
         return "/content/buy/reservation_plan";
     }
 

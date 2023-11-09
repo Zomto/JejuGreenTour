@@ -6,4 +6,5 @@ import lombok.Data;
 public class SampleACCVO {
     private String accomCode;
     private String accomName;
+    private String ceoName;
 }

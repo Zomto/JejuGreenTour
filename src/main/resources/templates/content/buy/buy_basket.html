@@ -94,10 +94,27 @@
     <script>
         let stayTerm = document.querySelector('#stayTerm').innerHTML;
         let stayPrice = document.querySelector('#stayPrice').innerHTML;
+        
         console.log(Number(stayTerm) * Number(stayPrice))
         document.querySelector('#stayPrice').innerHTML = Number(stayTerm) * Number(stayPrice) + ''
-
-
+        let now = new Date;
+        let setday=null;
+        setday= now.getFullYear();
+        if (Number(now.getMonth()) / 10 < 1) {
+                setday += "-0"
+                setday += (now.getMonth() + 1)
+            }
+            else {
+                setday += '-' + (Number(now.getMonth()) + 1)
+            }
+            if (Number(now.getDate()) / 10 < 1) {
+                setday += "-0"
+                setday += now.getDate();
+            } else {
+                setday += '-' + Number(now.getDate())
+            }
+            setday+='T23:59:59'
+            console.log(setday);
 
 
         function reservationcheck() {
@@ -128,11 +145,15 @@
                         let stayEndDate = document.querySelector('.stayEndDate').value;
                         let safe=false;
                         data.forEach(element => {
-                            console.log(element.subAccom)
+                            console.log(element)
                             // console.log(stayStartDate>=element.stayStartDate&&stayStartDate<)
                             if((element.stateVO.refund == 'N')&&((element.stayStartDate<=stayStartDate&&stayStartDate<element.stayEndDate)||(stayStartDate<=element.stayStartDate&&element.stayStartDate<stayEndDate))){
                                 safe = true;
                             }
+                            if(setday >stayStartDate){
+                                safe = true;
+                            }
+                            
                         });
                         if(safe){
                             alert('해당일자에 예약을 할 수 없습니다')
