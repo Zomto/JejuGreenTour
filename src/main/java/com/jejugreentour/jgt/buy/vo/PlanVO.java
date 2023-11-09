@@ -4,19 +4,20 @@ import lombok.Data;
 
 @Data
 public class PlanVO {
+    private String planIdx;
     private String stayPlanCode;
     private String reservationCode;
     private String plan_date;
-    private String BreakfastName;
-    private String BreakfastAddr;
-    private String LunchName;
-    private String LunchAddr;
-    private String DinnerName;
-    private String DinnerAddr;
-    private String PointOneName;
-    private String PointOneAddr;
-    private String PointTwoName;
-    private String PointTwoAddr;
+    private String breakfastName;
+    private String breakfastAddr;
+    private String lunchName;
+    private String lunchAddr;
+    private String dinnerName;
+    private String dinnerAddr;
+    private String pointoneName;
+    private String pointoneAddr;
+    private String pointtwoName;
+    private String pointtwoAddr;
 
 
 }
