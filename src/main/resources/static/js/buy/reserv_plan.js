@@ -109,7 +109,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // eventResize: function (info) {
         // },
         select: function (arg) {
-            console.log(itemdetail)
+            console.log(arg.start)
+            console.log(cantstr.value)
+           if(arg.start< Date(cantstr.value) &&arg.start>Date(cantend.value)){
             if (confirm(arg.start.getFullYear() + ':' + arg.start.getMonth() + ':' + arg.start.getDate() + ' 에 일정을 추가 하시겠습니까?')) {
 
                 let startday = arg.start.getFullYear();
@@ -198,6 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
             calendar.unselect()
+           }
         },
         eventClick: function (arg) {
             if (confirm('Are you sure you want to delete this event?')) {
