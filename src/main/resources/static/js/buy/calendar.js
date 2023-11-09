@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         eventsss.push({
             id: 'check',
-            title: 'my event',
+            title: '예약',
             start: sta[i].value,
             end: en[i].value
         })
@@ -263,14 +263,14 @@ function turndayuse(tag) {
         if (sta[i].value.split("T")[0] == en[i].value.split("T")[0]) {
             eventsss.push({
                 id: 'check',
-                title: '대실-' + renttime + '시간',
+                title: '예약',
                 start: sta[i].value,
                 end: en[i].value
             })
         } else if (dayuse[i].value == 'Y') {
             eventsss.push({
                 id: 'check',
-                title: '대실-심야',
+                title: '예약',
                 start: sta[i].value,
                 end: en[i].value
             })
@@ -282,7 +282,7 @@ function turndayuse(tag) {
             //console.log(en[i].value.split("T")[0] + 'T' + checkout.value)
             eventsss.push({
                 id: 'check',
-                title: '숙박',
+                title: '예약',
                 start: starr2[0] + '-' + starr2[1] + '-' + (Number(starr2[2]) + 1) + 'T' + checkin.value,
                 end: en[i].value.split("T")[0] + 'T' + checkout.value
             })
@@ -423,7 +423,7 @@ function turnreserv(tag) {
 
         eventsss.push({
             id: 'check',
-            title: 'my event',
+            title: '예약',
             start: sta[i].value,
             end: en[i].value
         })

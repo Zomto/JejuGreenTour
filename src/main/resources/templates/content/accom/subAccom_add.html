@@ -119,7 +119,7 @@
                             </div>
                             <div class="checkSubAccomCate2">
                                 <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="subAccomCates" value="금연"  onclick="notingcheck(this);">
+                                    <input type="checkbox" name="subAccomCates" value="금연"   onclick="notingcheck(this);">
                                     <span>금연</span>
                                 </div>
                                 <div class="checkBoxSubAccomCate">
@@ -160,12 +160,6 @@
                     <div class="subAccomimg">
                         
                         <span>메인 : </span><input type="file" name="mainImg"  onchange="">
-                    </div>
-                    <div class="subAccomimg">
-                        <span>서브 : </span>
-                        <input type="file" name="files" multiple onchange="">
-                        <div id="imgs"  style="width: auto; height: 100px;">
-                        </div>
                     </div>
                     <div class="subAccomAdd">
                         <input type="hidden" name="accomCode" th:value="${accomCode}">
