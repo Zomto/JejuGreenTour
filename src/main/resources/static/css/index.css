@@ -149,6 +149,7 @@ margin-bottom: 30px;
     padding: 1% 1%;
     text-align: center;
     width: 114px;
+    display: inline-block;
     border: 1px solid #dadada;;
     color: #888;
 }
@@ -161,6 +162,7 @@ margin-bottom: 30px;
 #first{
     border-radius: 7px 0 0 0;
 }
+
 #ten{
     border-radius: 0 7px 0 0;
 }
@@ -176,13 +178,41 @@ margin-bottom: 30px;
 .tab-content.current{
     display: block;
 }
+.locs{
+    display: flex;
+}
+.loc-link{
+    padding: 1% 1%;
+    text-align: center;
+    width: 114px;
+    display: inline-block;
+    border: 1px solid #dadada;;
+    color: #888;
+}
+.loc-link.current{
+    background-color: #03c75a;
+    border: 1px solid #03c75a;
+    border-bottom: 0;
+    color: #fff;
+}
+.loc-content{
+    display: none;
+}
+.loc-content.current{
+    display: block;
+}
+
+
+
 .accomItems{
+    box-sizing: border-box;
     width: 1158px;
-    height: 700px;
-    border: 1px solid #dadada;
+    height: 640px;
     border-top: 0;
     border-radius: 0 0 7px 7px;
     background-color: #fff;
+    padding: 0 15px 10px 15px;
+    display: table;
 }
 .headerText{
     width: 800px;
@@ -192,17 +222,17 @@ margin-bottom: 30px;
     border-bottom: 2px solid #dadada;
     margin-bottom: 20px;
 }   
-
 .items{
     display: flex;
     padding: 10px 5px;
 }
 .itemdetail{
+    display: inline-block;
     box-shadow: 0 2px 6px 0 rgba(68,68,68,0.8);
     position: relative;
-    width: 215px;
+    width: 214px;
     height: 300px;
-    margin: 0 5px;
+    margin: 5px 2px;
     /* border: 1px solid #dadada; */
     border-radius: 5px;
     padding: 2px;
@@ -213,6 +243,10 @@ margin-bottom: 30px;
 .photo{
     border-radius: 5px 5px 0 0;
     border: 1px solid #dadada;
+    width: 213px;
+    height: 180px;
+}
+.photo img{
     width: 213px;
     height: 180px;
 }
@@ -250,6 +284,17 @@ span{
     color: #444;
     font-size: 20px;
     font-weight: 700;
+    overflow: hidden;
+    position: absolute;
+    width: 81px;
+    right: 37px;
+    bottom: -1px;
+}
+.location{
+    margin-top: 100px;
+    width: 1159px;
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,0.3);
 }
 
 .m_foot{

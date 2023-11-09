@@ -11,10 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
@@ -302,6 +299,12 @@ public class BuyController {
         return "/content/buy/reservation_plan";
     }
 
+    @ResponseBody
+    @PostMapping("insertPlan")
+    public  String insertPlan(@RequestBody List<PlanVO> planList){
+        System.out.println(planList);
+        return "redirect:/";
+    }
 
     @GetMapping("/sample")
     public String sample(Model model, String accomCode){

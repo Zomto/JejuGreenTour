@@ -27,6 +27,8 @@ public interface MemberService {
 
     public void changePw(MemberVO memberVO);
 
+    String getUserPw(String name);
+
 
     // 메인 검색 조회
 

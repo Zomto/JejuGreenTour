@@ -38,10 +38,10 @@ public class AccomController {
 
     // 숙박업소 등록
     @PostMapping("/addAccom")
-    public String addAccom(MainAccomVO mainAccomVO, MultipartFile mainImg, MultipartFile[] subImg, HttpSession httpSession){
+    public String addAccom(MainAccomVO mainAccomVO, MultipartFile mainImg, MultipartFile[] subImg, Authentication authentication){
 
-        MemberVO loginInfo = (MemberVO)httpSession.getAttribute("loginInfo");
-        mainAccomVO.setAccomCeo(loginInfo.getMemberId());
+        User user = (User)authentication.getPrincipal();
+        mainAccomVO.setAccomCeo(user.getUsername());
 
         // 0. 다음에 들어 가야 할 ITEM_CODE 조회
         String accomCode = accomService.selectNextAccomCode();
@@ -139,7 +139,7 @@ public class AccomController {
         return mainAccomImgList;
     }
     @PostMapping("/addSubAccom")
-    public  String addSubAccom(SubAccomVO subAccomVO, MultipartFile mainImg,  MultipartFile[] files){
+    public  String addSubAccom(SubAccomVO subAccomVO, MultipartFile mainImg){
 
 
         // 0. 다음에 들어 가야 할 ITEM_CODE 조회
@@ -150,7 +150,7 @@ public class AccomController {
         SubAccomImgVO vo = UploadUtil.uploadSubFile(mainImg);
 
         // 첨부파일 기능 다중업로드
-        List<SubAccomImgVO> mainAccomImgList = UploadUtil.multiSubFileUpload(files);
+        List<SubAccomImgVO> mainAccomImgList = new ArrayList<>();
         mainAccomImgList.add(vo);
 
         for(SubAccomImgVO subAccomImgVO : mainAccomImgList) {
@@ -165,7 +165,7 @@ public class AccomController {
         accomService.addSubAccom(subAccomVO);
         // 상품 이미지 정보 등록 쿼리
 
-        return "/index";
+        return "redirect:/";
     }
 
 
@@ -178,8 +178,9 @@ public class AccomController {
         System.out.println(img);
         model.addAttribute("imgList", img);
         return "content/accom/subAccom_detail";
-
     }
+
+
 
     @ResponseBody
     @PostMapping("/subAccomUpdate")

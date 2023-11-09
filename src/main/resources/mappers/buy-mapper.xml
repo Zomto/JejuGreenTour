@@ -3,6 +3,26 @@
 
 <mapper namespace="buyMapper" >
 
+    <resultMap id="plan" type="com.jejugreentour.jgt.buy.vo.PlanVO">
+        <id column="STAY_PLAN_CODE" property="stayPlanCode" />
+        <result column="RESERVATION_CODE" property="reservationCode" />
+        <result column="PLAN_DATE" property="plan_date" />
+        <result column="BREAKFAST_NAME" property="breakfastName" />
+        <result column="BREAKFAST_ADDR" property="breakfastAddr" />
+        <result column="BREAKFAST_TIME" property="breakfastTime" />
+        <result column="LUNCH_NAME" property="lunchName" />
+        <result column="LUNCH_ADDR" property="lunchAddr" />
+        <result column="LUNCH_TIME" property="lunchTime" />
+        <result column="DINNER_NAME" property="dinnerName" />
+        <result column="DINNER_ADDR" property="dinnerAddr" />
+        <result column="DINNER_TIME" property="dinnerTime" />
+        <result column="POINT_ONE_NAME" property="pointoneName" />
+        <result column="POINT_ONE_ADDR" property="pointoneAddr" />
+        <result column="POINT_ONE_TIME" property="pointoneTime" />
+        <result column="POINT_TWO_NAME" property="pointtwoName" />
+        <result column="POINT_TWO_ADDR" property="pointtwoAddr" />
+        <result column="POINT_TWO_TIME" property="pointtwoTime" />
+    </resultMap>
 
     <resultMap id="reservation" type="com.jejugreentour.jgt.buy.vo.ReservationVO">
         <id column="RESERVATION_CODE" property="reservationCode" />

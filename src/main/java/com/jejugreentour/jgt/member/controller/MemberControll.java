@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,13 +27,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberControll {
     @Resource
-    private MemberService memberService;
+    private final MemberService memberService;
+    private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/joinMember")
     public String joinMember(MemberVO memberVO){
+        String encodedPassword = passwordEncoder.encode(memberVO.getMemberPw());
+        memberVO.setMemberPw(encodedPassword);
         System.out.println(memberVO);
         memberService.join(memberVO);
-
         return "redirect:/";
     }
 
@@ -100,13 +103,16 @@ public class MemberControll {
     }
 
     @PostMapping("/editMember2")
-    public String updateMember2(HttpSession session, MemberVO memberVO) {
-
-        memberVO.setMemberId(((MemberVO)session.getAttribute("loginInfo")).getMemberId());
+    public String updateMember2(HttpSession session, MemberVO memberVO, Authentication authentication) {
+        User user = (User)authentication.getPrincipal();
+        //String userPw = memberService.getUserPw(authentication.getName());
+        //System.out.println("111111111111" + userPw);
+        String encodedPw = passwordEncoder.encode(memberVO.getMemberPw());
+        memberVO.setMemberPw(encodedPw);
+        memberVO.setMemberId(user.getUsername());
         System.out.println(memberVO);
         // MemberService를 사용하여 비밀번호 업데이트를 처리
         memberService.updateMember2(memberVO);
-
 
         // 리다이렉트 또는 다른 처리
         return "redirect:/member/logout";
@@ -115,13 +121,16 @@ public class MemberControll {
 
     @ResponseBody
     @PostMapping("/changePw")
-    public void changePw(String memberId, String memberPw, MemberVO memberVO) {
-        System.out.println(memberId);
-        System.out.println(memberPw);
+    public void changePw(String memberId, String memberPw) {
+        String encodedPw = passwordEncoder.encode(memberPw);
+        MemberVO memberVO = new MemberVO();
         memberVO.setMemberId(memberId);
-        memberVO.setMemberPw(memberPw);
+        memberVO.setMemberPw(encodedPw);
+        System.out.println(encodedPw);
         memberService.changePw(memberVO);
     }
+
+
 
     @GetMapping("/find_IdForm")
     public String findIdForm(){

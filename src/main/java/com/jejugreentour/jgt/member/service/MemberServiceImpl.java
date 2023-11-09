@@ -55,6 +55,10 @@ public class MemberServiceImpl implements MemberService{
         sqlSession.update("memberMapper.changePw", memberVO);
     }
 
+    @Override
+    public String getUserPw(String name) {
+        return sqlSession.selectOne("memberMapper.getUserPw", name);
+    }
 
 
 }
