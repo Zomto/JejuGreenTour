@@ -51,4 +51,6 @@ public interface AccomService {
     // 테스트
     public List<SubAccomVO> showMain();
 
+    List<String> selectDistinctAccomLoc();
+
 }

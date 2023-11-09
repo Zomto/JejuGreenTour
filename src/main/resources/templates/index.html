@@ -87,13 +87,13 @@
                         <div class="accomItems">
                             <div id="tab-1" class="tab-content current">
                                 <div class="accomItem row-col-5">
-                                    <th:block th:each="data, state : ${subAccom}"  th:if="${state.index lt 10}">
+                                    <th:block th:each="data, state : ${subAccom}" th:if="${state.index lt 10}">
                                         <div class="itemdetail">
                                             <div class="photo">
-                                                <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
+                                                <div th:if="${img.isMain == 'Y'}"
+                                                    th:each="img : ${data.subAccomImgList}">
                                                     <th:block>
-                                                        <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                            alt="">
+                                                        <img th:src="${'/img/subaccom/'+ img.attachedFileName}" alt="">
                                                     </th:block>
                                                 </div>
                                             </div>
@@ -103,673 +103,710 @@
                                                 <div class="price">
                                                     <span class="priceNum">
                                                         [[${data.reservationPrice}]]
-                                                    <th:block th:if="${data.dayuseCan == 'Y'}">
-                                                        [[${data.dayusePrice}]]
-                                                    </th:block>
+                                                        <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                            [[${data.dayusePrice}]]
+                                                        </th:block>
                                                     </span>
                                                     <span class="won">원</span>
                                                 </div>
                                             </div>
                                             <div class="love">
-                                                하트[[${(state.index % 5 == 4 and state.index != 0)}]]
+                                                하트
+                                            </div>
+                                        </div>
+                                    </th:block>
+                                </div>
+                            </div>
+
+
+                            <th:block th:each="mapData : ${themeMap}">
+                                <th:block th:if="${#strings.trim(mapData.key) == '풀빌라'}">
+                                <div id="tab-2" class="tab-content">
+                                        <div class="itemdetail" th:each="data : ${mapData.value}">
+                                            <div class="photo">
+                                                <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
+                                                    <th:block>
+                                                        <img th:src="${'/img/subaccom/'+ img.attachedFileName}" alt="">
+                                                    </th:block>
+                                                </div>
+                                            </div>
+                                            <div class="text">
+                                                <div class="itemName">[[${data.subAccomName}]]</div>
+                                                <div class="itemLoc">[[${data.accomLoc}]]</div>
+                                                <div class="price">
+                                                    <span class="priceNum">
+                                                        [[${data.reservationPrice}]]
+                                                        <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                            [[${data.dayusePrice}]]
+                                                        </th:block>
+                                                    </span>
+                                                    <span class="won">원</span>
+                                                </div>
+                                            </div>
+                                            <div class="love">
+                                                하트
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    </th:block>
+
+                                    <th:block th:if="${#strings.trim(mapData.key) == '오션_뷰'}">
+                                        <div id="tab-3" class="tab-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
+                                                        <th:block>
+                                                            <img th:src="${'/img/subaccom/'+ img.attachedFileName}" alt="">
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName">[[${data.subAccomName}]]</div>
+                                                    <div class="itemLoc">[[${data.accomLoc}]]</div>
+                                                    <div class="price">
+                                                        <span class="priceNum">
+                                                            [[${data.reservationPrice}]]
+                                                            <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                                [[${data.dayusePrice}]]
+                                                            </th:block>
+                                                        </span>
+                                                        <span class="won">원</span>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
                                             </div>
                                         </div>
                                     </th:block>
 
+                                    <th:block th:if="${#strings.trim(mapData.key) == 'PC_룸'}">
+                                        <div id="tab-4" class="tab-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
+                                                        <th:block>
+                                                            <img th:src="${'/img/subaccom/'+ img.attachedFileName}" alt="">
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName">[[${data.subAccomName}]]</div>
+                                                    <div class="itemLoc">[[${data.accomLoc}]]</div>
+                                                    <div class="price">
+                                                        <span class="priceNum">
+                                                            [[${data.reservationPrice}]]
+                                                            <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                                [[${data.dayusePrice}]]
+                                                            </th:block>
+                                                        </span>
+                                                        <span class="won">원</span>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+
+                                    <th:block th:if="${#strings.trim(mapData.key) == 'N플릭스'}">
+                                        <div id="tab-5" class="tab-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
+                                                        <th:block>
+                                                            <img th:src="${'/img/subaccom/'+ img.attachedFileName}" alt="">
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName">[[${data.subAccomName}]]</div>
+                                                    <div class="itemLoc">[[${data.accomLoc}]]</div>
+                                                    <div class="price">
+                                                        <span class="priceNum">
+                                                            [[${data.reservationPrice}]]
+                                                            <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                                [[${data.dayusePrice}]]
+                                                            </th:block>
+                                                        </span>
+                                                        <span class="won">원</span>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+
+                                    <th:block th:if="${#strings.trim(mapData.key) == '금연'}">
+                                        <div id="tab-6" class="tab-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
+                                                        <th:block>
+                                                            <img th:src="${'/img/subaccom/'+ img.attachedFileName}" alt="">
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName">[[${data.subAccomName}]]</div>
+                                                    <div class="itemLoc">[[${data.accomLoc}]]</div>
+                                                    <div class="price">
+                                                        <span class="priceNum">
+                                                            [[${data.reservationPrice}]]
+                                                            <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                                [[${data.dayusePrice}]]
+                                                            </th:block>
+                                                        </span>
+                                                        <span class="won">원</span>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+                                    
+
+                                    <th:block th:if="${#strings.trim(mapData.key) == '흡연_O'}">
+                                        <div id="tab-7" class="tab-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
+                                                        <th:block>
+                                                            <img th:src="${'/img/subaccom/'+ img.attachedFileName}" alt="">
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName">[[${data.subAccomName}]]</div>
+                                                    <div class="itemLoc">[[${data.accomLoc}]]</div>
+                                                    <div class="price">
+                                                        <span class="priceNum">
+                                                            [[${data.reservationPrice}]]
+                                                            <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                                [[${data.dayusePrice}]]
+                                                            </th:block>
+                                                        </span>
+                                                        <span class="won">원</span>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+
+                                    <th:block th:if="${#strings.trim(mapData.key) == '반려동물_O'}">
+                                        <div id="tab-8" class="tab-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
+                                                        <th:block>
+                                                            <img th:src="${'/img/subaccom/'+ img.attachedFileName}" alt="">
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName">[[${data.subAccomName}]]</div>
+                                                    <div class="itemLoc">[[${data.accomLoc}]]</div>
+                                                    <div class="price">
+                                                        <span class="priceNum">
+                                                            [[${data.reservationPrice}]]
+                                                            <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                                [[${data.dayusePrice}]]
+                                                            </th:block>
+                                                        </span>
+                                                        <span class="won">원</span>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+
+                                    <th:block th:if="${#strings.trim(mapData.key) == '반려동물_X'}">
+                                        <div id="tab-9" class="tab-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
+                                                        <th:block>
+                                                            <img th:src="${'/img/subaccom/'+ img.attachedFileName}" alt="">
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName">[[${data.subAccomName}]]</div>
+                                                    <div class="itemLoc">[[${data.accomLoc}]]</div>
+                                                    <div class="price">
+                                                        <span class="priceNum">
+                                                            [[${data.reservationPrice}]]
+                                                            <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                                [[${data.dayusePrice}]]
+                                                            </th:block>
+                                                        </span>
+                                                        <span class="won">원</span>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+
+                                    <th:block th:if="${#strings.trim(mapData.key) == '노키즈_존'}">
+                                        <div id="tab-10" class="tab-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
+                                                        <th:block>
+                                                            <img th:src="${'/img/subaccom/'+ img.attachedFileName}" alt="">
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName">[[${data.subAccomName}]]</div>
+                                                    <div class="itemLoc">[[${data.accomLoc}]]</div>
+                                                    <div class="price">
+                                                        <span class="priceNum">
+                                                            [[${data.reservationPrice}]]
+                                                            <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                                [[${data.dayusePrice}]]
+                                                            </th:block>
+                                                        </span>
+                                                        <span class="won">원</span>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+                            </th:block>
+                        </div>
+                    </div>
+                    <div class="location">
+                        <div class="locs">
+                            <div class="loc-link current" id="first" data-tab="loc-11">제주시</div>
+                            <div class="loc-link" data-tab="loc-12">서귀포시</div>
+                            <div class="loc-link" data-tab="loc-13">성산읍</div>
+                            <div class="loc-link" data-tab="loc-14">한림읍</div>
+                            <div class="loc-link" data-tab="loc-15">애월읍</div>
+                            <div class="loc-link" data-tab="loc-16">안덕면</div>
+                            <div class="loc-link" data-tab="loc-17">남원읍</div>
+                            <div class="loc-link" data-tab="loc-18">대정읍</div>
+                            <div class="loc-link" id="nine" data-tab="loc-19">조천읍</div>
+                            <div class="loc-link" id="ten" data-tab="loc-20">구좌읍</div>
+                        </div>
+                        <div class="accomItems">
+                            <div id="loc-11" class="loc-content current">
+                                <div class="accomItem row-col-5">
+                                    <th:block th:each="data, state : ${subAccom}"
+                                        th:if="${#strings.contains(data.accomLoc,'제주시') && state.index lt 10}">
+                                        <div class="itemdetail">
+                                            <div class="photo">
+                                                <div th:if="${img.isMain == 'Y'}"
+                                                    th:each="img : ${data.subAccomImgList}">
+                                                    <th:block>
+                                                        <img th:src="${'/img/subaccom/'+ img.attachedFileName}" alt="">
+                                                    </th:block>
+                                                </div>
+                                            </div>
+                                            <div class="text">
+                                                <div class="itemName">[[${data.subAccomName}]]</div>
+                                                <div class="itemLoc">[[${data.accomLoc}]]</div>
+                                                <div class="price">
+                                                    <span class="priceNum">
+                                                        [[${data.reservationPrice}]]
+                                                        <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                            [[${data.dayusePrice}]]
+                                                        </th:block>
+                                                    </span>
+                                                    <span class="won">원</span>
+                                                </div>
+                                            </div>
+                                            <div class="love">
+                                                하트
+                                            </div>
+                                        </div>
+                                    </th:block>
                                 </div>
                             </div>
-                        <div id="tab-2" class="tab-content">
-                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'풀빌라') && state.index lt 10}" >
-                                <div class="itemdetail">
-                                    <div class="photo">
-                                        <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                            <th:block>
-                                                <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                    alt="">
-                                            </th:block>
-                                        </div>
-                                    </div>
-                                    <div class="text">
-                                        <div class="itemName">[[${data.subAccomName}]]</div>
-                                        <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                        <div class="price">
-                                            <span class="priceNum">
-                                                [[${data.reservationPrice}]]
-                                            <th:block th:if="${data.dayuseCan == 'Y'}">
-                                                [[${data.dayusePrice}]]
-                                            </th:block>
-                                            </span>
-                                            <span class="won">원</span>
-                                        </div>
-                                    </div>
-                                    <div class="love">
-                                        하트
-                                    </div>
-                                </div>
-                            </th:block>
-                        </div>
-                        <div id="tab-3" class="tab-content">
-                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'오션_뷰') && state.index lt 10}" >
-                                <div class="itemdetail">
-                                    <div class="photo">
-                                        <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                            <th:block>
-                                                <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                    alt="">
-                                            </th:block>
-                                        </div>
-                                    </div>
-                                    <div class="text">
-                                        <div class="itemName">[[${data.subAccomName}]]</div>
-                                        <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                        <div class="price">
-                                            <span class="priceNum">
-                                                [[${data.reservationPrice}]]
-                                            <th:block th:if="${data.dayuseCan == 'Y'}">
-                                                [[${data.dayusePrice}]]
-                                            </th:block>
-                                            </span>
-                                            <span class="won">원</span>
-                                        </div>
-                                    </div>
-                                    <div class="love">
-                                        하트
-                                    </div>
-                                </div>
-                            </th:block>
-                        </div>
-                        <div id="tab-4" class="tab-content">
-                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'PC_룸') and state.index lt 10}">
-                                <div class="itemdetail">
-                                    <div class="photo">
-                                        <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                            <th:block>
-                                                <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                    alt="">
-                                            </th:block>
-                                        </div>
-                                    </div>
-                                    <div class="text">
-                                        <div class="itemName">[[${data.subAccomName}]]</div>
-                                        <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                        <div class="price">
-                                            <span class="priceNum">
-                                                [[${data.reservationPrice}]]
-                                            <th:block th:if="${data.dayuseCan == 'Y'}">
-                                                [[${data.dayusePrice}]]
-                                            </th:block>
-                                            </span>
-                                            <span class="won">원</span>
-                                        </div>
-                                    </div>
-                                    <div class="love">
-                                        하트
-                                    </div>
-                                </div>
-                            </th:block>
-                        </div>
-                        <div id="tab-5" class="tab-content">
-                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'N플릭스') && state.index lt 10}" >
-                                <div class="itemdetail">
-                                    <div class="photo">
-                                        <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                            <th:block>
-                                                <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                    alt="">
-                                            </th:block>
-                                        </div>
-                                    </div>
-                                    <div class="text">
-                                        <div class="itemName">[[${data.subAccomName}]]</div>
-                                        <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                        <div class="price">
-                                            <span class="priceNum">
-                                                [[${data.reservationPrice}]]
-                                            <th:block th:if="${data.dayuseCan == 'Y'}">
-                                                [[${data.dayusePrice}]]
-                                            </th:block>
-                                            </span>
-                                            <span class="won">원</span>
-                                        </div>
-                                    </div>
-                                    <div class="love">
-                                        하트
-                                    </div>
-                                </div>
-                            </th:block>
-                        </div>
-                        <div id="tab-6" class="tab-content">
-                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'흡연_O') && state.index lt 10}" >
-                                <div class="itemdetail">
-                                    <div class="photo">
-                                        <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                            <th:block>
-                                                <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                    alt="">
-                                            </th:block>
-                                        </div>
-                                    </div>
-                                    <div class="text">
-                                        <div class="itemName">[[${data.subAccomName}]]</div>
-                                        <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                        <div class="price">
-                                            <span class="priceNum">
-                                                [[${data.reservationPrice}]]
-                                            <th:block th:if="${data.dayuseCan == 'Y'}">
-                                                [[${data.dayusePrice}]]
-                                            </th:block>
-                                            </span>
-                                            <span class="won">원</span>
-                                        </div>
-                                    </div>
-                                    <div class="love">
-                                        하트
-                                    </div>
-                                </div>
-                            </th:block>
-                        </div>
-                        <div id="tab-7" class="tab-content">
-                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'금연') && state.index lt 10}">
-                                <div class="itemdetail">
-                                    <div class="photo">
-                                        <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                            <th:block>
-                                                <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                    alt="">
-                                            </th:block>
-                                        </div>
-                                    </div>
-                                    <div class="text">
-                                        <div class="itemName">[[${data.subAccomName}]]</div>
-                                        <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                        <div class="price">
-                                            <span class="priceNum">
-                                                [[${data.reservationPrice}]]
-                                            <th:block th:if="${data.dayuseCan == 'Y'}">
-                                                [[${data.dayusePrice}]]
-                                            </th:block>
-                                            </span>
-                                            <span class="won">원</span>
-                                        </div>
-                                    </div>
-                                    <div class="love">
-                                        하트
-                                    </div>
-                                </div>
-                            </th:block>
-                        </div>
-                        <div id="tab-8" class="tab-content">
-                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'반려동물_O') && state.index lt 10}">
-                                <div class="itemdetail">
-                                    <div class="photo">
-                                        <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                            <th:block>
-                                                <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                    alt="">
-                                            </th:block>
-                                        </div>
-                                    </div>
-                                    <div class="text">
-                                        <div class="itemName">[[${data.subAccomName}]]</div>
-                                        <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                        <div class="price">
-                                            <span class="priceNum">
-                                                [[${data.reservationPrice}]]
-                                            <th:block th:if="${data.dayuseCan == 'Y'}">
-                                                [[${data.dayusePrice}]]
-                                            </th:block>
-                                            </span>
-                                            <span class="won">원</span>
-                                        </div>
-                                    </div>
-                                    <div class="love">
-                                        하트
-                                    </div>
-                                </div>
-                            </th:block>
-                        </div>
-                        <div id="tab-9" class="tab-content">
-                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'반려동물_X') && state.index lt 10}">
-                                <div class="itemdetail">
-                                    <div class="photo">
-                                        <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                            <th:block>
-                                                <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                    alt="">
-                                            </th:block>
-                                        </div>
-                                    </div>
-                                    <div class="text">
-                                        <div class="itemName">[[${data.subAccomName}]]</div>
-                                        <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                        <div class="price">
-                                            <span class="priceNum">
-                                                [[${data.reservationPrice}]]
-                                            <th:block th:if="${data.dayuseCan == 'Y'}">
-                                                [[${data.dayusePrice}]]
-                                            </th:block>
-                                            </span>
-                                            <span class="won">원</span>
-                                        </div>
-                                    </div>
-                                    <div class="love">
-                                        하트
-                                    </div>
-                                </div>
-                            </th:block>
-                        </div>
-                        <div id="tab-10" class="tab-content">
-                            <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.subAccomCate,'노키즈_존') && state.index < 10}">
-                                <div class="itemdetail">
-                                    <div class="photo">
-                                        <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                            <th:block>
-                                                <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                    alt="">
-                                            </th:block>
-                                        </div>
-                                    </div>
-                                    <div class="text">
-                                        <div class="itemName">[[${data.subAccomName}]]</div>
-                                        <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                        <div class="price">
-                                            <span class="priceNum">
-                                                [[${data.reservationPrice}]]
-                                            <th:block th:if="${data.dayuseCan == 'Y'}">
-                                                [[${data.dayusePrice}]]
-                                            </th:block>
-                                            </span>
-                                            <span class="won">원</span>
-                                        </div>
-                                    </div>
-                                    <div class="love">
-                                        하트
-                                    </div>
-                                </div>
-                            </th:block>
-                        </div>
-                    </div>
-                </div>
-                <div class="location">
-                    <div class="locs">
-                        <div class="loc-link current" id="first" data-tab="loc-1">제주시</div>
-                        <div class="loc-link" data-tab="loc-2">서귀포시</div>
-                        <div class="loc-link" data-tab="loc-3">성산읍</div>
-                        <div class="loc-link" data-tab="loc-4">한림읍</div>
-                        <div class="loc-link" data-tab="loc-5">애월읍</div>
-                        <div class="loc-link" data-tab="loc-6">안덕면</div>
-                        <div class="loc-link" data-tab="loc-7">남원읍</div>
-                        <div class="loc-link" data-tab="loc-8">대정읍</div>
-                        <div class="loc-link" id="nine" data-tab="loc-9">조천읍</div>
-                        <div class="loc-link" id="ten" data-tab="loc-10">구좌읍</div>
-                    </div>
-                    <div class="accomItems">
-                        <div id="loc-1" class="loc-content current">
-                            <div class="accomItem row-col-5">
-                                <th:block th:each="data, state : ${subAccom}"  th:if="${#strings.contains(data.accomLoc,'제주시') && state.index < 10}">
-                                    <div class="itemdetail">
-                                        <div class="photo">
-                                            <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                                <th:block>
-                                                    <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                        alt="">
-                                                </th:block>
+                                <th:block th:each="mapData, state : ${myData}">
+                                    <th:block th:if="${mapData.key == '제주시'}">
+                                        <div id="loc-11" class="loc-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:each="img : ${data.subAccomImgList}" th:if="${img.isMain == 'Y'}">
+                                                        <img th:src="${'/img/subaccom/' + img.attachedFileName}" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName" th:text="${data.subAccomName}"></div>
+                                                    <div class="itemLoc" th:text="${data.accomLoc}"></div>
+                                                    <div class="price">
+                                                        <span class="priceNum" th:text="${data.reservationPrice}"></span>
+                                                        <span class="won">원</span>
+                                                        <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                            <span th:text="${data.dayusePrice}"></span>
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="text">
-                                            <div class="itemName">[[${data.subAccomName}]]</div>
-                                            <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                            <div class="price">
-                                                <span class="priceNum">
-                                                    [[${data.reservationPrice}]]
-                                                <th:block th:if="${data.dayuseCan == 'Y'}">
-                                                    [[${data.dayusePrice}]]
-                                                </th:block>
-                                                </span>
-                                                <span class="won">원</span>
+                                    </th:block>
+
+                                    <th:block th:if="${mapData.key == '서귀포시'}">
+                                        <div id="loc-12" class="loc-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:each="img : ${data.subAccomImgList}" th:if="${img.isMain == 'Y'}">
+                                                        <img th:src="${'/img/subaccom/' + img.attachedFileName}" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName" th:text="${data.subAccomName}"></div>
+                                                    <div class="itemLoc" th:text="${data.accomLoc}"></div>
+                                                    <div class="price">
+                                                        <span class="priceNum" th:text="${data.reservationPrice}"></span>
+                                                        <span class="won">원</span>
+                                                        <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                            <span th:text="${data.dayusePrice}"></span>
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="love">
-                                            하트
+                                    </th:block>
+
+                                    <th:block th:if="${mapData.key == '성산읍'}">
+                                        <div id="loc-13" class="loc-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:each="img : ${data.subAccomImgList}" th:if="${img.isMain == 'Y'}">
+                                                        <img th:src="${'/img/subaccom/' + img.attachedFileName}" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName" th:text="${data.subAccomName}"></div>
+                                                    <div class="itemLoc" th:text="${data.accomLoc}"></div>
+                                                    <div class="price">
+                                                        <span class="priceNum" th:text="${data.reservationPrice}"></span>
+                                                        <span class="won">원</span>
+                                                        <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                            <span th:text="${data.dayusePrice}"></span>
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </th:block>
+
+                                    <th:block th:if="${mapData.key == '한림읍'}">
+                                        <div id="loc-14" class="loc-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:each="img : ${data.subAccomImgList}" th:if="${img.isMain == 'Y'}">
+                                                        <img th:src="${'/img/subaccom/' + img.attachedFileName}" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName" th:text="${data.subAccomName}"></div>
+                                                    <div class="itemLoc" th:text="${data.accomLoc}"></div>
+                                                    <div class="price">
+                                                        <span class="priceNum" th:text="${data.reservationPrice}"></span>
+                                                        <span class="won">원</span>
+                                                        <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                            <span th:text="${data.dayusePrice}"></span>
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+                                    
+                                    <th:block th:if="${mapData.key == '애월읍'}">
+                                        <div id="loc-15" class="loc-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:each="img : ${data.subAccomImgList}" th:if="${img.isMain == 'Y'}">
+                                                        <img th:src="${'/img/subaccom/' + img.attachedFileName}" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName" th:text="${data.subAccomName}"></div>
+                                                    <div class="itemLoc" th:text="${data.accomLoc}"></div>
+                                                    <div class="price">
+                                                        <span class="priceNum" th:text="${data.reservationPrice}"></span>
+                                                        <span class="won">원</span>
+                                                        <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                            <span th:text="${data.dayusePrice}"></span>
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+
+                                    <th:block th:if="${mapData.key == '안덕면'}">
+                                        <div id="loc-16" class="loc-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:each="img : ${data.subAccomImgList}" th:if="${img.isMain == 'Y'}">
+                                                        <img th:src="${'/img/subaccom/' + img.attachedFileName}" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName" th:text="${data.subAccomName}"></div>
+                                                    <div class="itemLoc" th:text="${data.accomLoc}"></div>
+                                                    <div class="price">
+                                                        <span class="priceNum" th:text="${data.reservationPrice}"></span>
+                                                        <span class="won">원</span>
+                                                        <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                            <span th:text="${data.dayusePrice}"></span>
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+
+                                    <th:block th:if="${mapData.key == '남전읍'}">
+                                        <div id="loc-17" class="loc-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:each="img : ${data.subAccomImgList}" th:if="${img.isMain == 'Y'}">
+                                                        <img th:src="${'/img/subaccom/' + img.attachedFileName}" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName" th:text="${data.subAccomName}"></div>
+                                                    <div class="itemLoc" th:text="${data.accomLoc}"></div>
+                                                    <div class="price">
+                                                        <span class="priceNum" th:text="${data.reservationPrice}"></span>
+                                                        <span class="won">원</span>
+                                                        <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                            <span th:text="${data.dayusePrice}"></span>
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+
+                                    <th:block th:if="${mapData.key == '대정읍'}">
+                                        <div id="loc-18" class="loc-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:each="img : ${data.subAccomImgList}" th:if="${img.isMain == 'Y'}">
+                                                        <img th:src="${'/img/subaccom/' + img.attachedFileName}" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName" th:text="${data.subAccomName}"></div>
+                                                    <div class="itemLoc" th:text="${data.accomLoc}"></div>
+                                                    <div class="price">
+                                                        <span class="priceNum" th:text="${data.reservationPrice}"></span>
+                                                        <span class="won">원</span>
+                                                        <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                            <span th:text="${data.dayusePrice}"></span>
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+
+                                    <th:block th:if="${mapData.key == '조천읍'}">
+                                        <div id="loc-19" class="loc-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:each="img : ${data.subAccomImgList}" th:if="${img.isMain == 'Y'}">
+                                                        <img th:src="${'/img/subaccom/' + img.attachedFileName}" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName" th:text="${data.subAccomName}"></div>
+                                                    <div class="itemLoc" th:text="${data.accomLoc}"></div>
+                                                    <div class="price">
+                                                        <span class="priceNum" th:text="${data.reservationPrice}"></span>
+                                                        <span class="won">원</span>
+                                                        <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                            <span th:text="${data.dayusePrice}"></span>
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+
+                                    <th:block th:if="${mapData.key == '구좌읍'}">
+                                        <div id="loc-20" class="loc-content">
+                                            <div class="itemdetail" th:each="data : ${mapData.value}">
+                                                <div class="photo">
+                                                    <div th:each="img : ${data.subAccomImgList}" th:if="${img.isMain == 'Y'}">
+                                                        <img th:src="${'/img/subaccom/' + img.attachedFileName}" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <div class="itemName" th:text="${data.subAccomName}"></div>
+                                                    <div class="itemLoc" th:text="${data.accomLoc}"></div>
+                                                    <div class="price">
+                                                        <span class="priceNum" th:text="${data.reservationPrice}"></span>
+                                                        <span class="won">원</span>
+                                                        <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                            <span th:text="${data.dayusePrice}"></span>
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                                <div class="love">
+                                                    하트
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+
+
                                 </th:block>
+                                <!-- <div class="loc-link current" id="first" data-tab="loc-11">제주시</div>
+                            <div class="loc-link" data-tab="loc-12">서귀포시</div>
+                            <div class="loc-link" data-tab="loc-13">성산읍</div>
+                            <div class="loc-link" data-tab="loc-14">한림읍</div>
+                            <div class="loc-link" data-tab="loc-15">애월읍</div>
+                            <div class="loc-link" data-tab="loc-16">안덕면</div>
+                            <div class="loc-link" data-tab="loc-17">남원읍</div>
+                            <div class="loc-link" data-tab="loc-18">대정읍</div>
+                            <div class="loc-link" id="nine" data-tab="loc-19">조천읍</div>
+                            <div class="loc-link" id="ten" data-tab="loc-20">구좌읍</div> -->
 
-                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            
                         </div>
-                    <div id="loc-2" class="loc-content">
-                        <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.accomLoc,'서귀포시') && state.index < 10}">
-                            <div class="itemdetail">
-                                <div class="photo">
-                                    <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                        <th:block>
-                                            <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                alt="">
-                                        </th:block>
-                                    </div>
-                                </div>
-                                <div class="text">
-                                    <div class="itemName">[[${data.subAccomName}]]</div>
-                                    <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                    <div class="price">
-                                        <span class="priceNum">
-                                            [[${data.reservationPrice}]]
-                                        <th:block th:if="${data.dayuseCan == 'Y'}">
-                                            [[${data.dayusePrice}]]
-                                        </th:block>
-                                        </span>
-                                        <span class="won">원</span>
-                                    </div>
-                                </div>
-                                <div class="love">
-                                    하트
-                                </div>
-                            </div>
-                        </th:block>
-                    </div>
-                    <div id="loc-13" class="loc-content">
-                        <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.accomLoc,'성산읍') && state.index < 10}"> 
-                            <div class="itemdetail">
-                                <div class="photo">
-                                    <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                        <th:block>
-                                            <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                alt="">
-                                        </th:block>
-                                    </div>
-                                </div>
-                                <div class="text">
-                                    <div class="itemName">[[${data.subAccomName}]]</div>
-                                    <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                    <div class="price">
-                                        <span class="priceNum">
-                                            [[${data.reservationPrice}]]
-                                        <th:block th:if="${data.dayuseCan == 'Y'}">
-                                            [[${data.dayusePrice}]]
-                                        </th:block>
-                                        </span>
-                                        <span class="won">원</span>
-                                    </div>
-                                </div>
-                                <div class="love">
-                                    하트
-                                </div>
-                            </div>
-                        </th:block>
-                    </div>
-                    <div id="loc-14" class="loc-content">
-                        <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.accomLoc,'한림읍') && state.index < 10}">
-                            <div class="itemdetail">
-                                <div class="photo">
-                                    <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                        <th:block>
-                                            <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                alt="">
-                                        </th:block>
-                                    </div>
-                                </div>
-                                <div class="text">
-                                    <div class="itemName">[[${data.subAccomName}]]</div>
-                                    <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                    <div class="price">
-                                        <span class="priceNum">
-                                            [[${data.reservationPrice}]]
-                                        <th:block th:if="${data.dayuseCan == 'Y'}">
-                                            [[${data.dayusePrice}]]
-                                        </th:block>
-                                        </span>
-                                        <span class="won">원</span>
-                                    </div>
-                                </div>
-                                <div class="love">
-                                    하트
-                                </div>
-                            </div>
-                        </th:block>
-                    </div>
-                    <div id="loc-15" class="loc-content">
-                        <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.accomLoc,'애월읍') && state.index < 10}" >
-                            <div class="itemdetail">
-                                <div class="photo">
-                                    <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                        <th:block>
-                                            <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                alt="">
-                                        </th:block>
-                                    </div>
-                                </div>
-                                <div class="text">
-                                    <div class="itemName">[[${data.subAccomName}]]</div>
-                                    <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                    <div class="price">
-                                        <span class="priceNum">
-                                            [[${data.reservationPrice}]]
-                                        <th:block th:if="${data.dayuseCan == 'Y'}">
-                                            [[${data.dayusePrice}]]
-                                        </th:block>
-                                        </span>
-                                        <span class="won">원</span>
-                                    </div>
-                                </div>
-                                <div class="love">
-                                    하트
-                                </div>
-                            </div>
-                        </th:block>
-                    </div>
-                    <div id="loc-16" class="loc-content">
-                        <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.accomLoc,'안덕면') && state.index < 10}" >
-                            <div class="itemdetail">
-                                <div class="photo">
-                                    <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                        <th:block>
-                                            <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                alt="">
-                                        </th:block>
-                                    </div>
-                                </div>
-                                <div class="text">
-                                    <div class="itemName">[[${data.subAccomName}]]</div>
-                                    <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                    <div class="price">
-                                        <span class="priceNum">
-                                            [[${data.reservationPrice}]]
-                                        <th:block th:if="${data.dayuseCan == 'Y'}">
-                                            [[${data.dayusePrice}]]
-                                        </th:block>
-                                        </span>
-                                        <span class="won">원</span>
-                                    </div>
-                                </div>
-                                <div class="love">
-                                    하트
-                                </div>
-                            </div>
-                        </th:block>
-                    </div>
-                    <div id="loc-17" class="loc-content">
-                        <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.accomLoc,'남원읍') && state.index < 10}">
-                            <div class="itemdetail">
-                                <div class="photo">
-                                    <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                        <th:block>
-                                            <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                alt="">
-                                        </th:block>
-                                    </div>
-                                </div>
-                                <div class="text">
-                                    <div class="itemName">[[${data.subAccomName}]]</div>
-                                    <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                    <div class="price">
-                                        <span class="priceNum">
-                                            [[${data.reservationPrice}]]
-                                        <th:block th:if="${data.dayuseCan == 'Y'}">
-                                            [[${data.dayusePrice}]]
-                                        </th:block>
-                                        </span>
-                                        <span class="won">원</span>
-                                    </div>
-                                </div>
-                                <div class="love">
-                                    하트
-                                </div>
-                            </div>
-                        </th:block>
-                    </div>
-                    <div id="loc-18" class="loc-content">
-                        <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.accomLoc,'대정읍') && state.index < 10}">
-                            <div class="itemdetail">
-                                <div class="photo">
-                                    <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                        <th:block>
-                                            <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                alt="">
-                                        </th:block>
-                                    </div>
-                                </div>
-                                <div class="text">
-                                    <div class="itemName">[[${data.subAccomName}]]</div>
-                                    <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                    <div class="price">
-                                        <span class="priceNum">
-                                            [[${data.reservationPrice}]]
-                                        <th:block th:if="${data.dayuseCan == 'Y'}">
-                                            [[${data.dayusePrice}]]
-                                        </th:block>
-                                        </span>
-                                        <span class="won">원</span>
-                                    </div>
-                                </div>
-                                <div class="love">
-                                    하트
-                                </div>
-                            </div>
-                        </th:block>
-                    </div>
-                    <div id="loc-19" class="loc-content">
-                        <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.accomLoc,'조천읍') && state.index < 10}">
-                            <div class="itemdetail">
-                                <div class="photo">
-                                    <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                        <th:block>
-                                            <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                alt="">
-                                        </th:block>
-                                    </div>
-                                </div>
-                                <div class="text">
-                                    <div class="itemName">[[${data.subAccomName}]]</div>
-                                    <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                    <div class="price">
-                                        <span class="priceNum">
-                                            [[${data.reservationPrice}]]
-                                        <th:block th:if="${data.dayuseCan == 'Y'}">
-                                            [[${data.dayusePrice}]]
-                                        </th:block>
-                                        </span>
-                                        <span class="won">원</span>
-                                    </div>
-                                </div>
-                                <div class="love">
-                                    하트
-                                </div>
-                            </div>
-                        </th:block>
-                    </div>
-                    <div id="loc-20" class="loc-content">
-                        <th:block th:each="data, state : ${subAccom}" th:if="${#strings.contains(data.accomLoc,'구좌읍') && state.index < 10}">
-                            <div class="itemdetail">
-                                <div class="photo">
-                                    <div th:if="${img.isMain == 'Y'}" th:each="img : ${data.subAccomImgList}">
-                                        <th:block>
-                                            <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                alt="">
-                                        </th:block>
-                                    </div>
-                                </div>
-                                <div class="text">
-                                    <div class="itemName">[[${data.subAccomName}]]</div>
-                                    <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                    <div class="price">
-                                        <span class="priceNum">
-                                            [[${data.reservationPrice}]]
-                                        <th:block th:if="${data.dayuseCan == 'Y'}">
-                                            [[${data.dayusePrice}]]
-                                        </th:block>
-                                        </span>
-                                        <span class="won">원</span>
-                                    </div>
-                                </div>
-                                <div class="love">
-                                    하트
-                                </div>
-                            </div>
-                        </th:block>
                     </div>
                 </div>
-            </div>
-            </div>
-            <div class="main three">
-                <div class="inner">
-                    <div class="headerText">
-                        지도 내 검색
-                    </div>
-                    <div class="m1_right">
-                        <div class="map_wrap">
-                            <div id="map"></div>
-                            <div id="menu_wrap" class="bg_white">
-                                <div class="option">
-                                    <div>
-                                        <form onsubmit="searchPlaces(); return false;">
-                                            <input type="text" value="제주 맛집" id="keyword" size="15">
-                                            <button type="submit">검색하기</button>
-                                        </form>
+                <div class="main three">
+                    <div class="inner">
+                        <div class="headerText">
+                            지도 내 검색
+                        </div>
+                        <div class="m1_right">
+                            <div class="map_wrap">
+                                <div id="map"></div>
+                                <div id="menu_wrap" class="bg_white">
+                                    <div class="option">
+                                        <div>
+                                            <form onsubmit="searchPlaces(); return false;">
+                                                <input type="text" value="제주 맛집" id="keyword" size="15">
+                                                <button type="submit">검색하기</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="result">
-                                    <ul id="placesList"></ul>
+                                    <div class="result">
+                                        <ul id="placesList"></ul>
 
+                                    </div>
+                                    <div id="pagination"></div>
                                 </div>
-                                <div id="pagination"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="map_info">
-            <p style="margin-top:-12px">
-                <em class="link">
-                    <a href="javascript:void(0);"
-                        onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
-                    </a>
-                </em>
-            </p>
-            <div id="map"></div>
-        </div>
-        <div class="m_foot">
-            <h3 class="mf_title">자주 찾는 질문</h3>
-            <div class="mf_more_btn"><a href="/cs/qnaListForm">더보기</a></div>
-            <div class="mf_in">
-                <ul>
-                    <!-- ------------------------------------------------ -->
-                    <li class="mf_qna" th:each="qna, state : ${qnaList}">
-                        <div class="mf_qna_question"> <!-- 질문 -->
-                            <span class="mf_cateName m2_box">[ [[${qna.qnaCateList.cateName}]] ]</span>
-                            <span class="mf_qna_span_q">Q</span>
-                            [[${qna.qnaQuestion}]]
-                        </div>
-                        <div class="mf_qna_answer"> <!-- 대답 -->
-                            <span class="mf_box"></span>
-                            <span class="mf_qna_span_a">A</span>
-                            [[${qna.qnaAnswer}]]
-                        </div>
-                    </li>
-                </ul>
+            <div class="map_info">
+                <p style="margin-top:-12px">
+                    <em class="link">
+                        <a href="javascript:void(0);"
+                            onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
+                        </a>
+                    </em>
+                </p>
+                <div id="map"></div>
             </div>
-        </div>
-        </div>
+            <div class="m_foot">
+                <h3 class="mf_title">자주 찾는 질문</h3>
+                <div class="mf_more_btn"><a href="/cs/qnaListForm">더보기</a></div>
+                <div class="mf_in">
+                    <ul>
+                        <!-- ------------------------------------------------ -->
+                        <li class="mf_qna" th:each="qna, state : ${qnaList}">
+                            <div class="mf_qna_question"> <!-- 질문 -->
+                                <span class="mf_cateName m2_box">[ [[${qna.qnaCateList.cateName}]] ]</span>
+                                <span class="mf_qna_span_q">Q</span>
+                                [[${qna.qnaQuestion}]]
+                            </div>
+                            <div class="mf_qna_answer"> <!-- 대답 -->
+                                <span class="mf_box"></span>
+                                <span class="mf_qna_span_a">A</span>
+                                [[${qna.qnaAnswer}]]
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	1faecd944d1bb1ff9e6939d4b20a8146&libraries=services"></script>

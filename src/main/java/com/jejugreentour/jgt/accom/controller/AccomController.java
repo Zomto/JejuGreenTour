@@ -165,7 +165,7 @@ public class AccomController {
         accomService.addSubAccom(subAccomVO);
         // 상품 이미지 정보 등록 쿼리
 
-        return "/index";
+        return "redirect:/";
     }
 
 

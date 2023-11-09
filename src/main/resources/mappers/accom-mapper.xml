@@ -65,6 +65,12 @@
         <result column="CATE_NAME"      property="cateName" />
     </resultMap>
 
+
+    <select id="selectDistinctAccomLoc" resultType="String">
+        SELECT DISTINCT ACCOM_LOC
+        FROM MAIN_ACCOM
+    </select>
+
     <select id="showMain" resultMap="subAccom">
         SELECT
         SA.SUB_ACCOM_CODE
