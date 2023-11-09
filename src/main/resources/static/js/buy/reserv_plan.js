@@ -239,60 +239,91 @@ function aaaaa() {
     });
     document.querySelector('button[title="2 week view"]').click();
 
-    console.log(((new Date(cantend.value)).getTime()-(new Date(cantstr.value)).getTime())/(1000*60*60*24)+1)
-    for (let i = 0; i <((new Date(cantend.value)).getTime()-(new Date(cantstr.value)).getTime())/(1000*60*60*24)+1 ; i++) {
-        allplan[i]={
+    console.log(((new Date(cantend.value)).getTime() - (new Date(cantstr.value)).getTime()) / (1000 * 60 * 60 * 24) + 1)
+    for (let i = 0; i < ((new Date(cantend.value)).getTime() - (new Date(cantstr.value)).getTime()) / (1000 * 60 * 60 * 24) + 1; i++) {
+        allplan[i] = {
             planIdx: i,
-            breakfastName:null,
-            breakfastAddr:null,
-            breakfastTime:null,
-            pointoneName:null,
-            pointoneAddr:null,
-            pointoneTime:null,
-            lunchName:null,
-            lunchAddr:null,
-            lunchTime:null,
-            pointtwoName:null,
-            pointtwoAddr:null,
-            pointtwoTime:null,
-            dinnerName:null,
-            dinnerAddr:null,
-            dinnerTime:null,
+            breakfastName: null,
+            breakfastAddr: null,
+            breakfastTime: null,
+            pointoneName: null,
+            pointoneAddr: null,
+            pointoneTime: null,
+            lunchName: null,
+            lunchAddr: null,
+            lunchTime: null,
+            pointtwoName: null,
+            pointtwoAddr: null,
+            pointtwoTime: null,
+            dinnerName: null,
+            dinnerAddr: null,
+            dinnerTime: null,
 
         }
     }
     events.forEach(element => {
         let index = ((new Date(element.startday)).getTime() - (new Date(cantstr.value)).getTime()) / (1000 * 60 * 60 * 24);
-        allplan[index].planDate=element.startday;
+        allplan[index].planDate = element.startday;
         switch (element.constraint) {
             case 'Breakfast':
                 console.log(allplan)
                 allplan[index].breakfastName = element.title
                 allplan[index].breakfastAddr = element.addr
-                allplan[index].breakfastTime = element.startday +' '+ element.start + '/' + element.startday +' '+ element.end;
+                allplan[index].breakfastTime = element.startday + ' ' + element.start + '/' + element.startday + ' ' + element.end;
                 break;
             case 'tour1':
                 allplan[index].pointoneName = element.title
                 allplan[index].pointoneAddr = element.addr
-                allplan[index].pointoneTime = element.startday +' '+ element.start + '/' + element.startday +' '+ element.end;
+                allplan[index].pointoneTime = element.startday + ' ' + element.start + '/' + element.startday + ' ' + element.end;
                 break;
             case 'Lunch':
                 allplan[index].lunchName = element.title
                 allplan[index].lunchAddr = element.addr
-                allplan[index].lunchTime = element.startday +' '+ element.start + '/' + element.startday +' '+ element.end;
+                allplan[index].lunchTime = element.startday + ' ' + element.start + '/' + element.startday + ' ' + element.end;
                 break;
             case 'tour2':
                 allplan[index].pointtwoName = element.title
                 allplan[index].pointtwoAddr = element.addr
-                allplan[index].pointtwoTime = element.startday +' '+ element.start + '/' + element.startday +' '+ element.end;
+                allplan[index].pointtwoTime = element.startday + ' ' + element.start + '/' + element.startday + ' ' + element.end;
                 break;
             default:
                 allplan[index].dinnerName = element.title
                 allplan[index].dinnerAddr = element.addr
-                allplan[index].dinnerTime = element.startday +' '+ element.start + '/' + element.startday +' '+ element.end;
+                allplan[index].dinnerTime = element.startday + ' ' + element.start + '/' + element.startday + ' ' + element.end;
                 break;
         }
     })
-    console.log(allplan);
+    const planList = [];
+    for (let i = 0; i < allplan.length; i++) {
+        const plan = allplan[i];
+        planList.push(plan);
+    }
+    fetch('/buy/insertPlan', { //요청경로
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8'              //다름
+        },
+        //컨트롤러로 전달할 데이터
+        body : JSON.stringify(planList)
+    })
+        .then((response) => {
+            return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
+            //return response.json(); //나머지 경우에 사용
+            //넘어 오는 데이터의 형태를 변환하는 데이터
+            //넘어오는 데이터가 없으면 then을 없애는게 맞다
+        })
+        //fetch 통신 후 실행 영역
+        .then((data) => {//data -> controller에서 리턴되는 데이터!
+
+        })
+        //fetch 통신 실패 시 실행 영역
+        .catch(err => {
+            alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+            console.log(err);
+        });
+
+
 }
+
 
