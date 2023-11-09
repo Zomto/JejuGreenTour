@@ -462,6 +462,39 @@
         </if>
     </select>
 
+    <!-- 답변 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+    <resultMap id="response" type="com.jejugreentour.jgt.csCenter.vo.ResponseVO">
+        <id column="RES_CODE" property="resCode"/>
+        <result column="INQ_CODE" property="inqCode"/>
+        <result column="INQ_RESPONSE" property="inqResponse"/>
+        <result column="RES_DATE" property="resDate"/>
+    </resultMap>
+
+    <resultMap id="resImg" type="com.jejugreentour.jgt.csCenter.vo.ResImgVO">
+        <id column="IMG_CODE" property="imgCode"/>
+        <result column="ORIGIN_FILE_NAME" property="originFileName"/>
+        <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
+        <result column="RES_CODE" property="resCode"/>
+    </resultMap>
+
+    <!--  답변 조회  -->
+    <select id="selectResponse" resultMap="response">
+        SELECT
+            RES_CODE
+            , RES.INQ_CODE
+            , INQ_RESPONSE
+            , , TO_CHAR(RES_DATE,'YYYY-MM-DD') AS RES_DATE
+        FROM INQ_RESPONSE RES, INQUIRE INQ
+        WHERE RES.INQ_CODE = INQ.INQ_CODE
+        AND RES.INQ_CODE = #{inqCode}
+    </select>
+
+    <!--  답변 내용 추가  -->
+
+
+    <!--  답변 사진 추가  -->
+
 
 
 </mapper>
