@@ -17,7 +17,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         MemberVO userInfo = memberService.login(username);
         UserDetails user = User.withUsername(userInfo.getMemberId())
-                .password("{noop}" + userInfo.getMemberPw())
+                .password(userInfo.getMemberPw())
                 .roles(userInfo.getMemberRoll())
                 .build();
         return user;

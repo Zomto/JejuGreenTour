@@ -39,6 +39,7 @@
         <result column="SOLD_OUT"    property="soldOut" />
         <result column="DAY_USE_CAN"    property="dayuseCan" />
         <result column="SUB_DELETE"    property="delete" />
+        <result column="ACCOM_LOC"    property="accomLoc" />
         <collection property="subAccomImgList" resultMap="subAccomImg" />
     </resultMap>
 
@@ -64,9 +65,38 @@
         <result column="CATE_NAME"      property="cateName" />
     </resultMap>
 
-    <select id="">
+
+    <select id="selectDistinctAccomLoc" resultType="String">
+        SELECT DISTINCT ACCOM_LOC
+        FROM MAIN_ACCOM
+    </select>
+
+    <select id="showMain" resultMap="subAccom">
+        SELECT
+        SA.SUB_ACCOM_CODE
+        , SUB_ACCOM_NAME
+        , SUB_ACCOM_INTRO
+        , SUB_ACCOM_CATE
+        , BASIC_MAN
+        , MAX_MAN
+        , ACCOM_START_TIME
+        , ACCOM_END_TIME
+        , RENT_TIME
+        , DAYUSE_PRICE
+        , RESERVATION_PRICE
+        , SOLD_OUT
+        , DAY_USE_CAN
+        , SUB_DELETE
+        , ATTACHED_FILE_NAME
+        , ORIGIN_FILE_NAME
+        , ACCOM_LOC
+        , IS_MAIN
+        FROM SUB_ACCOM SA, SUB_ACCOM_IMG IMG, MAIN_ACCOM MA
+        WHERE SA.ACCOM_CODE = MA.ACCOM_CODE
+        AND SA.SUB_ACCOM_CODE = IMG.SUB_ACCOM_CODE
 
     </select>
+
 
     <insert id="addAccom">
         INSERT INTO MAIN_ACCOM (
@@ -162,6 +192,7 @@
             FROM DUAL
         </foreach>
     </insert>
+
 
     <!--  상품 상세 조회  -->
 <!--    <select id="selectMainAccomDetail" resultMap="mainAccom">-->
@@ -312,6 +343,8 @@
         FROM SUB_ACCOM
         WHERE SUB_ACCOM_CODE = #{subAccomCode}
     </select>
+
+
     
     <select id="selectSubAccomImg" resultMap="subAccomImg">
         SELECT *

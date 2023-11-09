@@ -90,4 +90,10 @@
         WHERE MEMBER_ID = #{memberId}
     </update>
 
+    <select id="getUserPw" resultType="String">
+        SELECT MEMBER_PW
+        FROM JEJU_MEMBER
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+
 </mapper>
