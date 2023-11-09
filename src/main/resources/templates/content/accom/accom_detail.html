@@ -68,7 +68,7 @@
                             <div class="reviewPoint">
                                 <div class="review">
                                     <div class="reviewImg">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#03c75a"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#dadada"
                                             class="bi bi-star-fill" viewBox="0 0 16 16">
                                             <path
                                                 d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
@@ -85,7 +85,7 @@
 
                             <div class="mainAccomAddrForm">
                                 <div class="addrImg">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#03c75a"
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#dadada"
                                         viewBox="0 0 18 18" class="DNzQ2" aria-hidden="true">
                                         <path
                                             d="M9 1C5.4 1 2.5 3.7 2.5 7.1c0 1.2.4 2.3 1 3.3l5.1 6.1c.2.2.6.2.8 0l5.1-6.1c.7-1 1-2.1 1-3.3C15.5 3.7 12.6 1 9 1zm0 8c-.8 0-1.5-.7-1.5-1.5S8.2 6 9 6s1.5.7 1.5 1.5S9.8 9 9 9z">
@@ -164,135 +164,204 @@
                             </th:block>
 
                         </div>
+
                     </div>
-                </div>
-                <div class="accomAddrWrap">
-                    <div class="mapbox">
-                        <h2>숙소 위치</h2>
-                        <div class="mapIn">
-                            <div id="map" style="width:100%;height:600px;"></div><br>
-                            <img
-                                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTggMS4zMzNBNC42NjMgNC42NjMgMCAwMTEyLjY2NyA2QzEyLjY2NyA5LjUgOCAxNC42NjcgOCAxNC42NjdsLS4yNzUtLjMxNmMtMS0xLjE3My00LjM5Mi01LjM2Ny00LjM5Mi04LjM1MUE0LjY2MyA0LjY2MyAwIDAxOCAxLjMzM3ptLjIxMiAxMi4wNTJjLjUzNS0uNjYgMS4wNy0xLjM3MyAxLjU2OS0yLjExMi42NTMtLjk2OSAxLjE5My0xLjkwNyAxLjU3OC0yLjc4M0MxMS43OCA3LjUzOCAxMiA2LjY5NiAxMiA2YzAtMi4yMTItMS43ODgtNC00LTQtMi4yMTIgMC00IDEuNzg4LTQgNCAwIC42OTYuMjIxIDEuNTM4LjY0IDIuNDkuMzg2Ljg3Ni45MjYgMS44MTQgMS41OCAyLjc4My4zOTguNTkxLjgyIDEuMTY2IDEuMjQ4IDEuNzFsLjMyLjQwMi4yMTIuMjU3LjIxMi0uMjU3ek04IDcuNjY3YTEuNjY3IDEuNjY3IDAgMTAwLTMuMzM0IDEuNjY3IDEuNjY3IDAgMDAwIDMuMzM0eiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+">
-                            <span>[[${mAccom.accomAddr}]]</span>
-                            <div class="parking">
-                                <p class="p1"><img width="43" height="31" src="/img/parking.png"></p>
-                                <p>유형 : 숙소 내 주차장</p>
-                                <p>안내 : 사전문의 필수</p>
+                    <div class="accomAddrWrap">
+                        <div class="mapTitle">숙소 위치</div>
+                        <div class="mapbox">
+
+                            <div class="mapIn">
+                                <div id="map" style="width:100%;height:600px; border-radius: 7px;"></div>
+                            </div>
+                            <div class="mapText">
+                                <div class="addrTextBox">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#dadada"
+                                        viewBox="0 0 18 18" class="DNzQ2" aria-hidden="true">
+                                        <path
+                                            d="M9 1C5.4 1 2.5 3.7 2.5 7.1c0 1.2.4 2.3 1 3.3l5.1 6.1c.2.2.6.2.8 0l5.1-6.1c.7-1 1-2.1 1-3.3C15.5 3.7 12.6 1 9 1zm0 8c-.8 0-1.5-.7-1.5-1.5S8.2 6 9 6s1.5.7 1.5 1.5S9.8 9 9 9z">
+                                        </path>
+                                    </svg>
+                                    <span>[[${mAccom.accomAddr}]]</span>
+                                </div>
+
+                                <div class="parking">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#dadada"
+                                        class="bi bi-car-front-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679c.033.161.049.325.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.807.807 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H6ZM2.906 5.189a.51.51 0 0 0 .497.731c.91-.073 3.35-.17 4.597-.17 1.247 0 3.688.097 4.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 11.691 3H4.309a.5.5 0 0 0-.447.276L2.906 5.19Z" />
+                                    </svg>
+                                    <div class="parkingText">유형 : 숙소 내 주차장<br>안내 : 사전문의 필수</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <h3>서브 숙소 추가</h3>
-                <div class="subAccomWrap">
-                    <div class="subAccomInner">
-                        <th:block th:if="${(userName != null )&&(mAccom.accomCeo == userName)}">
-                            <a th:href="@{/accom/subAccomAddForm(accomCode=${mAccom.accomCode})}">
-                                <div class="addSubAccomBox">
-                                    <div class="plus">
-                                        <span>+</span>
-                                        <div class="plusText">
-                                            서브 추가
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </th:block>
-                        <table style="width: 100%;">
-                            <thead>
-                                <th>호실명</th>
-                                <th>사진(메인)</th>
-                                <th>옵션</th>
-                                <th>최대인원</th>
-                                <th>대실 여부</th>
-                                <th>체크인/체크아웃시간 <br> 대실 시간</th>
-                                <th>숙박비용 <br> 대실비용</th>
-                                <th>현재 상태</th>
-                                <!-- 비동기 상태 변경 -->
-                            </thead>
-                            <tr th:if="${subList != null}" th:each="sub, state : ${subList}">
+                    <div class="subAccomWrap">
+                        <div class="subAccomTitle">객실</div>
+                        <div class="subAccomInner">
+                            <div class="subAccomBox" th:if="${subList != null}" th:each="sub, state : ${subList}">
                                 <th:block th:if="${sub.delete == 'N'}">
-                                    <td>[[${sub.subAccomName}]]</td>
-                                    <td><img class="imgSlideList"
+                                    <div class="subAccomImg"><img class="img"
                                             th:src="${'/img/subaccom/'+ sub.subAccomImgList[0].attachedFileName}"
-                                            th:alt="sub.subAccomImgList[0].originFileName"></td>
-                                    <td>[[${sub.subAccomCate}]]</td>
-
-                                    <th:block th:if="${sub.maxMan == '100'}">
-                                        <td>제한없음</td>
-                                    </th:block>
-                                    <th:block th:if="${sub.maxMan != '100'}">
-                                        <td>[[${sub.maxMan}]]</td>
-                                    </th:block>
-                                    <td>[[${sub.dayuseCan}]]</td>
-                                    <td>체크인 : [[${sub.accomStartTime}]] <br>
-                                        체크아웃 :[[${sub.accomEndTime}]]
+                                            th:alt="sub.subAccomImgList[0].originFileName">
+                                    </div>
+                                    <div class="subAccomText">
+                                        <div class="subAccomName">[[${sub.subAccomName}]]</div>
+                                        <div class="cateBox">
+                                            <th:block th:if="${sub.subAccomCate != null}">
+                                                <div class="subAccomCate">[[${sub.subAccomCate}]]</div>
+                                            </th:block>
+                                            <th:block th:if="${sub.subAccomCate == null}">
+                                                <div class="subAccomCate">태그가 없습니다</div>
+                                            </th:block>
+                                        </div>
+                                        <div class="manBox">
+                                            <div class="basicManBox">
+                                                <div class="basicManText">기준</div>
+                                                <div class="basicMan">[[${sub.basicMan}]]</div>
+                                                <div class="man">인</div>
+                                            </div>
+                                            <div class="into">~</div>
+                                            <div class="maxManBox">
+                                                <div class="maxManText">최대</div>
+                                                <th:block th:if="${sub.maxMan == '100'}">
+                                                    <div class="noMan">제한없음</div>
+                                                </th:block>
+                                                <th:block th:if="${sub.maxMan != '100'}">
+                                                    <div class="maxMan">[[${sub.maxMan}]]</div>
+                                                    <div class="man">인</div>
+                                                </th:block>
+                                            </div>
+                                        </div>
+                                        <div class="accomTime">
+                                            <div class="accomStartTime">
+                                                <div class="checkIn">IN</div>
+                                                <div class="time">
+                                                    [[${#strings.arraySplit(sub.accomStartTime,':')[0]}]]:[[${#strings.arraySplit(sub.accomStartTime,':')[1]}]]
+                                                </div>
+                                            </div>
+                                            <div class="accomEndTime">
+                                                <div class="checkOut">OUT</div>
+                                                <div class="time out">
+                                                    [[${#strings.arraySplit(sub.accomEndTime,':')[0]}]]:[[${#strings.arraySplit(sub.accomEndTime,':')[1]}]]
+                                                </div>
+                                            </div>
+                                        </div>
                                         <th:block th:if="${sub.dayuseCan == 'Y'}">
-                                            <br>/
-                                            [[${sub.rentTime}]] 시간
-                                        </th:block>
-                                    </td>
-                                    <th:block th:if="${(userName != null )&&(mAccom.accomCeo == userName)}">
-                                        <td>
-                                            <div>
-                                                <input type="number" name="reservationPrice"
-                                                    th:value="${sub.reservationPrice}">
-                                                <input type="button" value="수정" onclick="changePrice(this)"
-                                                    data-price-name="reservationPrice"
-                                                    th:data-sub-accom-Code="${sub.subAccomCode}">
+                                            <div class="rentBox">
+                                                <div class="rent">대실</div>
+                                                <div class="rentTime">[[${sub.rentTime}]] 시간</div>
                                             </div>
-                                            <div th:if="${sub.dayuseCan == 'Y'}">
-                                                <input type="number" name="dayusePrice" th:value="${sub.dayusePrice}">
-                                                <input type="button" value="수정" onclick="changePrice(this)"
-                                                    data-price-name="dayusePrice"
-                                                    th:data-sub-accom-Code="${sub.subAccomCode}">
-                                            </div>
-                                        </td>
-                                    </th:block>
-                                    <th:block
-                                        th:if="${((userName != null )&&(mAccom.accomCeo != userName))||(userName == null )}">
-                                        <td>[[${sub.reservationPrice}]] 원
-                                            <th:block th:if="${sub.dayuseCan == 'Y'}">
-                                                <br>/
-                                                [[${sub.dayusePrice}]]
-                                            </th:block>
-                                        </td>
-                                    </th:block>
-                                    <td>
-                                        <th:block th:if="${sub.soldOut == 'Y'}">
-                                            예약 종료
-                                            <th:block th:if="${(userName != null )&&(mAccom.accomCeo == userName)}">
-                                                <div>
-                                                    <label for="sold">판매하기</label>
-                                                    <input id="sold" type="checkbox" onclick="changesoldOut(this)"
-                                                        th:data-sub-accom-Code="${sub.subAccomCode}" data-sold-out="N">
-                                                </div>
-                                            </th:block>
                                         </th:block>
-                                        <!-- 판매시작 추가 하기 -->
-                                        <th:block th:if="${sub.soldOut != 'Y'}">
-                                            판매중입니다.
-                                            <th:block th:if="${(userName != null )&&(mAccom.accomCeo == userName)}">
-                                                <div>
-                                                    <label for="sold">판매취소</label>
-                                                    <input id="sold" type="checkbox" onclick="changesoldOut(this)"
-                                                        th:data-sub-accom-Code="${sub.subAccomCode}" data-sold-out="Y">
-                                                </div>
-                                            </th:block>
-                                            <!-- 판매취소 추가 하기 -->
+                                        <th:block th:if="${sub.dayuseCan == 'N'}">
+                                            <div class="rentBox">
+                                                <div class="rent not">대실 불가</div>
+                                            </div>
                                         </th:block>
                                         <th:block th:if="${(userName != null )&&(mAccom.accomCeo == userName)}">
-                                            <input type="button" value="삭제하기"
-                                                th:data-sub-accom-Code="${sub.subAccomCode}"
-                                                onclick="subaccomdelete(this)">
+                                            <td>
+                                                <div class="updatePrice">
+                                                    <div class="rent">숙박</div>
+                                                    <input class="inputNum" type="text" name="reservationPrice"
+                                                        th:value="${sub.reservationPrice}">
+                                                    <input class="priceBtn" type="button" value="수정"
+                                                        onclick="changePrice(this)" data-price-name="reservationPrice"
+                                                        th:data-sub-accom-Code="${sub.subAccomCode}">
+                                                </div>
+                                                <div class="updatePrice" th:if="${sub.dayuseCan == 'Y'}">
+                                                    <div class="rent">대실</div>
+                                                    <input class="inputNum" type="text" name="dayusePrice"
+                                                        th:value="${sub.dayusePrice}">
+                                                    <input class="priceBtn" type="button" value="수정"
+                                                        onclick="changePrice(this)" data-price-name="dayusePrice"
+                                                        th:data-sub-accom-Code="${sub.subAccomCode}">
+                                                </div>
+                                            </td>
                                         </th:block>
-                                    </td>
+                                        <th:block th:if="${(sub.dayuseCan == 'Y')&&(mAccom.accomCeo != userName)}">
+                                            <div class="priceBox">
+                                                <div class="rent">대실</div>
+                                                <div class="price">
+                                                    [[${sub.dayusePrice}]]
+                                                </div>
+                                                <div class="won">원</div>
+                                            </div>
+                                        </th:block>
+                                        <th:block
+                                            th:if="${((userName != null )&&(mAccom.accomCeo != userName))||(userName == null )}">
+                                            <div class="priceBox">
+                                                <div class="rent">숙박</div>
+                                                <div class="price">
+                                                    [[${sub.reservationPrice}]]
+                                                </div>
+                                                <div class="won">원</div>
+                                            </div>
+                                        </th:block>
+                                        <th:block th:if="${sub.soldOut == 'N'}">
+                                            <div class="dayuseCan">예약가능</div>
+                                        </th:block>
+                                        <th:block th:if="${sub.soldOut == 'Y'}">
+                                            <div class="dayuseCan Not">마감</div>
+                                        </th:block>
+                                        <td>
+                                            <div class="deleteBox">
+                                                <th:block th:if="${sub.soldOut == 'Y'}">
+
+                                                    <th:block
+                                                        th:if="${(userName != null )&&(mAccom.accomCeo == userName)}">
+                                                        <div class="soldBox">
+                                                            <label for="sold">판매하기</label>
+                                                            <input id="sold" type="checkbox"
+                                                                onclick="changesoldOut(this)"
+                                                                th:data-sub-accom-Code="${sub.subAccomCode}"
+                                                                data-sold-out="N">
+                                                        </div>
+                                                    </th:block>
+                                                </th:block>
+                                                <!-- 판매시작 추가 하기 -->
+                                                <th:block th:if="${sub.soldOut != 'Y'}">
+                                                    <th:block
+                                                        th:if="${(userName != null )&&(mAccom.accomCeo == userName)}">
+                                                        <div>
+                                                            <label class="sold" for="sold">판매취소</label>
+                                                            <input id="sold" type="checkbox"
+                                                                onclick="changesoldOut(this)"
+                                                                th:data-sub-accom-Code="${sub.subAccomCode}"
+                                                                data-sold-out="Y">
+                                                        </div>
+                                                    </th:block>
+                                                    <!-- 판매취소 추가 하기 -->
+                                                </th:block>
+                                                <th:block th:if="${(userName != null )&&(mAccom.accomCeo == userName)}">
+                                                    <input class="dayuseCan" type="button" value="삭제하기"
+                                                        th:data-sub-accom-Code="${sub.subAccomCode}"
+                                                        onclick="subaccomdelete(this)">
+                                                </th:block>
+                                            </div>
+                                        </td>
+                                    </div>
                                 </th:block>
-                            </tr>
-                        </table>
+                            </div>
+                            <th:block th:if="${(userName != null )&&(mAccom.accomCeo == userName)}">
+
+                                <a th:href="@{/accom/subAccomAddForm(accomCode=${mAccom.accomCode})}">
+                                    <div class="addSubAccomBox">
+                                        <div class="plusBox">
+                                            <div class="plus">
+                                                <span>+</span>
+                                            </div>
+                                            <div class="plusText accom">
+                                                객실 추가
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            </th:block>
+                        </div>
                     </div>
                 </div>
-
             </div>
+
             <script type="text/javascript"
                 src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	1faecd944d1bb1ff9e6939d4b20a8146&libraries=services">
                 </script>
