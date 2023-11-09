@@ -43,9 +43,11 @@
                             </li>
                         </ul>
                         <!-- 내용이 없는경우! 디자인 부탁드려요 우량씨 ^^ -->
-                        <div class="" th:if="${#lists.size(qnaList) == 0}">
-                            내용이 없습니다!
-                        </div>
+                        <ul class="contentBox"  th:if="${#lists.size(qnaList) == 0}">
+                            <div class="qna_d123">
+                                내용이없습니다
+                            </div>
+                        </ul>
                     </div>
                 </div>
                 <div class="btn_group">
