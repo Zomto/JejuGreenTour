@@ -315,6 +315,7 @@
 }
 
 .s2_ann_title {
+    color: #666;
     overflow: hidden;
     text-overflow: ellipsis;
 }

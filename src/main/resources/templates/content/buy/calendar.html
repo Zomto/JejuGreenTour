@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    
     <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/buy/calendar.css">
         <style>
             .fc-daygrid-day {
                 cursor: pointer;
@@ -19,58 +19,72 @@
             .fc-day-sat {
                 color: blue;
             }
-        </style></th:block>
+        </style>
+    </th:block>
 </head>
 
 <body>
     <th:block layout:fragment="content">
-        <div id="calendar"></div>
-        <form action="/buy/buyBasket" method="post" id="calendarform">
+        <div class="wrap">
+            <div class="wrapInner">
+                <div class="title">예약하기</div>
+                <div id="calendar"></div>
+                <form action="/buy/buyBasket" method="post" id="calendarform">
 
-            <th:block th:if="${Reservationlist != null && Reservation.stateVO.refund == 'N'}" th:each="Reservation, state : ${Reservationlist}">
-                <input type="hidden" class="start" th:value="${Reservation.stayStartDate}">
-                <input type="hidden" class="end" th:value="${Reservation.stayEndDate}">
-                <input type="hidden" class="dayuse" value="Y"><!--예약 대실 유무-->
-                <th:block th:if="${state.index == 0}">
-                    <input type="hidden" class="renttime" value="5"><!-- 대실  시간 -->
-                </th:block>
-            </th:block>
-            <!-- 필수 -->
+                    <th:block th:if="${Reservationlist != null && Reservation.stateVO.refund == 'N'}"
+                        th:each="Reservation, state : ${Reservationlist}">
+                        <input type="hidden" class="start" th:value="${Reservation.stayStartDate}">
+                        <input type="hidden" class="end" th:value="${Reservation.stayEndDate}">
+                        <input type="hidden" class="dayuse" value="Y"><!--예약 대실 유무-->
+                        <th:block th:if="${state.index == 0}">
+                            <input type="hidden" class="renttime" value="5"><!-- 대실  시간 -->
+                        </th:block>
+                    </th:block>
+                    <!-- 필수 -->
 
-            <th:block>
-                <input type="hidden" class="checkin" th:value="${SampleSubVO.accomStartTime}"> <!-- 방의 체크인 시간 -->
-                <input type="hidden" class="checkout" th:value="${SampleSubVO.accomEndTime}"> <!-- 방의 체크아웃 시간 -->
-                <input type="hidden" class="renttime" th:value="${SampleSubVO.rentTime}">
-                <input type="hidden" class="candayuse" th:value="${SampleSubVO.dayuseCan}">
-                <input type="hidden" class="subAccomName" th:value="${SampleSubVO.subAccomName}">
-                <input type="hidden" class="accomPrice" th:value="${SampleSubVO.accomPrice}">
-                <input type="hidden" class="dayusePrice" th:value="${SampleSubVO.dayusePrice}">
+                    <th:block>
+                        <input type="hidden" class="checkin" th:value="${SampleSubVO.accomStartTime}">
+                        <!-- 방의 체크인 시간 -->
+                        <input type="hidden" class="checkout" th:value="${SampleSubVO.accomEndTime}">
+                        <!-- 방의 체크아웃 시간 -->
+                        <input type="hidden" class="renttime" th:value="${SampleSubVO.rentTime}">
+                        <input type="hidden" class="candayuse" th:value="${SampleSubVO.dayuseCan}">
+                        <input type="hidden" class="subAccomName" th:value="${SampleSubVO.subAccomName}">
+                        <input type="hidden" class="accomPrice" th:value="${SampleSubVO.accomPrice}">
+                        <input type="hidden" class="dayusePrice" th:value="${SampleSubVO.dayusePrice}">
 
 
-            </th:block>
+                    </th:block>
 
-            <div>
-                <input type="hidden" name="basketCode" id="basketCode">
-                <input type="hidden" name="subAccomCode" th:value="${SampleSubVO.subAccomCode}">
-                <input type="text" id="setStartDay" name="stayStartDate" required readonly>
-                <input type="text" id="setEndDay" name="stayEndDate" required readonly>
-                <input type="number" id="stayDay" name="stayTerm" readonly>
-                <input type="text" id="setdayuse" name="dayuse" readonly>
-                <input type="hidden" id="memberId" th:if="${userName != null}"
-                    th:value="${userName}">
+                    <div class="hiddenDiv">
+                        <input type="hidden" name="basketCode" id="basketCode">
+                        <input type="hidden" name="subAccomCode" th:value="${SampleSubVO.subAccomCode}">
+                        <input type="text" id="setStartDay" name="stayStartDate" required readonly>
+                        <input type="text" id="setEndDay" name="stayEndDate" required readonly>
+                        <input type="number" id="stayDay" name="stayTerm" readonly>
+                        <input type="text" id="setdayuse" name="dayuse" readonly>
+                        <input type="hidden" id="memberId" th:if="${userName != null}" th:value="${userName}">
+                    </div>
+                    <div>
+                        <div class="btnBox">
+                            <div class="selectBtns">
+                                <input class="selectBtn on" type="button" value="숙박" onclick="turnreserv(this)">
+                                <input class="selectBtn" th:if="${SampleSubVO.dayuseCan == 'Y'}" type="button"
+                                    value="대실" onclick="turndayuse(this)"><!-- <th:block th:if>로 유무 확인-->
+
+                            </div>
+                            <input class="submitBtn" type="button" value="추가" onclick="checksubmit()">
+                        </div>
+                    </div>
+
+                </form>
             </div>
-            <div>
-                <input th:if="${SampleSubVO.dayuseCan == 'Y'}" type="button" value="대실" onclick="turndayuse(this)"><!-- <th:block th:if>로 유무 확인-->
-                <input type="button" value="숙박" onclick="turnreserv(this)">
-                <input type="button" value="추가" onclick="checksubmit()">
-            </div>
-
-        </form>
+        </div>
     </th:block>
 </body>
 <th:block layout:fragment="content_js">
-        <script src='/dist/index.global.js'></script>
-        <script src="/js/buy/calendar.js"></script>
+    <script src='/dist/index.global.js'></script>
+    <script src="/js/buy/calendar.js"></script>
 </th:block>
 
 </html>

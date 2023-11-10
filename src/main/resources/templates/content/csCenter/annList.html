@@ -19,9 +19,12 @@
                     <h3 class="title">공지사항</h3>
                     <div class="search_group">
                         <form action="/cs/annListForm" method="post" id="searchForm">
-                            <div class="search_input"><input type="text" placeholder="검색어를 입력해 주세요." name="searchData" th:value="${searchVO.searchData}"></div>
-                            <input type="hidden" name="annCate" id="annCate11" value="">
-                            <input class="search_btn" type="submit" value="검색" ></input>
+                            <div class="searchBox">
+                                <div class="search_input"><input type="text" placeholder="검색어를 입력해 주세요."
+                                        name="searchData" th:value="${searchVO.searchData}"></div>
+                                <input type="hidden" name="annCate" id="annCate11" value="">
+                                <input class="search_btn" type="submit" value="검색"></input>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -49,7 +52,8 @@
 
                         <div class="tbody">
                             <div class="tr" width="100%" th:each="ann, state : ${annList}">
-                                <div class="value num">[[${searchVO.totalDataCnt - state.index - (searchVO.displayDataCnt *
+                                <div class="value num">[[${searchVO.totalDataCnt - state.index -
+                                    (searchVO.displayDataCnt *
                                     (searchVO.nowPage - 1))}]]
                                 </div>
                                 <div class="value cate">[[${ann.annCateList.cateName}]]</div>

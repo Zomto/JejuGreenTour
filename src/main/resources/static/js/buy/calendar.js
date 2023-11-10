@@ -635,3 +635,7 @@ function waitsubmit(){
     }
 
 }
+$('.selectBtn').click(function(){
+    $('.selectBtn').removeClass('on')
+    $(this).addClass('on')
+})
