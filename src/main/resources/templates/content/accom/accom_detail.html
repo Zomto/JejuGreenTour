@@ -75,10 +75,19 @@
                                         </svg>
                                     </div>
                                     <div class="reviewSpan" >
+                                        <th:block th:if="${ score == null}">
+
+                                        <span class="span">0</span>
+                                        <span class="span">/</span>
+                                        <span class="span">5</span>
+                                        <span class="span">( 0 )</span>
+                                        </th:block>
+                                        <th:block th:if="${ score != null}">
                                         <span class="span">[[${score.avg}]]</span>
                                         <span class="span">/</span>
                                         <span class="span">5</span>
                                         <span class="span">( [[${score.count}]] )</span>
+                                        </th:block>
                                     </div>
                                 </div>
                             </div>
