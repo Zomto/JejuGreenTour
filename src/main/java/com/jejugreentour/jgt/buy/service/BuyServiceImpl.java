@@ -149,7 +149,12 @@ public class BuyServiceImpl implements BuyService{
     }
 
     @Override
-    public void insertPlan(List<PlanVO> list) {
-         sqlSession.insert("buyMapper.list",list);
+    public void insertPlan(ReservationVO reservationVO) {
+         sqlSession.insert("buyMapper.insertPlan",reservationVO);
+    }
+
+    @Override
+    public List<PlanVO> selectPlan(String reservationCode) {
+        return sqlSession.selectList("buyMapper.selectPlan",reservationCode);
     }
 }

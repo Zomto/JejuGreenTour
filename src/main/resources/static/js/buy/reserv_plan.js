@@ -243,27 +243,29 @@ function aaaaa() {
     for (let i = 0; i < ((new Date(cantend.value)).getTime() - (new Date(cantstr.value)).getTime()) / (1000 * 60 * 60 * 24) + 1; i++) {
         allplan[i] = {
             planIdx: i,
-            breakfastName: null,
-            breakfastAddr: null,
-            breakfastTime: null,
-            pointoneName: null,
-            pointoneAddr: null,
-            pointoneTime: null,
-            lunchName: null,
-            lunchAddr: null,
-            lunchTime: null,
-            pointtwoName: null,
-            pointtwoAddr: null,
-            pointtwoTime: null,
-            dinnerName: null,
-            dinnerAddr: null,
-            dinnerTime: null,
+            reservationCode: 87731809,
+            breakfastName: " ",
+            breakfastAddr: " ",
+            breakfastTime:" ",
+            pointoneName:" ",
+            pointoneAddr: " ",
+            pointoneTime:" ",
+            lunchName: " ",
+            lunchAddr:" ",
+            lunchTime: " ",
+            pointtwoName: " ",
+            pointtwoAddr: " ",
+            pointtwoTime: " ",
+            dinnerName:" ",
+            dinnerAddr:" ",
+            dinnerTime: " ",
 
         }
     }
     events.forEach(element => {
         let index = ((new Date(element.startday)).getTime() - (new Date(cantstr.value)).getTime()) / (1000 * 60 * 60 * 24);
         allplan[index].planDate = element.startday;
+
         switch (element.constraint) {
             case 'Breakfast':
                 console.log(allplan)
@@ -315,7 +317,8 @@ function aaaaa() {
         })
         //fetch 통신 후 실행 영역
         .then((data) => {//data -> controller에서 리턴되는 데이터!
-
+            alert(data);
+            location.href=""
         })
         //fetch 통신 실패 시 실행 영역
         .catch(err => {

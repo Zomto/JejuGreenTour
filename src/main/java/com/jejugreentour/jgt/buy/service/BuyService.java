@@ -75,7 +75,9 @@ public interface BuyService {
     public int deleteAdminReview(ReviewAdminVO reviewAdminVO);
 
     //플랜 추가
-    public void  insertPlan(List<PlanVO> list);
+    public void  insertPlan(ReservationVO reservationVO);
+
+    public List<PlanVO> selectPlan(String reservationCode);
 
 
 
