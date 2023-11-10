@@ -30,9 +30,9 @@
                             </div>
                             <div class="inputBox">
                                 <div class="label">문의 사진</div>
-                                <div class="imgBox">
+                                <div class="imgLookBox">
                                     <div class="inqImgBlock" th:each="inqImg : ${inqImgList}">
-                                        <img th:src="${'/img/cs/'+ inqImg.attachedFileName}" alt="">
+                                        <img class="imgSlideList" th:src="${'/img/cs/'+ inqImg.attachedFileName}" alt="">
                                     </div>
                                 </div>
                             </div>
