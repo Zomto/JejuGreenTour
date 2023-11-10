@@ -162,4 +162,13 @@ public class BuyServiceImpl implements BuyService{
     public ScoreVO selectscore(String accomCode) {
         return sqlSession.selectOne("buyMapper.selectscore",accomCode);
     }
+
+    @Override
+    public List<ReservationVO> selectPlanList(String memberId) {
+        List<ReservationVO> list=sqlSession.selectList("buyMapper.selectMemberReservationList",memberId);
+        list.forEach(reservationVO -> {
+            reservationVO.setPlanList(sqlSession.selectList("buyMapper.selectPlan",reservationVO.getReservationCode()));
+        });
+        return list;
+    }
 }

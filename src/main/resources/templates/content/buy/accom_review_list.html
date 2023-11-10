@@ -88,7 +88,7 @@
         <div>
             <div class="w_in">
                 <div class="main">
-                    <h3 class="m1_title">예약내역</h3>
+                    <h3 class="m1_title">[[${accom.accomName}]] : 댓글</h3>
                     <div class="tbl">
                         <table class="board_type">
                             <colgroup>
@@ -104,7 +104,8 @@
                                 <th>작성자</th>
                                 <th>작성일자</th>
                                 <th>숙박업소명</th>
-                                <th>내용</th>
+                                <th th:if="${userName == null || accom.ceoName != userName }" style="border-radius: 0 15px 0 0;">내용</th>
+                                <th th:if="${userName != null && accom.ceoName == userName }" >내용</th>
                                 <th th:if="${userName != null && accom.ceoName == userName }" style="border-radius: 0 15px 0 0;">답변달기</th>
                             </thead>
 
