@@ -36,6 +36,8 @@
         <result column="DAY_USE" property="dayuse"/>
         <association property="stateVO" resultMap="reservationState"/>
         <association property="subAccom" resultMap="subAccom"/>
+        <collection property="planList" resultMap="plan"/>
+
     </resultMap>
 
     <resultMap id="reservationState" type="com.jejugreentour.jgt.buy.vo.ReservationStateVO">
@@ -461,7 +463,7 @@
 <!--        )-->
 <!--    </insert>-->
 
-    <insert id="insertPlan" parameterType="java.util.List">
+    <insert id="insertPlan">
         INSERT INTO BUY_DETAIL (STAY_PLAN_CODE
         , RESERVATION_CODE
         , PLAN_DATE
@@ -480,7 +482,7 @@
         , POINT_TWO_NAME
         , POINT_TWO_ADDR
         , POINT_TWO_TIME)
-        <foreach collection="list" item="item" separator="UNION ALL" index="idx">
+        <foreach collection="planList" item="item" separator="UNION ALL" index="idx">
             SELECT #{item.reservationCode}||'/'||#{item.planIdx}
             #{item.reservationCode}
             #{item.plan_date}
