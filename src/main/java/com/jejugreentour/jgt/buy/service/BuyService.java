@@ -77,6 +77,8 @@ public interface BuyService {
     //플랜 추가
     public void  insertPlan(ReservationVO reservationVO);
 
+    public List<PlanVO> selectPlan(String reservationCode);
+
 
 
 
