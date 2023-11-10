@@ -147,4 +147,9 @@ public class BuyServiceImpl implements BuyService{
     public int deleteAdminReview(ReviewAdminVO reviewAdminVO) {
         return sqlSession.delete("buyMapper.deleteAdminReview",reviewAdminVO);
     }
+
+    @Override
+    public void insertPlan(List<PlanVO> list) {
+         sqlSession.insert("buyMapper.list",list);
+    }
 }

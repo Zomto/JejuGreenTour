@@ -303,6 +303,7 @@ public class BuyController {
     @PostMapping("insertPlan")
     public  String insertPlan(@RequestBody List<PlanVO> planList){
         System.out.println(planList);
+        buyService.insertPlan(planList);
         return "redirect:/";
     }
 

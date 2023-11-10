@@ -23,6 +23,4 @@ public class PlanVO {
     private String pointtwoName;
     private String pointtwoAddr;
     private String pointtwoTime;
-
-
 }

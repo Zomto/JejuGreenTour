@@ -419,5 +419,89 @@
         DELETE FROM REVIEW_IMG
         WHERE  REVIEW_CODE= #{reviewCode}
     </delete>
+
+<!--    <insert id="insertPlan">-->
+<!--        INSERT INTO STAY_PLAN(-->
+<!--        STAY_PLAN_CODE-->
+<!--        , RESERVATION_CODE-->
+<!--        , PLAN_DATE-->
+<!--        , BREAKFAST_NAME-->
+<!--        , BREAKFAST_ADDR-->
+<!--        , BREAKFAST_TIME-->
+<!--        , LUNCH_NAME-->
+<!--        , LUNCH_ADDR-->
+<!--        , LUNCH_TIME-->
+<!--        , DINNER_NAME-->
+<!--        , DINNER_ADDR-->
+<!--        , DINNER_TIME-->
+<!--        , POINT_ONE_NAME-->
+<!--        , POINT_ONE_ADDR-->
+<!--        , POINT_ONE_TIME-->
+<!--        , POINT_TWO_NAME-->
+<!--        , POINT_TWO_ADDR-->
+<!--        , POINT_TWO_TIME)-->
+<!--        VALUES( #{reservationCode}||'/'||#{planIdx}-->
+<!--        #{reservationCode}-->
+<!--        #{plan_date}-->
+<!--        #{breakfastName}-->
+<!--        #{breakfastAddr}-->
+<!--        #{breakfastTime}-->
+<!--        #{lunchName}-->
+<!--        #{lunchAddr}-->
+<!--        #{lunchTime}-->
+<!--        #{dinnerName}-->
+<!--        #{dinnerAddr}-->
+<!--        #{dinnerTime}-->
+<!--        #{pointoneName}-->
+<!--        #{pointoneAddr}-->
+<!--        #{pointoneTime}-->
+<!--        #{pointtwoName}-->
+<!--        #{pointtwoAddr}-->
+<!--        #{pointtwoTime}-->
+<!--        )-->
+<!--    </insert>-->
+
+    <insert id="insertPlan" parameterType="java.util.List">
+        INSERT INTO BUY_DETAIL (STAY_PLAN_CODE
+        , RESERVATION_CODE
+        , PLAN_DATE
+        , BREAKFAST_NAME
+        , BREAKFAST_ADDR
+        , BREAKFAST_TIME
+        , LUNCH_NAME
+        , LUNCH_ADDR
+        , LUNCH_TIME
+        , DINNER_NAME
+        , DINNER_ADDR
+        , DINNER_TIME
+        , POINT_ONE_NAME
+        , POINT_ONE_ADDR
+        , POINT_ONE_TIME
+        , POINT_TWO_NAME
+        , POINT_TWO_ADDR
+        , POINT_TWO_TIME)
+        <foreach collection="list" item="item" separator="UNION ALL" index="idx">
+            SELECT #{item.reservationCode}||'/'||#{item.planIdx}
+            #{item.reservationCode}
+            #{item.plan_date}
+            #{item.breakfastName}
+            #{item.breakfastAddr}
+            #{item.breakfastTime}
+            #{item.lunchName}
+            #{item.lunchAddr}
+            #{item.lunchTime}
+            #{item.dinnerName}
+            #{item.dinnerAddr}
+            #{item.dinnerTime}
+            #{item.pointoneName}
+            #{item.pointoneAddr}
+            #{item.pointoneTime}
+            #{item.pointtwoName}
+            #{item.pointtwoAddr}
+            #{item.pointtwoTime}
+            FROM DUAL
+        </foreach>
+    </insert>
+
 </mapper>
     
