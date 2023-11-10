@@ -95,5 +95,8 @@ public interface CsService {
 
     public String nextResCode();
 
+    // 답변 사진 조회
+    public List<ResImgVO> resImgList(String resCode);
+
 
 }

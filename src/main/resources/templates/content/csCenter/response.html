@@ -19,30 +19,7 @@
                 <div class="w_in">
                     <div class="title">문의 답변하기</div>
                     <div>
-                        <!-- <div class="textBlock">
-                            <div class="textBox">
-                                <div class="wait">잠깐!</div>
-                                <p class="text">icon 문의하시기 전 확인해 주세요.</p>
-                            </div>
-                            <p class="text">고객님의 소중한 의견을 빠르고 정확하게 해결하기 위해 최선을 다하겠습니다.</p>
-                            <div class="textBox">
-                                <div class="text">문의에 대한 답변은</div>
-                                <a class="textA" href>[마이메뉴 > 마이페이지 > 문의내역]</a>
-                                <div class="text">에서 확인할 수 있습니다.</div>
-                            </div>
-                        </div> -->
-
                         <div class="box">
-                            <!-- <div class="inputBox">
-                                <div class="label">문의유형</div>
-                                <select class="cateCode" name="cateCode" id="">
-                                    <option value="CATE_001">숙박</option>
-                                    <option value="CATE_002">결제</option>
-                                    <option value="CATE_003">혜택</option>
-                                    <option value="CATE_004">기타</option>
-                                    <option value="CATE_005">이벤트</option>
-                                </select>
-                            </div> -->
                             <div class="inputBox">
                                 <div class="label">문의 날짜</div>
                                 <div class="memeberName">[[${inqDetail.inqDate}]]</div>
@@ -53,8 +30,10 @@
                             </div>
                             <div class="inputBox">
                                 <div class="label">문의 사진</div>
-                                <div class="inqImgBlock" th:each="inqImg : ${inqImgList}">
-                                    <img th:src="${'/img/cs/'+ inqImg.attachedFileName}" alt="">
+                                <div class="imgBox">
+                                    <div class="inqImgBlock" th:each="inqImg : ${inqImgList}">
+                                        <img th:src="${'/img/cs/'+ inqImg.attachedFileName}" alt="">
+                                    </div>
                                 </div>
                             </div>
                             <div class="inputBox">

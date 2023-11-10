@@ -63,14 +63,14 @@
                             <div class="contentText" th:if="${inqDetail.isResponse == 'N'}">답변을 기다려 주세요.</div>
                             <div class="imgBox">
                                 <div class="inqImgBlock" th:if="${inqDetail.isResponse == 'Y'}" th:each="resImg : ${resImgList}" >
-                                    <img th:src="${'/img/cs/'+ resImg.attachedFileName}" alt="">
+                                    <img th:src="${'/img/response/'+ resImg.attachedFileName}" alt="">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="btnBox">
-                    <input class="subBtn" type="button" value="답변하기" th:onclick="|location.href='@{/cs/responseForm(inqCode=${inqDetail.inqCode})}'|">
+                    <input class="subBtn" type="button" th:if="${inqDetail.isResponse == 'N'}" value="답변하기" th:onclick="|location.href='@{/cs/responseForm(inqCode=${inqDetail.inqCode})}'|">
                     <input class="subBtn" type="button" value="삭제" th:onclick="|location.href='@{/cs/deleteInq(inqCode=${inqDetail.inqCode})}'|">
                     <input class="subBtn" type="button" value="목록" onclick="location.href='/cs/inquireListForm';">
                 </div>
