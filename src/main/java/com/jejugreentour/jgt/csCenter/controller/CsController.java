@@ -174,12 +174,17 @@ public class CsController {
     // 문의 하기 세부 페이지
     @GetMapping("/inqDetailForm")
     public String inqDetailForm(String inqCode, Model model, String resCode){
-        model.addAttribute("inqDetail", csService.inqDetail(inqCode));
+        InquireVO inqVO = csService.inqDetail(inqCode);
+        model.addAttribute("inqDetail", inqVO);
         model.addAttribute("inqImgList", csService.inqImgList(inqCode));
 
-        ResponseVO resVO = csService.selectResponse(inqCode);
-        model.addAttribute("response", resVO);
-        model.addAttribute("resImgList", csService.resImgList(resVO.getResCode()));
+        if (inqVO.getIsResponse().equals("Y")){
+            ResponseVO resVO = csService.selectResponse(inqCode);
+            model.addAttribute("response", resVO);
+            model.addAttribute("resImgList", csService.resImgList(resVO.getResCode()));
+        }
+
+
         return "/content/csCenter/inqDetail";
     }
 

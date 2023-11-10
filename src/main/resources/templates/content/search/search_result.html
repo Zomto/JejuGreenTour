@@ -13,9 +13,11 @@
 <body>
 <th:block layout:fragment="content">
     <div class="search">
+
         <div class="s_in">
-            <div class="sMainAcc">
-                <h3>메인</h3>
+            <div id="title">검색결과</div>
+            <div class="sBox">
+                <div class="h3">메인</div>
                 <div class="sMainAcc_in">
                     <div th:if="${variable}">
 
@@ -23,15 +25,15 @@
                 </div>
             </div>
             <div class="sSubAcc">
-                <h3>서브</h3>
+                <div class="h3">서브</div>
                 <div class="sSubAcc_in">
                     <div th:if="${variable}">
 
                     </div>
                 </div>
             </div>
-            <div class="sAnn">
-                <h3>공지</h3>
+            <div class="sBox">
+                <div class="h3">공지</div>
                 <div class="sAnn_in">
                     <div>
                         <div class="table">
@@ -42,15 +44,15 @@
                             <div class="tbody">
                                 <div class="tr" width="100%" th:each="searchAnn, state : ${searchAnnList}">
                                     <div class="value num">[[${searchAnn.annCateList.cateName}]]</div>
-                                    <div class="valuetitle">[[${searchAnn.annTitle}]]</div>
+                                    <div class="value title">[[${searchAnn.annTitle}]]</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="sQna">
-                <h3>QNA</h3>
+            <div class="sBox">
+                <div class="h3">QNA</div>
                 <div class="sQna_in">
                     <div>
                         <ul class="contentBox">
