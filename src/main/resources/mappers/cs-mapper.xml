@@ -497,6 +497,13 @@
         WHERE INQ_CODE = #{inqCode}
     </select>
 
+    <select id="resImgList" resultMap="resImg">
+        SELECT *
+        FROM RES_IMG
+        WHERE RES_CODE = #{resCode}
+    </select>
+
+
     <!--  답변 내용 추가  -->
     <insert id="insertResponse">
         INSERT INTO INQ_RESPONSE(
@@ -528,7 +535,6 @@
             FROM DUAL
         </foreach>
     </insert>
-
 
     <!--  답변하기 추가  -->
     <!-- 아이템 코드 호출 -->

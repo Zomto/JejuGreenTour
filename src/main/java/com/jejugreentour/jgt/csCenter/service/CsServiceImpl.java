@@ -179,5 +179,10 @@ public class CsServiceImpl implements CsService{
         return sqlSession.selectOne("csMapper.nextResCode");
     }
 
+    @Override
+    public List<ResImgVO> resImgList(String resCode) {
+        return sqlSession.selectList("csMapper.resImgList", resCode);
+    }
+
 
 }
