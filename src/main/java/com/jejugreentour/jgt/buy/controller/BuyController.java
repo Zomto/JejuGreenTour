@@ -253,11 +253,8 @@ public class BuyController {
         if(authentication !=null){
         User user = (User)authentication.getPrincipal();
         model.addAttribute("userName" ,user.getUsername());
-        if (!user.getUsername().equals(buyService.selectAccom(subAccomVO.getAccomCode()).getCeoName())){
-            System.out.println(3233);
-            return"redirect:/";
         }
-        }
+        model.addAttribute("accom" ,buyService.selectAccom(subAccomVO.getAccomCode()));
         return"/content/buy/accom_review_list";
     }
 

@@ -97,7 +97,7 @@
                                 <col width="20%">
                                 <col width="20%">
                                 <col width="*">
-                                <col width="10%">
+                                <col  th:if="${userName != null && accom.ceoName != null } "  width="10%">
                             </colgroup>
                             <thead>
                                 <th style="border-radius: 15px 0 0 0;">평점</th>
@@ -105,7 +105,7 @@
                                 <th>작성일자</th>
                                 <th>숙박업소명</th>
                                 <th>내용</th>
-                                <th style="border-radius: 0 15px 0 0;">답변달기</th>
+                                <th th:if="${userName != null}" style="border-radius: 0 15px 0 0;">답변달기</th>
                             </thead>
 
                             <tr th:if="${ #lists.size(myReviewList) == 0}">
@@ -133,11 +133,11 @@
                                 <td>[[${review.sampleACCVO.accomName}]]</td>
                                 <td style="text-overflow:ellipsis; overflow: hidden; white-space: nowrap;">
                                     [[${review.content}]]</td>
-                                <td><input type="button" value="답변" onclick="reply(this)"
+                                <td  th:if="${userName != null}" ><input type="button" value="답변" onclick="reply(this)"
                                         th:data-can-reply="${review.reviewAdminVO.memberId == null}"
                                         th:data-review-code="${review.reviewCode}"
                                         th:data-written-content="${review.reviewAdminVO.content}+' '"></td>
-                            </tr>
+                                </tr>
 
 
                         </table>

@@ -10,7 +10,7 @@
     <select id="selectscore" resultMap="score">
         SELECT AVG(SCORE) AS AVG, COUNT(SCORE) AS COUNT
         FROM REVIEW
-        WHERE = #{accomCode}
+        WHERE ACCOM_CODE = #{accomCode}
         GROUP BY ACCOM_CODE
     </select>
 
@@ -65,7 +65,7 @@
     <resultMap id="Accom" type="com.jejugreentour.jgt.buy.vo.SampleACCVO">
     <id column="ACCOM_CODE" property="accomCode" />
     <result column="ACCOM_NAME" property="accomName"/>
-        <result column="ACCOM_CEO" property="ceoName"/>
+    <result column="ACCOM_CEO" property="ceoName"/>
     </resultMap>
 
     <resultMap id="subAccom" type="com.jejugreentour.jgt.buy.vo.SampleSubVO">
