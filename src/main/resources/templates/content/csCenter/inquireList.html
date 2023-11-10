@@ -38,9 +38,6 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <input type="button" onclick="location.href='/cs/inquireForm';" value="문의하기">
-            </div>
             <div class="pageBtn" th:if="${#lists.size(inqList) != 0}">
                 <a class="page_prevBtn" th:href="@{/cs/inquireListForm(nowPage=${inquireVO.beginPage - 1})}"><span th:if="${inquireVO.prev}">이전</span></a>
 
@@ -49,6 +46,9 @@
                 </th:block>
 
                 <a class="page_nextBtn" th:href="@{/cs/inquireListForm(nowPage=${inquireVO.endPage + 1})}"><span th:if="${inquireVO.next}">다음</span></a>
+            </div>
+            <div class="btnGroup">
+                <input class="submitBtn" type="button" onclick="location.href='/cs/inquireForm';" value="문의하기">
             </div>
         </div>
     </th:block>
