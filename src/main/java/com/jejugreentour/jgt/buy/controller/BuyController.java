@@ -317,6 +317,18 @@ public class BuyController {
         }
 
     }
+    @GetMapping("/PlanList")
+    public String PlanList(Authentication authentication, Model model){
+        if(authentication !=null){
+            User user = (User)authentication.getPrincipal();
+           String memberId= user.getUsername();
+           List<ReservationVO> list=buyService.selectPlanList(memberId);
+            System.out.println(list);
+
+        }
+        return "content/member/myPage_plan";
+    }
+
 
     @GetMapping("/sample")
     public String sample(Model model, String accomCode){
@@ -329,6 +341,8 @@ public class BuyController {
 
         return"/content/buy/admin_calendar";
     }
+
+
 
 }
 

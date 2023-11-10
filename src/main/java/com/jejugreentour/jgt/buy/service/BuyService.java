@@ -81,6 +81,7 @@ public interface BuyService {
 
     public ScoreVO selectscore(String accomCode);
 
+    public List<ReservationVO> selectPlanList(String memberId);
 
 
     //결제 취소 admin 시점 user 시점 (환불금액 차이)
