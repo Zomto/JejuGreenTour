@@ -493,13 +493,17 @@
             , INQ_CODE
             , INQ_RESPONSE
             , TO_CHAR(RES_DATE,'YYYY-MM-DD') AS RES_DATE
-        FROM INQ_RESPONSE,
+        FROM INQ_RESPONSE
         WHERE INQ_CODE = #{inqCode}
     </select>
 
     <!--  답변 내용 추가  -->
     <insert id="insertResponse">
-        INSERT INTO IS_RESPONSE VALUES (
+        INSERT INTO INQ_RESPONSE(
+            RES_CODE
+            , INQ_CODE
+            , INQ_RESPONSE
+        ) VALUES (
             (SELECT 'RES_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(RES_CODE, 5))),0) + 1, 3, '0')FROM INQ_RESPONSE)
             , #{inqCode}
             , #{inqResponse}
@@ -524,6 +528,14 @@
             FROM DUAL
         </foreach>
     </insert>
+
+
+    <!--  답변하기 추가  -->
+    <!-- 아이템 코드 호출 -->
+    <select id="nextResCode" resultType="String">
+        SELECT 'RES_' ||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(RES_CODE, 5))),0) + 1, 3, '0')
+        FROM INQ_RESPONSE
+    </select>
 
 
 </mapper>

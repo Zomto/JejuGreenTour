@@ -6,6 +6,7 @@ import com.jejugreentour.jgt.csCenter.vo.*;
 import com.jejugreentour.jgt.search.service.SearchService;
 import com.jejugreentour.jgt.search.vo.SearchVO;
 import com.jejugreentour.jgt.util.UploadUtillCs;
+import com.jejugreentour.jgt.util.UploadUtillRes;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -175,7 +176,8 @@ public class CsController {
     public String inqDetailForm(String inqCode, Model model){
         model.addAttribute("inqDetail", csService.inqDetail(inqCode));
         model.addAttribute("inqImgList", csService.inqImgList(inqCode));
-
+        System.out.println(csService.selectResponse(inqCode));
+        model.addAttribute("response", csService.selectResponse(inqCode));
         return "/content/csCenter/inqDetail";
     }
 
@@ -211,11 +213,40 @@ public class CsController {
     }
 
     @GetMapping("/responseForm")
-    public String insertResponse(){
-
+    public String responseForm(Model model, String inqCode, InquireVO inquireVO){
+        // 문의 내용 출력용
+        model.addAttribute("inqDetail", csService.inqDetail(inqCode));
+        model.addAttribute("inqImgList", csService.inqImgList(inqCode));
+        System.out.println();
         return "content/csCenter/response";
     }
 
+    @PostMapping("/insertResponse")
+    public String insertResponse(ResponseVO responseVO, MultipartFile[] resImg, String inqCode){
+        System.out.println(responseVO);
+        //--- 상품 이미지 등록 ---//
+        //0. 다음에 들어가야 할 ITEM_CODE를 조회
+        String resCode = csService.nextResCode();
+
+        //2. 이미지 정보 하나가 들어갈 수 있는 통!
+
+        //첨부파일 기능 다중
+        List<ResImgVO> imgList = UploadUtillRes.multiFileUpload(resImg);
+
+
+        for(ResImgVO resImgVO : imgList){
+            resImgVO.setResCode(resCode);
+        }
+
+        responseVO.setResImgList(imgList);
+
+        //상품 등록  + 이미지 등록 쿼리
+        responseVO.setResCode(resCode);
+        csService.insertResponse(responseVO);
+        csService.updateIsResponse(inqCode);
+
+        return "redirect:/cs/inqDetailForm?inqCode=" + responseVO.getInqCode();
+    }
 
 
 }
