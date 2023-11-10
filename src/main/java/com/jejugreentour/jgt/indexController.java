@@ -70,7 +70,8 @@ public class indexController {
             int cnt = 0;
 
             for(SubAccomVO e : vo){
-                if(e.getSubAccomCate().contains(",")||Arrays.asList(e.getSubAccomCate().split(",")).contains(theme)){
+                System.out.println(e.getSubAccomCate());
+                if((!(e.getSubAccomCate().contains(",")) && e.getSubAccomCate().contains(theme)) || Arrays.asList(e.getSubAccomCate().split(",")).contains(theme)){
                     aList.add(e);
                     cnt++;
 

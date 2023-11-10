@@ -3,6 +3,17 @@
 
 <mapper namespace="buyMapper" >
 
+    <resultMap id="score" type="com.jejugreentour.jgt.buy.vo.ScoreVO">
+        <result column="AVG" property="avg" />
+        <result column="COUNT" property="count" />
+    </resultMap>
+    <select id="selectscore" resultMap="score">
+        SELECT AVG(SCORE) AS AVG, COUNT(SCORE) AS COUNT
+        FROM REVIEW
+        WHERE = #{accomCode}
+        GROUP BY ACCOM_CODE
+    </select>
+
     <resultMap id="plan" type="com.jejugreentour.jgt.buy.vo.PlanVO">
         <id column="STAY_PLAN_CODE" property="stayPlanCode" />
         <result column="RESERVATION_CODE" property="reservationCode" />

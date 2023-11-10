@@ -79,6 +79,7 @@ public interface BuyService {
 
     public List<PlanVO> selectPlan(String reservationCode);
 
+    public ScoreVO selectscore(String accomCode);
 
 
 

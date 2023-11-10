@@ -66,52 +66,56 @@
             <form action="/buy/accomReservation" method="post">
                 <div class="buybasket_in">
 
-                    
+
                     <div class="textBox">
                         <div class="title" style="text-align: center;">숙박 상세 정보</div>
-                        <div class="lineBox">
-                            <div class="label">숙소명</div>
-                            <div class="text" id="hotelName">[[${AccomCode.accomName}]]</div>
-                        </div>
-                        <div class="lineBox">
-                            <div class="label">객실명</div>
-                            <div class="text" id="roomName">[[${subAccomCode.subAccomName}]]</div>
-                        </div>
-                        <div class="lineBox">
-                            <div class="label">숙박일</div>
-                            <div class="text" id="stayTerm">[[${basketAccomVO.stayTerm}]]</div>
-                            <div class="text">일</div>
-                        </div>
+                        <div class="innerBox">
+                            <div class="lineBox">
+                                <div class="label">숙소명</div>
+                                <div class="text" id="hotelName">[[${AccomCode.accomName}]]</div>
+                            </div>
+                            <div class="lineBox">
+                                <div class="label">객실명</div>
+                                <div class="text" id="roomName">[[${subAccomCode.subAccomName}]]</div>
+                            </div>
+                            <div class="lineBox">
+                                <div class="label">숙박일</div>
+                                <div class="text" id="stayTerm">[[${basketAccomVO.stayTerm}]]</div>
+                                <div class="won">일</div>
+                            </div>
 
 
-                        <div class="lineBox" th:if="${basketAccomVO.dayuse == 'N'}">
-                            <div class="label">숙박 가격</div> 
-                            <div class="text" id="stayPrice">[[${subAccomCode.accomPrice}]]</div>
+                            <div class="lineBox" th:if="${basketAccomVO.dayuse == 'N'}">
+                                <div class="label">결제 금액</div>
+                                <div class="text" id="stayPrice">[[${subAccomCode.accomPrice}]]</div>
+                                <div class="won">원</div>
+                            </div>
+                            <div class="lineBox" th:if="${basketAccomVO.dayuse == 'Y'}">
+                                <div class="label">결제 금액</div>
+                                <div class="text" id="stayPrice">[[${subAccomCode.dayusePrice}]]</div>
+                                <div class="won">원</div>
+                            </div>
+                            <div class="lineBox">
+                                <div class="label">결제자명</div>
+                                <div class="text" id="memberId">[[${basketAccomVO.memberId}]]</div>
+                            </div>
+                            <div class="lineBox">
+                                <div class="label">체크인</div>
+                                <div class="text" id="checkin">[[${basketAccomVO.stayStartDate}]]</div>
+                            </div>
+                            <div class="lineBox">
+                                <div class="label">체크아웃</div>
+                                <div class="text" id="checkout">[[${basketAccomVO.stayEndDate}]]</div>
+                            </div>
+                            <input type="hidden" name="dayuse" th:value="${basketAccomVO.dayuse}">
+                            <input type="hidden" id="subAccomCode" th:value="${basketAccomVO.subAccomCode}">
+                            <input type="hidden" class="basketCode" name="basketCode"
+                                th:value="${basketAccomVO.basketCode}">
+                            <input type="hidden" class="stayStartDate" name="stayStartDate"
+                                th:value="${basketAccomVO.stayStartDate}">
+                            <input type="hidden" class="stayEndDate" name="stayEndDate"
+                                th:value="${basketAccomVO.stayEndDate}">
                         </div>
-                        <div class="lineBox" th:if="${basketAccomVO.dayuse == 'N'}">
-                            <div class="label">숙박 가격</div> 
-                            <div class="text" id="stayPrice">[[${subAccomCode.dayusePrice}]]</div>
-                        </div>
-                        <div class="lineBox">
-                            <div class="label">결제자명</div>
-                            <div class="text" id="memberId">[[${basketAccomVO.memberId}]]</div>
-                        </div>
-                        <div class="lineBox">
-                            <div class="label">체크인</div>
-                            <div class="text" id="checkin">[[${basketAccomVO.stayStartDate}]]</div>
-                        </div>
-                        <div class="lineBox">
-                            <div class="label">체크아웃</div>
-                            <div class="text" id="checkout">[[${basketAccomVO.stayEndDate}]]</div>
-                        </div>
-                        <input type="hidden" name="dayuse" th:value="${basketAccomVO.dayuse}">
-                        <input type="hidden" id="subAccomCode" th:value="${basketAccomVO.subAccomCode}">
-                        <input type="hidden" class="basketCode" name="basketCode"
-                            th:value="${basketAccomVO.basketCode}">
-                        <input type="hidden" class="stayStartDate" name="stayStartDate"
-                            th:value="${basketAccomVO.stayStartDate}">
-                        <input type="hidden" class="stayEndDate" name="stayEndDate"
-                            th:value="${basketAccomVO.stayEndDate}">
                     </div>
                     <input class="buy_button" type="button" value="결제하기" onclick="reservationcheck()">
                     <input class="del_button" type="button" value="취소하기" onclick="cancelPayment()">

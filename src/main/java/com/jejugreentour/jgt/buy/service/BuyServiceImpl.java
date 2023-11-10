@@ -157,4 +157,9 @@ public class BuyServiceImpl implements BuyService{
     public List<PlanVO> selectPlan(String reservationCode) {
         return sqlSession.selectList("buyMapper.selectPlan",reservationCode);
     }
+
+    @Override
+    public ScoreVO selectscore(String accomCode) {
+        return sqlSession.selectOne("buyMapper.selectscore",accomCode);
+    }
 }
