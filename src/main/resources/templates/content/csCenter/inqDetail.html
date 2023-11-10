@@ -48,7 +48,7 @@
                     <div class="inputBox content">
                         <div class="label">문의내용</div>
                         <div class="input answer">
-                            <div class="contentText">글자내용</div>
+                            <div class="contentText">[[${inqDetail.content}]]</div>
                             <div class="imgBox">
                                 <div class="inqImgBlock" th:each="inqImg : ${inqImgList}">
                                     <img th:src="${'/img/cs/'+ inqImg.attachedFileName}" alt="">
@@ -59,10 +59,11 @@
                     <div class="inputBox answer">
                         <div class="label">답변내용</div>
                         <div class="input answer">
-                            <div class="contentText">글자내용</div>
+                            <div class="contentText" th:if="${inqDetail.isResponse == 'Y'}">[[${response.inqResponse}]]</div>
+                            <div class="contentText" th:if="${inqDetail.isResponse == 'N'}">답변을 기다려 주세요.</div>
                             <div class="imgBox">
-                                <div class="inqImgBlock" th:each="inqImg : ${inqImgList}">
-                                    <img th:src="${'/img/cs/'+ inqImg.attachedFileName}" alt="">
+                                <div class="inqImgBlock" th:if="${inqDetail.isResponse == 'Y'}" th:each="resImg : ${resImgList}" >
+                                    <img th:src="${'/img/cs/'+ resImg.attachedFileName}" alt="">
                                 </div>
                             </div>
                         </div>

@@ -7,7 +7,7 @@ public class PlanVO {
     private String planIdx;
     private String stayPlanCode;
     private String reservationCode;
-    private String plan_date;
+    private String planDate;
     private String breakfastName;
     private String breakfastAddr;
     private String breakfastTime;

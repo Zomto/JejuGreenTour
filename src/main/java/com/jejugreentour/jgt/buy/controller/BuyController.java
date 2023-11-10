@@ -59,11 +59,15 @@ public class BuyController {
             model.addAttribute("userName" ,user.getUsername());
             basketAccomVO.setMemberId( user.getUsername());
         }
-        System.out.println("ddddddddddddddddddddddddddddddddddddddddddd");
-        System.out.println(basketAccomVO.getBasketCode());
         if(basketAccomVO.getBasketCode().equals(buyService.selectNewbasketNum())){
             buyService.insertBasketAccom(basketAccomVO);
         }
+        String start =basketAccomVO.getStayStartDate().split("T")[0].split("-")[1]+"-"+basketAccomVO.getStayStartDate().split("T")[0].split("-")[2]
+                +basketAccomVO.getStayStartDate().split("T")[1].split(":")[0]+basketAccomVO.getStayStartDate().split("T")[1].split(":")[1];
+        String end =basketAccomVO.getStayEndDate().split("T")[0].split("-")[1]+"-"+basketAccomVO.getStayEndDate().split("T")[0].split("-")[2]
+                +basketAccomVO.getStayEndDate().split("T")[1].split(":")[0]+basketAccomVO.getStayEndDate().split("T")[1].split(":")[1];
+        model.addAttribute("start",start);
+        model.addAttribute("end",start);
 
         return "/content/buy/buy_basket";
     }
@@ -292,22 +296,29 @@ public class BuyController {
 
     @GetMapping("reservationPlan")
     public String reservationPlan(ReservationVO reservationVO ,Authentication authentication, Model model){
+
         if(authentication !=null){
             User user = (User)authentication.getPrincipal();
             model.addAttribute("userName" ,user.getUsername());
         }
+
+        reservationVO= buyService.selectReservationOne(reservationVO.getReservationCode());
+        model.addAttribute("reserv",reservationVO);
         return "/content/buy/reservation_plan";
     }
 
     @ResponseBody
     @PostMapping("insertPlan")
     public  String insertPlan(@RequestBody List<PlanVO> planList){
-        System.out.println(planList);
         ReservationVO reservationVO= new ReservationVO();
                 reservationVO.setPlanList(planList);
-        System.out.println(reservationVO);
-        buyService.insertPlan(reservationVO);
-        return "redirect:/";
+        if(buyService.selectPlan(planList.get(0).getReservationCode()).size() > 0){
+            return "플랜을 이미 작성 하셨습니다.";
+        }else {
+            buyService.insertPlan(reservationVO);
+            return "플랜이 정상적으로 등록되었습니다.";
+        }
+
     }
 
     @GetMapping("/sample")

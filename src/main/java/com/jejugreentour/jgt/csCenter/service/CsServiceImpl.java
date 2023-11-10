@@ -156,18 +156,27 @@ public class CsServiceImpl implements CsService{
     }
 
     @Override
-    public int insertResponse(ResponseVO responseVO) {
-        return sqlSession.insert("csMapper.insertResponse", responseVO);
+    public void updateIsResponse(String inqCode) {
+        sqlSession.update("csMapper.updateIsResponse", inqCode);
     }
 
     @Override
-    public int insertResImg(ResImgVO resImgVO) {
-        return sqlSession.insert("csMapper.insertResImg", resImgVO);
+    @Transactional(rollbackFor = Exception.class)
+    public void insertResponse(ResponseVO responseVO) {
+        sqlSession.insert("csMapper.insertResponse", responseVO);
+        if (!responseVO.getResImgList().isEmpty()){
+            sqlSession.insert("csMapper.insertResImg", responseVO);
+        }
     }
 
     @Override
     public ResponseVO selectResponse(String resCode) {
         return sqlSession.selectOne("csMapper.selectResponse", resCode);
+    }
+
+    @Override
+    public String nextResCode() {
+        return sqlSession.selectOne("csMapper.nextResCode");
     }
 
 

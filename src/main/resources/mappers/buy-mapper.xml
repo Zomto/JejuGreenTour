@@ -6,7 +6,7 @@
     <resultMap id="plan" type="com.jejugreentour.jgt.buy.vo.PlanVO">
         <id column="STAY_PLAN_CODE" property="stayPlanCode" />
         <result column="RESERVATION_CODE" property="reservationCode" />
-        <result column="PLAN_DATE" property="plan_date" />
+        <result column="PLAN_DATE" property="planDate" />
         <result column="BREAKFAST_NAME" property="breakfastName" />
         <result column="BREAKFAST_ADDR" property="breakfastAddr" />
         <result column="BREAKFAST_TIME" property="breakfastTime" />
@@ -464,7 +464,7 @@
 <!--    </insert>-->
 
     <insert id="insertPlan">
-        INSERT INTO BUY_DETAIL (STAY_PLAN_CODE
+        INSERT INTO STAY_PLAN (STAY_PLAN_CODE
         , RESERVATION_CODE
         , PLAN_DATE
         , BREAKFAST_NAME
@@ -483,27 +483,37 @@
         , POINT_TWO_ADDR
         , POINT_TWO_TIME)
         <foreach collection="planList" item="item" separator="UNION ALL" index="idx">
-            SELECT #{item.reservationCode}||'/'||#{item.planIdx}
-            #{item.reservationCode}
-            #{item.plan_date}
-            #{item.breakfastName}
-            #{item.breakfastAddr}
-            #{item.breakfastTime}
-            #{item.lunchName}
-            #{item.lunchAddr}
-            #{item.lunchTime}
-            #{item.dinnerName}
-            #{item.dinnerAddr}
-            #{item.dinnerTime}
-            #{item.pointoneName}
-            #{item.pointoneAddr}
-            #{item.pointoneTime}
-            #{item.pointtwoName}
-            #{item.pointtwoAddr}
-            #{item.pointtwoTime}
+            SELECT #{item.reservationCode}||'/day'||#{item.planIdx}
+,            #{item.reservationCode}
+            <if test='item.planDate!=null and !item.planDate.equals("")'>
+                ,            TO_DATE(#{item.planDate},'YYYY-MM-DD')
+            </if>
+            <if test='item.planDate==null or item.planDate.equals("")'>
+                ,            NULL
+            </if>
+,            #{item.breakfastName}
+,            #{item.breakfastAddr}
+,            #{item.breakfastTime}
+,            #{item.lunchName}
+,            #{item.lunchAddr}
+,            #{item.lunchTime}
+,            #{item.dinnerName}
+,            #{item.dinnerAddr}
+,            #{item.dinnerTime}
+,            #{item.pointoneName}
+,            #{item.pointoneAddr}
+,            #{item.pointoneTime}
+,            #{item.pointtwoName}
+,            #{item.pointtwoAddr}
+,            #{item.pointtwoTime}
             FROM DUAL
         </foreach>
     </insert>
+
+    <select id="selectPlan" resultMap="plan">
+        SELECT  * from STAY_PLAN
+        WHERE RESERVATION_CODE = #{reservationCode}
+    </select>
 
 </mapper>
     
