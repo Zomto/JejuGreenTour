@@ -204,7 +204,6 @@ public class MemberControll {
             User user = (User)authentication.getPrincipal();
             String memberId= user.getUsername();
             List<ReservationVO> list=buyService.selectPlanList(memberId);
-            System.out.println(list.get(0).getPlanList().size());
             model.addAttribute("Reservationlist",list);
         }
         return "content/member/myPage_plan";

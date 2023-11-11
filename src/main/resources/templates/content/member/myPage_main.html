@@ -217,7 +217,7 @@
                                         <td class="Price">[[${basket.sampleSubVO.accomPrice}]]</td>
                                     </th:block>
                                     <td>
-                                        <input type="button" value="결제하기" onclick="basketbuy(this)"
+                                        <input class="s_re_btn" type="button" value="결제하기" onclick="basketbuy(this)"
                                             th:data-basket-code="${basket.basketCode}">
                                     </td>
                                     <form action="/buy/buyBasket" method="post">
