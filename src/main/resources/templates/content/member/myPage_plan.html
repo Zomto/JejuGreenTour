@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title></title>
     <th:block layout:fragment="content_css">
-    <link rel="stylesheet" href="/css/member/myPage_main.css">
+        <link rel="stylesheet" href="/css/member/myPage_main.css">
         <style>
             .s_in {
                 display: flex;
@@ -28,10 +28,12 @@
                 border-bottom: 5px solid #dadada;
                 margin-bottom: 20px;
             }
-            .s_tbl{
+
+            .s_tbl {
                 width: 1000px;
                 margin: 0 auto;
             }
+
             .s_tbl table {
                 width: 100%;
                 border-bottom: 1px solid #ddd;
@@ -75,7 +77,8 @@
             .s_re_btn:hover {
                 background-color: #03c75a;
             }
-            .s_name{
+
+            .s_name {
                 color: #fff;
             }
         </style>
@@ -94,17 +97,13 @@
                                 <col width="12%" style=" border-radius: 0 0 0 50%;">
                                 <col width="20%">
                                 <col width="*">
-                                <col width="20%">
-                                <col width="12%">
                                 <col width="18%">
                             </colgroup>
                             <thead>
                                 <th class="s_name" style="border-radius: 15px 0 0 0;">예약번호</th>
-                                <th class="s_name" >예약날짜</th>
+                                <th class="s_name">예약날짜</th>
                                 <th class="s_name">숙소명</th>
-                                <th class="s_name">숙박일자</th>
-                                <th class="s_name">결제금액</th>
-                                <th class="s_name" style="border-radius: 0 15px 0 0;">예약상태</th>
+                                <th class="s_name" style="border-radius: 0 15px 0 0;">플랜</th>
                             </thead>
                             <tbody>
                                 <tr th:if="${ #lists.size(Reservationlist) == 0}">
@@ -118,85 +117,33 @@
                                     </td>
                                 </tr>
                                 <tr th:each="reserv , state : ${Reservationlist}">
-                                    <td><br>[[${reserv.reservationCode}]] <br>
+                                    <td><br>[[${reserv.reservationCode}]] </td>
                                     <td>[[${#strings.arraySplit(reserv.reservationDate,' ')[0]}]] <br>
                                         <br>
                                         [[${#strings.arraySplit(reserv.reservationDate,' ')[1]}]]
                                     </td>
                                     <td><span
-                                            style="font-size: 20px;">[[${reserv.subAccom.sampleACCVO.accomName}]]</span>
-                                        
+                                        style="font-size: 20px;">[[${reserv.subAccom.sampleACCVO.accomName}]]</span>
+
                                         <span><br><br>[[${#strings.arraySplit(reserv.reservationName,' ')[0]}]]</span>
+                                   </td>
+                                    <td th:if="${#lists.size(reserv.planList) == 1}">
+                                        <input class="s_re_btn" type="button" value="플랜작성하기"
+                                        th:onclick="|location.href='@{/buy/reservationPlan(reservationCode=${reserv.reservationCode})}'|"
+                                        >
                                     </td>
-                                    <td>[[${#strings.arraySplit(reserv.stayStartDate,'T')[0]}]] <br>
-                                        ~ <br>
-                                        [[${#strings.arraySplit(reserv.stayEndDate,'T')[0]}]]</td>
-                                    <td><br>[[${#numbers.formatCurrency(reserv.reservationPrice)}]]</td>
-                                    <td
-                                        th:if="${reserv.stateVO.refund == 'N' && reserv.stateVO.canRefundDate ge #dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm:ss')}">
-                                        예약중
-                                        <div><input class="s_re_btn" type="button" value="환불하기" onclick="refund(this)"
-                                                th:data-state-code="${reserv.stateVO.reservationStateCode}"
-                                                th:data-reservation-price="${reserv.reservationPrice}"
-                                                th:data-reservation-date="${reserv.reservationDate}"
-                                                th:data-can-refund="${reserv.stateVO.canRefundDate}"
-                                                th:data-now-date="${#dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm:ss')}">
-                                        </div><!-- 형태에 따라 다른 버튼 -->
-                                    </td>
-                                    <td
-                                        th:if="${reserv.stateVO.refund == 'N' && #dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm:ss') ge reserv.stateVO.canRefundDate && #dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm:ss') lt reserv.stateVO.overDate}">
-                                        <div>숙박중</div>
-                                    </td>
-                                    <td
-                                        th:if="${reserv.stateVO.refund == 'N' && reserv.stateVO.review == 'N' && reserv.stateVO.overDate lt #dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm:ss')}">
-                                        <div><input class="s_re_btn" type="button" value="리뷰작성하기" onclick="review(this)"
-                                                th:data-state-code="${reserv.stateVO.reservationStateCode}"
-                                                th:data-reservation-code="${reserv.reservationCode}"></div>
-                                    </td>
-                                    <td th:if="${reserv.stateVO.review == 'Y' }">
-                                        <div>리뷰를 <br> 작성하셨습니다</div>
-                                        <input class="s_re_btn" type="button" value="리뷰수정하기" onclick="reviewUpdate(this)"
-                                            th:data-reservation-code="${reserv.reservationCode}">
-                                    </td>
-                                    <td th:if="${reserv.stateVO.refund == 'Y'}">환불함<br>
-                                        [[${#numbers.formatCurrency(reserv.stateVO.refundPrice)}]]
+                                    <td th:if="${#lists.size(reserv.planList) > 1}">
+                                        <input class="s_re_btn" type="button" value="플랜보러하기"
+                                        th:onclick="|location.href='@{/buy/Planview(reservationCode=${reserv.reservationCode})}'|"
+                                        >
                                     </td>
                                     <input type="hidden">
                                 </tr>
 
                             </tbody>
                         </table>
-
                     </div>
-                    <div class="m2">
-                        <div class="m2_header">
-                            <h3 class="m2_title">찜 목록</h3>
-                            <input type="button" value="전체삭제" class="m2_delete_all">
-                        </div>
-                        <div class="tb1">
-                            <table class="board_type">
-                                <colgroup>
-                                    <col style="width : 100%; border-radius: 0 0 0 50%; ">
-                                </colgroup>
-                                <thead>
-                                    <tr>
-                                        <th style="border-radius: 15px 15px 0 0;">숙소명</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="2">
-                                            <div class=wish_inner>
-                                                <strong class="wish_list">"찜 목록에 담긴 상품이 존재하지 않습니다."</strong>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="m3">
-                    </div>
+                    
                 </div>
                 <div class="side">
                     <!-- <div class="s1">
@@ -217,121 +164,7 @@
 </body>
 
 <th:block layout:fragment="content_js">
-    <script>
-
-
-        function refund(tag) {
-
-            console.log(tag.dataset.stateCode)
-            console.log(tag.dataset.reservationPrice)
-            console.log(tag.dataset.reservationDate)
-            console.log(tag.dataset.canRefund)
-            console.log(tag.dataset.nowDate)
-
-            console.log((new Date(tag.dataset.nowDate).getTime() - new Date(tag.dataset.reservationDate).getTime()) / (1000 * 60 * 60))//( 1000 * 60 * 60 * 24 )
-            let refundPrice = tag.dataset.reservationPrice;
-            let refundDay = (new Date(tag.dataset.canRefund).getTime() - new Date(tag.dataset.nowDate).getTime()) / (1000 * 60 * 60 * 24)
-            if ((new Date(tag.dataset.nowDate).getTime() - new Date(tag.dataset.reservationDate).getTime()) / (1000 * 60 * 60) > 3) {
-
-                if (refundDay <= 1) {
-                    refundPrice = Math.ceil((refundPrice * 0.2) / 100) * 100
-                } else if (refundDay <= 3) {
-                    refundPrice = Math.ceil((refundPrice * 0.5) / 100) * 100
-                } else if (refundDay <= 5) {
-                    refundPrice = Math.ceil((refundPrice * 0.7) / 100) * 100
-                } else if (refundDay <= 7) {
-                    refundPrice = Math.ceil((refundPrice * 0.9) / 100) * 100
-                } else if (refundDay <= 10) {
-                    refundPrice = Math.ceil((refundPrice * 0.5) / 100) * 100
-                }
-            }
-
-
-            if (confirm("환불 하시겠습니까?")) {
-
-
-
-                fetch('/buy/refund', { //요청경로
-                    method: 'POST',
-                    cache: 'no-cache',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-                    },
-                    //컨트롤러로 전달할 데이터
-                    body: new URLSearchParams({
-                        reservationStateCode: tag.dataset.stateCode,
-                        refund: 'Y',
-                        review: 'N',
-                        refundPrice: refundPrice,
-                        refundDate: tag.dataset.nowDate
-                    })
-                })
-                    .then((response) => {
-                        if (!response.ok) {
-                            alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
-                            return;
-                        }
-
-                        return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
-                        //return response.json(); //나머지 경우에 사용
-                    })
-                    //fetch 통신 후 실행 영역
-                    .then((data) => {//data -> controller에서 리턴되는 데이터!
-                        location.reload()
-                    })
-                    //fetch 통신 실패 시 실행 영역
-                    .catch(err => {
-                        alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
-                        console.log(err);
-                    });
-
-            }
-        }
-        function review(tag) {
-            if (confirm("리뷰를 작성 하시겠습니까?")) {
-
-                // fetch('/buy/refund', { //요청경로
-                //     method: 'POST',
-                //     cache: 'no-cache',
-                //     headers: {
-                //         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-                //     },
-                //     //컨트롤러로 전달할 데이터
-                //     body: new URLSearchParams({
-                //         reservationStateCode: tag.dataset.stateCode,
-                //         refund: 'N',
-                //         review: 'Y',
-                //         refundPrice: 0
-                //     })
-                // })
-                //     .then((response) => {
-                //         if (!response.ok) {
-                //             alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
-                //             return;
-                //         }
-
-                //         return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
-                //         //return response.json(); //나머지 경우에 사용
-                //     })
-                //     //fetch 통신 후 실행 영역
-                //     .then((data) => {//data -> controller에서 리턴되는 데이터!
-                //         location.href = "/buy/review?reservationCode=" + tag.dataset.reservationCode;
-                //     })
-                //     //fetch 통신 실패 시 실행 영역
-                //     .catch(err => {
-                //         alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
-                //         console.log(err);
-                //     });
-                location.href = "/buy/review?reservationCode=" + tag.dataset.reservationCode;
-            }
-
-        }
-        function reviewUpdate(tag) {
-
-            if (confirm("리뷰를 수정 하시겠습니까?")) {
-                location.href = "/buy/reviewReset?reservationCode=" + tag.dataset.reservationCode;
-            }
-        }
-    </script>
+   
 </th:block>
+
 </html>

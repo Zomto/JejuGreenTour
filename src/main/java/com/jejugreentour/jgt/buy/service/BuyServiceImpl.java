@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -167,7 +168,12 @@ public class BuyServiceImpl implements BuyService{
     public List<ReservationVO> selectPlanList(String memberId) {
         List<ReservationVO> list=sqlSession.selectList("buyMapper.selectMemberReservationList",memberId);
         list.forEach(reservationVO -> {
-            reservationVO.setPlanList(sqlSession.selectList("buyMapper.selectPlan",reservationVO.getReservationCode()));
+
+
+                List<PlanVO> planVOS =sqlSession.selectList("buyMapper.selectPlan",reservationVO.getReservationCode());
+                planVOS.add(new PlanVO());
+                    reservationVO.setPlanList(planVOS);
+
         });
         return list;
     }

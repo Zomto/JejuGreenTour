@@ -526,5 +526,6 @@
         WHERE RESERVATION_CODE = #{reservationCode}
     </select>
 
+
 </mapper>
     

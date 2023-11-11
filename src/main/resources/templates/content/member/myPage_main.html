@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title></title>
     <th:block layout:fragment="content_css">
-    <link rel="stylesheet" href="/css/member/myPage_main.css">
+        <link rel="stylesheet" href="/css/member/myPage_main.css">
         <style>
             .s_in {
                 display: flex;
@@ -28,10 +28,12 @@
                 border-bottom: 5px solid #dadada;
                 margin-bottom: 20px;
             }
-            .s_tbl{
+
+            .s_tbl {
                 width: 1000px;
                 margin: 0 auto;
             }
+
             .s_tbl table {
                 width: 100%;
                 border-bottom: 1px solid #ddd;
@@ -75,7 +77,8 @@
             .s_re_btn:hover {
                 background-color: #03c75a;
             }
-            .s_name{
+
+            .s_name {
                 color: #fff;
             }
         </style>
@@ -100,7 +103,7 @@
                             </colgroup>
                             <thead>
                                 <th class="s_name" style="border-radius: 15px 0 0 0;">예약번호</th>
-                                <th class="s_name" >예약날짜</th>
+                                <th class="s_name">예약날짜</th>
                                 <th class="s_name">숙소명</th>
                                 <th class="s_name">숙박일자</th>
                                 <th class="s_name">결제금액</th>
@@ -125,7 +128,7 @@
                                     </td>
                                     <td><span
                                             style="font-size: 20px;">[[${reserv.subAccom.sampleACCVO.accomName}]]</span>
-                                        
+
                                         <span><br><br>[[${#strings.arraySplit(reserv.reservationName,' ')[0]}]]</span>
                                     </td>
                                     <td>[[${#strings.arraySplit(reserv.stayStartDate,'T')[0]}]] <br>
@@ -155,7 +158,8 @@
                                     </td>
                                     <td th:if="${reserv.stateVO.review == 'Y' }">
                                         <div>리뷰를 <br> 작성하셨습니다</div>
-                                        <input class="s_re_btn" type="button" value="리뷰수정하기" onclick="reviewUpdate(this)"
+                                        <input class="s_re_btn" type="button" value="리뷰수정하기"
+                                            onclick="reviewUpdate(this)"
                                             th:data-reservation-code="${reserv.reservationCode}">
                                     </td>
                                     <td th:if="${reserv.stateVO.refund == 'Y'}">환불함<br>
@@ -168,34 +172,70 @@
                         </table>
 
                     </div>
-                    <div class="m2">
-                        <div class="m2_header">
-                            <h3 class="m2_title">찜 목록</h3>
-                            <input type="button" value="전체삭제" class="m2_delete_all">
-                        </div>
-                        <div class="tb1">
-                            <table class="board_type">
-                                <colgroup>
-                                    <col style="width : 100%; border-radius: 0 0 0 50%; ">
-                                </colgroup>
-                                <thead>
-                                    <tr>
-                                        <th style="border-radius: 15px 15px 0 0;">숙소명</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="2">
-                                            <div class=wish_inner>
-                                                <strong class="wish_list">"찜 목록에 담긴 상품이 존재하지 않습니다."</strong>
+                    <h3 class="m1_title">찜 목록</h3>
+                    <div class="s_tbl">
+                        <table class="board_type">
+                            <colgroup>
+                                <col width="12%" style=" border-radius: 0 0 0 50%;">
+                                <col width="20%">
+                                <col width="*">
+                                <col width="20%">
+                                <col width="12%">
+                                <col width="18%">
+                            </colgroup>
+                            <thead>
+                                <th class="s_name" style="border-radius: 15px 0 0 0;">숙소명</th>
+                                <th class="s_name">체크인 & <br>체크아웃</th>
+                                <th class="s_name">숙박일자</th>
+                                <th class="s_name">결제금액</th>
+                                <th class="s_name" style="border-radius: 0 15px 0 0;">결제하기</th>
+                            </thead>
+                            <tbody>
+                                <tr th:if="${ #lists.size(basketList) == 0}">
+                                    <td colspan="5">
+                                        <div class="data_no">
+                                            <div class="cont">
+                                                <strong>"현재 결제 대기 목록이 존재하지 않습니다."</strong><br>
+                                                "즐거운 여행 계획을 준비해 보세요!"
                                             </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="m3">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr th:each="basket , state : ${basketList}">
+                                    <td>[[${basket.sampleSubVO.sampleACCVO.accomName}]]<br>[[${basket.sampleSubVO.subAccomName}]]
+                                    <td>[[${#strings.listSplit(basket.stayStartDate,'T')[1]}]]
+                                        <br> [[${#strings.listSplit(basket.stayEndDate,'T')[1]}]]
+                                    </td>
+                                    <td>[[${#strings.arraySplit(basket.stayStartDate,'T')[0]}]] <br>
+                                        ~ <br>
+                                        [[${#strings.arraySplit(basket.stayEndDate,'T')[0]}]]</td>
+                                    <th:block th:if="${basket.dayuse == 'Y'}">
+                                        대실 <br>s
+                                        <td class="Price">[[${basket.sampleSubVO.dayusePrice}]]</td>
+                                    </th:block>
+                                    <th:block th:if="${basket.dayuse == 'N'}">
+                                        숙박 <br>
+                                        <td class="Price">[[${basket.sampleSubVO.accomPrice}]]</td>
+                                    </th:block>
+                                    <td>
+                                        <input type="button" value="결제하기" onclick="basketbuy(this)"
+                                            th:data-basket-code="${basket.basketCode}">
+                                    </td>
+                                    <form action="/buy/buyBasket" method="post">
+                                        <input type="hidden" name="stayTerm" class="stayTerm"
+                                            th:value="${basket.stayTerm}">
+                                        <input type="hidden" name="subAccomCode" th:value="${basket.subAccomCode}">
+                                        <input type="hidden" name="stayStartDate" th:value="${basket.stayStartDate}">
+                                        <input type="hidden" name="stayEndDate" th:value="${basket.stayEndDate}">
+                                        <input type="hidden" name="dayuse" th:value="${basket.dayuse}">
+                                        <input type="hidden" class='basketCode' name="basketCode"
+                                            th:value="${basket.basketCode}">
+                                    </form>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
                     </div>
                 </div>
                 <div class="side">
@@ -218,7 +258,22 @@
 
 <th:block layout:fragment="content_js">
     <script>
+        function basketbuy(tag) {
+            if (confirm('해당 상품의 결제를 계속하시겠습니까?')) {
+                document.querySelector('form[action="/buy/buyBasket"]').submit();
 
+            } else {
+                if (confirm('해당 상품의 삭제하시겠습니까?')) {
+                    location.href = `/buy/deleteBasketAccom?basketCode=${tag.dataset.basketCode}`
+                }
+            }
+        }
+
+        let Price = document.querySelectorAll('.Price');
+        let stayTerm = document.querySelectorAll('.stayTerm');
+        for (let i = 0; i < Price.length; i++) {
+            Price[i].innerHTML = Number(Price[i].innerHTML) * Number(stayTerm[i].value)
+        }
 
         function refund(tag) {
 
@@ -334,4 +389,5 @@
         }
     </script>
 </th:block>
+
 </html>
