@@ -49,6 +49,9 @@
                 border-top: 1px solid #ddd;
 
             }
+            .s_tbl table.board_type{
+                margin-bottom: 50px;
+            }
 
             .s_tbl th {
                 background-color: #03c75a;
@@ -170,7 +173,6 @@
 
                             </tbody>
                         </table>
-
                     </div>
                     <h3 class="m1_title">찜 목록</h3>
                     <div class="s_tbl">
@@ -210,11 +212,9 @@
                                         ~ <br>
                                         [[${#strings.arraySplit(basket.stayEndDate,'T')[0]}]]</td>
                                     <th:block th:if="${basket.dayuse == 'Y'}">
-                                        대실 <br>s
                                         <td class="Price">[[${basket.sampleSubVO.dayusePrice}]]</td>
                                     </th:block>
                                     <th:block th:if="${basket.dayuse == 'N'}">
-                                        숙박 <br>
                                         <td class="Price">[[${basket.sampleSubVO.accomPrice}]]</td>
                                     </th:block>
                                     <td>

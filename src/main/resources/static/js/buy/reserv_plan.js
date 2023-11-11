@@ -238,12 +238,12 @@ function aaaaa() {
         }
     });
     document.querySelector('button[title="2 week view"]').click();
-
+    let reservationCode=document.querySelector('input[name="reservationCode"]').value;
     console.log(((new Date(cantend.value)).getTime() - (new Date(cantstr.value)).getTime()) / (1000 * 60 * 60 * 24) + 1)
     for (let i = 0; i < ((new Date(cantend.value)).getTime() - (new Date(cantstr.value)).getTime()) / (1000 * 60 * 60 * 24) + 1; i++) {
         allplan[i] = {
             planIdx: i,
-            reservationCode: 87731809,
+            reservationCode: reservationCode,
             breakfastName: " ",
             breakfastAddr: " ",
             breakfastTime:" ",

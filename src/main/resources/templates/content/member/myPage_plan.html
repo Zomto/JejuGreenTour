@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title></title>
     <th:block layout:fragment="content_css">
-        <link rel="stylesheet" href="/css/member/myPage_main.css">
+        <link rel="stylesheet" href="/css/member/myPage_plan.css">
         <style>
             .s_in {
                 display: flex;
@@ -17,6 +17,7 @@
             .s_main {
                 width: 800px;
                 margin: 30px auto 100px auto;
+                margin-left: 0;
             }
 
             .s_title {
@@ -27,6 +28,9 @@
                 color: #444;
                 border-bottom: 5px solid #dadada;
                 margin-bottom: 20px;
+            }
+            .m1_title{
+                margin-bottom: -20px;
             }
 
             .s_tbl {
@@ -90,14 +94,14 @@
         <div class="wrap">
             <div class="s_in">
                 <div class="s_main">
-                    <h3 class="m1_title">예약내역</h3>
+                    <h3 class="m1_title">플래너</h3>
                     <div class="s_tbl">
                         <table class="board_type">
                             <colgroup>
-                                <col width="12%" style=" border-radius: 0 0 0 50%;">
-                                <col width="20%">
+                                <col width="25%" style=" border-radius: 0 0 0 50%;">
+                                <col width="25%">
                                 <col width="*">
-                                <col width="18%">
+                                <col width="25%">
                             </colgroup>
                             <thead>
                                 <th class="s_name" style="border-radius: 15px 0 0 0;">예약번호</th>
@@ -107,7 +111,7 @@
                             </thead>
                             <tbody>
                                 <tr th:if="${ #lists.size(Reservationlist) == 0}">
-                                    <td colspan="6">
+                                    <td colspan="4">
                                         <div class="data_no">
                                             <div class="cont">
                                                 <strong>"현재 예약 내역이 존재하지 않습니다."</strong><br>
@@ -123,27 +127,33 @@
                                         [[${#strings.arraySplit(reserv.reservationDate,' ')[1]}]]
                                     </td>
                                     <td><span
-                                        style="font-size: 20px;">[[${reserv.subAccom.sampleACCVO.accomName}]]</span>
+                                            style="font-size: 20px;">[[${reserv.subAccom.sampleACCVO.accomName}]]</span>
 
                                         <span><br><br>[[${#strings.arraySplit(reserv.reservationName,' ')[0]}]]</span>
-                                   </td>
-                                    <td th:if="${#lists.size(reserv.planList) == 1}">
-                                        <input class="s_re_btn" type="button" value="플랜작성하기"
-                                        th:onclick="|location.href='@{/buy/reservationPlan(reservationCode=${reserv.reservationCode})}'|"
-                                        >
                                     </td>
-                                    <td th:if="${#lists.size(reserv.planList) > 1}">
-                                        <input class="s_re_btn" type="button" value="플랜보러하기"
-                                        th:onclick="|location.href='@{/buy/Planview(reservationCode=${reserv.reservationCode})}'|"
-                                        >
-                                    </td>
+                                    <th:block th:if="${reserv.dayuse != 'Y'}">
+                                        <br>
+                                        <td th:if="${#lists.size(reserv.planList) == 1}">
+                                            <input class="s_re_btn" type="button" value="플랜작성하기"
+                                                th:onclick="|location.href='@{/buy/reservationPlan(reservationCode=${reserv.reservationCode})}'|">
+                                        </td>
+                                        <td th:if="${#lists.size(reserv.planList) > 1}">
+                                            <input class="s_re_btn" type="button" value="플랜보러하기"
+                                                th:onclick="|location.href='@{/buy/Planview(reservationCode=${reserv.reservationCode})}'|">
+                                        </td>
+                                    </th:block>
+                                    <th:block th:if="${reserv.dayuse == 'Y'}">
+                                        <td>
+                                            <span>대실은 플랜을 <br> 작성할 수 없습니다.</span>
+                                        </td>
+                                    </th:block>
                                     <input type="hidden">
                                 </tr>
 
                             </tbody>
                         </table>
                     </div>
-                    
+
                 </div>
                 <div class="side">
                     <!-- <div class="s1">
@@ -164,7 +174,7 @@
 </body>
 
 <th:block layout:fragment="content_js">
-   
+
 </th:block>
 
 </html>

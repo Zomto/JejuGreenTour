@@ -301,6 +301,7 @@ public class BuyController {
     public  String insertPlan(@RequestBody List<PlanVO> planList){
         ReservationVO reservationVO= new ReservationVO();
                 reservationVO.setPlanList(planList);
+        System.out.println(planList);
         if(buyService.selectPlan(planList.get(0).getReservationCode()).size() > 0){
             return "플랜을 이미 작성 하셨습니다.";
         }else {
@@ -322,8 +323,9 @@ public class BuyController {
     }
     @GetMapping("/Planview")
     public String Planview(ReservationVO reservationVO , Model model){
+        model.addAttribute("reservation",buyService.selectReservationOne(reservationVO.getReservationCode()));
         model.addAttribute("planList",buyService.selectPlan(reservationVO.getReservationCode()));
-        return "content/buy/plan_view";
+        return "content/member/plan_view";
     }
 
     @GetMapping("/sample")

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/myPage_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/member/myPage_plan.css">
+    </th:block>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <div class="wrap">
+            <div id="calendar"></div>
+            <div>
+                <input type="hidden" class="reserv" th:data-date-start="${reservation.stayStartDate}"
+                    th:data-date-end="${reservation.stayEndDate}">
+            </div>
+            <div th:each=" plan :${planList}">
+                <th:block th:if="${plan.planDate != null && plan.planDate != '' }">
+                <input type="hidden" class="planDate" th:value="${plan.planDate}">
+                    <th:block th:if="${plan.breakfastName != ' '}">
+                    <input type="hidden" class="breakfastName" th:value="${plan.breakfastName}">
+                    <input type="hidden" class="breakfastAddr" th:value="${plan.breakfastAddr}">
+                    <input type="hidden" class="breakfastTime"
+                        th:data-start="${#strings.arraySplit(plan.breakfastTime,'/')[0]}"
+                        th:data-end="${#strings.arraySplit(plan.breakfastTime,'/')[1]}">
+                    </th:block>
+                </th:block>
+                <th:block th:if="${plan.lunchName != ' '}">
+                    <input type="hidden" class="lunchName" th:value="${plan.lunchName}">
+                    <input type="hidden" class="lunchAddr" th:value="${plan.lunchAddr}">
+                    <input type="hidden" class="lunchTime" th:data-start="${#strings.arraySplit(plan.lunchTime,'/')[0]}"
+                        th:data-end="${#strings.arraySplit(plan.lunchTime,'/')[1]}">
+                </th:block>
+                <th:block th:if="${plan.dinnerName != ' '}">
+                    <input type="hidden" class="dinnerName" th:value="${plan.dinnerName}">
+                    <input type="hidden" class="dinnerAddr" th:value="${plan.dinnerAddr}">
+                    <input type="hidden" class="dinnerTime"
+                        th:data-start="${#strings.arraySplit(plan.dinnerTime,'/')[0]}"
+                        th:data-end="${#strings.arraySplit(plan.dinnerTime,'/')[1]}">
+                </th:block>
+                <th:block th:if="${plan.pointoneName != ' '}">
+                    <input type="hidden" class="pointoneName" th:value="${plan.pointoneName}">
+                    <input type="hidden" class="pointoneAddr" th:value="${plan.pointoneAddr}">
+                    <input type="hidden" class="pointoneTime"
+                        th:data-start="${#strings.arraySplit(plan.pointoneTime,'/')[0]}"
+                        th:data-end="${#strings.arraySplit(plan.pointoneTime,'/')[1]}">
+                </th:block>
+                <th:block th:if="${plan.pointtwoName != ' '}">
+                    <input type="hidden" class="pointtwoName" th:value="${plan.pointtwoName}">
+                    <input type="hidden" class="pointtwoAddr" th:value="${plan.pointtwoAddr}">
+                    <input type="hidden" class="pointtwoTime"
+                        th:data-start="${#strings.arraySplit(plan.pointtwoTime,'/')[0]}"
+                        th:data-end="${#strings.arraySplit(plan.pointtwoTime,'/')[1]}">
+
+                </th:block>
+            </div>
+        </div>
+    </th:block>
+</body>
+
+<th:block layout:fragment="content_js">
+    <script src='/dist/index.global.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let reserv = document.querySelector('.reserv');
+            let planDate = document.querySelectorAll('.planDate');
+            let breakfastName = document.querySelectorAll('.breakfastName');
+            let breakfastAddr = document.querySelectorAll('.breakfastAddr');
+            let breakfastTime = document.querySelectorAll('.breakfastTime');
+            let lunchName = document.querySelectorAll('.lunchName');
+            let lunchAddr = document.querySelectorAll('.lunchAddr');
+            let lunchTime = document.querySelectorAll('.lunchTime');
+            let dinnerName = document.querySelectorAll('.dinnerName');
+            let dinnerAddr = document.querySelectorAll('.dinnerAddr');
+            let dinnerTime = document.querySelectorAll('.dinnerTime');
+            let pointoneName = document.querySelectorAll('.pointoneName');
+            let pointoneAddr = document.querySelectorAll('.pointoneAddr');
+            let pointoneTime = document.querySelectorAll('.pointoneTime');
+            let pointtwoName = document.querySelectorAll('.pointtwoName');
+            let pointtwoAddr = document.querySelectorAll('.pointtwoAddr');
+            let pointtwoTime = document.querySelectorAll('.pointtwoTime');
+            let alltitle = [...breakfastName, ...lunchName, ...dinnerName, ...pointoneName, ...pointtwoName];
+            let alladdr = [...breakfastAddr, ...lunchAddr, ...dinnerAddr, ...pointoneAddr, ...pointtwoAddr];
+            
+            let allstart = []
+            let allend = []
+            breakfastTime.forEach(element => {
+                allstart.push(element.dataset.start);
+                allend.push(element.dataset.end);
+            });
+            lunchTime.forEach(element => {
+                allstart.push(element.dataset.start);
+                allend.push(element.dataset.end);
+                
+            });
+            dinnerTime.forEach(element => {
+                allstart.push(element.dataset.start);
+                allend.push(element.dataset.end);
+                
+            });
+            pointoneTime.forEach(element => {
+                allstart.push(element.dataset.start);
+                allend.push(element.dataset.end);
+                
+            });
+            pointtwoTime.forEach(element => {
+                allstart.push(element.dataset.start);
+                allend.push(element.dataset.end);
+            });
+
+
+            var eventsss = [];
+            for (let i = 0; i < alltitle.length; i++) {
+                eventsss.push({
+                    id:'event',
+                    title: alltitle[i].value + ' : ' + alladdr[i].value,
+                    start: new Date(allstart[i]),
+                    end: new Date(allend[i])
+                })
+
+            }
+            console.log(eventsss)
+
+            var calendarEl = document.getElementById('calendar');
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                events: eventsss,
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'timeGridWeek,listWeek2,dayGridMonth'
+                },
+                visibleRange: {
+                    start: reserv.dataset.dateStart.split('T')[0],
+                    end: reserv.dataset.dateEnd.split('T')[0]
+                },
+                views: {
+                    listWeek2: {
+                        type: 'listWeek',
+                        duration: { days: 14 },
+                        buttonText: '2 week'
+                    }
+                },
+                initialView: 'listWeek2',
+                //   initialDate: '2023-01-12', today
+            })
+            calendar.render();
+        });
+    </script>
+</th:block>
+
+</html>
