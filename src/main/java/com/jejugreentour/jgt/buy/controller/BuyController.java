@@ -154,17 +154,9 @@ public class BuyController {
     }
 
     @GetMapping("/review")
-    public  String reviewWrite(ReservationVO reservationVO, Model model ,Authentication authentication){
-        if(authentication !=null){
-            User user = (User)authentication.getPrincipal();
-            model.addAttribute("userName" ,user.getUsername());
-        }
+    public  String reviewWrite(ReservationVO reservationVO, Model model ){
+
         reservationVO= buyService.selectReservationOne(reservationVO.getReservationCode());
-//        if(session.getAttribute("loginInfo")!=null&&reservationVO.getMemberId().equals(((MemberVO)session.getAttribute("loginInfo")).getMemberId())){
-//            return"/buy/review";
-//        }else {
-//             return "redirect:/";
-//        }
         SampleSubVO subVO = buyService.selectSubAccom(reservationVO.getSubAccomCode());
         subVO.setSampleACCVO(buyService.selectAccom(subVO.getAccomCode()));
         reservationVO.setSubAccom(subVO);
@@ -309,6 +301,7 @@ public class BuyController {
     public  String insertPlan(@RequestBody List<PlanVO> planList){
         ReservationVO reservationVO= new ReservationVO();
                 reservationVO.setPlanList(planList);
+        System.out.println(planList);
         if(buyService.selectPlan(planList.get(0).getReservationCode()).size() > 0){
             return "플랜을 이미 작성 하셨습니다.";
         }else {
@@ -328,7 +321,12 @@ public class BuyController {
         }
         return "content/member/myPage_plan";
     }
-
+    @GetMapping("/Planview")
+    public String Planview(ReservationVO reservationVO , Model model){
+        model.addAttribute("reservation",buyService.selectReservationOne(reservationVO.getReservationCode()));
+        model.addAttribute("planList",buyService.selectPlan(reservationVO.getReservationCode()));
+        return "content/member/plan_view";
+    }
 
     @GetMapping("/sample")
     public String sample(Model model, String accomCode){

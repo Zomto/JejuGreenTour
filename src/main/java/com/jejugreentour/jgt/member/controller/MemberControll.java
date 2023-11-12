@@ -1,6 +1,7 @@
 package com.jejugreentour.jgt.member.controller;
 
 import com.jejugreentour.jgt.buy.service.BuyService;
+import com.jejugreentour.jgt.buy.vo.BasketAccomVO;
 import com.jejugreentour.jgt.buy.vo.ReservationVO;
 import com.jejugreentour.jgt.member.mail.SendMail;
 import com.jejugreentour.jgt.member.service.MemberService;
@@ -79,11 +80,14 @@ public class MemberControll {
     @GetMapping("/myPageForm")
     public String myPageForm(Authentication authentication,Model model){
         List<ReservationVO> list=new ArrayList<>();
+        List<BasketAccomVO> basketAccomVOListlist= new ArrayList<>();
         if(authentication !=null){
             User user = (User)authentication.getPrincipal();
             list= buyService.selectMemberReservationList(user.getUsername());
+            basketAccomVOListlist=buyService.selectBasketAccomList(user.getUsername());
         }
         model.addAttribute("Reservationlist",list);
+        model.addAttribute("basketList",basketAccomVOListlist);
         return "content/member/myPage_main";
     }
     @GetMapping("/infoForm")
@@ -196,11 +200,24 @@ public class MemberControll {
     }
     @GetMapping("/myPagePlan")
     public String myPagePlan(Authentication authentication,Model model){
-
+        if(authentication !=null){
+            User user = (User)authentication.getPrincipal();
+            String memberId= user.getUsername();
+            List<ReservationVO> list=buyService.selectPlanList(memberId);
+            model.addAttribute("Reservationlist",list);
+        }
         return "content/member/myPage_plan";
     }
     @GetMapping("/myPageReview")
     public String myPageReview(Authentication authentication,Model model){
+        String Id="";
+        if(authentication !=null){
+            User user = (User)authentication.getPrincipal();
+            model.addAttribute("userName" ,user.getUsername());
+            Id= user.getUsername();
+        }
+        System.out.println(buyService.memberReviewList(Id));
+        model.addAttribute("myReviewList",buyService.memberReviewList(Id));
 
         return "content/member/myPage_review";
     }

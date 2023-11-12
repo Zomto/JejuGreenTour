@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let cantend = document.querySelector('input[ name="reservEndday"] ');
     console.log(cantend)
     calendar = new FullCalendar.Calendar(calendarEl, {
+        dayMaxEvents: true,
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
@@ -238,12 +239,12 @@ function aaaaa() {
         }
     });
     document.querySelector('button[title="2 week view"]').click();
-
+    let reservationCode=document.querySelector('input[name="reservationCode"]').value;
     console.log(((new Date(cantend.value)).getTime() - (new Date(cantstr.value)).getTime()) / (1000 * 60 * 60 * 24) + 1)
     for (let i = 0; i < ((new Date(cantend.value)).getTime() - (new Date(cantstr.value)).getTime()) / (1000 * 60 * 60 * 24) + 1; i++) {
         allplan[i] = {
             planIdx: i,
-            reservationCode: 87731809,
+            reservationCode: reservationCode,
             breakfastName: " ",
             breakfastAddr: " ",
             breakfastTime:" ",
@@ -318,7 +319,7 @@ function aaaaa() {
         //fetch 통신 후 실행 영역
         .then((data) => {//data -> controller에서 리턴되는 데이터!
             alert(data);
-            location.href=""
+            location.href="/member/myPagePlan"
         })
         //fetch 통신 실패 시 실행 영역
         .catch(err => {
