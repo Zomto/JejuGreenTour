@@ -198,9 +198,13 @@
             </script>
 
         </div>
+
         <div>
             <div id="calendar" style="width: 1000px;
             margin: 30px auto;"></div>
+        </div>
+        <div class="add_btn_div">
+            <input class="add_btn" type="button" value="플랜등록" onclick="aaaaa()">
         </div>
         <div th:if="${reserv != null}">
             <input type="hidden" name="reservStartday" th:value="${#strings.arraySplit(reserv.stayStartDate,'T')[0]}">
@@ -214,12 +218,7 @@
         <script src="/js/buy/reserv_plan.js"></script>
         <script src="/js/buy/reservationplan.js"></script>
         <script src="/js/slick.min.js"></script>
-        <div>
-            <div class="btnBox">
-                
-                <input class="submitBtn" type="button" value="플랜등록" onclick="aaaaa()">
-            </div>
-        </div>
+        
     </th:block>
 </body>
 
