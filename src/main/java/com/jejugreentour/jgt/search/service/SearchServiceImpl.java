@@ -1,5 +1,7 @@
 package com.jejugreentour.jgt.search.service;
 
+import com.jejugreentour.jgt.accom.vo.MainAccomVO;
+import com.jejugreentour.jgt.accom.vo.SubAccomVO;
 import com.jejugreentour.jgt.csCenter.vo.AnnVO;
 import com.jejugreentour.jgt.csCenter.vo.QnaVO;
 import com.jejugreentour.jgt.search.vo.SearchVO;
@@ -43,4 +45,15 @@ public class SearchServiceImpl implements SearchService {
     public int searchQnaCnt(SearchVO searchVO) {
         return sqlSession.selectOne("csMapper.searchQnaCnt", searchVO);
     }
+
+    @Override
+    public List<MainAccomVO> searchAccom(SearchVO searchVO) {
+        return sqlSession.selectList("accomMapper.searchAccom", searchVO);
+    }
+
+    @Override
+    public List<SubAccomVO> searchSubAccom(SearchVO searchVO) {
+        return sqlSession.selectList("accomMapper.searchSubAccom", searchVO);
+    }
+
 }

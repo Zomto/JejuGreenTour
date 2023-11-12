@@ -22,8 +22,20 @@ public class SearchController {
 
     @PostMapping("/searchResultForm")
     public String searchResult(Model model, SearchVO searchVO){
+        
+        // 공지
         model.addAttribute("searchAnnList", searchService.searchAnn(searchVO));
+        // QNA
         model.addAttribute("searchQnaList", searchService.searchQna(searchVO));
+        
+        // 어콤
+        model.addAttribute("searchMainAccomList", searchService.searchAccom(searchVO));
+        // 어콤 사진
+        
+        // sub어콤
+        model.addAttribute("searchSubAccomList", searchService.searchSubAccom(searchVO));
+        // sub 어콤 사진
+
         return "/content/search/search_result";
     }
 

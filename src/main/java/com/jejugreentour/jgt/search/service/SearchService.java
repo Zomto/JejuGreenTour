@@ -1,6 +1,8 @@
 package com.jejugreentour.jgt.search.service;
 
 
+import com.jejugreentour.jgt.accom.vo.MainAccomVO;
+import com.jejugreentour.jgt.accom.vo.SubAccomVO;
 import com.jejugreentour.jgt.csCenter.vo.AnnVO;
 import com.jejugreentour.jgt.csCenter.vo.QnaVO;
 import com.jejugreentour.jgt.search.vo.SearchVO;
@@ -28,6 +30,14 @@ public interface SearchService {
 
     // 고객 센터 QNA 게시물 카운트
     public int searchQnaCnt(SearchVO searchVO);
+
+
+    // ACCOM 검색
+    public List<MainAccomVO> searchAccom(SearchVO searchVO);
+
+    
+    // SUB_ACCOM 검색
+    public List<SubAccomVO> searchSubAccom(SearchVO searchVO);
 
 
 
