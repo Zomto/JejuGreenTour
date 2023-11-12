@@ -250,44 +250,19 @@ span{
 .mf_in .list_last{
     border-bottom: 1px solid #222;
 }
-
-.selectBtns{
-    width: 200px;
-    border-radius: 5px;
-}
-.selectBtn{
-    margin-right: -4px;
-    cursor: pointer;
-    padding: 10px 36px;
-    border-radius: 3px 0 0 3px;
-    border: 0;
-    outline: none;
-    background-color: #fff;
-    color: #666;
-    border: 1px solid #dadada;
-}
-.selectBtn:last-child{
-    border-radius: 0 3px 3px 0;
-}
-.selectBtn.on{
-    background-color: #03c75a;
-    color: #fff;
-    border: 1px solid #1ab754;
-}
-.submitBtn{
-    width: 201px;
-    cursor: pointer;
-    padding: 10px 80px;
-    border-radius: 5px;
-    border: 0;
-    outline: none;
-    background-color: #03c75a;
-    color: #fff;
-}
-.btnBox{
+.add_btn_div{
+    width: 400px;
     margin: 0 auto 30px auto;
-    width: 900px;
-    display: flex;
-    justify-content: space-between;
+}
 
+.add_btn{
+width: 400px;
+height: 50px;
+color: #fff;
+border: 1px solid #dadada;
+border-radius: 5px;
+background-color: #03c75a;
+}
+.add_btn:hover{
+    background-color: #1ab752;
 }
