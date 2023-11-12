@@ -446,7 +446,6 @@
     <update id="updateSubAccomState">
         UPDATE SUB_ACCOM
         SET
-
         <if test='reservationPrice != null and !reservationPrice.equals("")'>
             RESERVATION_PRICE=#{reservationPrice}
         </if>
@@ -461,5 +460,38 @@
         </if>
         WHERE SUB_ACCOM_CODE = #{subAccomCode}
     </update>
+
+    <!--  메인 어콤 조회  -->
+    <select id="mainAccomTab" resultMap="mainAccom">
+        SELECT
+        MAIN.ACCOM_CODE
+        , ACCOM_NAME
+        , ACCOM_ADDR
+        , ADDR_DETAIL
+        , ACCOM_INTRO
+        , MAIN.ACCOM_CATE
+        , ACCOM_LOC
+        , ATTACHED_FILE_NAME
+        , ORIGIN_FILE_NAME
+        FROM MAIN_ACCOM MAIN, ACCOM_CATEGORY CATE, MAIN_ACCOM_IMG IMG
+        WHERE MAIN.ACCOM_CATE = CATE.ACCOM_CATE
+        AND MAIN.ACCOM_CODE = IMG.ACCOM_CODE
+        <if test='accomLoc != null and !accomLoc.equals("")'>
+            AND ACCOM_LOC = #{accomLoc}
+        </if>
+        ORDER BY MAIN.ACCOM_CODE DESC
+        OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+    </select>
+
+    <select id="selectAccomCnt" resultType="int">
+        SELECT COUNT(ACCOM_CODE)
+        FROM MAIN_ACCOM
+        WHERE 1 = 1
+        <if test='accomLoc != null and !accomLoc.equals("")'>
+            AND ACCOM_LOC = #{accomLoc}
+        </if>
+    </select>
+
+
 
 </mapper>

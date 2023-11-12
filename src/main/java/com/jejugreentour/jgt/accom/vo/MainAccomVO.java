@@ -1,11 +1,12 @@
 package com.jejugreentour.jgt.accom.vo;
 
+import com.jejugreentour.jgt.csCenter.vo.PageVO;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class MainAccomVO {
+public class MainAccomVO extends PageVO {
     private String accomCode;
     private String accomName;
     private String accomAddr;

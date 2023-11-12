@@ -192,5 +192,21 @@ public class AccomController {
         accomService.updateSubAccomState(subAccomVO);
     }
 
+    @GetMapping("/mainAccomForm")
+    public String mainAccomForm(MainAccomVO mainAccomVO, String accomLoc, Model model){
+        // 페이지 정보 세팅
+        mainAccomVO.setTotalDataCnt(accomService.selectAccomCnt(accomLoc));
+        mainAccomVO.setPageInfo();
+        model.addAttribute("accomList", accomService.mainAccomTab(mainAccomVO));
+        if (accomLoc != null){
+            model.addAttribute("accomLoc", accomLoc);
+        }
+        return "/content/accom/accom_list";
+    }
+
+
+
+
+
 
 }

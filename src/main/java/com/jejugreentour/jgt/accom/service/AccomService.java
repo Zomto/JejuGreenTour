@@ -53,4 +53,11 @@ public interface AccomService {
 
     List<String> selectDistinctAccomLoc();
 
+
+    // 업소 조회
+    public List<MainAccomVO> mainAccomTab(MainAccomVO mainAccomVO);
+    
+    // 업소 갯수 카운트
+    public int selectAccomCnt(String accomLoc);
+
 }
