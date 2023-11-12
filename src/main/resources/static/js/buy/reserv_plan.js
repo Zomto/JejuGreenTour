@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let cantend = document.querySelector('input[ name="reservEndday"] ');
     console.log(cantend)
     calendar = new FullCalendar.Calendar(calendarEl, {
+        dayMaxEvents: true,
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
@@ -318,7 +319,7 @@ function aaaaa() {
         //fetch 통신 후 실행 영역
         .then((data) => {//data -> controller에서 리턴되는 데이터!
             alert(data);
-            location.href=""
+            location.href="/member/myPagePlan"
         })
         //fetch 통신 실패 시 실행 영역
         .catch(err => {

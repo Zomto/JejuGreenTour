@@ -143,19 +143,17 @@
                                     <td>[[${review.sampleACCVO.accomName}]]</td>
                                     <td style="text-overflow:ellipsis; overflow: hidden; white-space: nowrap;">
                                         [[${review.content}]]</td>
-                                    <td><input type="button" value="삭제" onclick="aplydelete(this)"
+                                    <td><input class="s_re_btn" type="button" value="삭제" onclick="aplydelete(this)"
                                             th:data-review-code="${review.reviewCode}"
                                             th:data-reservation-code="${review.reservationCode}"></td>
                                     <td th:if="${review.reviewAdminVO.memberId == null}">X</td>
                                     <td th:if="${review.reviewAdminVO.memberId != null}">
-                                        <input type="button" value="답변보기" onclick="openPopup(this)"
+                                        <input class="s_re_btn" type="button" value="답변" onclick="openPopup(this)"
                                             th:data-reply-id="${review.reviewAdminVO.memberId}"
                                             th:data-reply-content="${review.reviewAdminVO.content}"
                                             th:data-reply-date="${review.reviewAdminVO.writeDate}">
                                     </td>
-
                                 </tr>
-
                             </tbody>
                         </table>
 

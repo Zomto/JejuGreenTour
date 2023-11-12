@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>plan</title>
 
     <link rel="stylesheet" href="/css/kakaomap.css">
     <link rel="stylesheet" href="/css/slick.css">
@@ -26,8 +26,8 @@
                             <div class="items">
                                 <div class="itemdetail food on" data-idex="0" data-check="N" data-name=" "
                                     data-addr=" ">
-                                    <div class="photo">
-                                        아침 식사 사진
+                                    <div class="photo" style="text-align : center;">
+                                        <img style=" height: 100%; width: auto;" src="/img/plan/Breakfast.png" alt="">
                                     </div>
                                     <div class="text">
                                         <div class="itemName">이름
@@ -35,7 +35,7 @@
                                         </div>
                                         <div class="itemReview">
                                             <div class="itemStar">
-                                                <div class="star">주소 :</div>
+                                                <div class="star">주소 : <br></div>
                                                 <span class="addr"></span>
                                             </div>
                                         </div>
@@ -43,8 +43,8 @@
                                 </div>
                                 <div class="itemdetail Tourist" data-idex="1" data-check="N" data-name=" "
                                     data-addr=" ">
-                                    <div class="photo">
-                                        사진~~
+                                    <div class="photo" style="text-align : center;">
+                                        <img style="height: 100%; width: auto;" src="/img/plan/tour1.png" alt="">
                                     </div>
                                     <div class="text">
                                         <div class="itemName">이름
@@ -52,15 +52,15 @@
                                         </div>
                                         <div class="itemReview">
                                             <div class="itemStar">
-                                                <div class="star">주소 :</div>
+                                                <div class="star">주소 : <br></div>
                                                 <span class="addr"></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="itemdetail food" data-idex="2" data-check="N" data-name=" " data-addr=" ">
-                                    <div class="photo">
-                                        점심 식사 사진
+                                    <div class="photo" style="text-align : center;">
+                                        <img style="height: 100%; width: auto;" src="/img/plan/Lunch.png" alt="">
                                     </div>
                                     <div class="text">
                                         <div class="itemName">이름
@@ -68,7 +68,7 @@
                                         </div>
                                         <div class="itemReview">
                                             <div class="itemStar">
-                                                <div class="star">주소 :</div>
+                                                <div class="star">주소 : <br></div>
                                                 <span class="addr"></span>
                                             </div>
                                         </div>
@@ -76,8 +76,8 @@
                                 </div>
                                 <div class="itemdetail Tourist" data-idex="3" data-check="N" data-name=" "
                                     data-addr=" ">
-                                    <div class="photo">
-                                        사진~~
+                                    <div class="photo" style="text-align : center;">
+                                        <img style="height: 100%; width: auto;" src="/img/plan/tour2.png" alt="">
                                     </div>
                                     <div class="text">
                                         <div class="itemName">이름
@@ -85,15 +85,15 @@
                                         </div>
                                         <div class="itemReview">
                                             <div class="itemStar">
-                                                <div class="star">주소 :</div>
+                                                <div class="star">주소 : <br></div>
                                                 <span class="addr"></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="itemdetail food" data-idex="4" data-check="N" data-name=" " data-addr=" ">
-                                    <div class="photo">
-                                        저녁 식사 사진
+                                    <div class="photo" style="text-align : center;">
+                                        <img style="height: 100%; width: auto;" src="/img/plan/Dinner.png" alt="">
                                     </div>
                                     <div class="text">
                                         <div class="itemName">이름
@@ -101,7 +101,7 @@
                                         </div>
                                         <div class="itemReview">
                                             <div class="itemStar">
-                                                <div class="star">주소 :</div>
+                                                <div class="star">주소 : <br></div>
                                                 <span class="addr"></span>
                                             </div>
                                         </div>
@@ -198,9 +198,9 @@
             </script>
 
         </div>
-        <div><input type="button" onclick="aaaaa()" value="aaaaa"></div>
         <div>
-            <div id="calendar"></div>
+            <div id="calendar" style="width: 1000px;
+            margin: 30px auto;"></div>
         </div>
         <div th:if="${reserv != null}">
             <input type="hidden" name="reservStartday" th:value="${#strings.arraySplit(reserv.stayStartDate,'T')[0]}">
@@ -214,7 +214,12 @@
         <script src="/js/buy/reserv_plan.js"></script>
         <script src="/js/buy/reservationplan.js"></script>
         <script src="/js/slick.min.js"></script>
-
+        <div>
+            <div class="btnBox">
+                
+                <input class="submitBtn" type="button" value="플랜등록" onclick="aaaaa()">
+            </div>
+        </div>
     </th:block>
 </body>
 
