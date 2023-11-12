@@ -348,13 +348,9 @@
         WHERE ANN_CATE = CATE_CODE
         <if test='searchData != null and !searchData.equals("")'>
             AND (
-
-             UPPER(CATE_NAME) LIKE '%'||UPPER(#{searchData})||'%'
-
+            UPPER(CATE_NAME) LIKE '%'||UPPER(#{searchData})||'%'
             OR UPPER(ANN_TITLE) LIKE '%'||UPPER(#{searchData})||'%'
-
             OR UPPER(ANN_CONTENT) LIKE '%'||UPPER(#{searchData})||'%'
-
             )
             ORDER BY ANN_NUM DESC
             OFFSET 0 ROWS FETCH FIRST 5 ROWS ONLY
