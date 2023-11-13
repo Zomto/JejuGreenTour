@@ -267,16 +267,13 @@
              INQ_CODE
             , INQ.CATE_CODE
             , CATE_NAME
-            , INQ.MEMBER_ID
-            , MEMBER_NAME
-            , MEMBER_TEL
+            , MEMBER_ID
             , TITLE
             , CONTENT
             , TO_CHAR(INQ_DATE,'YYYY-MM-DD') AS INQ_DATE
             , IS_RESPONSE
-        FROM INQUIRE INQ, INQ_CATE_LIST CATE, JEJU_MEMBER MEMBER
+        FROM INQUIRE INQ, INQ_CATE_LIST CATE
         WHERE INQ.CATE_CODE = CATE.CATE_CODE
-        AND INQ.MEMBER_ID = MEMBER.MEMBER_ID
         AND INQ_CODE = #{inqCode}
     </select>
 
