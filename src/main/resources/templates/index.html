@@ -77,7 +77,7 @@
                             <div id="tab-1" class="tab-content current">
                                 <div class="accomItem row-col-5">
                                     <th:block th:each="data, state : ${subAccom}" th:if="${state.index lt 10}">
-                                            <div class="itemdetail" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                            <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                                 <div class="photo">
                                                     <div th:if="${img.isMain == 'Y'}"
                                                         th:each="img : ${data.subAccomImgList}">
@@ -112,11 +112,10 @@
                                 </div>
                             </div>
 
-
                             <th:block th:each="mapData : ${themeMap}">
                                 <th:block th:if="${#strings.trim(mapData.key) == '풀빌라'}">
                                     <div id="tab-2" class="tab-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:if="${img.isMain == 'Y'}"
                                                     th:each="img : ${data.subAccomImgList}">
@@ -152,7 +151,7 @@
 
                                 <th:block th:if="${#strings.trim(mapData.key) == '오션_뷰'}">
                                     <div id="tab-3" class="tab-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:if="${img.isMain == 'Y'}"
                                                     th:each="img : ${data.subAccomImgList}">
@@ -186,7 +185,7 @@
 
                                 <th:block th:if="${#strings.trim(mapData.key) == 'PC_룸'}">
                                     <div id="tab-4" class="tab-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:if="${img.isMain == 'Y'}"
                                                     th:each="img : ${data.subAccomImgList}">
@@ -220,7 +219,7 @@
 
                                 <th:block th:if="${#strings.trim(mapData.key) == 'N플릭스'}">
                                     <div id="tab-5" class="tab-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:if="${img.isMain == 'Y'}"
                                                     th:each="img : ${data.subAccomImgList}">
@@ -254,7 +253,7 @@
 
                                 <th:block th:if="${#strings.trim(mapData.key) == '금연'}">
                                     <div id="tab-6" class="tab-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:if="${img.isMain == 'Y'}"
                                                     th:each="img : ${data.subAccomImgList}">
@@ -289,7 +288,7 @@
 
                                 <th:block th:if="${#strings.trim(mapData.key) == '흡연_O'}">
                                     <div id="tab-7" class="tab-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:if="${img.isMain == 'Y'}"
                                                     th:each="img : ${data.subAccomImgList}">
@@ -323,7 +322,7 @@
 
                                 <th:block th:if="${#strings.trim(mapData.key) == '반려동물_O'}">
                                     <div id="tab-8" class="tab-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:if="${img.isMain == 'Y'}"
                                                     th:each="img : ${data.subAccomImgList}">
@@ -357,7 +356,7 @@
 
                                 <th:block th:if="${#strings.trim(mapData.key) == '반려동물_X'}">
                                     <div id="tab-9" class="tab-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:if="${img.isMain == 'Y'}"
                                                     th:each="img : ${data.subAccomImgList}">
@@ -391,7 +390,7 @@
 
                                 <th:block th:if="${#strings.trim(mapData.key) == '노키즈_존'}">
                                     <div id="tab-10" class="tab-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:if="${img.isMain == 'Y'}"
                                                     th:each="img : ${data.subAccomImgList}">
@@ -443,7 +442,7 @@
                                 <div class="accomItem row-col-5">
                                     <th:block th:each="data, state : ${subAccom}"
                                         th:if="${#strings.contains(data.accomLoc,'제주시') && state.index lt 10}">
-                                        <div class="itemdetail" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:if="${img.isMain == 'Y'}"
                                                     th:each="img : ${data.subAccomImgList}">
@@ -478,7 +477,7 @@
                             <th:block th:each="mapData, state : ${myData}">
                                 <th:block th:if="${mapData.key == '제주시'}">
                                     <div id="loc-11" class="loc-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:each="img : ${data.subAccomImgList}"
                                                     th:if="${img.isMain == 'Y'}">
@@ -510,7 +509,7 @@
 
                                 <th:block th:if="${mapData.key == '서귀포시'}">
                                     <div id="loc-12" class="loc-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:each="img : ${data.subAccomImgList}"
                                                     th:if="${img.isMain == 'Y'}">
@@ -542,7 +541,7 @@
 
                                 <th:block th:if="${mapData.key == '성산읍'}">
                                     <div id="loc-13" class="loc-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:each="img : ${data.subAccomImgList}"
                                                     th:if="${img.isMain == 'Y'}">
@@ -574,7 +573,7 @@
 
                                 <th:block th:if="${mapData.key == '한림읍'}">
                                     <div id="loc-14" class="loc-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:each="img : ${data.subAccomImgList}"
                                                     th:if="${img.isMain == 'Y'}">
@@ -606,7 +605,7 @@
 
                                 <th:block th:if="${mapData.key == '애월읍'}">
                                     <div id="loc-15" class="loc-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:each="img : ${data.subAccomImgList}"
                                                     th:if="${img.isMain == 'Y'}">
@@ -638,7 +637,7 @@
 
                                 <th:block th:if="${mapData.key == '안덕면'}">
                                     <div id="loc-16" class="loc-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:each="img : ${data.subAccomImgList}"
                                                     th:if="${img.isMain == 'Y'}">
@@ -670,7 +669,7 @@
 
                                 <th:block th:if="${mapData.key == '남전읍'}">
                                     <div id="loc-17" class="loc-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:each="img : ${data.subAccomImgList}"
                                                     th:if="${img.isMain == 'Y'}">
@@ -702,7 +701,7 @@
 
                                 <th:block th:if="${mapData.key == '대정읍'}">
                                     <div id="loc-18" class="loc-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:each="img : ${data.subAccomImgList}"
                                                     th:if="${img.isMain == 'Y'}">
@@ -734,7 +733,7 @@
 
                                 <th:block th:if="${mapData.key == '조천읍'}">
                                     <div id="loc-19" class="loc-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:each="img : ${data.subAccomImgList}"
                                                     th:if="${img.isMain == 'Y'}">
@@ -766,7 +765,7 @@
 
                                 <th:block th:if="${mapData.key == '구좌읍'}">
                                     <div id="loc-20" class="loc-content">
-                                        <div class="itemdetail" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="itemdetail"  th:if="${data.delete  !=  'Y' }" th:each="data : ${mapData.value}" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
                                             <div class="photo">
                                                 <div th:each="img : ${data.subAccomImgList}"
                                                     th:if="${img.isMain == 'Y'}">
@@ -798,46 +797,6 @@
 
 
                             </th:block>
-                            <!-- <div class="loc-link current" id="first" data-tab="loc-11">제주시</div>
-                            <div class="loc-link" data-tab="loc-12">서귀포시</div>
-                            <div class="loc-link" data-tab="loc-13">성산읍</div>
-                            <div class="loc-link" data-tab="loc-14">한림읍</div>
-                            <div class="loc-link" data-tab="loc-15">애월읍</div>
-                            <div class="loc-link" data-tab="loc-16">안덕면</div>
-                            <div class="loc-link" data-tab="loc-17">남원읍</div>
-                            <div class="loc-link" data-tab="loc-18">대정읍</div>
-                            <div class="loc-link" id="nine" data-tab="loc-19">조천읍</div>
-                            <div class="loc-link" id="ten" data-tab="loc-20">구좌읍</div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </div>
                     </div>
                 </div>

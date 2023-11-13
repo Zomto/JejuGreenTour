@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="btnBox">
-                    <input sec:authorize="hasRole('ROLE_ADMIN')" class="subBtn" type="button" th:if="${inqDetail.isResponse == 'N'}" value="답변하기" th:onclick="|location.href='@{/cs/responseForm(inqCode=${inqDetail.inqCode})}'|">
+                    <input  class="subBtn" type="button" th:if="${inqDetail.isResponse == 'N'}" value="답변하기" th:onclick="|location.href='@{/cs/responseForm(inqCode=${inqDetail.inqCode})}'|">
                     <input class="subBtn" type="button" value="삭제" th:onclick="|location.href='@{/cs/deleteInq(inqCode=${inqDetail.inqCode})}'|">
                     <input class="subBtn" type="button" value="목록" onclick="location.href='/cs/inquireListForm';">
                 </div>
