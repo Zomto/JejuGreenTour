@@ -73,7 +73,7 @@
 .qna_d1 .qna_cateName{
     color: #03c75a;
     font-size: 17px;
-    width: 50px;
+    width: 70px;
 }
 
 .qna_d1 span{
@@ -106,7 +106,7 @@
 
 .qna_answer{
     display: block;
-    margin-left: 87px;
+    margin-left: 107px;
     margin-top: 15px;
     padding-bottom: 15px;
 }

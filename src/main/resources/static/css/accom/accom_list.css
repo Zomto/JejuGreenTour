@@ -147,6 +147,10 @@ span{
     border-bottom: 0;
     color: #fff;
 }
+.pageBtn{
+    margin-top: 10px;
+    text-align: center;
+}
 .loc-content{
     display: none;
 }

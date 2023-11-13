@@ -63,6 +63,18 @@
                     </div>
                 </div>
             </div>
+            <div class="pageBtn" th:if="${#lists.size(accomList) != 0}">
+                <a class="page_prevBtn" th:href="@{/accom/mainAccomForm(nowPage=${mainAccomVO.beginPage - 1})}"><span
+                        th:if="${mainAccomVO.prev}">이전</span></a>
+
+                <th:block th:each="pageNum : ${#numbers.sequence(mainAccomVO.beginPage, mainAccomVO.endPage)}">
+                    <a class="page_numBtn" th:href="@{/accom/mainAccomForm(nowPage=${pageNum})}"><span
+                            th:text="${pageNum}"></span></a>
+                </th:block>
+
+                <a class="page_nextBtn" th:href="@{/accom/mainAccomForm(nowPage=${mainAccomVO.endPage + 1})}"><span
+                        th:if="${mainAccomVO.next}">다음</span></a>
+            </div>
         </div>
     </div>
 </th:block>
