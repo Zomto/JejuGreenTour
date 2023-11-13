@@ -25,6 +25,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize ->
                             authorize.requestMatchers(
                                     "/"
+                                    ,"/**"
                                     ,"/member/joinForm"
                                     ,"/member/loginForm"
                                     ,"/member/login"

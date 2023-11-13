@@ -30,9 +30,9 @@
             <div class="page_group">
                 <div class="inquireBtn">
                     <button class="annList" onclick="location.href='/cs/annListForm';">목록</button>
-                    <button class="annUpdate"
+                    <button sec:authorize="hasRole('ROLE_ADMIN')" class="annUpdate"
                         th:onclick="|location.href='@{/cs/updateAnnForm(annNum=${annDetail.annNum})}'|">글 수정</button>
-                    <button class="annDelete"
+                    <button sec:authorize="hasRole('ROLE_ADMIN')" class="annDelete"
                         th:onclick="|location.href='@{/cs/deleteAnn(annNum=${annDetail.annNum})}'|">글 삭제</button>
                 </div>
             </div>

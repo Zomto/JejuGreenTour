@@ -201,6 +201,7 @@ public class AccomController {
         if (accomLoc != null){
             model.addAttribute("accomLoc", accomLoc);
         }
+        System.out.println(mainAccomVO);
         return "/content/accom/accom_list";
     }
 
