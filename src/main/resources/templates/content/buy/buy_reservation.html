@@ -13,7 +13,6 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: 100vh;
                 margin: 0;
             }
 
@@ -64,7 +63,7 @@
 <body>
     <th:block layout:fragment="content">
        
-        <div class="payment-container">
+        <div class="payment-container" style="margin: 30px auto;">
             <div class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor"
                     class="bi bi-check-circle-fill" viewBox="0 0 16 16">
@@ -80,7 +79,7 @@
                 결제 일자: [[${reservation.reservationDate}]]<br>
                 결제 금액: [[${reservation.reservationPrice}]]
             </div>
-            <a href="/buy/reservList" class="btn">확인</a>
+            <a href="/buy/reservList"><div  class="checkBtn" style="background-color: #03c75a; border-radius: 5px; border: 1px solid #dadada; color: #fff; width: 200px; height: 30px; padding: 7px 0 0 0; margin: 0 auto;" >확인</div></a>
         </div>
 
     </th:block>

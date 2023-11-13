@@ -6,6 +6,7 @@ import com.jejugreentour.jgt.accom.vo.MainAccomImgVO;
 import com.jejugreentour.jgt.accom.vo.MainAccomVO;
 import com.jejugreentour.jgt.accom.vo.SubAccomImgVO;
 import com.jejugreentour.jgt.accom.vo.SubAccomVO;
+import com.jejugreentour.jgt.buy.service.BuyService;
 import com.jejugreentour.jgt.member.vo.MemberVO;
 import com.jejugreentour.jgt.util.UploadUtil;
 import jakarta.servlet.ServletOutputStream;
@@ -29,6 +30,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AccomController {
     private final AccomService accomService;
+    private final BuyService buyService;
 
     // 숙박 등록 페이지로 이동
     @GetMapping("/addAccomForm")
@@ -72,6 +74,7 @@ public class AccomController {
     // 숙박 정보 수정페이지로 이동
     @GetMapping("/mainAccomDetail")
     public String mainAccomDetail(String accomCode, Model model, Authentication authentication){
+        model.addAttribute("score",buyService.selectscore(accomCode));
         MainAccomVO vo = accomService.selectMainAccomDetail(accomCode);
         List<MainAccomImgVO> img = accomService.selectSubImg(accomCode);
         model.addAttribute("mAccom", vo);
@@ -188,6 +191,22 @@ public class AccomController {
         System.out.println(subAccomVO);
         accomService.updateSubAccomState(subAccomVO);
     }
+
+    @GetMapping("/mainAccomForm")
+    public String mainAccomForm(MainAccomVO mainAccomVO, String accomLoc, Model model){
+        // 페이지 정보 세팅
+        mainAccomVO.setTotalDataCnt(accomService.selectAccomCnt(accomLoc));
+        mainAccomVO.setPageInfo();
+        model.addAttribute("accomList", accomService.mainAccomTab(mainAccomVO));
+        if (accomLoc != null){
+            model.addAttribute("accomLoc", accomLoc);
+        }
+        return "/content/accom/accom_list";
+    }
+
+
+
+
 
 
 }

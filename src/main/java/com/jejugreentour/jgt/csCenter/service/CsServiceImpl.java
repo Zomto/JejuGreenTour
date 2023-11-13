@@ -155,5 +155,34 @@ public class CsServiceImpl implements CsService{
         return sqlSession.delete("csMapper.deleteInqImg", inqCode);
     }
 
+    @Override
+    public void updateIsResponse(String inqCode) {
+        sqlSession.update("csMapper.updateIsResponse", inqCode);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void insertResponse(ResponseVO responseVO) {
+        sqlSession.insert("csMapper.insertResponse", responseVO);
+        if (!responseVO.getResImgList().isEmpty()){
+            sqlSession.insert("csMapper.insertResImg", responseVO);
+        }
+    }
+
+    @Override
+    public ResponseVO selectResponse(String resCode) {
+        return sqlSession.selectOne("csMapper.selectResponse", resCode);
+    }
+
+    @Override
+    public String nextResCode() {
+        return sqlSession.selectOne("csMapper.nextResCode");
+    }
+
+    @Override
+    public List<ResImgVO> resImgList(String resCode) {
+        return sqlSession.selectList("csMapper.resImgList", resCode);
+    }
+
 
 }

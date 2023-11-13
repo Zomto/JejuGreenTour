@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/myPage_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/member/myPage_plan.css">
+        <style>
+            .s_in {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .s_main {
+                width: 800px;
+                margin: 30px auto 100px auto;
+                margin-left: 0;
+            }
+
+            .s_title {
+                margin-left: 20px;
+                width: 150px;
+                font-size: 22px;
+                font-weight: 700;
+                color: #444;
+                border-bottom: 5px solid #dadada;
+            }
+
+            .s_tbl {
+                width: 1000px;
+                margin: 0 auto;
+            }
+
+            .s_tbl table {
+                width: 100%;
+                border-bottom: 1px solid #ddd;
+                border-collapse: separate;
+                table-layout: fixed;
+                font-size: 15px;
+            }
+
+            .s_tbl table.board_type th,
+            .s_tbl table.board_type td {
+                padding: 15px;
+                text-align: center;
+                border-top: 1px solid #ddd;
+
+            }
+
+            .s_tbl th {
+                background-color: #03c75a;
+                font-size: 15px;
+                font-weight: 600;
+            }
+
+            .s_tbl th,
+            .s_tbl td {
+                text-align: left;
+                min-height: 54px;
+                padding: 15px 20px;
+                font-weight: 400;
+                line-height: 23px;
+            }
+
+            .s_re_btn {
+                background-color: #03c75a;
+                color: white;
+                padding: 7px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .s_re_btn:hover {
+                background-color: #03c75a;
+            }
+
+            .s_name {
+                color: #fff;
+            }
+        </style>
+    </th:block>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <div class="wrap">
+            <div class="s_in">
+                <div class="s_main">
+                    <h3 class="m1_title">플래너</h3>
+                    <div class="s_tbl">
+                        <table class="board_type">
+                            <colgroup>
+                                <col width="25%" style=" border-radius: 0 0 0 50%;">
+                                <col width="25%">
+                                <col width="*">
+                                <col width="25%">
+                            </colgroup>
+                            <thead>
+                                <th class="s_name" style="border-radius: 15px 0 0 0;">예약번호</th>
+                                <th class="s_name">예약날짜</th>
+                                <th class="s_name">숙소명</th>
+                                <th class="s_name" style="border-radius: 0 15px 0 0;">플랜</th>
+                            </thead>
+                            <tbody>
+                                <tr th:if="${ #lists.size(Reservationlist) == 0}">
+                                    <td colspan="4">
+                                        <div class="data_no">
+                                            <div class="cont">
+                                                <strong>"현재 예약 내역이 존재하지 않습니다."</strong><br>
+                                                "즐거운 여행 계획을 준비해 보세요!"
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr th:each="reserv , state : ${Reservationlist}">
+                                    <td><br>[[${reserv.reservationCode}]] </td>
+                                    <td>[[${#strings.arraySplit(reserv.reservationDate,' ')[0]}]] <br>
+                                        <br>
+                                        [[${#strings.arraySplit(reserv.reservationDate,' ')[1]}]]
+                                    </td>
+                                    <td><span
+                                            style="font-size: 20px;">[[${reserv.subAccom.sampleACCVO.accomName}]]</span>
+
+                                        <span><br><br>[[${#strings.arraySplit(reserv.reservationName,' ')[0]}]]</span>
+                                    </td>
+                                    <th:block th:if="${reserv.dayuse != 'Y'}">
+                                        <br>
+                                        <td th:if="${#lists.size(reserv.planList) == 1}">
+                                            <input class="s_re_btn" type="button" value="플랜작성하기"
+                                                th:onclick="|location.href='@{/buy/reservationPlan(reservationCode=${reserv.reservationCode})}'|">
+                                        </td>
+                                        <td th:if="${#lists.size(reserv.planList) > 1}">
+                                            <input class="s_re_btn" type="button" value="플랜보러하기"
+                                                th:onclick="|location.href='@{/buy/Planview(reservationCode=${reserv.reservationCode})}'|">
+                                        </td>
+                                    </th:block>
+                                    <th:block th:if="${reserv.dayuse == 'Y'}">
+                                        <td>
+                                            <span>대실은 플랜을 <br> 작성할 수 없습니다.</span>
+                                        </td>
+                                    </th:block>
+                                    <input type="hidden">
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="side">
+                    <!-- <div class="s1">
+                        <div class="s1_ment1">1:1문의</div>
+                        <div class="s1_ment2">궁금하신 사항을 남겨주세요</div>
+                        <div class="s1_btn">
+                            <button class="s1_btn_left" onclick="location.href='/cs/inquireListForm';">문의내역 확인</button>
+                            <button class="s1_btn_right" onclick="location.href='/cs/inquireForm';">문의하기</button>
+                        </div>
+                    </div> -->
+                    <div class="s2"></div>
+                    <div class="s3"></div>
+                    <div class="s4"></div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</body>
+
+<th:block layout:fragment="content_js">
+
+</th:block>
+
+</html>

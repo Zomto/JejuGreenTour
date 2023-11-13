@@ -88,6 +88,8 @@
     margin-right: 30px;
 }
 .pageBtn{
+    text-align: center;
+    justify-content: center;
     margin-bottom: 30px;
 }
 .qna_span_q{
@@ -132,11 +134,13 @@
 }
 
 .pageBtn > a{
+    
     color: #222;
     margin-right: 10px;
 }
 
 .btn_group{
+    justify-content: center;
     width: 800px;
     text-align: center;
     position: relative;
@@ -182,5 +186,30 @@
     border-radius: 5px;
 }
 .qna_btn input:hover{
+    background-color: #1db954;
+}
+.searchBox{
+    display: flex;
+    margin-right: 100px;
+}
+.search_input input{
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #dadada;
+    color: #666;
+    margin-right: 2px;
+}
+.search_input input:focus{
+    border: 1px solid #1db954;
+}
+.search_btn{
+    margin-top: -2px;
+    padding: 2px 10px;
+    border-radius: 5px;
+    background-color: #03c75a;
+    border: 1px solid #dadada;
+    color: #fff;
+}
+.search_btn:hover{
     background-color: #1db954;
 }

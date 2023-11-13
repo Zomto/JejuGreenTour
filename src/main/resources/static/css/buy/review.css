@@ -1,0 +1,135 @@
+@charset "UTF-8";
+
+.wrap{
+    width: 1000px;
+    margin: 0 auto;
+}
+.inner{
+    margin: 30px 0 0 50px;
+}
+.reviewBox{
+    width: 800px;
+    border: 1px solid #dadada;
+    border-radius: 7px;
+    margin-bottom: 30px;
+}
+.title{
+    width: 150px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #444;
+    border-bottom: 5px solid #dadada;
+    margin-bottom: 20px;
+}
+.inputBox{
+    display: flex;
+    border-bottom: 1px solid #dadada;
+    padding: 10px 20px;
+}
+.innerBox:last-child{
+    border: 0;
+}
+.input_review{
+    outline: none;
+    border: 0;
+}
+.label{
+    color: #666;
+    font-size: 20px;
+    width: 100px;
+    margin-right: 20px;
+}
+select{
+    padding: 0px 2px 2px 0px;
+    color: #03c75a;
+    margin-top: 3px;
+    width: 170px;
+    font-size: 19px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #dadada;
+}
+select:focus{
+    border: 1px solid #1ab754;
+}
+textarea{
+    color: #666;
+    font-size: 20px;
+    width: 500px;
+    height: 300px;
+    outline: none;
+    resize: none;
+}
+.inputBox.img .label{
+    margin-top: 8px;
+}
+.inqImg{
+    color: #fff;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    background-color: #03c75a;
+
+}
+.inputBox.img .upload-name {
+    border-radius: 5px;
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 78%;
+    color: #999999;
+}
+
+.inputBox.img label {
+    margin-top: -2px;
+    display: inline-block;
+    padding: 10px 10px;
+    border-radius: 5px;
+    width: 68px;
+    border : 1px solid #dadada;
+    font-size: 17px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #03c75a;
+    cursor: pointer;
+    height: 25px;
+    margin-left: 10px;
+}
+.inputBox.img label:hover{
+    background-color: #1ab752;
+}
+.inputBox.img input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+.inputBox.imgLook{
+    border: 0;
+}
+.imgSlideList{
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+.inputBox.imgLook > .label{
+    padding: 20px 0;
+}
+.subBtn{
+    cursor: pointer;
+    margin-left: 195px;
+    margin-bottom: 50px;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #03c75a;
+    width: 400px;
+    height: 50px;
+    margin-left: 200px;
+}
+.subBtn:hover{
+    background-color: #1ab752;
+}

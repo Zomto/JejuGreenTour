@@ -81,6 +81,22 @@ public interface CsService {
     // 문의 내역 사진 삭제
     public int deleteInqImg(String inqCode);
 
+    // 답변 여부 변경
+    public void updateIsResponse(String inqCode);
+
+
+    // 답변 내용 추가
+    public void insertResponse(ResponseVO responseVO);
+
+    // 답변 사진 추가
+
+    // 답변 조회
+    public ResponseVO selectResponse(String resCode);
+
+    public String nextResCode();
+
+    // 답변 사진 조회
+    public List<ResImgVO> resImgList(String resCode);
 
 
 }

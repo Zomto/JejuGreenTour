@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -146,5 +147,34 @@ public class BuyServiceImpl implements BuyService{
     @Override
     public int deleteAdminReview(ReviewAdminVO reviewAdminVO) {
         return sqlSession.delete("buyMapper.deleteAdminReview",reviewAdminVO);
+    }
+
+    @Override
+    public void insertPlan(ReservationVO reservationVO) {
+         sqlSession.insert("buyMapper.insertPlan",reservationVO);
+    }
+
+    @Override
+    public List<PlanVO> selectPlan(String reservationCode) {
+        return sqlSession.selectList("buyMapper.selectPlan",reservationCode);
+    }
+
+    @Override
+    public ScoreVO selectscore(String accomCode) {
+        return sqlSession.selectOne("buyMapper.selectscore",accomCode);
+    }
+
+    @Override
+    public List<ReservationVO> selectPlanList(String memberId) {
+        List<ReservationVO> list=sqlSession.selectList("buyMapper.selectMemberReservationList",memberId);
+        list.forEach(reservationVO -> {
+
+
+                List<PlanVO> planVOS =sqlSession.selectList("buyMapper.selectPlan",reservationVO.getReservationCode());
+                planVOS.add(new PlanVO());
+                    reservationVO.setPlanList(planVOS);
+
+        });
+        return list;
     }
 }

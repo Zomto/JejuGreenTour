@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+.textBox{
+    padding: 20px 30px;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+}
+.title{
+    margin-left: 114px;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 700;
+    color: #444;
+    border-bottom: 5px solid #dadada;
+    margin-bottom: 18px;
+}
+.lineBox{
+    display: flex;
+    margin-bottom: 15px;
+}
+.innerBox{
+    border-radius: 7px;
+    border: 1px solid #dadada;
+    padding: 15px 15px 0px 15px;
+}
+.label{
+    width: 70px;
+    font-size: 12px;
+    color: #666;
+}
+.text{
+    margin-right: 5px;
+    color: #444;
+    font-size: 15px;
+    margin-top: -1px;
+}
+.won{
+    color: #444;
+    font-size: 15px;
+    margin-top: -3px;
+}

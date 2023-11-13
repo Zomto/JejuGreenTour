@@ -74,6 +74,16 @@ public interface BuyService {
     //숙박업소주인 답볍삭제
     public int deleteAdminReview(ReviewAdminVO reviewAdminVO);
 
+    //플랜 추가
+    public void  insertPlan(ReservationVO reservationVO);
+
+    public List<PlanVO> selectPlan(String reservationCode);
+
+    public ScoreVO selectscore(String accomCode);
+
+    public List<ReservationVO> selectPlanList(String memberId);
+
+
 
     //결제 취소 admin 시점 user 시점 (환불금액 차이)
 

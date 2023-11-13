@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+    layout:decorate="~{fragment/main_layout}">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<!-- css 영역 -->
+<th:block layout:fragment="content_css">
+
+</th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="main two">
+        <div class="inner accom">
+            <div class="location">
+                <div class="locs">
+                    <div class="loc-link"><a href="/accom/mainAccomForm">전체</a></div>
+                    <div class="loc-link current" id="first" data-tab="loc-11"><a th:href="@{/accom/mainAccomForm(accomLoc='제주시')}">제주시</a></div>
+                    <div class="loc-link" data-tab="loc-12"><a th:href="@{/accom/mainAccomForm(accomLoc='서귀포시')}">서귀포시</a></div>
+                    <div class="loc-link" data-tab="loc-13"><a th:href="@{/accom/mainAccomForm(accomLoc='성산읍')}">성산읍</a></div>
+                    <div class="loc-link" data-tab="loc-14"><a th:href="@{/accom/mainAccomForm(accomLoc='한림읍')}">한림읍</a></div>
+                    <div class="loc-link" data-tab="loc-15"><a th:href="@{/accom/mainAccomForm(accomLoc='애월읍')}">애월읍</a></div>
+                    <div class="loc-link" data-tab="loc-16"><a th:href="@{/accom/mainAccomForm(accomLoc='안덕면')}">안덕면</a></div>
+                    <div class="loc-link" data-tab="loc-17"><a th:href="@{/accom/mainAccomForm(accomLoc='남원읍')}">남원읍</a></div>
+                    <div class="loc-link" data-tab="loc-18"><a th:href="@{/accom/mainAccomForm(accomLoc='대정읍')}">대정읍</a></div>
+                    <div class="loc-link" id="nine" data-tab="loc-19"><a th:href="@{/accom/mainAccomForm(accomLoc='조천읍')}">조천읍</a></div>
+                    <div class="loc-link" id="ten" data-tab="loc-20"><a th:href="@{/accom/mainAccomForm(accomLoc='구좌읍')}">구좌읍</a></div>
+                </div>
+                <div class="accomItems">
+                    <div id="tab-1" class="tab-content current">
+                        <div class="accomItem row-col-5">
+                            <th:block th:each="data, state : ${accomList}">
+                                    <div class="itemdetail" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="photo">
+                                            <div th:if="${img.isMain == 'Y'}"
+                                                th:each="img : ${data.mainAccomImgList}">
+                                                <th:block>
+                                                    <img th:src="${'/img/accom/'+ img.attachedFileName}"
+                                                        alt="">
+                                                </th:block>
+                                            </div>
+                                        </div>
+                                        <div class="text">
+                                            <div class="itemName">[[${data.accomName}]]</div>
+                                            <div class="itemLoc">[[${data.accomLoc}]]</div>
+                                            <div class="price">[[${data.accomAddr}]]</div>
+                                            <div class="price">[[${data.addrDetail}]]</div>
+                                            <div class="price">[[${data.accomCate}]]</div>
+                                        </div>
+                                        <div class="love">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ff3f3f" class="bi bi-heart" viewBox="0 0 16 16">
+                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </th:onclick=>
+                            </th:block>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+</body>
+<!-- js 영역 -->
+<th:block layout:fragment="content_js">
+
+</th:block>
+</html>

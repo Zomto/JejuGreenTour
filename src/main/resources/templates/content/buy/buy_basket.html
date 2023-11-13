@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title></title>
     <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/buy/buy_basket.css">
         <style>
             .buybasket {
                 font-family: Arial, sans-serif;
@@ -15,7 +16,7 @@
                 align-items: center;
                 height: 100vh;
             }
-    
+
             .buybasket_in {
                 background-color: #fff;
                 width: 400px;
@@ -23,18 +24,18 @@
                 border-radius: 5px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             }
-    
+
             .buy_button {
                 width: 100%;
                 padding: 10px;
-                background-color: #4CAF50;
+                background-color: #03c75a;
                 color: white;
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;
                 margin-top: 10px;
             }
-    
+
             .del_button {
                 width: 100%;
                 padding: 10px;
@@ -45,11 +46,11 @@
                 cursor: pointer;
                 margin-top: 10px;
             }
-    
+
             .buy_button:hover {
                 background-color: #45a049;
             }
-    
+
             .del_button:hover {
                 background-color: #d62121;
             }
@@ -58,116 +59,150 @@
 </head>
 
 <body>
-<th:block layout:fragment="content">
-   
-    <div class="buybasket">
+    <th:block layout:fragment="content">
 
-        <form action="/buy/accomReservation" method="post">
-            <div class="buybasket_in">
+        <div class="buybasket">
 
-                <h2 style="text-align: center;">숙박 상세 정보</h2>
-                <p>여관명: <span id="hotelName">[[${AccomCode.accomName}]]</span></p>
-                <p>방 이름: <span id="roomName">[[${subAccomCode.subAccomName}]]</span></p>
-                <p>숙박 일자: <span id="stayTerm">[[${basketAccomVO.stayTerm}]]</span></p>
-                <p th:if="${basketAccomVO.dayuse == 'N'}">숙박 가격: <span
-                        id="stayPrice">[[${subAccomCode.accomPrice}]]</span></p>
-                <p th:if="${basketAccomVO.dayuse == 'Y'}">숙박 가격: <span
-                        id="stayPrice">[[${subAccomCode.dayusePrice}]]</span></p>
-                <p>결제자명: <span id="memberId">[[${basketAccomVO.memberId}]]</span></p>
-                <!-- <p>연 락 처 : <span id="tel">010</span></p> -->
-                <p>숙박 날짜: 체크인 <span id="checkin">[[${basketAccomVO.stayStartDate}]]</span></p>
-                <p>숙박 날짜: 체크아웃<span id="checkout">[[${basketAccomVO.stayEndDate}]]</span></p>
-                <input type="hidden" name="dayuse" th:value="${basketAccomVO.dayuse}">
-                <input type="hidden" id="subAccomCode" th:value="${basketAccomVO.subAccomCode}">
-                <input type="hidden" class="basketCode" name="basketCode" th:value="${basketAccomVO.basketCode}" >
-                <input type="hidden" class="stayStartDate" name="stayStartDate" th:value="${basketAccomVO.stayStartDate}" >
-                <input type="hidden" class="stayEndDate" name="stayEndDate" th:value="${basketAccomVO.stayEndDate}" >
-                <input class="buy_button" type="button" value="결제하기" onclick="reservationcheck()">
-                <input class="del_button" type="button" value="취소하기" onclick="cancelPayment()">
-            </div>
-        </form>
-    </div>
-    
+            <form action="/buy/accomReservation" method="post">
+                <div class="buybasket_in">
+
+
+                    <div class="textBox">
+                        <div class="title" style="text-align: center;">숙박 상세 정보</div>
+                        <div class="innerBox">
+                            <div class="lineBox">
+                                <div class="label">숙소명</div>
+                                <div class="text" id="hotelName">[[${AccomCode.accomName}]]</div>
+                            </div>
+                            <div class="lineBox">
+                                <div class="label">객실명</div>
+                                <div class="text" id="roomName">[[${subAccomCode.subAccomName}]]</div>
+                            </div>
+                            <div class="lineBox">
+                                <div class="label">숙박일</div>
+                                <div class="text" id="stayTerm">[[${basketAccomVO.stayTerm}]]</div>
+                                <div class="won">일</div>
+                            </div>
+
+
+                            <div class="lineBox" th:if="${basketAccomVO.dayuse == 'N'}">
+                                <div class="label">결제 금액</div>
+                                <div class="text" id="stayPrice">[[${subAccomCode.accomPrice}]]</div>
+                                <div class="won">원</div>
+                            </div>
+                            <div class="lineBox" th:if="${basketAccomVO.dayuse == 'Y'}">
+                                <div class="label">결제 금액</div>
+                                <div class="text" id="stayPrice">[[${subAccomCode.dayusePrice}]]</div>
+                                <div class="won">원</div>
+                            </div>
+                            <div class="lineBox">
+                                <div class="label">결제자명</div>
+                                <div class="text" id="memberId">[[${basketAccomVO.memberId}]]</div>
+                            </div>
+                            <div class="lineBox">
+                                <div class="label">체크인</div>
+                                <div class="text" id="checkin">[[${basketAccomVO.stayStartDate}]]</div>
+                            </div>
+                            <div class="lineBox">
+                                <div class="label">체크아웃</div>
+                                <div class="text" id="checkout">[[${basketAccomVO.stayEndDate}]]</div>
+                            </div>
+                            <input type="hidden" name="dayuse" th:value="${basketAccomVO.dayuse}">
+                            <input type="hidden" id="subAccomCode" th:value="${basketAccomVO.subAccomCode}">
+                            <input type="hidden" class="basketCode" name="basketCode"
+                                th:value="${basketAccomVO.basketCode}">
+                            <input type="hidden" class="stayStartDate" name="stayStartDate"
+                                th:value="${basketAccomVO.stayStartDate}">
+                            <input type="hidden" class="stayEndDate" name="stayEndDate"
+                                th:value="${basketAccomVO.stayEndDate}">
+                        </div>
+                    </div>
+                    <input class="buy_button" type="button" value="결제하기" onclick="reservationcheck()">
+                    <input class="del_button" type="button" value="취소하기" onclick="cancelPayment()">
+                </div>
+            </form>
+        </div>
+
     </th:block>
 </body>
 <th:block layout:fragment="content_js">
     <script>
         let stayTerm = document.querySelector('#stayTerm').innerHTML;
         let stayPrice = document.querySelector('#stayPrice').innerHTML;
-        
+
         console.log(Number(stayTerm) * Number(stayPrice))
         document.querySelector('#stayPrice').innerHTML = Number(stayTerm) * Number(stayPrice) + ''
         let now = new Date;
-        let setday=null;
-        setday= now.getFullYear();
+        let setday = null;
+        setday = now.getFullYear();
         if (Number(now.getMonth()) / 10 < 1) {
-                setday += "-0"
-                setday += (now.getMonth() + 1)
-            }
-            else {
-                setday += '-' + (Number(now.getMonth()) + 1)
-            }
-            if (Number(now.getDate()) / 10 < 1) {
-                setday += "-0"
-                setday += now.getDate();
-            } else {
-                setday += '-' + Number(now.getDate())
-            }
-            setday+='T23:59:59'
-            console.log(setday);
+            setday += "-0"
+            setday += (now.getMonth() + 1)
+        }
+        else {
+            setday += '-' + (Number(now.getMonth()) + 1)
+        }
+        if (Number(now.getDate()) / 10 < 1) {
+            setday += "-0"
+            setday += now.getDate();
+        } else {
+            setday += '-' + Number(now.getDate())
+        }
+        setday += 'T23:59:59'
+        console.log(setday);
 
 
         function reservationcheck() {
-                fetch('/buy/reservationList', { //요청경로
-                    method: 'POST',
-                    cache: 'no-cache',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-                    },
-                    //컨트롤러로 전달할 데이터
-                    body: new URLSearchParams({
-                        subAccomCode : document.querySelector('#subAccomCode').value
-                    })
+            fetch('/buy/reservationList', { //요청경로
+                method: 'POST',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                },
+                //컨트롤러로 전달할 데이터
+                body: new URLSearchParams({
+                    subAccomCode: document.querySelector('#subAccomCode').value
                 })
-                    .then((response) => {
-                        if (!response.ok) {
-                            alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
-                            return;
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+                        return;
+                    }
+
+                    // return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
+                    return response.json(); //나머지 경우에 사용
+                })
+                //fetch 통신 후 실행 영역
+                .then((data) => {//data -> controller에서 리턴되는 데이터!
+                    console.log(data)
+                    let stayStartDate = document.querySelector('.stayStartDate').value;
+                    let stayEndDate = document.querySelector('.stayEndDate').value;
+                    let safe = false;
+                    data.forEach(element => {
+                        console.log(element)
+                        // console.log(stayStartDate>=element.stayStartDate&&stayStartDate<)
+                        if ((element.stateVO.refund == 'N') && ((element.stayStartDate <= stayStartDate && stayStartDate < element.stayEndDate) || (stayStartDate <= element.stayStartDate && element.stayStartDate < stayEndDate))) {
+                            safe = true;
+                        }
+                        if (setday > stayStartDate) {
+                            safe = true;
                         }
 
-                       // return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
-                        return response.json(); //나머지 경우에 사용
-                    })
-                    //fetch 통신 후 실행 영역
-                    .then((data) => {//data -> controller에서 리턴되는 데이터!
-                        console.log(data)
-                        let stayStartDate = document.querySelector('.stayStartDate').value;
-                        let stayEndDate = document.querySelector('.stayEndDate').value;
-                        let safe=false;
-                        data.forEach(element => {
-                            console.log(element)
-                            // console.log(stayStartDate>=element.stayStartDate&&stayStartDate<)
-                            if((element.stateVO.refund == 'N')&&((element.stayStartDate<=stayStartDate&&stayStartDate<element.stayEndDate)||(stayStartDate<=element.stayStartDate&&element.stayStartDate<stayEndDate))){
-                                safe = true;
-                            }
-                            if(setday >stayStartDate){
-                                safe = true;
-                            }
-                            
-                        });
-                        if(safe){
-                            alert('해당일자에 예약을 할 수 없습니다')
-                            location.href=`/buy/deleteBasketAccom?basketCode=${document.querySelector('.basketCode').value}`
-                        }else{
-                        confirmPayment()
-                        }
-                    })
-                    //fetch 통신 실패 시 실행 영역
-                    .catch(err => {
-                        alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
-                        console.log(err);
                     });
-            }
+                    if (safe) {
+                        alert('해당일자에 예약을 할 수 없습니다')
+                        location.href = `/buy/deleteBasketAccom?basketCode=${document.querySelector('.basketCode').value}`
+                    } else {
+                        confirmPayment()
+                    }
+                })
+                //fetch 통신 실패 시 실행 영역
+                .catch(err => {
+                    alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+                    console.log(err);
+                });
+        }
 
 
         function confirmPayment() {
@@ -182,7 +217,7 @@
         function cancelPayment() {
             if (confirm("취소하겠습니까?")) {
                 alert("결제가 취소되었습니다!");
-                location.href=`/buy/deleteBasketAccom?basketCode=${document.querySelector('.basketCode').value}`
+                location.href = `/buy/deleteBasketAccom?basketCode=${document.querySelector('.basketCode').value}`
             } else {
             }
             // fetch 기능으로 삭제

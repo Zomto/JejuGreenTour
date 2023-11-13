@@ -6,6 +6,7 @@ import com.jejugreentour.jgt.csCenter.vo.*;
 import com.jejugreentour.jgt.search.service.SearchService;
 import com.jejugreentour.jgt.search.vo.SearchVO;
 import com.jejugreentour.jgt.util.UploadUtillCs;
+import com.jejugreentour.jgt.util.UploadUtillRes;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -172,9 +173,17 @@ public class CsController {
 
     // 문의 하기 세부 페이지
     @GetMapping("/inqDetailForm")
-    public String inqDetailForm(String inqCode, Model model){
-        model.addAttribute("inqDetail", csService.inqDetail(inqCode));
+    public String inqDetailForm(String inqCode, Model model, String resCode){
+        InquireVO inqVO = csService.inqDetail(inqCode);
+        model.addAttribute("inqDetail", inqVO);
         model.addAttribute("inqImgList", csService.inqImgList(inqCode));
+
+        if (inqVO.getIsResponse().equals("Y")){
+            ResponseVO resVO = csService.selectResponse(inqCode);
+            model.addAttribute("response", resVO);
+            model.addAttribute("resImgList", csService.resImgList(resVO.getResCode()));
+        }
+
 
         return "/content/csCenter/inqDetail";
     }
@@ -203,13 +212,48 @@ public class CsController {
         return "redirect:/cs/inquireListForm";
     }
 
-    @GetMapping("deleteInq")
+    @GetMapping("/deleteInq")
     public String deleteInq(String inqCode){
         csService.deleteInqImg(inqCode);
         csService.deleteInq(inqCode);
         return "redirect:/cs/inquireListForm";
     }
 
+    @GetMapping("/responseForm")
+    public String responseForm(Model model, String inqCode, InquireVO inquireVO){
+        // 문의 내용 출력용
+        model.addAttribute("inqDetail", csService.inqDetail(inqCode));
+        model.addAttribute("inqImgList", csService.inqImgList(inqCode));
+        System.out.println();
+        return "content/csCenter/response";
+    }
+
+    @PostMapping("/insertResponse")
+    public String insertResponse(ResponseVO responseVO, MultipartFile[] resImg, String inqCode){
+        System.out.println(responseVO);
+        //--- 상품 이미지 등록 ---//
+        //0. 다음에 들어가야 할 ITEM_CODE를 조회
+        String resCode = csService.nextResCode();
+
+        //2. 이미지 정보 하나가 들어갈 수 있는 통!
+
+        //첨부파일 기능 다중
+        List<ResImgVO> imgList = UploadUtillRes.multiFileUpload(resImg);
+
+
+        for(ResImgVO resImgVO : imgList){
+            resImgVO.setResCode(resCode);
+        }
+
+        responseVO.setResImgList(imgList);
+
+        //상품 등록  + 이미지 등록 쿼리
+        responseVO.setResCode(resCode);
+        csService.insertResponse(responseVO);
+        csService.updateIsResponse(inqCode);
+
+        return "redirect:/cs/inqDetailForm?inqCode=" + responseVO.getInqCode();
+    }
 
 
 }

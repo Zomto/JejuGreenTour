@@ -13,25 +13,91 @@
 <body>
 <th:block layout:fragment="content">
     <div class="search">
-        <div class="s_in">
-            <div class="sMainAcc">
-                <h3>메인</h3>
-                <div class="sMainAcc_in">
-                    <div th:if="${variable}">
 
+        <div class="s_in">
+            <div id="title">검색결과</div>
+            <div class="sBox">
+                <div class="h3">메인</div>
+                <div class="sMainAcc_in">
+                    <div class="accomItems">
+                        <div id="tab-1" class="tab-content current">
+                            <div class="accomItem row-col-5">
+                                <th:block th:each="mainAccom, state : ${searchMainAccomList}">
+                                        <div class="itemdetail" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${mainAccom.accomCode})}'|">
+                                            <div class="photo">
+                                                <div th:each="img : ${mainAccom.mainAccomImgList}">
+                                                    <th:block>
+                                                        <img th:src="${'/img/accom/'+ img.attachedFileName}"
+                                                            alt="">
+                                                    </th:block>
+                                                </div>
+                                            </div>
+                                            <div class="text">
+                                                <div class="itemName">[[${mainAccom.accomName}]]</div>
+                                                <div class="itemLoc">[[${mainAccom.accomLoc}]]</div>
+                                                <div class="price">[[${mainAccom.accomAddr}]]</div>
+                                                <div class="price">[[${mainAccom.addrDetail}]]</div>
+                                                <div class="price">[[${mainAccom.accomCate}]]</div>
+                                            </div>
+                                            <div class="love">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ff3f3f" class="bi bi-heart" viewBox="0 0 16 16">
+                                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </th:onclick=>
+                                </th:block>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="sSubAcc">
-                <h3>서브</h3>
+                <div class="h3">서브</div>
                 <div class="sSubAcc_in">
-                    <div th:if="${variable}">
-
+                    <div class="accomItems">
+                        <div id="tab-1" class="tab-content current">
+                            <div class="accomItem row-col-5">
+                                <th:block th:each="data, state : ${searchSubAccomList}">
+                                        <div class="itemdetail" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                            <div class="photo">
+                                                <div
+                                                    th:each="img : ${data.subAccomImgList}">
+                                                    <th:block>
+                                                        <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
+                                                            alt="">
+                                                    </th:block>
+                                                </div>
+                                            </div>
+                                            <div class="text">
+                                                <div class="itemName">[[${data.subAccomName}]]</div>
+                                                <div class="itemLoc">[[${data.accomLoc}]]</div>
+                                                <div class="price">
+                                                    <span class="priceNum">
+                                                        [[${data.reservationPrice}]]
+                                                    </span>
+                                                    <span class="won">원</span>
+                                                    <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                        <span class="priceNum">[[${data.dayusePrice}]]</span>
+                                                        <span class="won">원</span>
+                                                    </th:block>
+                                                </div>
+                                            </div>
+                                            <div class="love">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ff3f3f" class="bi bi-heart" viewBox="0 0 16 16">
+                                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </th:onclick=>
+                                </th:block>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="sAnn">
-                <h3>공지</h3>
+            <div class="sBox">
+                <div class="h3">공지</div>
                 <div class="sAnn_in">
                     <div>
                         <div class="table">
@@ -42,15 +108,15 @@
                             <div class="tbody">
                                 <div class="tr" width="100%" th:each="searchAnn, state : ${searchAnnList}">
                                     <div class="value num">[[${searchAnn.annCateList.cateName}]]</div>
-                                    <div class="valuetitle">[[${searchAnn.annTitle}]]</div>
+                                    <div class="value title">[[${searchAnn.annTitle}]]</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="sQna">
-                <h3>QNA</h3>
+            <div class="sBox">
+                <div class="h3">QNA</div>
                 <div class="sQna_in">
                     <div>
                         <ul class="contentBox">

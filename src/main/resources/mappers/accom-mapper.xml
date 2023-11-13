@@ -91,6 +91,7 @@
         , ORIGIN_FILE_NAME
         , ACCOM_LOC
         , IS_MAIN
+        , SA.ACCOM_CODE
         FROM SUB_ACCOM SA, SUB_ACCOM_IMG IMG, MAIN_ACCOM MA
         WHERE SA.ACCOM_CODE = MA.ACCOM_CODE
         AND SA.SUB_ACCOM_CODE = IMG.SUB_ACCOM_CODE
@@ -353,21 +354,68 @@
     </select>
 
 
+    <!--  ACCOM 검색  -->
     <select id="searchAccom" resultMap="mainAccom">
         SELECT
-            ACCOM_CODE
+            MAIN.ACCOM_CODE
             , ACCOM_NAME
             , ACCOM_ADDR
             , ADDR_DETAIL
             , ACCOM_INTRO
-            , ACCOM_CATE
-            , ACCOM_CEO
+            , MAIN.ACCOM_CATE
             , ACCOM_LOC
-        FROM MAIN_ACCOM MAIN, ACCOM_CATEGORY CATE
+            , ATTACHED_FILE_NAME
+            , ORIGIN_FILE_NAME
+        FROM MAIN_ACCOM MAIN, ACCOM_CATEGORY CATE, MAIN_ACCOM_IMG IMG
         WHERE MAIN.ACCOM_CATE = CATE.ACCOM_CATE
-        ORDER BY ACCOM_CODE DESC
-        OFFSET 0 ROWS FETCH FIRST 7 ROWS ONLY
+        AND MAIN.ACCOM_CODE = IMG.ACCOM_CODE
+        <if test='searchData != null and !searchData.equals("")'>
+            AND (
+            UPPER(ACCOM_NAME) LIKE '%'||UPPER(#{searchData})||'%'
+            OR UPPER(ACCOM_ADDR) LIKE '%'||UPPER(#{searchData})||'%'
+            OR UPPER(ADDR_DETAIL) LIKE '%'||UPPER(#{searchData})||'%'
+            OR UPPER(ACCOM_INTRO) LIKE '%'||UPPER(#{searchData})||'%'
+            OR UPPER(MAIN.ACCOM_CATE) LIKE '%'||UPPER(#{searchData})||'%'
+            OR UPPER(ACCOM_LOC) LIKE '%'||UPPER(#{searchData})||'%'
+            )
+            ORDER BY ACCOM_CODE DESC
+            OFFSET 0 ROWS FETCH FIRST 8 ROWS ONLY
+        </if>
     </select>
+
+    <!--  SUB_ACCOM 검색  -->
+    <select id="searchSubAccom" resultMap="subAccom">
+        SELECT
+            SUB.SUB_ACCOM_CODE
+            , ACCOM_CODE
+            , SUB_ACCOM_NAME
+            , SUB_ACCOM_INTRO
+            , SUB_ACCOM_CATE
+            , BASIC_MAN
+            , MAX_MAN
+            , ACCOM_START_TIME
+            , ACCOM_END_TIME
+            , RENT_TIME
+            , DAYUSE_PRICE
+            , RESERVATION_PRICE
+            , SOLD_OUT
+            , DAY_USE_CAN
+            , SUB_DELETE
+            , ATTACHED_FILE_NAME
+            , ORIGIN_FILE_NAME
+            FROM SUB_ACCOM SUB, SUB_ACCOM_IMG IMG
+            WHERE SUB.SUB_ACCOM_CODE = IMG.SUB_ACCOM_CODE
+            <if test='searchData != null and !searchData.equals("")'>
+                AND (
+                UPPER(SUB_ACCOM_NAME) LIKE '%'||UPPER(#{searchData})||'%'
+                OR UPPER(SUB_ACCOM_INTRO) LIKE '%'||UPPER(#{searchData})||'%'
+                OR UPPER(SUB_ACCOM_CATE) LIKE '%'||UPPER(#{searchData})||'%'
+                )
+                ORDER BY SUB_ACCOM_CODE DESC
+                OFFSET 0 ROWS FETCH FIRST 8 ROWS ONLY
+            </if>
+    </select>
+
 
     <select id="selectSubAccomlist" resultMap="subAccom">
         SELECT
@@ -398,7 +446,6 @@
     <update id="updateSubAccomState">
         UPDATE SUB_ACCOM
         SET
-
         <if test='reservationPrice != null and !reservationPrice.equals("")'>
             RESERVATION_PRICE=#{reservationPrice}
         </if>
@@ -413,5 +460,38 @@
         </if>
         WHERE SUB_ACCOM_CODE = #{subAccomCode}
     </update>
+
+    <!--  메인 어콤 조회  -->
+    <select id="mainAccomTab" resultMap="mainAccom">
+        SELECT
+        MAIN.ACCOM_CODE
+        , ACCOM_NAME
+        , ACCOM_ADDR
+        , ADDR_DETAIL
+        , ACCOM_INTRO
+        , MAIN.ACCOM_CATE
+        , ACCOM_LOC
+        , ATTACHED_FILE_NAME
+        , ORIGIN_FILE_NAME
+        FROM MAIN_ACCOM MAIN, ACCOM_CATEGORY CATE, MAIN_ACCOM_IMG IMG
+        WHERE MAIN.ACCOM_CATE = CATE.ACCOM_CATE
+        AND MAIN.ACCOM_CODE = IMG.ACCOM_CODE
+        <if test='accomLoc != null and !accomLoc.equals("")'>
+            AND ACCOM_LOC = #{accomLoc}
+        </if>
+        ORDER BY MAIN.ACCOM_CODE DESC
+        OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+    </select>
+
+    <select id="selectAccomCnt" resultType="int">
+        SELECT COUNT(ACCOM_CODE)
+        FROM MAIN_ACCOM
+        WHERE 1 = 1
+        <if test='accomLoc != null and !accomLoc.equals("")'>
+            AND ACCOM_LOC = #{accomLoc}
+        </if>
+    </select>
+
+
 
 </mapper>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/myPage_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/member/myPage_review.css">
+        <style>
+            .s_in {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .s_main {
+                width: 800px;
+                margin: 30px auto 100px auto;
+                margin-left: 0;
+            }
+
+            .s_title {
+                margin-left: 20px;
+                width: 150px;
+                font-size: 22px;
+                font-weight: 700;
+                color: #444;
+                border-bottom: 5px solid #dadada;
+                margin-bottom: 20px;
+            }
+
+            .s_tbl {
+                width: 1000px;
+                margin: 0 auto;
+            }
+
+            .s_tbl table {
+                width: 100%;
+                border-bottom: 1px solid #ddd;
+                border-collapse: separate;
+                table-layout: fixed;
+                font-size: 15px;
+            }
+
+            .s_tbl table.board_type th,
+            .s_tbl table.board_type td {
+                padding: 15px;
+                text-align: center;
+                border-top: 1px solid #ddd;
+
+            }
+
+            .s_tbl th {
+                background-color: #03c75a;
+                font-size: 15px;
+                font-weight: 600;
+            }
+
+            .s_tbl th,
+            .s_tbl td {
+                text-align: left;
+                min-height: 54px;
+                padding: 15px 20px;
+                font-weight: 400;
+                line-height: 23px;
+            }
+
+            .s_re_btn {
+                background-color: #03c75a;
+                color: white;
+                padding: 7px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .s_re_btn:hover {
+                background-color: #03c75a;
+            }
+
+            .s_name {
+                color: #fff;
+            }
+            
+            .starbo2 {
+                display: inline-block;
+                background-image: url(/img/emptystarwhite.png);
+                background-size: contain;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </th:block>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <div class="wrap">
+            <div class="s_in">
+                <div class="s_main">
+                    <h3 class="m1_title">작성한 리뷰</h3>
+                    <div class="s_tbl">
+                        <table class="board_type">
+                            <colgroup>
+                                <col width="20%" style=" border-radius: 0 0 0 50%;">
+                                <col width="10%">
+                                <col width="20%">
+                                <col width="10%">
+                                <col width="20%">
+                                <col width="10%">
+                                <col width="10%">
+                            </colgroup>
+                            <thead>
+                                <th class="s_name" style="border-radius: 15px 0 0 0;">평점</th>
+                                <th class="s_name">작성자</th>
+                                <th class="s_name">작성일자</th>
+                                <th class="s_name">숙박업소명</th>
+                                <th colspan="2" class="s_name">내용</th>
+                                <th class="s_name" style="border-radius: 0 15px 0 0;">답변</th>
+                            </thead>
+                            <tbody>
+                                <tr th:if="${ #lists.size(myReviewList) == 0}">
+                                    <td colspan="6">
+                                        <div class="data_no">
+                                            <div class="cont">
+                                                <strong>"현재 작성한 리뷰가 존재하지 않습니다."</strong><br>
+                                                "즐거운 여행 계획을 준비해 보세요!"
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr th:each="review , state : ${myReviewList}">
+                                    <td>
+                                        <div class="star" th:data-set-score="${review.score}"
+                                            style="width: 100px; margin: 0 auto; height: 20px;">
+                                            <div class="starbo2">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>[[${review.memberId}]]</td>
+                                    <td>[[${review.writeDate}]]</td>
+                                    <td>[[${review.sampleACCVO.accomName}]]</td>
+                                    <td style="text-overflow:ellipsis; overflow: hidden; white-space: nowrap;">
+                                        [[${review.content}]]</td>
+                                    <td><input class="s_re_btn" type="button" value="삭제" onclick="aplydelete(this)"
+                                            th:data-review-code="${review.reviewCode}"
+                                            th:data-reservation-code="${review.reservationCode}"></td>
+                                    <td th:if="${review.reviewAdminVO.memberId == null}">X</td>
+                                    <td th:if="${review.reviewAdminVO.memberId != null}">
+                                        <input class="s_re_btn" type="button" value="답변" onclick="openPopup(this)"
+                                            th:data-reply-id="${review.reviewAdminVO.memberId}"
+                                            th:data-reply-content="${review.reviewAdminVO.content}"
+                                            th:data-reply-date="${review.reviewAdminVO.writeDate}">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+                <div class="side">
+                    <!-- <div class="s1">
+                        <div class="s1_ment1">1:1문의</div>
+                        <div class="s1_ment2">궁금하신 사항을 남겨주세요</div>
+                        <div class="s1_btn">
+                            <button class="s1_btn_left" onclick="location.href='/cs/inquireListForm';">문의내역 확인</button>
+                            <button class="s1_btn_right" onclick="location.href='/cs/inquireForm';">문의하기</button>
+                        </div>
+                    </div> -->
+                    <div class="s2"></div>
+                    <div class="s3"></div>
+                    <div class="s4"></div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</body>
+
+<th:block layout:fragment="content_js">
+    <script>
+        let myWindow = null;
+        scorestar();
+        function scorestar() {
+            document.querySelectorAll('.star').forEach(element => {
+                let yellow = element.dataset.setScore * 10
+                console.log(yellow)
+                element.style.backgroundImage = `linear-gradient(to right, yellow ${yellow}%, transparent ${yellow}%)`
+            });
+        }
+        function openPopup(tag) {
+            if (myWindow != null) {
+                myWindow.close();
+            }
+            myWindow = window.open("", "myWindow", "width=200,height=100,top=440,left=780");
+            myWindow.document.write(`
+                <div>
+                    작성자 : ${tag.dataset.replyId} 작성일자 : ${tag.dataset.replyDate}
+                </div>
+                <textarea name="" id="" cols="100" rows="100" style="
+                resize: none;">${tag.dataset.replyContent}</textarea>
+    `);
+        }
+
+        function aplydelete(tag) {
+            if (confirm('리뷰를 지우시겠습니까?')) {
+                fetch('/buy/deleteReview', { //요청경로
+                    method: 'POST',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                    },
+                    //컨트롤러로 전달할 데이터
+                    body: new URLSearchParams({
+                        reviewCode: tag.dataset.reviewCode,
+                        reservationCode: tag.dataset.reservationCode
+                    })
+                })
+                    .then((response) => {
+                        if (!response.ok) {
+                            alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+                            return;
+                        }
+
+                        return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
+                        //return response.json(); //나머지 경우에 사용
+                    })
+                    //fetch 통신 후 실행 영역
+                    .then((data) => {//data -> controller에서 리턴되는 데이터!
+                        let tbody = tag.parentNode.parentNode.parentNode;
+                        tag.parentNode.parentNode.remove();
+                        console.log(document.querySelectorAll('tr').length)
+                        console.log(tbody)
+                        if (document.querySelectorAll('tr').length == 1) {
+                            tbody.innerHTML = `<tr>
+                                    <td colspan="6">
+                                        <div class="data_no">
+                                            <div class="cont">
+                                                <strong>"현재 작성한 리뷰가 존재하지 않습니다."</strong><br>
+                                                "즐거운 여행 계획을 준비해 보세요!"
+                                            </div>
+                                        </div>
+                                    </td>
+                        </tr>
+                        `
+                        }
+                    })
+                    //fetch 통신 실패 시 실행 영역
+                    .catch(err => {
+                        alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+                        console.log(err);
+                    });
+            }
+        }
+    </script>
+</th:block>
+
+</html>

@@ -106,6 +106,16 @@ public class AccomServiceImpl implements AccomService {
         return sqlSession.selectList("accomMapper.selectDistinctAccomLoc");
     }
 
+    @Override
+    public List<MainAccomVO> mainAccomTab(MainAccomVO mainAccomVO) {
+        return sqlSession.selectList("accomMapper.mainAccomTab", mainAccomVO);
+    }
+
+    @Override
+    public int selectAccomCnt(String accomLoc) {
+        return sqlSession.selectOne("accomMapper.selectAccomCnt", accomLoc);
+    }
+
     public MainAccomVO test(MainAccomVO mainAccomVO) {
         return sqlSession.selectOne("accomMapper.test", mainAccomVO);
     }

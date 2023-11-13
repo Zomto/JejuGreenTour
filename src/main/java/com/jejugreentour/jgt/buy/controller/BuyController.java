@@ -11,10 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
@@ -62,11 +59,15 @@ public class BuyController {
             model.addAttribute("userName" ,user.getUsername());
             basketAccomVO.setMemberId( user.getUsername());
         }
-        System.out.println("ddddddddddddddddddddddddddddddddddddddddddd");
-        System.out.println(basketAccomVO.getBasketCode());
         if(basketAccomVO.getBasketCode().equals(buyService.selectNewbasketNum())){
             buyService.insertBasketAccom(basketAccomVO);
         }
+        String start =basketAccomVO.getStayStartDate().split("T")[0].split("-")[1]+"-"+basketAccomVO.getStayStartDate().split("T")[0].split("-")[2]
+                +basketAccomVO.getStayStartDate().split("T")[1].split(":")[0]+basketAccomVO.getStayStartDate().split("T")[1].split(":")[1];
+        String end =basketAccomVO.getStayEndDate().split("T")[0].split("-")[1]+"-"+basketAccomVO.getStayEndDate().split("T")[0].split("-")[2]
+                +basketAccomVO.getStayEndDate().split("T")[1].split(":")[0]+basketAccomVO.getStayEndDate().split("T")[1].split(":")[1];
+        model.addAttribute("start",start);
+        model.addAttribute("end",start);
 
         return "/content/buy/buy_basket";
     }
@@ -153,17 +154,9 @@ public class BuyController {
     }
 
     @GetMapping("/review")
-    public  String reviewWrite(ReservationVO reservationVO, Model model ,Authentication authentication){
-        if(authentication !=null){
-            User user = (User)authentication.getPrincipal();
-            model.addAttribute("userName" ,user.getUsername());
-        }
+    public  String reviewWrite(ReservationVO reservationVO, Model model ){
+
         reservationVO= buyService.selectReservationOne(reservationVO.getReservationCode());
-//        if(session.getAttribute("loginInfo")!=null&&reservationVO.getMemberId().equals(((MemberVO)session.getAttribute("loginInfo")).getMemberId())){
-//            return"/buy/review";
-//        }else {
-//             return "redirect:/";
-//        }
         SampleSubVO subVO = buyService.selectSubAccom(reservationVO.getSubAccomCode());
         subVO.setSampleACCVO(buyService.selectAccom(subVO.getAccomCode()));
         reservationVO.setSubAccom(subVO);
@@ -252,11 +245,8 @@ public class BuyController {
         if(authentication !=null){
         User user = (User)authentication.getPrincipal();
         model.addAttribute("userName" ,user.getUsername());
-        if (!user.getUsername().equals(buyService.selectAccom(subAccomVO.getAccomCode()).getCeoName())){
-            System.out.println(3233);
-            return"redirect:/";
         }
-        }
+        model.addAttribute("accom" ,buyService.selectAccom(subAccomVO.getAccomCode()));
         return"/content/buy/accom_review_list";
     }
 
@@ -295,13 +285,48 @@ public class BuyController {
 
     @GetMapping("reservationPlan")
     public String reservationPlan(ReservationVO reservationVO ,Authentication authentication, Model model){
+
         if(authentication !=null){
             User user = (User)authentication.getPrincipal();
             model.addAttribute("userName" ,user.getUsername());
         }
+
+        reservationVO= buyService.selectReservationOne(reservationVO.getReservationCode());
+        model.addAttribute("reserv",reservationVO);
         return "/content/buy/reservation_plan";
     }
 
+    @ResponseBody
+    @PostMapping("insertPlan")
+    public  String insertPlan(@RequestBody List<PlanVO> planList){
+        ReservationVO reservationVO= new ReservationVO();
+                reservationVO.setPlanList(planList);
+        System.out.println(planList);
+        if(buyService.selectPlan(planList.get(0).getReservationCode()).size() > 0){
+            return "플랜을 이미 작성 하셨습니다.";
+        }else {
+            buyService.insertPlan(reservationVO);
+            return "플랜이 정상적으로 등록되었습니다.";
+        }
+
+    }
+    @GetMapping("/PlanList")
+    public String PlanList(Authentication authentication, Model model){
+        if(authentication !=null){
+            User user = (User)authentication.getPrincipal();
+           String memberId= user.getUsername();
+           List<ReservationVO> list=buyService.selectPlanList(memberId);
+            System.out.println(list);
+
+        }
+        return "content/member/myPage_plan";
+    }
+    @GetMapping("/Planview")
+    public String Planview(ReservationVO reservationVO , Model model){
+        model.addAttribute("reservation",buyService.selectReservationOne(reservationVO.getReservationCode()));
+        model.addAttribute("planList",buyService.selectPlan(reservationVO.getReservationCode()));
+        return "content/member/plan_view";
+    }
 
     @GetMapping("/sample")
     public String sample(Model model, String accomCode){
@@ -314,6 +339,8 @@ public class BuyController {
 
         return"/content/buy/admin_calendar";
     }
+
+
 
 }
 

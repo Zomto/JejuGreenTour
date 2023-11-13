@@ -250,3 +250,19 @@ span{
 .mf_in .list_last{
     border-bottom: 1px solid #222;
 }
+.add_btn_div{
+    width: 400px;
+    margin: 0 auto 30px auto;
+}
+
+.add_btn{
+width: 400px;
+height: 50px;
+color: #fff;
+border: 1px solid #dadada;
+border-radius: 5px;
+background-color: #03c75a;
+}
+.add_btn:hover{
+    background-color: #1ab752;
+}

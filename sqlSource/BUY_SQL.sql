@@ -88,4 +88,5 @@ CREATE TABLE STAY_PLAN(
  , POINT_TWO_TIME VARCHAR2(100)
 );
 
+select to_char(to_date( '2023-10-10 9:1','yyyy-mm-dd hh24:mi'),'hh:mi') from dual;
 

@@ -154,11 +154,28 @@ table, tr, td{
     background-color: #1db954;
 }
 .pageBtn{
+    text-align: center;
     margin: 0 auto 30px auto;
     width: 230px;
 }
 .pageBtn span{
     color: #888;
+}
+.submitBtn{
+    margin:0 auto;
+    width: 200px;
+    height: 30px;
+    color: #fff;
+    background-color: #03c75a;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+}
+.submitBtn:hover{
+    background-color: #1ab752;
+
 }
 
 

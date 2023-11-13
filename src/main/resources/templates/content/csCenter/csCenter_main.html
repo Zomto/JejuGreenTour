@@ -77,7 +77,7 @@
                             <ul>
                                 <li th:each="ann, state : ${annList}">
                                     <p class="s2_ann_link">[ [[${ann.annCateList.cateName}]] ]</p>
-                                    <p class="s2_ann_title"><a th:href="@{/cs/annDetailForm(annNum=${ann.annNum})}">[[${ann.annTitle}]]</a></p>
+                                    <a th:href="@{/cs/annDetailForm(annNum=${ann.annNum})}"><p class="s2_ann_title">[[${ann.annTitle}]]</p></a>
                                 </li>
                             </ul>
                         </div>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/csCenter_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- css영역 -->
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/csCenter/inquire.css">
+        <link rel="stylesheet" href="/css/csCenter/response.css">
+    </th:block>
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <form action="/cs/insertResponse" method="post" enctype="multipart/form-data">
+            <div class="wrap">
+                <div class="w_in">
+                    <div class="title">문의 답변하기</div>
+                    <div>
+                        <div class="box">
+                            <div class="inputBox">
+                                <div class="label">문의 날짜</div>
+                                <div class="memeberName">[[${inqDetail.inqDate}]]</div>
+                            </div>
+                            <div class="inputBox">
+                                <div class="label">예약코드</div>
+                                <input type="text" name="" >
+                            </div>
+                            <div class="inputBox">
+                                <div class="label">문의 사진</div>
+                                <div class="imgLookBox">
+                                    <div class="inqImgBlock" th:each="inqImg : ${inqImgList}">
+                                        <img class="imgSlideList" th:src="${'/img/cs/'+ inqImg.attachedFileName}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inputBox">
+                                <div class="label">문의내용</div>
+                                <div class="inqArea">[[${inqDetail.content}]]</div>
+                            </div>
+                            <div class="inputBox">
+                                <div class="label">내용</div>
+                                <textarea name="inqResponse" id="" cols="60" rows="10"></textarea>
+                            </div>
+                            <div class="inputBox img">
+                                <div class="label">사진</div>
+                                <input class="upload-name" value="첨부파일" placeholder="첨부파일">
+                                <label for="file">파일찾기</label>
+                                <input type="file" id="file" name="resImg" onchange="readURL(this);" multiple>
+                            </div>
+                            <div class="inputBox imgLook">
+                                <div class="label imgLook">사진<br>미리보기</div>
+                                <div class="imgLookBox"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="hidden" th:value="${inqDetail.inqCode}" name="inqCode">
+                            <input class="subBtn" type="submit" value="등록">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </th:block>
+    <!-- js영역 -->
+    <th:block layout:fragment="content_js">
+        <script src="/js/csCenter/inquire.js"></script>
+    </th:block>
+</body>
+
+</html>
