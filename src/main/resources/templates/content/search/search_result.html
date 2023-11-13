@@ -24,6 +24,7 @@
                         <div id="tab-1" class="tab-content current">
                             <div class="accomItem row-col-5">
                                 <th:block th:each="mainAccom, state : ${searchMainAccomList}">
+
                                     <div class="itemdetail"
                                          th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${mainAccom.accomCode})}'|">
                                         <div class="photo">
@@ -45,6 +46,9 @@
                                     </div>
                                     </th:onclick=>
                                 </th:block>
+                                <div class="none" th:if="${#lists.size(searchMainAccomList) == 0}">
+                                    검색 결과가 없습니다.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -88,8 +92,10 @@
                                             </svg>
                                         </div>
                                     </div>
-                                    </th:onclick=>
                                 </th:block>
+                                <div class="none" th:if="${#lists.size(searchSubAccomList) == 0}">
+                                    검색 결과가 없습니다.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -108,6 +114,9 @@
                                 <div class="tr" width="100%" th:each="searchAnn, state : ${searchAnnList}">
                                     <div class="value num">[[${searchAnn.annCateList.cateName}]]</div>
                                     <div class="value title">[[${searchAnn.annTitle}]]</div>
+                                </div>
+                                <div class="none" th:if="${#lists.size(searchAnnList) == 0}">
+                                    검색 결과가 없습니다.
                                 </div>
                             </div>
                         </div>
@@ -129,6 +138,9 @@
                                     [[${searchQna.qnaAnswer}]]
                                 </div>
                             </li>
+                            <div class="none" th:if="${#lists.size(searchQnaList) == 0}">
+                                검색 결과가 없습니다.
+                            </div>
                         </ul>
                     </div>
                 </div>
