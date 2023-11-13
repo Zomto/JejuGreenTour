@@ -35,10 +35,10 @@
                                     <span class="qna_span_q">Q</span>
                                     [[${qna.qnaQuestion}]]
                                     <div class="qna_btn">
-                                        <input type="button"
+                                        <input sec:authorize="hasRole('ROLE_ADMIN')" type="button"
                                             th:onclick="|location.href='@{/cs/updateQnaForm(qnaCode=${qna.qnaCode})}'|"
                                             value="수정">
-                                        <input type="button"
+                                        <input sec:authorize="hasRole('ROLE_ADMIN')" type="button"
                                             th:onclick="|location.href='@{/cs/deleteQna(qnaCode=${qna.qnaCode})}'|"
                                             value="삭제">
                                     </div>
@@ -71,7 +71,7 @@
                                 th:if="${searchVO.next}">다음</span></a>
                     </div>
                     <div class="inquireBtn">
-                        <button class="qnaFormBtn" onclick="location.href='/cs/qnaForm';">글 추가</button>
+                        <button sec:authorize="hasRole('ROLE_ADMIN')" class="qnaFormBtn" onclick="location.href='/cs/qnaForm';">글 추가</button>
                         <button class="inqFormBtn" onclick="location.href='/cs/inquireForm';">문의하기</button>
                     </div>
                 </div>
