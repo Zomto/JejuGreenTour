@@ -134,7 +134,7 @@
                                 <td>[[${review.sampleACCVO.accomName}]]</td>
                                 <td style="text-overflow:ellipsis; overflow: hidden; white-space: nowrap;">
                                     [[${review.content}]]</td>
-                                <td  th:if="${userName != null  && accom.ceoName == userName }" ><input type="button" value="답변" onclick="reply(this)"
+                                <td  th:if="${userName != null  && accom.ceoName == userName }" ><input class="re_btn" type="button" value="답변" onclick="reply(this)"
                                         th:data-can-reply="${review.reviewAdminVO.memberId == null}"
                                         th:data-review-code="${review.reviewCode}"
                                         th:data-written-content="${review.reviewAdminVO.content}+' '"></td>
@@ -171,9 +171,9 @@
                                 <td>
                                     <textarea class="inner_${innerindex}" name="" id="" cols="100" rows="10"
                                     style="font-size : 16px;"></textarea>
-                                    <input type="button"value="답변달기" onclick="replace(this)"
+                                    <input  class="re_btn" type="button"value="답변달기" onclick="replace(this)"
                                     data-review-code ="${tag.dataset.reviewCode}">
-                                    <input type="button"value="닫기" onclick="reset(this)"
+                                    <input  class="re_btn" type="button"value="닫기" onclick="reset(this)"
                                     data-review-code ="${tag.dataset.reviewCode}">
                                 </td>
                             </tr>`
@@ -190,10 +190,10 @@
                                 <td>
                                     <textarea name="" id="" cols="100" rows="10" readonly
                                     style="font-size : 16px;">${tag.dataset.writtenContent}</textarea>
-                                    <input type="button"value="답변삭제" onclick="replydelete(this)"
+                                    <input  class="re_btn" type="button"value="답변삭제" onclick="replydelete(this)"
                                     data-review-code ="${tag.dataset.reviewCode}"
                                     data-class-name ="${tag.className}">
-                                    <input type="button"value="닫기" onclick="reset(this)"
+                                    <input  class="re_btn" type="button"value="닫기" onclick="reset(this)"
                                     data-review-code ="${tag.dataset.reviewCode}">
                                 </td>
                             </tr>`
