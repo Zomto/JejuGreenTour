@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
-    layout:decorate="~{fragment/main_layout}">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragment/main_layout}">
+
 <head>
-<meta charset="UTF-8">
-<title></title>
-<!-- css 영역 -->
-<th:block layout:fragment="content_css">
-    <link rel="stylesheet" href="/css/search/search_result.css">
-</th:block>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- css 영역 -->
+    <th:block layout:fragment="content_css">
+        <link rel="stylesheet" href="/css/search/search_result.css">
+    </th:block>
 </head>
+
 <body>
 <th:block layout:fragment="content">
     <div class="search">
@@ -23,28 +24,25 @@
                         <div id="tab-1" class="tab-content current">
                             <div class="accomItem row-col-5">
                                 <th:block th:each="mainAccom, state : ${searchMainAccomList}">
-                                        <div class="itemdetail" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${mainAccom.accomCode})}'|">
-                                            <div class="photo">
-                                                <div th:each="img : ${mainAccom.mainAccomImgList}">
-                                                    <th:block>
-                                                        <img th:src="${'/img/accom/'+ img.attachedFileName}"
-                                                            alt="">
-                                                    </th:block>
-                                                </div>
-                                            </div>
-                                            <div class="text">
-                                                <div class="itemName">[[${mainAccom.accomName}]]</div>
-                                                <div class="itemLoc">[[${mainAccom.accomLoc}]]</div>
-                                                <div class="price">[[${mainAccom.accomAddr}]]</div>
-                                                <div class="price">[[${mainAccom.addrDetail}]]</div>
-                                                <div class="price">[[${mainAccom.accomCate}]]</div>
-                                            </div>
-                                            <div class="love">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ff3f3f" class="bi bi-heart" viewBox="0 0 16 16">
-                                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                                                </svg>
+                                    <div class="itemdetail"
+                                         th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${mainAccom.accomCode})}'|">
+                                        <div class="photo">
+                                            <div th:each="img : ${mainAccom.mainAccomImgList}">
+                                                <th:block>
+                                                    <img th:src="${'/img/accom/'+ img.attachedFileName}"
+                                                         th:if="${img.isMain == 'Y'}" alt="">
+                                                </th:block>
                                             </div>
                                         </div>
+                                        <div class="text">
+                                            <div class="tema">
+                                                <div class="itemLoc">[ [[${mainAccom.accomLoc}]] ]</div>
+                                                <div class="cateName">[ [[${mainAccom.accomCategory.cateName}]] ]</div>
+                                            </div>
+                                            <div class="itemName">[[${mainAccom.accomName}]]</div>
+                                            <div class="accomAddr">[[${mainAccom.accomAddr}]]</div>
+                                        </div>
+                                    </div>
                                     </th:onclick=>
                                 </th:block>
                             </div>
@@ -59,36 +57,37 @@
                         <div id="tab-1" class="tab-content current">
                             <div class="accomItem row-col-5">
                                 <th:block th:each="data, state : ${searchSubAccomList}">
-                                        <div class="itemdetail" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
-                                            <div class="photo">
-                                                <div
-                                                    th:each="img : ${data.subAccomImgList}">
-                                                    <th:block>
-                                                        <img th:src="${'/img/subaccom/'+ img.attachedFileName}"
-                                                            alt="">
-                                                    </th:block>
-                                                </div>
+                                    <div class="itemdetail"
+                                         th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
+                                        <div class="photo">
+                                            <div th:each="img : ${data.subAccomImgList}">
+                                                <th:block>
+                                                    <img th:src="${'/img/subaccom/'+ img.attachedFileName}" th:if="${img.isMain == 'Y'}" alt="">
+                                                </th:block>
                                             </div>
-                                            <div class="text">
-                                                <div class="itemName">[[${data.subAccomName}]]</div>
-                                                <div class="itemLoc">[[${data.accomLoc}]]</div>
-                                                <div class="price">
+                                        </div>
+                                        <div class="text">
+                                            <div class="itemName">[[${data.subAccomName}]]</div>
+                                            <div class="itemLoc">[[${data.accomLoc}]]</div>
+                                            <div class="price">
                                                     <span class="priceNum">
                                                         [[${data.reservationPrice}]]
                                                     </span>
+                                                <span class="won">원</span>
+                                                <th:block th:if="${data.dayuseCan == 'Y'}">
+                                                    <span class="priceNum">[[${data.dayusePrice}]]</span>
                                                     <span class="won">원</span>
-                                                    <th:block th:if="${data.dayuseCan == 'Y'}">
-                                                        <span class="priceNum">[[${data.dayusePrice}]]</span>
-                                                        <span class="won">원</span>
-                                                    </th:block>
-                                                </div>
-                                            </div>
-                                            <div class="love">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ff3f3f" class="bi bi-heart" viewBox="0 0 16 16">
-                                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                                                </svg>
+                                                </th:block>
                                             </div>
                                         </div>
+                                        <div class="love">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="#ff3f3f" class="bi bi-heart" viewBox="0 0 16 16">
+                                                <path
+                                                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                            </svg>
+                                        </div>
+                                    </div>
                                     </th:onclick=>
                                 </th:block>
                             </div>
@@ -142,4 +141,5 @@
 <th:block layout:fragment="content_js">
 
 </th:block>
+
 </html>
