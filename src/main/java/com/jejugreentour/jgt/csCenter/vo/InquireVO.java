@@ -1,5 +1,6 @@
 package com.jejugreentour.jgt.csCenter.vo;
 
+import com.jejugreentour.jgt.member.vo.MemberVO;
 import lombok.Data;
 
 import java.util.List;
@@ -15,4 +16,5 @@ public class InquireVO extends PageVO{
     private String isResponse;
     private InqCateVO inqCateList;
     private List<InqImgVO> inqImgList;
+    private MemberVO member;
 }

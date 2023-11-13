@@ -3,6 +3,7 @@ package com.jejugreentour.jgt.csCenter.controller;
 
 import com.jejugreentour.jgt.csCenter.service.CsService;
 import com.jejugreentour.jgt.csCenter.vo.*;
+import com.jejugreentour.jgt.member.service.MemberService;
 import com.jejugreentour.jgt.search.service.SearchService;
 import com.jejugreentour.jgt.search.vo.SearchVO;
 import com.jejugreentour.jgt.util.UploadUtillCs;
@@ -24,6 +25,7 @@ public class CsController {
 
     private final CsService csService;
     private final SearchService searchService;
+    private final MemberService memberService;
 
 
 
@@ -166,8 +168,7 @@ public class CsController {
     
     // 문의 하기 작성 페이지 이동
     @GetMapping("/inquireForm")
-    public String inquireForm(Model model){
-
+    public String inquireForm(Model model, String memberId){
         return "/content/csCenter/inquire";
     }
 

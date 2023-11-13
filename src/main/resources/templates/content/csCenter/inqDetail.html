@@ -23,7 +23,7 @@
                     </div>
                     <div class="inputBox">
                         <div class="label">작성자</div>
-                        <div class="input memeberName">loginInfo.memberName</div>
+                        <div class="input memeberName">[[${inqDetail.member.memberName}]]</div>
                     </div>
                     <div class="inputBox">
                         <div class="label">작성일</div>
@@ -31,15 +31,11 @@
                     </div>
                     <div class="inputBox">
                         <div class="label">전화번호</div>
-                        <div class="input tel">loginInfo.memberTel</div>
+                        <div class="input tel">[[${inqDetail.member.memberTel}]]</div>
                     </div>
                     <div class="inputBox">
                         <div class="label">문의유형</div>
                         <div class="input cateName">[[${inqDetail.inqCateList.cateName}]]</div>
-                    </div>
-                    <div class="inputBox">
-                        <div class="label">예약코드</div>
-                        <div class="input resCode">resCode</div>
                     </div>
                     <div class="inputBox">
                         <div class="label">답변상태</div>

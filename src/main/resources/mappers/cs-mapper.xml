@@ -227,6 +227,7 @@
         <result column="INQ_DATE" property="inqDate"/>
         <collection property="inqCateList" resultMap="inqCate"/>
         <collection property="inqImgList" resultMap="inqImg"/>
+        <collection property="member" resultMap="memberMapper.member"/>
     </resultMap>
 
     <resultMap id="inqCate" type="com.jejugreentour.jgt.csCenter.vo.InqCateVO">
@@ -253,6 +254,9 @@
             , TO_CHAR(INQ_DATE,'YYYY-MM-DD') AS INQ_DATE
         FROM INQUIRE INQ, INQ_CATE_LIST CATE
         WHERE INQ.CATE_CODE = CATE.CATE_CODE
+        <if test='memberId != null and !memberId.equals("")'>
+            MEMBER_ID = #{memberId}
+        </if>
         ORDER BY INQ_CODE DESC
         OFFSET (#{nowPage} -1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
@@ -263,13 +267,16 @@
              INQ_CODE
             , INQ.CATE_CODE
             , CATE_NAME
-            , MEMBER_ID
+            , INQ.MEMBER_ID
+            , MEMBER_NAME
+            , MEMBER_TEL
             , TITLE
             , CONTENT
             , TO_CHAR(INQ_DATE,'YYYY-MM-DD') AS INQ_DATE
             , IS_RESPONSE
-        FROM INQUIRE INQ, INQ_CATE_LIST CATE
+        FROM INQUIRE INQ, INQ_CATE_LIST CATE, JEJU_MEMBER MEMBER
         WHERE INQ.CATE_CODE = CATE.CATE_CODE
+        AND INQ.MEMBER_ID = MEMBER.MEMBER_ID
         AND INQ_CODE = #{inqCode}
     </select>
 
