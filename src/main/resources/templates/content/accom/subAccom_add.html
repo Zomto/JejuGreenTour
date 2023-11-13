@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{fragment/main_layout}">
+      layout:decorate="~{fragment/main_layout}">
 
 <head>
     <meta charset="UTF-8">
@@ -9,173 +9,191 @@
 </head>
 
 <body>
-    <th:block layout:fragment="content">
-        <form action="/accom/addSubAccom" id="joinForm" method="post" enctype="multipart/form-data">
-            <div class="wrap">
-                <div class="inner">
-                    <div class="Form name">
-                        <div class="label_area"><label for="subAccomName">ROOM NAME</label></div>
-                        <div class="input_area"><input type="text" id="subAccomName" name="subAccomName"></div>
-                    </div>
-                    <div class="Form intro">
-                        <div class="label_area"><label for="subAccomIntro">ROOM INTRO</label></div>
-                        <div class="input_area">
+<th:block layout:fragment="content">
+    <form action="/accom/addSubAccom" id="joinForm" method="post" enctype="multipart/form-data">
+        <div class="wrap">
+            <div class="title">객실 등록</div>
+            <div class="inner">
+                <div class="Form name">
+                    <div class="label_area">ROOM NAME</div>
+                    <div class="input_area"><input type="text" id="subAccomName" name="subAccomName"></div>
+                </div>
+                <div class="Form intro">
+                    <div class="label_area">ROOM INTRO</div>
+                    <div class="input_area">
                             <textarea id="subAccomIntro" name="subAccomIntro" rows="2"
-                                placeholder="방의 간략한 소개를 입력하여 주세요"></textarea>
-                        </div>
+                                      placeholder="방의 간략한 소개를 입력하여 주세요"></textarea>
                     </div>
-                    <div class="Form timeAndPeople">
-                        <div class="area1">
-                            <div class="label_area"><label for="basicMan">숙박 인원</label></div>
-                            <div class="input_area">
-                                <div class="input_inner">
-                                    <span>기준 : </span>
-                                    <select name="basicMan" id="basicMan">
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="04">05</option>
-                                    </select>
-                                    <span>명</span>
-                                </div>
-                                <div class="input_inner">
-                                    <span>최대 : </span>
-                                    <select class="maxManSelect" name="maxMan" id="maxMan">
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="100" selected>없음</option>
-                                    </select>
-                                    <span>명</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="area1">
-                            <div class="label_area"><label for="accomTime">숙박 시간</label></div>
-                            <div class="input_area time">
-                                <div class="input_inner fir">
-                                    <span>입실 : </span>
-                                    <select name="accomStartTime" id="accomStartTime">
-                                        <option value="14" selected>14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                    </select>
-                                    <span>: 00</span>
-                                    <span>~</span>
-                                </div>
-                                <div class="input_inner sec">
-                                    <span>퇴실 : </span>
-                                    <select name="accomEndTime" id="accomEndTime">
-                                        <option value="09" selected>09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                    </select>
-                                    <span>: 00</span>
-                                </div>
-                                <div class="checkBoxRent">
-                                    <span>대실 여부</span>
-                                    <div class="rentDiv">
-                                        <input type="checkbox" class="rent" name="dayuseCan" value="Y" onclick="candayuse(this)">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Form category">
-                        <p class="label_area"><label for="subAccomCate">CATEGORY<br>(DETAIL)</label></p>
-                        <div class="input_area">
-                            <div class="checkSubAccomCate1">
-                                <div class="checkBoxSubAccomCate">
-                                    <input id="noting" type="checkbox" name="subAccomCates" value="해당없음" onclick="checkcansle(this)" checked>
-                                    <span>해당 없음</span>
-                                </div>
-                                <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="subAccomCates" value="풀빌라" onclick="notingcheck(this);">
-                                    <span>풀빌라</span>
-                                </div>
-                                <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="subAccomCates" value="오션_뷰" onclick="notingcheck(this);">
-                                    <span>오션 뷰</span>
-                                </div>
-                                <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="subAccomCates" value="PC_룸" onclick="notingcheck(this);">
-                                    <span>PC 룸</span>
-                                </div>
-                                <div class="checkBoxSubAccomCate last">
-                                    <input type="checkbox" name="subAccomCates" value="N플릭스" onclick="notingcheck(this);">
-                                    <span>N플릭스</span>
-                                </div>
-                            </div>
-                            <div class="checkSubAccomCate2">
-                                <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="subAccomCates" value="금연"   onclick="notingcheck(this);">
-                                    <span>금연</span>
-                                </div>
-                                <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="subAccomCates" value="흡연_O"  onclick="notingcheck(this);">
-                                    <span>흡연 O</span>
-                                </div>
-                                <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="subAccomCates" value="반려동물_O" onclick="notingcheck(this);">
-                                    <span>반려동물 O</span>
-                                </div>
-                                <div class="checkBoxSubAccomCate">
-                                    <input type="checkbox" name="subAccomCates" value="반려동물_X" onclick="notingcheck(this);">
-                                    <span>반려동물 X</span>
-                                </div>
-                                <div class="checkBoxSubAccomCate last">
-                                    <input type="checkbox" name="subAccomCates" value="노키즈_존" onclick="notingcheck(this);">
-                                    <span>노키즈 존</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Form price">
-                        <div class="label_area"><label for="subAccomIntro">ROOM PRICE</label></div>
+                </div>
+                <div class="Form timeAndPeople">
+                    <div class="area1">
+                        <div class="label_area">숙박 인원</div>
                         <div class="input_area">
                             <div class="input_inner">
-                                <span>숙박 : </span>
-                                <input type="number" id="reservationPrice" name="reservationPrice" value="0">
-                                <span>원</span>
+                                <span>기준 : </span>
+                                <select name="basicMan" id="basicMan">
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="04">05</option>
+                                </select>
+                                <span>명</span>
                             </div>
                             <div class="input_inner">
-                                <span>대실 : </span>
-                                <input type="number" id="dayusePrice" name="dayusePrice" value="0"
-                                onchange="dayusecheck(this)">
-                                <span>원</span>
+                                <span>최대 : </span>
+                                <select class="maxManSelect" name="maxMan" id="maxMan">
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                    <option value="100" selected>없음</option>
+                                </select>
+                                <span>명</span>
                             </div>
                         </div>
                     </div>
-                    <div class="subAccomimg">
-                        
-                        <span>메인 : </span><input type="file" name="mainImg"  onchange="">
+                    <div class="area1">
+                        <div class="label_area">숙박 시간</div>
+                        <div class="input_area time">
+                            <div class="input_inner fir">
+                                <span>입실 : </span>
+                                <select name="accomStartTime" id="accomStartTime">
+                                    <option value="14" selected>14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                </select>
+                                <span>: 00</span>
+                                <span>~</span>
+                            </div>
+                            <div class="input_inner sec">
+                                <span>퇴실 : </span>
+                                <select name="accomEndTime" id="accomEndTime">
+                                    <option value="09" selected>09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                </select>
+                                <span>: 00</span>
+                            </div>
+                            <div class="checkBoxRent">
+                                <span>대실 여부</span>
+                                <div class="rentDiv">
+                                    <input type="checkbox" class="rent" name="dayuseCan" value="Y"
+                                           onclick="candayuse(this)">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="subAccomAdd">
-                        <input type="hidden" name="accomCode" th:value="${accomCode}">
-                        <input class="subAccomAddBtn" type="button" onclick="insertsubaccom()" value="등록하기">
+                </div>
+                <div class="Form category">
+                    <p class="label_area">CATEGORY<br>(DETAIL)</p>
+                    <div class="input_area">
+                        <div class="checkSubAccomCate1">
+                            <div class="checkBoxSubAccomCate">
+                                <input id="noting" type="checkbox" name="subAccomCates" value="해당없음"
+                                       onclick="checkcansle(this)" checked>
+                                <span>해당 없음</span>
+                            </div>
+                            <div class="checkBoxSubAccomCate">
+                                <input type="checkbox" name="subAccomCates" value="풀빌라"
+                                       onclick="notingcheck(this);">
+                                <span>풀빌라</span>
+                            </div>
+                            <div class="checkBoxSubAccomCate">
+                                <input type="checkbox" name="subAccomCates" value="오션_뷰"
+                                       onclick="notingcheck(this);">
+                                <span>오션 뷰</span>
+                            </div>
+                            <div class="checkBoxSubAccomCate">
+                                <input type="checkbox" name="subAccomCates" value="PC_룸"
+                                       onclick="notingcheck(this);">
+                                <span>PC 룸</span>
+                            </div>
+                            <div class="checkBoxSubAccomCate last">
+                                <input type="checkbox" name="subAccomCates" value="N플릭스"
+                                       onclick="notingcheck(this);">
+                                <span>N플릭스</span>
+                            </div>
+                        </div>
+                        <div class="checkSubAccomCate2">
+                            <div class="checkBoxSubAccomCate">
+                                <input type="checkbox" name="subAccomCates" value="금연" onclick="notingcheck(this);">
+                                <span>금연</span>
+                            </div>
+                            <div class="checkBoxSubAccomCate">
+                                <input type="checkbox" name="subAccomCates" value="흡연_O"
+                                       onclick="notingcheck(this);">
+                                <span>흡연 O</span>
+                            </div>
+                            <div class="checkBoxSubAccomCate">
+                                <input type="checkbox" name="subAccomCates" value="반려동물_O"
+                                       onclick="notingcheck(this);">
+                                <span>반려동물 O</span>
+                            </div>
+                            <div class="checkBoxSubAccomCate">
+                                <input type="checkbox" name="subAccomCates" value="반려동물_X"
+                                       onclick="notingcheck(this);">
+                                <span>반려동물 X</span>
+                            </div>
+                            <div class="checkBoxSubAccomCate last">
+                                <input type="checkbox" name="subAccomCates" value="노키즈_존"
+                                       onclick="notingcheck(this);">
+                                <span>노키즈 존</span>
+                            </div>
+                        </div>
                     </div>
-                    
+                </div>
+                <div class="Form price">
+                    <div class="label_area"><label for="subAccomIntro">ROOM PRICE</label></div>
+                    <div class="input_area">
+                        <div class="input_inner">
+                            <span>숙박 : </span>
+                            <input type="number" id="reservationPrice" name="reservationPrice" value="0">
+                            <span>원</span>
+                        </div>
+                        <div class="input_inner">
+                            <span>대실 : </span>
+                            <input type="number" id="dayusePrice" name="dayusePrice" value="0"
+                                   onchange="dayusecheck(this)">
+                            <span>원</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="inputBox img">
+                    <div class="label">사진</div>
+                    <input class="upload-name" value="첨부파일" placeholder="첨부파일">
+                    <label for="file">파일찾기</label>
+                    <input type="file" id="file" name="mainImg" onchange="readURL(this);">
+                </div>
+                <div class="inputBox imgLook">
+                    <div class="label imgLook">사진<br>미리보기</div>
+                    <div class="imgLookBox"></div>
                 </div>
 
+
             </div>
-        </form>
-    </th:block>
+            <div class="subAccomAdd">
+                <input type="hidden" name="accomCode" th:value="${accomCode}">
+                <input class="subAccomAddBtn" type="button" onclick="insertsubaccom()" value="등록하기">
+            </div>
+
+        </div>
+    </form>
+</th:block>
 </body>
 <th:block layout:fragment="content_js">
-    
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/js/accom/addSubAccom.js"></script>
+
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/js/accom/addSubAccom.js"></script>
 </th:block>
 
 </html>
