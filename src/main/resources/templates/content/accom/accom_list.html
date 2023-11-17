@@ -7,7 +7,7 @@
 <title></title>
 <!-- css 영역 -->
 <th:block layout:fragment="content_css">
-
+    <link rel="stylesheet" href="/css/index.css">
 </th:block>
 </head>
 <body>
@@ -47,7 +47,7 @@
                                             <div class="itemLoc">[[${data.accomLoc}]]</div>
                                             <div class="price">[[${data.accomAddr}]]</div>
                                             <div class="price">[[${data.addrDetail}]]</div>
-                                            <div class="price">[[${data.accomCate}]]</div>
+                                            <div class="price">[[${data.accomCategory.cateName}]]</div>
                                         </div>
                                         <div class="love">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ff3f3f" class="bi bi-heart" viewBox="0 0 16 16">
