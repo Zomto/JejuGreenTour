@@ -362,8 +362,9 @@
             , ACCOM_ADDR
             , ADDR_DETAIL
             , ACCOM_INTRO
-            , MAIN.ACCOM_CATE
+            , CATE_NAME
             , ACCOM_LOC
+            , IS_MAIN
             , ATTACHED_FILE_NAME
             , ORIGIN_FILE_NAME
         FROM MAIN_ACCOM MAIN, ACCOM_CATEGORY CATE, MAIN_ACCOM_IMG IMG
@@ -401,6 +402,7 @@
             , SOLD_OUT
             , DAY_USE_CAN
             , SUB_DELETE
+            , IS_MAIN
             , ATTACHED_FILE_NAME
             , ORIGIN_FILE_NAME
             FROM SUB_ACCOM SUB, SUB_ACCOM_IMG IMG
@@ -471,6 +473,7 @@
         , ACCOM_INTRO
         , MAIN.ACCOM_CATE
         , ACCOM_LOC
+        , IS_MAIN
         , CATE_NAME
         , ATTACHED_FILE_NAME
         , ORIGIN_FILE_NAME

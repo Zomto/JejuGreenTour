@@ -7,7 +7,11 @@
 <title></title>
 <!-- css 영역 -->
 <th:block layout:fragment="content_css">
+<<<<<<< HEAD
     <link rel="stylesheet" href="/css/index.css">
+=======
+    <link rel="stylesheet" href="/css/accom/accom_list.css">
+>>>>>>> 780282c73241ab0cf6d119d60a099d250d1be70d
 </th:block>
 </head>
 <body>
@@ -16,20 +20,20 @@
         <div class="inner accom">
             <div class="location">
                 <div class="locs">
-                    <div class="loc-link"><a href="/accom/mainAccomForm">전체</a></div>
-                    <div class="loc-link current" id="first" data-tab="loc-11"><a th:href="@{/accom/mainAccomForm(accomLoc='제주시')}">제주시</a></div>
-                    <div class="loc-link" data-tab="loc-12"><a th:href="@{/accom/mainAccomForm(accomLoc='서귀포시')}">서귀포시</a></div>
-                    <div class="loc-link" data-tab="loc-13"><a th:href="@{/accom/mainAccomForm(accomLoc='성산읍')}">성산읍</a></div>
-                    <div class="loc-link" data-tab="loc-14"><a th:href="@{/accom/mainAccomForm(accomLoc='한림읍')}">한림읍</a></div>
-                    <div class="loc-link" data-tab="loc-15"><a th:href="@{/accom/mainAccomForm(accomLoc='애월읍')}">애월읍</a></div>
-                    <div class="loc-link" data-tab="loc-16"><a th:href="@{/accom/mainAccomForm(accomLoc='안덕면')}">안덕면</a></div>
-                    <div class="loc-link" data-tab="loc-17"><a th:href="@{/accom/mainAccomForm(accomLoc='남원읍')}">남원읍</a></div>
-                    <div class="loc-link" data-tab="loc-18"><a th:href="@{/accom/mainAccomForm(accomLoc='대정읍')}">대정읍</a></div>
-                    <div class="loc-link" id="nine" data-tab="loc-19"><a th:href="@{/accom/mainAccomForm(accomLoc='조천읍')}">조천읍</a></div>
-                    <div class="loc-link" id="ten" data-tab="loc-20"><a th:href="@{/accom/mainAccomForm(accomLoc='구좌읍')}">구좌읍</a></div>
+                    <a href="/accom/mainAccomForm"><div class="loc-link" id="first">전체</div></a>
+                    <a th:href="@{/accom/mainAccomForm(accomLoc='제주시')}"><div class="loc-link" >제주시</div></a>
+                    <a th:href="@{/accom/mainAccomForm(accomLoc='서귀포시')}"><div class="loc-link">서귀포시</div></a>
+                    <a th:href="@{/accom/mainAccomForm(accomLoc='성산읍')}"><div class="loc-link">성산읍</div></a>
+                    <a th:href="@{/accom/mainAccomForm(accomLoc='한림읍')}"><div class="loc-link">한림읍</div></a>
+                    <a th:href="@{/accom/mainAccomForm(accomLoc='애월읍')}"><div class="loc-link">애월읍</div></a>
+                    <a th:href="@{/accom/mainAccomForm(accomLoc='안덕면')}"><div class="loc-link">안덕면</div></a>
+                    <a th:href="@{/accom/mainAccomForm(accomLoc='남원읍')}"><div class="loc-link">남원읍</div></a>
+                    <a th:href="@{/accom/mainAccomForm(accomLoc='대정읍')}"><div class="loc-link">대정읍</div></a>
+                    <a th:href="@{/accom/mainAccomForm(accomLoc='조천읍')}"><div class="loc-link" id="nine">조천읍</div></a>
+                    <a th:href="@{/accom/mainAccomForm(accomLoc='구좌읍')}"><div class="loc-link" id="ten">구좌읍</div></a>
                 </div>
                 <div class="accomItems">
-                    <div id="tab-1" class="tab-content current">
+                    <div id="tab" class="tab-content current">
                         <div class="accomItem row-col-5">
                             <th:block th:each="data, state : ${accomList}">
                                     <div class="itemdetail" th:onclick="|location.href='@{/accom/mainAccomDetail(accomCode=${data.accomCode})}'|">
@@ -43,11 +47,20 @@
                                             </div>
                                         </div>
                                         <div class="text">
+                                            <div class="tema">
+                                            <div class="itemLoc">[ [[${data.accomLoc}]] ]</div>
+                                            <div class="cateName">[ [[${data.accomCategory.cateName}]] ]</div>
+                                            </div>
                                             <div class="itemName">[[${data.accomName}]]</div>
+<<<<<<< HEAD
                                             <div class="itemLoc">[[${data.accomLoc}]]</div>
                                             <div class="price">[[${data.accomAddr}]]</div>
                                             <div class="price">[[${data.addrDetail}]]</div>
                                             <div class="price">[[${data.accomCategory.cateName}]]</div>
+=======
+                                            <div class="accomAddr">[[${data.accomAddr}]]</div>
+
+>>>>>>> 780282c73241ab0cf6d119d60a099d250d1be70d
                                         </div>
                                         <div class="love">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ff3f3f" class="bi bi-heart" viewBox="0 0 16 16">
@@ -61,12 +74,24 @@
                     </div>
                 </div>
             </div>
+            <div class="pageBtn" th:if="${#lists.size(accomList) != 0}">
+                <a class="page_prevBtn" th:href="@{/accom/mainAccomForm(nowPage=${mainAccomVO.beginPage - 1})}"><span
+                        th:if="${mainAccomVO.prev}">이전</span></a>
+
+                <th:block th:each="pageNum : ${#numbers.sequence(mainAccomVO.beginPage, mainAccomVO.endPage)}">
+                    <a class="page_numBtn" th:href="@{/accom/mainAccomForm(nowPage=${pageNum})}"><span
+                            th:text="${pageNum}"></span></a>
+                </th:block>
+
+                <a class="page_nextBtn" th:href="@{/accom/mainAccomForm(nowPage=${mainAccomVO.endPage + 1})}"><span
+                        th:if="${mainAccomVO.next}">다음</span></a>
+            </div>
         </div>
     </div>
 </th:block>
 </body>
 <!-- js 영역 -->
 <th:block layout:fragment="content_js">
-
+    <script src="/js/accom/accom_list.js"></script>
 </th:block>
 </html>

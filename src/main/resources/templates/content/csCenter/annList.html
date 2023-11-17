@@ -89,7 +89,7 @@
 
 
                     <div class="annBtn">
-                        <button onclick="location.href='/cs/annForm';">글 작성</button>
+                        <button sec:authorize="isAuthenticated()" type="button" onclick="location.href='/cs/annForm';">글 작성</button>
                     </div>
                 </div>
             </div>

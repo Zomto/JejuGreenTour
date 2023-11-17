@@ -251,3 +251,112 @@
 .search_btn:hover{
     background-color: #1db954;
 }
+
+.accomItems{
+    box-sizing: border-box;
+    width: 1000px;
+    min-height: 100px;
+    border-top: 0;
+    border-radius: 7px;
+    background-color: #fff;
+    padding: 0 15px 10px 15px;
+    display: table;
+}
+.headerText{
+    width: 800px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #444;
+    border-bottom: 2px solid #dadada;
+    margin-bottom: 20px;
+}
+.items{
+    display: flex;
+    padding: 10px 5px;
+}
+.itemdetail{
+    display: inline-block;
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,0.8);
+    position: relative;
+    width: 214px;
+    height: 300px;
+    margin: 5px 2px;
+    /* border: 1px solid #dadada; */
+    border-radius: 5px;
+    padding: 2px;
+}
+.itemdetail:hover{
+    border: 1px solid #1ab752;
+}
+.photo{
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #dadada;
+    width: 213px;
+    height: 180px;
+}
+.photo img{
+    width: 213px;
+    height: 180px;
+}
+.text{
+    padding: 10px;
+}
+.itemName{
+    color: #888;
+    margin-bottom: 10px;
+}
+.itemStar{
+    display: flex;
+}
+.star{
+    margin-right: 10px;
+}
+.itemReview{
+    display: flex;
+}
+.price{
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+.love{
+    position: absolute;
+    left: 13px;
+    bottom: 8px;
+}
+
+span{
+    color: #888;
+}
+.priceNum{
+    color: #444;
+    font-size: 20px;
+    font-weight: 700;
+    overflow: hidden;
+    width: 81px;
+}
+.sMainAcc_in, .sSubAcc_in{
+    width: 1000px;
+    border-radius: 7px;
+    border: 1px solid #dadada;
+}
+.tema{
+    display: flex;
+}
+.itemLoc{
+    color: #1ab752;
+    margin-right: 5px;
+}
+.cateName{
+    color: #1ab752;
+}
+.none{
+    text-align: center;
+    font-size: 15px;
+    color: #666;
+    margin: 35px auto;
+}
+.accomAddr{
+    font-size: 12px;
+    color: #666;
+}

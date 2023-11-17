@@ -1,60 +1,45 @@
 .wrap{
     padding: 20px 0;
+    width: 1000px;
+    margin: 0 auto;
 }
 .inner{
+    padding: 0;
     margin: 0 auto;
     box-sizing: border-box;
-    padding: 50px;
-    width: 1200px;
-    border-radius: 10px;
-    border: 1px solid #999;
+    width: 1000px;
+    border-radius: 7px;
+    border: 1px solid #dadada;
+    margin-bottom: 30px;
 }
 .Form{
-    width: 100%;
-    height: 50px;
     display: flex;
-    margin-bottom: 20px;
+    padding: 20px 20px;
+    border-bottom: 1px solid #dadada;
 }
-
+.Form.intro .label_area{
+    margin-top: 20px;
+}
+.Form.timeAndPeople .label_area{
+    width: 75px;
+    padding: 20px;
+}
+.Form.timeAndPeople{
+    padding: 0;
+}
 .label_area{
-    box-sizing: border-box;
-    position: relative;
-    width: 100px;
-    height: 100%;
-    background-color: #1ab752;
-    border: 1px solid #ddd;
-    opacity: 0.9;
-    border-radius: 10px;
-    margin-right: 30px;
-}
-
-.label_area > label{
-    font-weight: 300;
-    color: #fff;
-    position: absolute;
-    top: 10%;
-    left: 30%;
-}
-.input_area{
-    width: 500px;
-    height: 100%;
-    position: relative;
-    border: 1px solid #999;
-    border-radius: 10px;
+    width: 150px;
+    font-size: 20px;
+    color: #666;
 }
 .input_area input{
     font-size: 20px;
-    position: absolute;
+    outline: none;
     border: 0;
-    width: 98%;
-    top: 20%;
-    left: 2%;
+    color: #666;
 }
-.Form.intro{
-    height: 100px;
-}
-.Form.intro > .label_area > label{
-    top: 30%;
+#subAccomName{
+    width: 800px;
 }
 .input_area input:focus{
     border-color: transparent;
@@ -62,16 +47,17 @@
 }
 
 .input_area textarea{
+    width: 780px;
     font-size: 20px;
-    width: 98%;
     border: 0;
     padding: 10px 10px;
+    color: #666;
     background-color: transparent;
     resize: none;
 }
 .input_area textarea::placeholder{
     color: #666;
-    
+
 }
 .input_area textarea:focus{
     border-color: transparent;
@@ -79,18 +65,13 @@
 }
 .area1{
     display: flex;
-    margin-right: 30px;
-}
-.area1 .label_area label{
-    top: 30%;
-    left: 24%;
 }
 .area1 .input_area{
     display: flex;
     position: relative;
     width: 330px;
     box-sizing: border-box;
-    padding: 0px 8px;
+    margin-top: 11px;
 }
 .area1 .input_area .input_inner{
     margin: 10px;
@@ -127,7 +108,7 @@
 }
 .rentDiv > .rent{
     position: relative;
-    margin-top: 8px;
+    margin-top: 17px;
     width: 20px;
 }
 .input_area.time > .input_inner{
@@ -146,7 +127,9 @@
 }
 
 .Form.category > .label_area{
-    height: 100px;
+    margin-top: 18px;
+    text-align: center;
+    margin-left: -11px;
 }
 .checkSubAccomCate1, .checkSubAccomCate2{
     display: flex;
@@ -161,8 +144,8 @@
     height: 100px;
 }
 .checkBoxSubAccomCate{
-    width: 130px;
-    margin: 11px 40px;
+    width: 108px;
+    margin: 11px 27px;
 }
 .checkBoxSubAccomCate.last{
     margin-right: 0;
@@ -171,10 +154,13 @@
     position: relative;
     width: 10px;
 }
-
-.Form.category{
-    margin-bottom: 70px;
+.area1{
+    border-right: 1px solid #dadada;
 }
+.area1:last-child{
+    border:0;
+}
+
 .Form.price .input_area > span{
     margin: 0px;
     margin-top: 4px;
@@ -198,21 +184,95 @@
     text-align: right;
 }
 .subAccomAdd{
-    width: 100px;
+    width: 400px;
     margin: 0 auto;
 }
 .subAccomAddBtn{
-    box-sizing: border-box;
-    position: relative;
-    width: 100px;
-    height: 50px;
-    background-color: #1ab752;
-    border: 1px solid #ddd;
-    opacity: 0.9;
-    border-radius: 10px;
-    margin-right: 30px;
+    cursor: pointer;
+    margin-bottom: 50px;
+    border: 1px solid #dadada;
+    border-radius: 5px;
     color: #fff;
+    background-color: #03c75a;
+    width: 400px;
+    height: 50px;
 }
 .subAccomAddBtn:hover{
-    background-color: #117c37;
+    background-color: #1ab752;
+}
+.title{
+    width: 130px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #666;
+    margin: 6px 0 30px 20px;
+    border-bottom: 5px solid #dadada;
+}
+.inqImg{
+    color: #fff;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    background-color: #03c75a;
+
+}
+.inputBox.img .upload-name {
+    border-radius: 5px;
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 78%;
+    color: #999999;
+}
+
+.inputBox.img label {
+    margin-top: -2px;
+    display: inline-block;
+    padding: 10px 10px;
+    border-radius: 5px;
+    width: 68px;
+    border : 1px solid #dadada;
+    font-size: 17px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #03c75a;
+    cursor: pointer;
+    height: 25px;
+    margin-left: 10px;
+}
+.inputBox.img label:hover{
+    background-color: #1ab752;
+}
+.inputBox.img input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+.inputBox.imgLook > .label{
+    padding: 20px 0;
+}
+.imgSlideList{
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+.imgSlideList img{
+    width: 100%;
+    height: 100%;
+}
+.inputBox{
+    display: flex;
+    padding: 20px 30px;
+    border-bottom: 1px solid #dadada;
+}
+.label{
+    text-align: center;
+    width: 80px;
+    font-size: 20px;
+    margin-right: 30px;
+    color: #666;
 }

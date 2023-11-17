@@ -22,24 +22,12 @@
                         <div class="input title">[[${inqDetail.title}]]</div>
                     </div>
                     <div class="inputBox">
-                        <div class="label">작성자</div>
-                        <div class="input memeberName">loginInfo.memberName</div>
-                    </div>
-                    <div class="inputBox">
                         <div class="label">작성일</div>
                         <div class="input date">[[${inqDetail.inqDate}]]</div>
                     </div>
                     <div class="inputBox">
-                        <div class="label">전화번호</div>
-                        <div class="input tel">loginInfo.memberTel</div>
-                    </div>
-                    <div class="inputBox">
                         <div class="label">문의유형</div>
                         <div class="input cateName">[[${inqDetail.inqCateList.cateName}]]</div>
-                    </div>
-                    <div class="inputBox">
-                        <div class="label">예약코드</div>
-                        <div class="input resCode">resCode</div>
                     </div>
                     <div class="inputBox">
                         <div class="label">답변상태</div>
@@ -70,7 +58,7 @@
                     </div>
                 </div>
                 <div class="btnBox">
-                    <input class="subBtn" type="button" th:if="${inqDetail.isResponse == 'N'}" value="답변하기" th:onclick="|location.href='@{/cs/responseForm(inqCode=${inqDetail.inqCode})}'|">
+                    <input  class="subBtn" type="button" th:if="${inqDetail.isResponse == 'N'}" value="답변하기" th:onclick="|location.href='@{/cs/responseForm(inqCode=${inqDetail.inqCode})}'|">
                     <input class="subBtn" type="button" value="삭제" th:onclick="|location.href='@{/cs/deleteInq(inqCode=${inqDetail.inqCode})}'|">
                     <input class="subBtn" type="button" value="목록" onclick="location.href='/cs/inquireListForm';">
                 </div>

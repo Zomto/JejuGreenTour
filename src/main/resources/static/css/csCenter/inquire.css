@@ -81,6 +81,11 @@ textarea{
 .inputBox.imgLook{
     border: 0;
 }
+
+.imgLookBox{
+    display: flex;
+}
+
 input{
     outline: none;
     border: 0;
@@ -135,6 +140,7 @@ textarea{
     background-color: #03c75a;
 
 }
+
 .inputBox.img .upload-name {
     border-radius: 5px;
     display: inline-block;
